@@ -1,0 +1,26 @@
+{
+  "kind": "pipeline",
+  "type": "docker",
+  "name": "default",
+  "steps": [
+    {
+      "name": "test",
+      "image": "node:16",
+      "commands": [
+        "npm install",
+        "npm test"
+      ]
+    },
+    {
+      "name": "build",
+      "image": "node:16",
+      "commands": [
+        "npm run build"
+      ],
+      "depends_on": ["test"]
+    }
+  ],
+  "trigger": {
+    "branch": ["main", "develop"]
+  }
+}

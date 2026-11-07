@@ -1,0 +1,104 @@
+{
+  "name": "Issue Open Check",
+  "on": {
+    "issues": {
+      "types": [
+        "opened"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "jobs": {
+    "issue-open-check": {
+      "permissions": {
+        "contents": "read",
+        "issues": "write",
+        "pull-requests": "write"
+      },
+      "runs-on": "ubuntu-latest",
+      "steps": [
+        {
+          "uses": "actions-cool/check-user-permission@v2",
+          "id": "checkUser",
+          "with": {
+            "require": "write",
+            "check-bot": true
+          }
+        },
+        {
+          "name": "add unconfirmed label",
+          "uses": "actions-cool/issues-helper@v3",
+          "with": {
+            "actions": "add-labels",
+            "issue-number": "${{ github.event.issue.number }}",
+            "labels": "unconfirmed"
+          }
+        },
+        {
+          "name": "check invalid",
+          "if": "(contains(github.event.issue.body, 'ant-design-issue-helper') == false) && (steps.checkUser.outputs.require-result == 'false')",
+          "uses": "actions-cool/issues-helper@v3",
+          "with": {
+            "actions": "create-comment,add-labels,close-issue",
+            "issue-number": "${{ github.event.issue.number }}",
+            "labels": "Invalid",
+            "body": "Hello @${{ github.event.issue.user.login }}, your issue has been closed because it does not conform to our issue requirements. Please use the [Issue Helper](http://new-issue.ant.design) to create an issue, thank you!\n\n\u4f60\u597d @${{ github.event.issue.user.login }}\uff0c\u4e3a\u4e86\u80fd\u591f\u8fdb\u884c\u9ad8\u6548\u6c9f\u901a\uff0c\u6211\u4eec\u5bf9 issue \u6709\u4e00\u5b9a\u7684\u683c\u5f0f\u8981\u6c42\uff0c\u4f60\u7684 issue \u56e0\u4e3a\u4e0d\u7b26\u5408\u8981\u6c42\u800c\u88ab\u81ea\u52a8\u5173\u95ed\u3002\u4f60\u53ef\u4ee5\u901a\u8fc7 [issue \u52a9\u624b](http://new-issue.ant.design) \u6765\u521b\u5efa issue \u4ee5\u65b9\u4fbf\u6211\u4eec\u5b9a\u4f4d\u9519\u8bef\u3002\u8c22\u8c22\u914d\u5408\uff01\n"
+          }
+        },
+        {
+          "name": "check website",
+          "uses": "actions-cool/issues-helper@v3",
+          "id": "checkid",
+          "with": {
+            "actions": "check-issue",
+            "issue-number": "${{ github.event.issue.number }}",
+            "title-includes": "\u5b98\u7f51,\u7f51\u7ad9,\u56fd\u5185,\u955c\u50cf,mobile ant design,mobile.ant.design,ant design,ant design pro,pro.ant.design/\u6302\u4e86,\u6302\u6389\u4e86,\u65e0\u6cd5\u8bbf\u95ee,\u4e0d\u80fd\u8bbf\u95ee,\u8bbf\u95ee\u901f\u5ea6,\u8bbf\u95ee\u6162,\u8bbf\u95ee\u4e0d\u4e86,\u52a0\u8f7d\u592a\u6162,\u52a0\u8f7d\u6162,\u52a0\u8f7d\u5f88\u6162,\u51fa\u95ee\u9898,\u6253\u4e0d\u5f00,\u767b\u4e0d\u4e0a,can not open,cannot open,can not be reached"
+          }
+        },
+        {
+          "name": "deal website",
+          "if": "steps.checkid.outputs.check-result == 'true'",
+          "uses": "actions-cool/issues-helper@v3",
+          "with": {
+            "actions": "create-comment,close-issue",
+            "issue-number": "${{ github.event.issue.number }}",
+            "body": "\u5982\u679c\u4f60\u65e0\u6cd5\u8bbf\u95ee Ant Design \u5b98\u7f51\uff0c\u53ef\u4ee5\u5148\u70b9\u6b64[downforeveryoneorjustme.com/ant.design](https://downforeveryoneorjustme.com/ant.design) \u68c0\u67e5\u7f51\u7ad9\u662f\u4e0d\u662f\u6302\u4e86\uff0c\u5982\u679c\u6ca1\u6302\uff0c\u53ef\u4ee5\u5c1d\u8bd5\u7ffb\u5899\u6216\u8bbf\u95ee\u56fd\u5185\u955c\u50cf\u7ad9\u70b9\u3002\n\n## \u5b98\u7f51\n* Ant Design: https://ant.design\n* Ant Design Pro: https://pro.ant.design\n* Ant Design Pro Preview : https://preview.pro.ant.design\n* Ant Design Mobile: https://mobile.ant.design\n* Ant Motion: https://motion.ant.design\n\n## \u56fd\u5185\u955c\u50cf\n* \u5b98\u65b9\u955c\u50cf: https://ant-design.antgroup.com\n* Gitee \u955c\u50cf: http://ant-design.gitee.io\n* Ant Design 4.x: https://4x-ant-design.antgroup.com\n* Ant Design 3.x: https://ant-design-3x.gitee.io\n* Ant Design 2.x: https://ant-design-2x.gitee.io\n* Ant Design 1.x: https://ant-design-1x.gitee.io\n* Ant Design Pro: https://ant-design-pro.gitee.io\n* Ant Design Mobile: https://antd-mobile.gitee.io\n* Ant Motion: https://ant-motion.gitee.io\n"
+          }
+        },
+        {
+          "name": "check ie",
+          "if": "contains(github.event.issue.body, 'ant-design-issue-helper') == true && contains(github.event.issue.title, 'IE9') == true || contains(github.event.issue.title, 'IE 9') == true || contains(github.event.issue.title, 'IE10') == true || contains(github.event.issue.title, 'IE 10') == true || contains(github.event.issue.title, 'IE11') == true || contains(github.event.issue.title, 'IE 11') == true || contains(github.event.issue.title, 'Internet Explorer') == true || contains(github.event.issue.body, 'IE9') == true || contains(github.event.issue.body, 'IE 9') == true || contains(github.event.issue.body, 'IE10') == true || contains(github.event.issue.body, 'IE 10') == true || contains(github.event.issue.body, 'IE11') == true || contains(github.event.issue.body, 'IE 11') == true || contains(github.event.issue.body, 'Internet Explorer') == true",
+          "uses": "actions-cool/issues-helper@v3",
+          "with": {
+            "actions": "add-labels",
+            "issue-number": "${{ github.event.issue.number }}",
+            "labels": "IE | Firefox | Safari,Internet Explorer"
+          }
+        },
+        {
+          "name": "check ie11-",
+          "if": "contains(github.event.issue.body, 'ant-design-issue-helper') == true && contains(github.event.issue.title, 'IE9') == true || contains(github.event.issue.title, 'IE 9') == true || contains(github.event.issue.title, 'IE10') == true || contains(github.event.issue.title, 'IE 10') == true || contains(github.event.issue.body, 'IE9') == true || contains(github.event.issue.body, 'IE 9') == true || contains(github.event.issue.body, 'IE10') == true || contains(github.event.issue.body, 'IE 10') == true",
+          "uses": "actions-cool/issues-helper@v3",
+          "with": {
+            "actions": "create-comment, close-issue",
+            "issue-number": "${{ github.event.issue.number }}",
+            "body": "Hello @${{ github.event.issue.user.login }}, v4 only support IE11 and above.\n"
+          }
+        },
+        {
+          "name": "send to dingtalk",
+          "uses": "visiky/dingtalk-release-notify@main",
+          "with": {
+            "DING_TALK_TOKEN": "${{ secrets.DINGDING_BOT_TOKEN }}\n${{ secrets.DINGDING_BOT_COLLABORATOR_TOKEN }}\n",
+            "notify_title": "\ud83d\udd25 @${{ github.event.issue.user.login }} \u521b\u5efa\u4e86 issue\uff1a${{ github.event.issue.title }} ${{ github.event.issue.html_url }}",
+            "notify_body": "### \ud83d\udd25 [@${{ github.event.issue.user.login }}](https://github.com/${{ github.event.issue.user.login }}) \u521b\u5efa\u4e86 issue\uff1a\n[${{ github.event.issue.title }}](${{ github.event.issue.html_url }})\n<hr />\n",
+            "notify_footer": "> \ud83e\udef5\ud83c\udffb \u6b22\u8fce\u524d\u5f80 GitHub \u8fdb\u884c\u8ba8\u8bba\uff0c\u793e\u533a\u9700\u8981\u4f60\u7684\u5e2e\u52a9\uff01",
+            "at_all": false
+          }
+        }
+      ]
+    }
+  }
+}

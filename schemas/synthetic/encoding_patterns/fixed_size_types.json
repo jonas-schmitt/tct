@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Fixed Size Types Test",
+  "description": "Types with fixed, predictable token counts (bool, fixed integers)",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "description": "Boolean - always 1 token (0 or 1)"
+    },
+    "count": {
+      "type": "integer",
+      "description": "Standard integer - always 2 tokens (i64 as two u32)"
+    },
+    "score": {
+      "type": "number",
+      "description": "Float - always 2 tokens (f64 as two u32)"
+    },
+    "status": {
+      "enum": ["active", "inactive", "pending"],
+      "description": "Enum - always 1 token (index 0, 1, or 2)"
+    }
+  },
+  "required": ["enabled", "count", "score", "status"]
+}

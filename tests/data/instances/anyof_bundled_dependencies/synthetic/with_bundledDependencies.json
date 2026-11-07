@@ -1,0 +1,4 @@
+{
+  "name": "test-package",
+  "bundledDependencies": ["dep1", "dep2"]
+}

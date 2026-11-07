@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "./fixture-rules.cjs"
+  ],
+  "defaultIgnores": false,
+  "rules": {
+    "type-enum": [
+      2,
+      "always",
+      [
+        "build",
+        "check",
+        "docs"
+      ]
+    ],
+    "subject-empty": [
+      2,
+      "never"
+    ],
+    "header-max-length": [
+      1,
+      "always",
+      68
+    ]
+  },
+  "parserPreset": {
+    "name": "fixture-parser",
+    "path": "./fixture-parser.cjs",
+    "parserOpts": {
+      "headerPattern": "^(\\w+): (.*)$"
+    }
+  }
+}

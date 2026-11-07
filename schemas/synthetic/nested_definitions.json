@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Nested Definitions Test",
+  "description": "Test schema for nested definitions handling",
+  "type": "object",
+  "properties": {
+    "parent": {
+      "$ref": "#/definitions/Parent"
+    },
+    "nested": {
+      "$ref": "#/definitions/Parent/definitions/Child"
+    }
+  },
+  "definitions": {
+    "Parent": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "definitions": {
+        "Child": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "grandchild": {
+              "$ref": "#/definitions/Parent/definitions/GrandChild"
+            }
+          }
+        },
+        "GrandChild": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

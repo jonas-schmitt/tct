@@ -1,0 +1,1605 @@
+{
+  "format_version": 1,
+  "scope": "94 individually inventoried small test schemas. Ownership evidence is content plus introduction history, not directory name. Private research commit IDs are provenance receipts; no private Git history is published by this ledger.",
+  "owner_license_selection": "Owner selected Apache-2.0 for this release on 2026-11-07.",
+  "files": [
+    {
+      "local_path": "schemas/api/api-response.json",
+      "introduction_commit": "e901f1735f139c2ecb85111225c4be7528d8adfd",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: implement comprehensive real-world schema testing with external data",
+      "introduction_path": "tests/data/schemas/embedded/api-response.json",
+      "status": "A",
+      "local_sha256": "2f5079f26efc146610b00d0cbbc616a313d25cb96e5e7e233a8fdec8a0037092",
+      "introduction_sha256": "2f5079f26efc146610b00d0cbbc616a313d25cb96e5e7e233a8fdec8a0037092",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/configuration/ci-pipeline.json",
+      "introduction_commit": "e901f1735f139c2ecb85111225c4be7528d8adfd",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: implement comprehensive real-world schema testing with external data",
+      "introduction_path": "tests/data/schemas/embedded/ci-pipeline.json",
+      "status": "A",
+      "local_sha256": "a251473c57988af54c629e96575eae98cda0a1511550cec0bfb083b1e278522a",
+      "introduction_sha256": "a251473c57988af54c629e96575eae98cda0a1511550cec0bfb083b1e278522a",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/configuration/eslint-config.json",
+      "introduction_commit": "e901f1735f139c2ecb85111225c4be7528d8adfd",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: implement comprehensive real-world schema testing with external data",
+      "introduction_path": "tests/data/schemas/embedded/eslint-config.json",
+      "status": "A",
+      "local_sha256": "ccc7f40856b8c63e9c12b356da8e76a1f42a32af5cd00d602b07c097914dfe25",
+      "introduction_sha256": "ccc7f40856b8c63e9c12b356da8e76a1f42a32af5cd00d602b07c097914dfe25",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/configuration/microservice-config.json",
+      "introduction_commit": "e901f1735f139c2ecb85111225c4be7528d8adfd",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: implement comprehensive real-world schema testing with external data",
+      "introduction_path": "tests/data/schemas/embedded/microservice-config.json",
+      "status": "A",
+      "local_sha256": "a2a415cd97656682f2cc6fb227f7145fb9ad2d1fc4187f8af5f6c7e6f0e9a9b3",
+      "introduction_sha256": "a2a415cd97656682f2cc6fb227f7145fb9ad2d1fc4187f8af5f6c7e6f0e9a9b3",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/popular/docker-compose.json",
+      "introduction_commit": "e901f1735f139c2ecb85111225c4be7528d8adfd",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: implement comprehensive real-world schema testing with external data",
+      "introduction_path": "tests/data/schemas/embedded/docker-compose.json",
+      "status": "A",
+      "local_sha256": "554a3f574be08a2bfd99ed3d30642c87f6f5f41f943a1317619496325080a6b1",
+      "introduction_sha256": "554a3f574be08a2bfd99ed3d30642c87f6f5f41f943a1317619496325080a6b1",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/popular/primitive_enum_mismatch.json",
+      "introduction_commit": "701e766b181b8a9ffda676008e12cb2b0b86833f",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: complete discriminator architecture for 100% schema success rate",
+      "introduction_path": "schemas/synthetic/primitive_enum_mismatch.json",
+      "status": "A",
+      "local_sha256": "962f3ef942072be9b605b72532d03fbf19966f3818f49e86cdb658b04ef71eda",
+      "introduction_sha256": "962f3ef942072be9b605b72532d03fbf19966f3818f49e86cdb658b04ef71eda",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/additional_properties_true_mixed.json",
+      "introduction_commit": "b463160a46e069299fc2361dee0071eef8f661e8",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "Preserve unconstrained additional properties",
+      "introduction_path": "schemas/synthetic/additional_properties_true_mixed.json",
+      "status": "A",
+      "local_sha256": "880f6ff27076ae0ac4912afa18601a8ea856860c3b374ab91fa46d7de5d18274",
+      "introduction_sha256": "880f6ff27076ae0ac4912afa18601a8ea856860c3b374ab91fa46d7de5d18274",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/allof_overlapping_properties.json",
+      "introduction_commit": "d3e22d1d4c76932f18ded23541600626a408b3e6",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "Merge duplicate allOf properties safely",
+      "introduction_path": "schemas/synthetic/allof_overlapping_properties.json",
+      "status": "A",
+      "local_sha256": "9022d04ce60c82cfb57e9a2bfde270bfc37d55b94eb489a26c92bbe2b7a4d6bd",
+      "introduction_sha256": "86de89bcec81921de4d04391a7bbdb59a025bebd537ead1745bb24d11a2e52d0",
+      "same_bytes_as_introduction": false,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/anyof_additional_properties.json",
+      "introduction_commit": "5be2128bd91d6d5d83193b703a8751e8f7ec27b3",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: implement additional properties support with HashMap<String, Value>",
+      "introduction_path": "schemas/synthetic/anyof_additional_properties.json",
+      "status": "A",
+      "local_sha256": "f56056e8ae6ae89099bd6b031f79d6bc66a6809dcd1eb986b7d5770b1981e152",
+      "introduction_sha256": "f56056e8ae6ae89099bd6b031f79d6bc66a6809dcd1eb986b7d5770b1981e152",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/anyof_bundled_dependencies.json",
+      "introduction_commit": "b47a42c7369de2c00ab023e62af0ed71cd8c0c0a",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: implement first-match strategy for anyOf disambiguation and type array support",
+      "introduction_path": "schemas/synthetic/anyof_bundled_dependencies.json",
+      "status": "A",
+      "local_sha256": "0e0dc1c7a85b291b68705a324bb19d0f5dfc66f63c101b8870fbe8b2cfd31e61",
+      "introduction_sha256": "0e0dc1c7a85b291b68705a324bb19d0f5dfc66f63c101b8870fbe8b2cfd31e61",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/anyof_empty_schema.json",
+      "introduction_commit": "1c4c8aa865e5433e2fa27f2ca5cf32d1c26aa84a",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: Detect empty schemas in anyOf/oneOf to prevent invalid struct generation",
+      "introduction_path": "schemas/synthetic/anyof_empty_schema.json",
+      "status": "A",
+      "local_sha256": "8e92a2a967765b26f9a2e46d336f37032245425f9851e10851f02a11a29e5970",
+      "introduction_sha256": "8e92a2a967765b26f9a2e46d336f37032245425f9851e10851f02a11a29e5970",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/anyof_optional_fields.json",
+      "introduction_commit": "b47a42c7369de2c00ab023e62af0ed71cd8c0c0a",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: implement first-match strategy for anyOf disambiguation and type array support",
+      "introduction_path": "schemas/synthetic/anyof_optional_fields.json",
+      "status": "A",
+      "local_sha256": "cfa022ca18b98580ae8f195f1784a505af8cb4131c2c978c339d2ffd60af62bc",
+      "introduction_sha256": "cfa022ca18b98580ae8f195f1784a505af8cb4131c2c978c339d2ffd60af62bc",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/anyof_root_properties.json",
+      "introduction_commit": "730a8bc33d154c07523a6a8bb44c7302d56fb56e",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: merge root properties into anyOf/oneOf variants to prevent empty structs",
+      "introduction_path": "schemas/synthetic/anyof_root_properties.json",
+      "status": "A",
+      "local_sha256": "cf97f94f818b7bb5301017167ee8ca88d074e2eaff45bfe9c77dd237604a6d71",
+      "introduction_sha256": "cf97f94f818b7bb5301017167ee8ca88d074e2eaff45bfe9c77dd237604a6d71",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/anyof_type_property.json",
+      "introduction_commit": "730a8bc33d154c07523a6a8bb44c7302d56fb56e",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: merge root properties into anyOf/oneOf variants to prevent empty structs",
+      "introduction_path": "schemas/synthetic/anyof_type_property.json",
+      "status": "A",
+      "local_sha256": "07664ca91fb3546b3dc22cc26fcc5244b1ac79e1f062f10baf8e77185513f4b7",
+      "introduction_sha256": "07664ca91fb3546b3dc22cc26fcc5244b1ac79e1f062f10baf8e77185513f4b7",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/anyof_with_refs.json",
+      "introduction_commit": "864725dea21976358c724b4e49650b0d66b49f08",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: implement schema-aware deserialization for anyOf/oneOf with complete $ref support",
+      "introduction_path": "schemas/synthetic/anyof_with_refs.json",
+      "status": "A",
+      "local_sha256": "3de9f5b361befcbd80b46a7187295f4695a648c60e53c0ff7b68dc5b65aa30c6",
+      "introduction_sha256": "3de9f5b361befcbd80b46a7187295f4695a648c60e53c0ff7b68dc5b65aa30c6",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/array_len_debug.json",
+      "introduction_commit": "48b4b5eb3e35fe0c93913b5095dc3ee3b4e13b65",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: fix critical duplicate TestType generation in three-pass system",
+      "introduction_path": "schemas/synthetic/simple_array_test.json",
+      "status": "A",
+      "local_sha256": "3bb9b081a72abb3ab1073395c758415df8119ec68c02022d44900efa11b9b7fb",
+      "introduction_sha256": "43ff85e441dad5a3fe27ba6e222099389c7d0367dd5f9c4dd25c792ccc27f0cb",
+      "same_bytes_as_introduction": false,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/array_types.json",
+      "introduction_commit": "f335cd8c2757670ecf2a3514c120200ee6dc3487",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: implement BufferedTokenIterator for untagged enum backtracking",
+      "introduction_path": "schemas/synthetic/array_types.json",
+      "status": "A",
+      "local_sha256": "c266c9bf3e223178d8c2634f227b519208764077963c834f9300d4f8d070c999",
+      "introduction_sha256": "c266c9bf3e223178d8c2634f227b519208764077963c834f9300d4f8d070c999",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/bitpacked_optionals.json",
+      "introduction_commit": "edbf3f7001bc9843273d42caa639a111c92da3d8",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: Add O3 bit-packed optional field presence encoding",
+      "introduction_path": "schemas/synthetic/bitpacked_optionals.json",
+      "status": "A",
+      "local_sha256": "13894d42598927ef4b855b5f025f4fcfcb3ebdc346dd5b1fc82500cce498f89e",
+      "introduction_sha256": "13894d42598927ef4b855b5f025f4fcfcb3ebdc346dd5b1fc82500cce498f89e",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/coexistence_test.json",
+      "introduction_commit": "8eebad84ab3d5698ab100dfd9389f066eb824b26",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: implement comprehensive pattern validation with custom serde integration",
+      "introduction_path": "schemas/synthetic/coexistence_test.json",
+      "status": "A",
+      "local_sha256": "30218a922f121b5acabaf5fae6a07affb43016cfd0bb55f4f55f104900dd3848",
+      "introduction_sha256": "30218a922f121b5acabaf5fae6a07affb43016cfd0bb55f4f55f104900dd3848",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/commitlint_rule_tuple_oneof.json",
+      "introduction_commit": "62c9c9aaf7231b39ffa29d69417a0d9b5cdde498",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add synthetic schema for tuple arrays with additionalProperties",
+      "introduction_path": "schemas/synthetic/object_with_tuple_array_values.json",
+      "status": "A",
+      "local_sha256": "4d103afce3a7728a906f0e61abc62c59e645401ffe9dfa0f9f305649ff4c31ba",
+      "introduction_sha256": "c072683360f683d5203c1535f0e612494e45ee9afa5bb3dd507638fb7f583e21",
+      "same_bytes_as_introduction": false,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/complex_dependencies.json",
+      "introduction_commit": "5eb041f4edb36db59cd43b1c05438c0481dd6edb",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: eliminate duplicate type compilation in object_generator",
+      "introduction_path": "schemas/synthetic/complex_dependencies.json",
+      "status": "A",
+      "local_sha256": "68ecd09fb6625bdb054e369ef39b4e784ff2fc93a68956151bae966d7ca2f92f",
+      "introduction_sha256": "68ecd09fb6625bdb054e369ef39b4e784ff2fc93a68956151bae966d7ca2f92f",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/decode_state_multi_branch.json",
+      "introduction_commit": "841bd13fa2fb9e0dad3dd1468a26195721ef9dcb",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "Complete TOUCAN DecodeState residual: equivalence oracle and root restriction.",
+      "introduction_path": "schemas/synthetic/decode_state_multi_branch.json",
+      "status": "A",
+      "local_sha256": "889ef0573a7d27782c9f2656558870b58bdc50d0e15b20de0539e8770faa7296",
+      "introduction_sha256": "889ef0573a7d27782c9f2656558870b58bdc50d0e15b20de0539e8770faa7296",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/decoder/array_vs_object.json",
+      "introduction_commit": "2247fb222e04a9a4ab436755fb3ce3804526a4ff",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "TDD: Add synthetic schemas for universal schema-aware decoding",
+      "introduction_path": "schemas/synthetic/decoder/array_vs_object.json",
+      "status": "A",
+      "local_sha256": "197eb26bc1ed69b59836adade10b948a7b2ded5e1c74afdbd251208ab46a7a90",
+      "introduction_sha256": "197eb26bc1ed69b59836adade10b948a7b2ded5e1c74afdbd251208ab46a7a90",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/decoder/optional_struct_false_positive.json",
+      "introduction_commit": "2247fb222e04a9a4ab436755fb3ce3804526a4ff",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "TDD: Add synthetic schemas for universal schema-aware decoding",
+      "introduction_path": "schemas/synthetic/decoder/optional_struct_false_positive.json",
+      "status": "A",
+      "local_sha256": "4d7cf1ad740cc7d11e0ff4aca3cb16d9a468c7237b2e6162c802b76f965a6588",
+      "introduction_sha256": "4d7cf1ad740cc7d11e0ff4aca3cb16d9a468c7237b2e6162c802b76f965a6588",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/decoder/primitive_confusion.json",
+      "introduction_commit": "2247fb222e04a9a4ab436755fb3ce3804526a4ff",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "TDD: Add synthetic schemas for universal schema-aware decoding",
+      "introduction_path": "schemas/synthetic/decoder/primitive_confusion.json",
+      "status": "A",
+      "local_sha256": "518a635e577a514ed09d2d7e9b787bd357be4756ac511451e31bb4540153d280",
+      "introduction_sha256": "518a635e577a514ed09d2d7e9b787bd357be4756ac511451e31bb4540153d280",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/decoder/string_vs_object_union.json",
+      "introduction_commit": "2247fb222e04a9a4ab436755fb3ce3804526a4ff",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "TDD: Add synthetic schemas for universal schema-aware decoding",
+      "introduction_path": "schemas/synthetic/decoder/string_vs_object_union.json",
+      "status": "A",
+      "local_sha256": "9b3078701d90ea60094eb34d0da20297e4748af7f66361b0070d25991fdac168",
+      "introduction_sha256": "9b3078701d90ea60094eb34d0da20297e4748af7f66361b0070d25991fdac168",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/distinguishable_untagged_enum.json",
+      "introduction_commit": "c81121bdd7953a17a38d3f12091285178f25374d",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: implement semantic analysis-based decode strategy selection",
+      "introduction_path": "schemas/synthetic/distinguishable_untagged_enum.json",
+      "status": "A",
+      "local_sha256": "b53362361dee53b47f28c0d999df3429a5c258159128e012d17d01d435456e18",
+      "introduction_sha256": "b587f9897f4b5d7dc5ff7a089e78ccf378932b7c5cc4bf68b85862eea9ad9542",
+      "same_bytes_as_introduction": false,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/dot_property.json",
+      "introduction_commit": "e552a4dd91198951ada6dd2968161a46659a92d0",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: sanitize standalone dot property name to 'dot' instead of '_'",
+      "introduction_path": "schemas/synthetic/dot_property.json",
+      "status": "A",
+      "local_sha256": "16ffe3be4d99d745dda149877f3964ee6f3cfa9aa8f982c93ed3a81048067fd5",
+      "introduction_sha256": "16ffe3be4d99d745dda149877f3964ee6f3cfa9aa8f982c93ed3a81048067fd5",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/encoding_patterns/bounded_types.json",
+      "introduction_commit": "484b957844b6a11d47280f6f705b45c47fdd5d89",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add synthetic schemas for token signature analysis (TDD Red)",
+      "introduction_path": "schemas/synthetic/token_signatures/bounded_types.json",
+      "status": "A",
+      "local_sha256": "1662416e0602dd10e53c58cd1a379bb830f56ef5f61db4f294dfdcd7d1113907",
+      "introduction_sha256": "1662416e0602dd10e53c58cd1a379bb830f56ef5f61db4f294dfdcd7d1113907",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/encoding_patterns/fixed_size_types.json",
+      "introduction_commit": "484b957844b6a11d47280f6f705b45c47fdd5d89",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add synthetic schemas for token signature analysis (TDD Red)",
+      "introduction_path": "schemas/synthetic/token_signatures/fixed_size_types.json",
+      "status": "A",
+      "local_sha256": "555096fe19f7429344fbb1ff80e3c795a5553eade5bd991bbe4056416eb43636",
+      "introduction_sha256": "555096fe19f7429344fbb1ff80e3c795a5553eade5bd991bbe4056416eb43636",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/encoding_patterns/length_prefixed_types.json",
+      "introduction_commit": "484b957844b6a11d47280f6f705b45c47fdd5d89",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add synthetic schemas for token signature analysis (TDD Red)",
+      "introduction_path": "schemas/synthetic/token_signatures/length_prefixed_types.json",
+      "status": "A",
+      "local_sha256": "6900176aff019f54155f9dc542baf9c706fe7715bc0ecbabdc54fdeaf568af86",
+      "introduction_sha256": "6900176aff019f54155f9dc542baf9c706fe7715bc0ecbabdc54fdeaf568af86",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/encoding_patterns/tagged_types.json",
+      "introduction_commit": "484b957844b6a11d47280f6f705b45c47fdd5d89",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add synthetic schemas for token signature analysis (TDD Red)",
+      "introduction_path": "schemas/synthetic/token_signatures/tagged_types.json",
+      "status": "A",
+      "local_sha256": "02ac8df9bf4d0203b71315afc6bcd731716a638d0c967d4c476ca9ca92c7a71e",
+      "introduction_sha256": "02ac8df9bf4d0203b71315afc6bcd731716a638d0c967d4c476ca9ca92c7a71e",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/env_values.json",
+      "introduction_commit": "768b0c67a7d5c9cbfca1485ee6430058a5ef052c",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: null type support and instance encoder root type fix",
+      "introduction_path": "schemas/synthetic/env_values.json",
+      "status": "A",
+      "local_sha256": "72dbc35874a0416f755052f65f9d9e9c199ad4567c22644dbe149c2ea790e024",
+      "introduction_sha256": "72dbc35874a0416f755052f65f9d9e9c199ad4567c22644dbe149c2ea790e024",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/exports_imports.json",
+      "introduction_commit": "5eb041f4edb36db59cd43b1c05438c0481dd6edb",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: eliminate duplicate type compilation in object_generator",
+      "introduction_path": "schemas/synthetic/exports_imports.json",
+      "status": "A",
+      "local_sha256": "ec17950a343274c7595dc949bc23eb8aa14267a6a93b0e96fd7b77f07828e8b6",
+      "introduction_sha256": "985f5f4c27a9d7d30190be9e3e620553a6031e20294307ed48006a82d2a58910",
+      "same_bytes_as_introduction": false,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/external_ref.json",
+      "introduction_commit": "f335cd8c2757670ecf2a3514c120200ee6dc3487",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: implement BufferedTokenIterator for untagged enum backtracking",
+      "introduction_path": "schemas/synthetic/external_ref.json",
+      "status": "A",
+      "local_sha256": "f88760d39b926a69b03ba1de1cdeae26b276dccd6f1afa34208ff5732f2fc8fb",
+      "introduction_sha256": "f88760d39b926a69b03ba1de1cdeae26b276dccd6f1afa34208ff5732f2fc8fb",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/format_optimization_test.json",
+      "introduction_commit": "93da3da52ea6681b752230f09359e283e9298c22",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: Add O3 bit-packing infrastructure for optional field presence",
+      "introduction_path": "schemas/synthetic/format_optimization_test.json",
+      "status": "A",
+      "local_sha256": "e57cec7060695c5cba9ec3eac217843737fa284df9e32877d4c1f194b3244447",
+      "introduction_sha256": "e57cec7060695c5cba9ec3eac217843737fa284df9e32877d4c1f194b3244447",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/github_workflow_exact.json",
+      "introduction_commit": "fad380735a1d6139f1b5e4364cc6c7d1c9d14afb",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add 6 synthetic schemas for union pattern testing",
+      "introduction_path": "schemas/synthetic/github_workflow_exact.json",
+      "status": "A",
+      "local_sha256": "8f03881d919587e6c112d943d95f38209748dd13ec03ef690005d443004893f7",
+      "introduction_sha256": "8f03881d919587e6c112d943d95f38209748dd13ec03ef690005d443004893f7",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/json_schema_allof_keyword_breadth.json",
+      "introduction_commit": "d3e22d1d4c76932f18ded23541600626a408b3e6",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "Merge duplicate allOf properties safely",
+      "introduction_path": "schemas/synthetic/allof_overlapping_properties.json",
+      "status": "A",
+      "local_sha256": "d3581cb14acb37f09fd96f7b913558b5cd8c2df45f7f17f9bf668124cb7b471b",
+      "introduction_sha256": "86de89bcec81921de4d04391a7bbdb59a025bebd537ead1745bb24d11a2e52d0",
+      "same_bytes_as_introduction": false,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/json_schema_const_keyword_breadth.json",
+      "introduction_commit": "116d7b65de746b0167cafcce0065656c75ced789",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "Add JSON const exact-mask evidence",
+      "introduction_path": "schemas/synthetic/json_schema_const_keyword_breadth.json",
+      "status": "A",
+      "local_sha256": "890e55813f691e32949fc3f4382482de224ca8f2063eae424707a35a6b861bc2",
+      "introduction_sha256": "890e55813f691e32949fc3f4382482de224ca8f2063eae424707a35a6b861bc2",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/json_schema_numeric_bounds_keyword_breadth.json",
+      "introduction_commit": "116d7b65de746b0167cafcce0065656c75ced789",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "Add JSON const exact-mask evidence",
+      "introduction_path": "schemas/synthetic/json_schema_const_keyword_breadth.json",
+      "status": "A",
+      "local_sha256": "054133d2ca88e3fea6342dc9fb51b4ea14b75308cdd7213d4d3748891e4d277c",
+      "introduction_sha256": "890e55813f691e32949fc3f4382482de224ca8f2063eae424707a35a6b861bc2",
+      "same_bytes_as_introduction": false,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/json_schema_string_format_keyword_breadth.json",
+      "introduction_commit": "116d7b65de746b0167cafcce0065656c75ced789",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "Add JSON const exact-mask evidence",
+      "introduction_path": "schemas/synthetic/json_schema_const_keyword_breadth.json",
+      "status": "A",
+      "local_sha256": "e2a95020713776c1420515e6336c18b5465ea0e1d3f7ab5673a5e5beb5a4885b",
+      "introduction_sha256": "890e55813f691e32949fc3f4382482de224ca8f2063eae424707a35a6b861bc2",
+      "same_bytes_as_introduction": false,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/large_collection_test.json",
+      "introduction_commit": "20b8e829c927540bafa8d48c6c1b58fcafaabf59",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: Implement vocabulary-constrained collection encoding (Phase 2)",
+      "introduction_path": "schemas/synthetic/large_collection_test.json",
+      "status": "A",
+      "local_sha256": "6238789fb3bc7c68ce163a5089c3652ddc8e6d2de838676cb19799d5aa956f57",
+      "introduction_sha256": "6238789fb3bc7c68ce163a5089c3652ddc8e6d2de838676cb19799d5aa956f57",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/large_enum_codec.json",
+      "introduction_commit": "3caee73c285a9bf593b3c62bfbabbd2117793425",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: Add codec-based multi-token encoding validation (Phase 4) - CORRECTED",
+      "introduction_path": "schemas/synthetic/large_enum_codec.json",
+      "status": "A",
+      "local_sha256": "cfca0b391fac19de5d0b55ff242850569a2a69b2a758b6979b5b3bcec9667014",
+      "introduction_sha256": "cfca0b391fac19de5d0b55ff242850569a2a69b2a758b6979b5b3bcec9667014",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/large_enum_power_of_2.json",
+      "introduction_commit": "83ccfc8acb97629f8a85eaef19dacc594732732e",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: Expand vocabulary budget test coverage",
+      "introduction_path": "schemas/synthetic/large_enum_power_of_2.json",
+      "status": "A",
+      "local_sha256": "550eac6e9971a0263da88335def035e7250058fe30cd53a7e121ef80dfc52789",
+      "introduction_sha256": "550eac6e9971a0263da88335def035e7250058fe30cd53a7e121ef80dfc52789",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/large_enum_three_token.json",
+      "introduction_commit": "83ccfc8acb97629f8a85eaef19dacc594732732e",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: Expand vocabulary budget test coverage",
+      "introduction_path": "schemas/synthetic/large_enum_three_token.json",
+      "status": "A",
+      "local_sha256": "70590e99ca2ec924d0a55e5592a3f5fc5755fe50c0a83ea5052d9a4363af311b",
+      "introduction_sha256": "70590e99ca2ec924d0a55e5592a3f5fc5755fe50c0a83ea5052d9a4363af311b",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/large_numbers_test.json",
+      "introduction_commit": "4fc4a84e64516588b920d680b84092fcfcdd0c94",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: Implement vocabulary-constrained number encoding (Phase 3)",
+      "introduction_path": "schemas/synthetic/large_numbers_test.json",
+      "status": "A",
+      "local_sha256": "f44ad21a675ceffcaafdfdbbab9e145ed192f557fb25df0df8d68253d8a6c6bc",
+      "introduction_sha256": "f44ad21a675ceffcaafdfdbbab9e145ed192f557fb25df0df8d68253d8a6c6bc",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/minimal_object.json",
+      "introduction_commit": "a9a575c0080cd9953b778a51bf0e49aed6de1aa8",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add minimal object synthetic schema for empty struct investigation",
+      "introduction_path": "schemas/synthetic/minimal_object.json",
+      "status": "A",
+      "local_sha256": "0bf7ecca680a7f027f2ccf9899302717128d3fc1e325a8c77988e9cc522cff7f",
+      "introduction_sha256": "0bf7ecca680a7f027f2ccf9899302717128d3fc1e325a8c77988e9cc522cff7f",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/minimal_object_fix_test.json",
+      "introduction_commit": "a9a575c0080cd9953b778a51bf0e49aed6de1aa8",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add minimal object synthetic schema for empty struct investigation",
+      "introduction_path": "schemas/synthetic/minimal_object.json",
+      "status": "A",
+      "local_sha256": "e911d7f5d5871a29fa3fbe87f8d42a82ac683f0d60365d4e5718d75daa04075c",
+      "introduction_sha256": "0bf7ecca680a7f027f2ccf9899302717128d3fc1e325a8c77988e9cc522cff7f",
+      "same_bytes_as_introduction": false,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/minimal_oneOf.json",
+      "introduction_commit": "5eb041f4edb36db59cd43b1c05438c0481dd6edb",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: eliminate duplicate type compilation in object_generator",
+      "introduction_path": "schemas/synthetic/minimal_oneOf.json",
+      "status": "A",
+      "local_sha256": "11fa4dd11e4d9bb69c4a12ba873afb61c22a433f7e658969df4d7966d50f4b52",
+      "introduction_sha256": "11fa4dd11e4d9bb69c4a12ba873afb61c22a433f7e658969df4d7966d50f4b52",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/minimal_struct.json",
+      "introduction_commit": "b85b38cf806ba871cd8c450f38d41a7ea7de8eba",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: Generate partial encoding methods for structs (Phase 2.1-2.3)",
+      "introduction_path": "schemas/synthetic/minimal_struct.json",
+      "status": "A",
+      "local_sha256": "b4dee0397bd72b2293cf6d110c55c3c62f3a993a2286736f72f5ea6ebb2d7823",
+      "introduction_sha256": "b4dee0397bd72b2293cf6d110c55c3c62f3a993a2286736f72f5ea6ebb2d7823",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/multi_primitive_union.json",
+      "introduction_commit": "af701bdccb7d01c6c5ba9d274902d1b1e4466bb0",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add enhanced synthetic schemas for complex union patterns",
+      "introduction_path": "schemas/synthetic/multi_primitive_union.json",
+      "status": "A",
+      "local_sha256": "77427cbcd334621f40142ffd5162377ecbe84b3d6a5b5a593f0c6e743651b83d",
+      "introduction_sha256": "77427cbcd334621f40142ffd5162377ecbe84b3d6a5b5a593f0c6e743651b83d",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/multiple_oneof_patterns.json",
+      "introduction_commit": "bb780afd82cdc93d549703843c630ea046a361dd",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "tdd: reproduce enum type sharing bug in multiple oneOf patterns",
+      "introduction_path": "schemas/synthetic/multiple_oneof_patterns.json",
+      "status": "A",
+      "local_sha256": "c70f9f110f097230a573c4a0abf41420ca04047b997da39a4b5ae73f667f739d",
+      "introduction_sha256": "c70f9f110f097230a573c4a0abf41420ca04047b997da39a4b5ae73f667f739d",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/nested_definition_ref.json",
+      "introduction_commit": "2fd2ecfe22d32370f7a90804f38c52ecb4754e50",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: Discover nested $ref paths and array index references",
+      "introduction_path": "schemas/synthetic/nested_definition_ref.json",
+      "status": "A",
+      "local_sha256": "2e33631553a822aa53ad2eeafa31e4f2287dbb7a9d2e749ca052d890de0f1dbb",
+      "introduction_sha256": "2e33631553a822aa53ad2eeafa31e4f2287dbb7a9d2e749ca052d890de0f1dbb",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/nested_definitions.json",
+      "introduction_commit": "e3a43dc5df05498926201bcf4ce383e181dfd50a",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: add discovery for #/properties/ refs and nested definitions",
+      "introduction_path": "schemas/synthetic/nested_definitions.json",
+      "status": "A",
+      "local_sha256": "daddc4d94a100fe48346dc148deead88adba263b5ed214126dca4625d1cdb7d3",
+      "introduction_sha256": "daddc4d94a100fe48346dc148deead88adba263b5ed214126dca4625d1cdb7d3",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/nested_objects.json",
+      "introduction_commit": "5eb041f4edb36db59cd43b1c05438c0481dd6edb",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: eliminate duplicate type compilation in object_generator",
+      "introduction_path": "schemas/synthetic/nested_objects.json",
+      "status": "A",
+      "local_sha256": "7186f06478e6cab4c9904571fd49d3178e737c1cd66484e994f299fb133ebfb1",
+      "introduction_sha256": "7186f06478e6cab4c9904571fd49d3178e737c1cd66484e994f299fb133ebfb1",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/null_variant.json",
+      "introduction_commit": "7f617770c1a321e72f9cea5ce58dce7505034802",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: Unified statistics tracking with inline enum detection",
+      "introduction_path": "schemas/synthetic/null_variant.json",
+      "status": "A",
+      "local_sha256": "25aceaee65b9abf58e23d686559c67fa9ccb169c212d8f0ec38aaf2259262d5c",
+      "introduction_sha256": "25aceaee65b9abf58e23d686559c67fa9ccb169c212d8f0ec38aaf2259262d5c",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/nullable_field.json",
+      "introduction_commit": "0ac9372b1bca10b7139efe9df518330088265125",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "TDD: Add failing test for nullable field preservation",
+      "introduction_path": "schemas/synthetic/nullable_field.json",
+      "status": "A",
+      "local_sha256": "e6ad9fac2d1b061b48f58e9c98e994a2503d5d6df5f3b0fd39990dda20d57c12",
+      "introduction_sha256": "e6ad9fac2d1b061b48f58e9c98e994a2503d5d6df5f3b0fd39990dda20d57c12",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/number_type_preservation.json",
+      "introduction_commit": "61cc7dca757c65465bf58ce2694ec7b2075f7850",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: Preserve number type (integer vs float) during JSON round-trip",
+      "introduction_path": "schemas/synthetic/number_type_preservation.json",
+      "status": "A",
+      "local_sha256": "4e04d7ba297129fc4c7b9fa9b17d646ecce0f159e26b92d1967a52673f634858",
+      "introduction_sha256": "4e04d7ba297129fc4c7b9fa9b17d646ecce0f159e26b92d1967a52673f634858",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/object_vs_null.json",
+      "introduction_commit": "af701bdccb7d01c6c5ba9d274902d1b1e4466bb0",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add enhanced synthetic schemas for complex union patterns",
+      "introduction_path": "schemas/synthetic/object_vs_null.json",
+      "status": "A",
+      "local_sha256": "e9105b0be1001a52db486bd883f0a0971fc0466f37b12815a0e3d2f26d0ac657",
+      "introduction_sha256": "e9105b0be1001a52db486bd883f0a0971fc0466f37b12815a0e3d2f26d0ac657",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/object_with_tuple_array_values.json",
+      "introduction_commit": "62c9c9aaf7231b39ffa29d69417a0d9b5cdde498",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add synthetic schema for tuple arrays with additionalProperties",
+      "introduction_path": "schemas/synthetic/object_with_tuple_array_values.json",
+      "status": "A",
+      "local_sha256": "c072683360f683d5203c1535f0e612494e45ee9afa5bb3dd507638fb7f583e21",
+      "introduction_sha256": "c072683360f683d5203c1535f0e612494e45ee9afa5bb3dd507638fb7f583e21",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/oneof_array_string.json",
+      "introduction_commit": "9a94a6fab00cfb7384792589a43c216fda6c90d6",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "tdd: add synthetic schema for oneOf array/string pattern",
+      "introduction_path": "schemas/synthetic/oneof_array_string.json",
+      "status": "A",
+      "local_sha256": "44114ad2f4cfd28c5171fc66a3197edf0ee3d2140466e83d558456a1d9724aa5",
+      "introduction_sha256": "44114ad2f4cfd28c5171fc66a3197edf0ee3d2140466e83d558456a1d9724aa5",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/oneof_string_or_object.json",
+      "introduction_commit": "5be2128bd91d6d5d83193b703a8751e8f7ec27b3",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: implement additional properties support with HashMap<String, Value>",
+      "introduction_path": "schemas/synthetic/oneof_string_or_object.json",
+      "status": "A",
+      "local_sha256": "d50db5178da4188b2780d0267b32cde3edff8773e91b5a78c94d29f49fde987c",
+      "introduction_sha256": "d50db5178da4188b2780d0267b32cde3edff8773e91b5a78c94d29f49fde987c",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/optional_field_enum.json",
+      "introduction_commit": "726e2e36a2de60d70154a4eb0f96fd144b029b99",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: schema-aware decode architecture validation and optional field fixes",
+      "introduction_path": "schemas/synthetic/optional_field_enum.json",
+      "status": "A",
+      "local_sha256": "9d972a56c716e14f6ec3a2ed18ac72fa61e6c9b5eaab972bcd7acf7cde4a590f",
+      "introduction_sha256": "9d972a56c716e14f6ec3a2ed18ac72fa61e6c9b5eaab972bcd7acf7cde4a590f",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/pattern_constrained_enum.json",
+      "introduction_commit": "09fa90ecf9ad344a958f77752e87534ab522191e",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: Phase 6 - Pattern+enum optimization tests (no implementation needed)",
+      "introduction_path": "schemas/synthetic/pattern_constrained_enum.json",
+      "status": "A",
+      "local_sha256": "a2d0ac705435d2a24cab67dacdd2a5fc96665cdcec5ebc8a84e15f21e3530947",
+      "introduction_sha256": "a2d0ac705435d2a24cab67dacdd2a5fc96665cdcec5ebc8a84e15f21e3530947",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/pattern_null_values.json",
+      "introduction_commit": "c6f823f32fe55b4ac3347d7f03d09929624f4d84",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "investigate: package.json round-trip failures - unconstrained object bug identified",
+      "introduction_path": "schemas/synthetic/pattern_null_values.json",
+      "status": "A",
+      "local_sha256": "022e90417bbda4bfa1d610b891e21e41e769fbdb7a36650b6652f369c18695b8",
+      "introduction_sha256": "022e90417bbda4bfa1d610b891e21e41e769fbdb7a36650b6652f369c18695b8",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/pattern_optional_fields.json",
+      "introduction_commit": "e7463dee854f26542ed6f86aa7b58672fff90938",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: pattern validator optional fields serialization and deserialization",
+      "introduction_path": "schemas/synthetic/pattern_optional_fields.json",
+      "status": "A",
+      "local_sha256": "09ea807baf1125996d7c4f8212da4b8ab6c3990235fc614072ec65f27418e7a4",
+      "introduction_sha256": "09ea807baf1125996d7c4f8212da4b8ab6c3990235fc614072ec65f27418e7a4",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/pattern_round_trip.json",
+      "introduction_commit": "8eebad84ab3d5698ab100dfd9389f066eb824b26",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: implement comprehensive pattern validation with custom serde integration",
+      "introduction_path": "schemas/synthetic/pattern_round_trip.json",
+      "status": "A",
+      "local_sha256": "5e600a09e9b58b68866fde2d0b2a9958d6f6fa2213d7570ae61d0e916fc089df",
+      "introduction_sha256": "5e600a09e9b58b68866fde2d0b2a9958d6f6fa2213d7570ae61d0e916fc089df",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/pattern_semver_codec.json",
+      "introduction_commit": "09fa90ecf9ad344a958f77752e87534ab522191e",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: Phase 6 - Pattern+enum optimization tests (no implementation needed)",
+      "introduction_path": "schemas/synthetic/pattern_semver_codec.json",
+      "status": "A",
+      "local_sha256": "011f794e9f36502cb117a5e6269079571ea44c2604e4d74b3a5dbcfd455515e8",
+      "introduction_sha256": "011f794e9f36502cb117a5e6269079571ea44c2604e4d74b3a5dbcfd455515e8",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/primitive_enum_mismatch.json",
+      "introduction_commit": "701e766b181b8a9ffda676008e12cb2b0b86833f",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: complete discriminator architecture for 100% schema success rate",
+      "introduction_path": "schemas/synthetic/primitive_enum_mismatch.json",
+      "status": "A",
+      "local_sha256": "962f3ef942072be9b605b72532d03fbf19966f3818f49e86cdb658b04ef71eda",
+      "introduction_sha256": "962f3ef942072be9b605b72532d03fbf19966f3818f49e86cdb658b04ef71eda",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/primitive_in_definition.json",
+      "introduction_commit": "fc8910364f1a1b812ea5a0078738e43b990bea81",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add synthetic schema for primitive type definition bug",
+      "introduction_path": "schemas/synthetic/primitive_in_definition.json",
+      "status": "A",
+      "local_sha256": "8499e2607b726467b9ec3b43d9584c7dded3847e97ece55c09b0dbf209cd00f4",
+      "introduction_sha256": "8499e2607b726467b9ec3b43d9584c7dded3847e97ece55c09b0dbf209cd00f4",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/properties_ref.json",
+      "introduction_commit": "e3a43dc5df05498926201bcf4ce383e181dfd50a",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: add discovery for #/properties/ refs and nested definitions",
+      "introduction_path": "schemas/synthetic/properties_ref.json",
+      "status": "A",
+      "local_sha256": "a79487601dd98149d81e1167f95d2fb6ff005296cf97947bd36942d8a04eae70",
+      "introduction_sha256": "a79487601dd98149d81e1167f95d2fb6ff005296cf97947bd36942d8a04eae70",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/recursive_ref.json",
+      "introduction_commit": "5eb041f4edb36db59cd43b1c05438c0481dd6edb",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: eliminate duplicate type compilation in object_generator",
+      "introduction_path": "schemas/synthetic/recursive_ref.json",
+      "status": "A",
+      "local_sha256": "7ef6eb4030b9a5c7c0a687c89dcb36ee1ec1068e9507fd8b400ef9cc51650c55",
+      "introduction_sha256": "7ef6eb4030b9a5c7c0a687c89dcb36ee1ec1068e9507fd8b400ef9cc51650c55",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/ref_duplicate_test.json",
+      "introduction_commit": "5eb041f4edb36db59cd43b1c05438c0481dd6edb",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: eliminate duplicate type compilation in object_generator",
+      "introduction_path": "schemas/synthetic/ref_duplicate_test.json",
+      "status": "A",
+      "local_sha256": "e7c4d606825a99eee0d36246074f9372fabcaf886397f7dffddc71f8ef0e5bdd",
+      "introduction_sha256": "e7c4d606825a99eee0d36246074f9372fabcaf886397f7dffddc71f8ef0e5bdd",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/ref_to_anyof_with_empty.json",
+      "introduction_commit": "1c4c8aa865e5433e2fa27f2ca5cf32d1c26aa84a",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: Detect empty schemas in anyOf/oneOf to prevent invalid struct generation",
+      "introduction_path": "schemas/synthetic/ref_to_anyof_with_empty.json",
+      "status": "A",
+      "local_sha256": "9187e839e285b737336ea2bd003ad7cb65c2fd3ceeebe6cd7dde4c5062a6164c",
+      "introduction_sha256": "9187e839e285b737336ea2bd003ad7cb65c2fd3ceeebe6cd7dde4c5062a6164c",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/ref_with_null_variant.json",
+      "introduction_commit": "71d323ee85b1a46b8f46dcff3323b944a03e3cb0",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "WIP: Partial implementation of OptionalField<T> for null preservation",
+      "introduction_path": "schemas/synthetic/ref_with_null_variant.json",
+      "status": "A",
+      "local_sha256": "b7c302d0f2f3ba3e3cc5210c6789b20197e6c9792c8b98dcdb9ab5065c815dcd",
+      "introduction_sha256": "b7c302d0f2f3ba3e3cc5210c6789b20197e6c9792c8b98dcdb9ab5065c815dcd",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/root_composition_test.json",
+      "introduction_commit": "48b4b5eb3e35fe0c93913b5095dc3ee3b4e13b65",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: fix critical duplicate TestType generation in three-pass system",
+      "introduction_path": "schemas/synthetic/root_composition_test.json",
+      "status": "A",
+      "local_sha256": "80fcdef3f5827a90017a35b907316742786e63a69cd0e34529ffb6b89c9af2da",
+      "introduction_sha256": "80fcdef3f5827a90017a35b907316742786e63a69cd0e34529ffb6b89c9af2da",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/round_trip_precision.json",
+      "introduction_commit": "2b46f5bac6c63b7e1a23469ef87c96733bcd340f",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add synthetic schema for round-trip precision debugging",
+      "introduction_path": "schemas/synthetic/round_trip_precision.json",
+      "status": "A",
+      "local_sha256": "6a0694692b6e53a802891d89988d9b77407b3d7e7e79463271186aa2c3c15112",
+      "introduction_sha256": "6a0694692b6e53a802891d89988d9b77407b3d7e7e79463271186aa2c3c15112",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/scripts_config.json",
+      "introduction_commit": "5eb041f4edb36db59cd43b1c05438c0481dd6edb",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: eliminate duplicate type compilation in object_generator",
+      "introduction_path": "schemas/synthetic/scripts_config.json",
+      "status": "A",
+      "local_sha256": "2ec533049267d793249e3dec9fbcd97162ee5c6714b89d706d8e03fcf7635488",
+      "introduction_sha256": "2ec533049267d793249e3dec9fbcd97162ee5c6714b89d706d8e03fcf7635488",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/serde_json_value_specificity.json",
+      "introduction_commit": "af701bdccb7d01c6c5ba9d274902d1b1e4466bb0",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add enhanced synthetic schemas for complex union patterns",
+      "introduction_path": "schemas/synthetic/serde_json_value_specificity.json",
+      "status": "A",
+      "local_sha256": "490edd3f9d79960651f6fcdea0320a11b430535051fcce97fd39b00ca64d9d5c",
+      "introduction_sha256": "51698660e5f2ba5d8b64e108ff1d240b57d83fdef4c8ea1f849c551e74a8efda",
+      "same_bytes_as_introduction": false,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/simple_array_test.json",
+      "introduction_commit": "48b4b5eb3e35fe0c93913b5095dc3ee3b4e13b65",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "feat: fix critical duplicate TestType generation in three-pass system",
+      "introduction_path": "schemas/synthetic/simple_array_test.json",
+      "status": "A",
+      "local_sha256": "43ff85e441dad5a3fe27ba6e222099389c7d0367dd5f9c4dd25c792ccc27f0cb",
+      "introduction_sha256": "43ff85e441dad5a3fe27ba6e222099389c7d0367dd5f9c4dd25c792ccc27f0cb",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/simple_duplicate_test.json",
+      "introduction_commit": "5eb041f4edb36db59cd43b1c05438c0481dd6edb",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: eliminate duplicate type compilation in object_generator",
+      "introduction_path": "schemas/synthetic/simple_duplicate_test.json",
+      "status": "A",
+      "local_sha256": "795e0cf59631f0e4ef701dc6c71c40b14d568573b6293e68c0e72644d45ed145",
+      "introduction_sha256": "795e0cf59631f0e4ef701dc6c71c40b14d568573b6293e68c0e72644d45ed145",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/simple_partial.json",
+      "introduction_commit": "d9123e7ff00ab116e9ce7c712b5c69012428aa24",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: Add Cargo-based minimal partial encoding test (Phase 1)",
+      "introduction_path": "schemas/synthetic/simple_partial.json",
+      "status": "A",
+      "local_sha256": "d099a2976430e03c529fd562f316382b7e633c8c06b9f6df34366049de4f659c",
+      "introduction_sha256": "d099a2976430e03c529fd562f316382b7e633c8c06b9f6df34366049de4f659c",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/simple_untagged_enum.json",
+      "introduction_commit": "5eb041f4edb36db59cd43b1c05438c0481dd6edb",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: eliminate duplicate type compilation in object_generator",
+      "introduction_path": "schemas/synthetic/minimal_oneOf.json",
+      "status": "A",
+      "local_sha256": "b44ab147d4d34ae46ef7a8fccd34cbd6356d6754eb28961c6f885b274adef420",
+      "introduction_sha256": "11fa4dd11e4d9bb69c4a12ba873afb61c22a433f7e658969df4d7966d50f4b52",
+      "same_bytes_as_introduction": false,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/terminal_key_cursor.json",
+      "introduction_commit": "aeb6017c18d653e8318930292a4f02b0e824cd47",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "Add decoder-cursor terminal object-property key API for DecodeState",
+      "introduction_path": "schemas/synthetic/terminal_key_cursor.json",
+      "status": "A",
+      "local_sha256": "8337ee7656ac0a8f2704dc3020a52fff44373bbd7c44e284d8d650e58f41b058",
+      "introduction_sha256": "c1327f5e035ff6e71ef07839e012a196fad87e199c393447abf89de60306e5ca",
+      "same_bytes_as_introduction": false,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/transitive_ref.json",
+      "introduction_commit": "65169b7451353bad54cb0c71fb7b732e71ccdb22",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: generate type aliases for transitive $ref definitions",
+      "introduction_path": "schemas/synthetic/transitive_ref.json",
+      "status": "A",
+      "local_sha256": "13b8f8697e673dfe3900f692cf2fe8b1c8cff82f66060617aef621350476eddb",
+      "introduction_sha256": "13b8f8697e673dfe3900f692cf2fe8b1c8cff82f66060617aef621350476eddb",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/tuple_array.json",
+      "introduction_commit": "4bb5a91fdfda3561eeda3320323705ce6df3612d",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: detect tuple structs in round-trip test harness",
+      "introduction_path": "schemas/synthetic/tuple_array.json",
+      "status": "A",
+      "local_sha256": "6513e9169a64d975514623be2f9c1f415b660c1a4e0131ff44349292db132405",
+      "introduction_sha256": "6513e9169a64d975514623be2f9c1f415b660c1a4e0131ff44349292db132405",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/tuple_struct_in_enum.json",
+      "introduction_commit": "9a94a6fab00cfb7384792589a43c216fda6c90d6",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "tdd: add synthetic schema for oneOf array/string pattern",
+      "introduction_path": "schemas/synthetic/oneof_array_string.json",
+      "status": "A",
+      "local_sha256": "5bd1dd858021b3cad5cb2ca9c5b71a0394946bf16719c57ef451940b6629ad48",
+      "introduction_sha256": "44114ad2f4cfd28c5171fc66a3197edf0ee3d2140466e83d558456a1d9724aa5",
+      "same_bytes_as_introduction": false,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/unconstrained_object.json",
+      "introduction_commit": "c6f823f32fe55b4ac3347d7f03d09929624f4d84",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "investigate: package.json round-trip failures - unconstrained object bug identified",
+      "introduction_path": "schemas/synthetic/unconstrained_object.json",
+      "status": "A",
+      "local_sha256": "c4ead28d32135d1ba96920200ca3a74e1d5cac915f5969a435d8fbde7e5bdff3",
+      "introduction_sha256": "c4ead28d32135d1ba96920200ca3a74e1d5cac915f5969a435d8fbde7e5bdff3",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/union_field_ordering.json",
+      "introduction_commit": "fad380735a1d6139f1b5e4364cc6c7d1c9d14afb",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add 6 synthetic schemas for union pattern testing",
+      "introduction_path": "schemas/synthetic/union_field_ordering.json",
+      "status": "A",
+      "local_sha256": "f2f97f77c2bc41a9b4afee28b28d5814cdd0adfc901a073061e2da15d25fcd2f",
+      "introduction_sha256": "26ddce05c348cc027a7d18588f00e89dbe6150e852c0108ad506f23b3f32b2ec",
+      "same_bytes_as_introduction": false,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/union_mixed_types.json",
+      "introduction_commit": "fad380735a1d6139f1b5e4364cc6c7d1c9d14afb",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add 6 synthetic schemas for union pattern testing",
+      "introduction_path": "schemas/synthetic/union_mixed_types.json",
+      "status": "A",
+      "local_sha256": "0c8f2d9237064cb837156b056ab3a3383f4aa045ac75c8637cb6da7d6cccb2b2",
+      "introduction_sha256": "0c8f2d9237064cb837156b056ab3a3383f4aa045ac75c8637cb6da7d6cccb2b2",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/union_nested.json",
+      "introduction_commit": "fad380735a1d6139f1b5e4364cc6c7d1c9d14afb",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add 6 synthetic schemas for union pattern testing",
+      "introduction_path": "schemas/synthetic/union_nested.json",
+      "status": "A",
+      "local_sha256": "1be565fd4b1e6a01410878845a5c04bd9f3a90bd5c6277c771e5e9220a8c9045",
+      "introduction_sha256": "1be565fd4b1e6a01410878845a5c04bd9f3a90bd5c6277c771e5e9220a8c9045",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/union_optional_fields.json",
+      "introduction_commit": "fad380735a1d6139f1b5e4364cc6c7d1c9d14afb",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add 6 synthetic schemas for union pattern testing",
+      "introduction_path": "schemas/synthetic/union_optional_fields.json",
+      "status": "A",
+      "local_sha256": "335b641d387dd1ced25a397fcd08496e77c060c8e226dfeddaa6d9914d764878",
+      "introduction_sha256": "335b641d387dd1ced25a397fcd08496e77c060c8e226dfeddaa6d9914d764878",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/union_variant_ambiguity.json",
+      "introduction_commit": "fad380735a1d6139f1b5e4364cc6c7d1c9d14afb",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "test: add 6 synthetic schemas for union pattern testing",
+      "introduction_path": "schemas/synthetic/union_variant_ambiguity.json",
+      "status": "A",
+      "local_sha256": "873f796f5e4cb70b447e1b7845c925ff475259ce7fea7f444c2cba02b67a8fc5",
+      "introduction_sha256": "873f796f5e4cb70b447e1b7845c925ff475259ce7fea7f444c2cba02b67a8fc5",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    },
+    {
+      "local_path": "schemas/synthetic/value_in_struct.json",
+      "introduction_commit": "58c9d2ab64fb66ca99d9e2514bdc6c254809d389",
+      "author": "Jonas Schmitt",
+      "author_email": "jonas.schmitt@fau.de",
+      "subject": "fix: skip Ord derivation for array wrappers containing serde_json::Value",
+      "introduction_path": "schemas/synthetic/value_in_struct.json",
+      "status": "A",
+      "local_sha256": "0758da098d2b40fe3e05444885de118b10aab0dea366ce66731d7bce1ec9b482",
+      "introduction_sha256": "0758da098d2b40fe3e05444885de118b10aab0dea366ce66731d7bce1ec9b482",
+      "same_bytes_as_introduction": true,
+      "decision": "owner_authored_test_schema_reviewed",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "basis": "Inspected small regression-test schema structure and descriptions; introduction history is a locally authored compiler/test change. No third-party schema prose or large copied subset was identified. Seven copied package subsets are reviewed separately."
+    }
+  ]
+}

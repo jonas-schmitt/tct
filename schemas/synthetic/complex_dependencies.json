@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Complex Dependencies Test",
+  "description": "Tests package.json-style dependency structures",
+  "type": "object",
+  "properties": {
+    "dependencies": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {"type": "string"},
+          {
+            "type": "object",
+            "properties": {
+              "version": {"type": "string"},
+              "optional": {"type": "boolean"}
+            }
+          }
+        ]
+      }
+    },
+    "peerDependencies": {
+      "type": "object",
+      "additionalProperties": {"type": "string"}
+    },
+    "optionalDependencies": {
+      "type": "object",
+      "additionalProperties": {"type": "string"}
+    },
+    "bundledDependencies": {
+      "oneOf": [
+        {"type": "boolean"},
+        {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AnyOf with optional root properties",
+  "description": "Tests that root properties remain optional in anyOf variants",
+  "type": "object",
+  "properties": {
+    "name": {"type": "string"},
+    "homepage": {"type": "string"},
+    "version": {"type": "string"}
+  },
+  "anyOf": [
+    {
+      "type": "object",
+      "not": {
+        "required": ["bundled"]
+      }
+    },
+    {
+      "type": "object",
+      "required": ["bundled"]
+    }
+  ]
+}

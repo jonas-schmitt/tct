@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SerdeJsonValueSpecificity",
+  "description": "Tests serde_json::Value specificity ordering issue",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "flexible_field": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "specific_setting": {
+              "type": "string"
+            }
+          },
+          "required": ["specific_setting"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "description": "Catch-all object branch for values without the specific setting",
+          "not": {
+            "required": ["specific_setting"]
+          },
+          "additionalProperties": true
+        }
+      ]
+    }
+  },
+  "required": ["name", "flexible_field"],
+  "additionalProperties": false
+}

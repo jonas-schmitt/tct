@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NullableField",
+  "description": "Synthetic schema to test nullable optional field preservation (oneOf with null)",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "config": {
+      "description": "Optional nullable object - should distinguish absent vs null vs present",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "enabled": {"type": "boolean"}
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "metadata": {
+      "description": "Regular optional field - absent and null can be treated the same",
+      "type": "object",
+      "properties": {
+        "version": {"type": "string"}
+      }
+    }
+  },
+  "required": ["name"]
+}

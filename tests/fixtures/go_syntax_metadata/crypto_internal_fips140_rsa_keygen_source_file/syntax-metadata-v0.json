@@ -1,0 +1,1199 @@
+{
+  "artifact_kind": "tct_go_syntax_metadata_v0",
+  "version": 0,
+  "source": {
+    "path": "tests/fixtures/go_syntax_corpus/src/crypto/internal/fips140/rsa/keygen.go",
+    "sha256": "2371f38173f327bddf7c8a7dce1ed01c20838473a197aaa3b1103eae2ea115c3"
+  },
+  "parser": {
+    "tool": "go",
+    "version": "go1.24.3",
+    "package": "go/parser",
+    "package_version": "go1.24.3"
+  },
+  "rules": [
+    {
+      "name": "File",
+      "node_kind": "File",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Decls",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "FuncDecl",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "GenDecl",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Comments",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "CommentGroup",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ident",
+      "node_kind": "Ident",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GenDecl",
+      "node_kind": "GenDecl",
+      "fields": [
+        {
+          "name": "Tok",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "token",
+              "terminal": "string_payload"
+            }
+          ]
+        },
+        {
+          "name": "Specs",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "ImportSpec",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "TypeSpec",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "ValueSpec",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Doc",
+          "required": false,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "CommentGroup",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ImportSpec",
+      "node_kind": "ImportSpec",
+      "fields": [
+        {
+          "name": "Path",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BasicLit",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BasicLit",
+      "node_kind": "BasicLit",
+      "fields": [
+        {
+          "name": "Kind",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "literal_kind",
+              "terminal": "string_payload"
+            }
+          ]
+        },
+        {
+          "name": "Value",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "integer_literal",
+              "terminal": "integer_payload"
+            },
+            {
+              "node_kind": "string_literal",
+              "terminal": "string_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FuncDecl",
+      "node_kind": "FuncDecl",
+      "fields": [
+        {
+          "name": "Doc",
+          "required": false,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "CommentGroup",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Type",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FuncType",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Body",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BlockStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CommentGroup",
+      "node_kind": "CommentGroup",
+      "fields": [
+        {
+          "name": "List",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Comment",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Comment",
+      "node_kind": "Comment",
+      "fields": [
+        {
+          "name": "Text",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "comment_text",
+              "terminal": "string_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FuncType",
+      "node_kind": "FuncType",
+      "fields": [
+        {
+          "name": "Params",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FieldList",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Results",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FieldList",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FieldList",
+      "node_kind": "FieldList",
+      "fields": [
+        {
+          "name": "List",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Field",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Field",
+      "node_kind": "Field",
+      "fields": [
+        {
+          "name": "Names",
+          "required": false,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Type",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "ArrayType",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "SelectorExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "StarExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SelectorExpr",
+      "node_kind": "SelectorExpr",
+      "fields": [
+        {
+          "name": "X",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "CallExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "SelectorExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Sel",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StarExpr",
+      "node_kind": "StarExpr",
+      "fields": [
+        {
+          "name": "X",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "SelectorExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BlockStmt",
+      "node_kind": "BlockStmt",
+      "fields": [
+        {
+          "name": "List",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "AssignStmt",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "BranchStmt",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "CaseClause",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "DeclStmt",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "ExprStmt",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "ForStmt",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "IfStmt",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "IncDecStmt",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "RangeStmt",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "ReturnStmt",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "SwitchStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "BlankLineBefore",
+          "required": false,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "block_stmt_blank_line_before_index",
+              "terminal": "integer_payload"
+            }
+          ]
+        },
+        {
+          "name": "CommentBefore",
+          "required": false,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "block_stmt_comment_before_index",
+              "terminal": "integer_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "IfStmt",
+      "node_kind": "IfStmt",
+      "fields": [
+        {
+          "name": "Cond",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BinaryExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "CallExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "UnaryExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Body",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BlockStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Else",
+          "required": false,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BlockStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Init",
+          "required": false,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "AssignStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BinaryExpr",
+      "node_kind": "BinaryExpr",
+      "fields": [
+        {
+          "name": "X",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BasicLit",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "BinaryExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "CallExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "IndexExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "ParenExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "SelectorExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Op",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "operator",
+              "terminal": "string_payload"
+            }
+          ]
+        },
+        {
+          "name": "Y",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BasicLit",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "BinaryExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ReturnStmt",
+      "node_kind": "ReturnStmt",
+      "fields": [
+        {
+          "name": "Results",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "CallExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CallExpr",
+      "node_kind": "CallExpr",
+      "fields": [
+        {
+          "name": "Fun",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "SelectorExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Args",
+          "required": false,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "ArrayType",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "BasicLit",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "BinaryExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "CallExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "IndexExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "SelectorExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ExprStmt",
+      "node_kind": "ExprStmt",
+      "fields": [
+        {
+          "name": "X",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "CallExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ForStmt",
+      "node_kind": "ForStmt",
+      "fields": [
+        {
+          "name": "Body",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BlockStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Cond",
+          "required": false,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BinaryExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AssignStmt",
+      "node_kind": "AssignStmt",
+      "fields": [
+        {
+          "name": "Lhs",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "IndexExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "SelectorExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Tok",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "token",
+              "terminal": "string_payload"
+            }
+          ]
+        },
+        {
+          "name": "Rhs",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "BasicLit",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "BinaryExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "CallExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "SliceExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "UnaryExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ParenExpr",
+      "node_kind": "ParenExpr",
+      "fields": [
+        {
+          "name": "X",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BinaryExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BranchStmt",
+      "node_kind": "BranchStmt",
+      "fields": [
+        {
+          "name": "Tok",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "token",
+              "terminal": "string_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "UnaryExpr",
+      "node_kind": "UnaryExpr",
+      "fields": [
+        {
+          "name": "Op",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "operator",
+              "terminal": "string_payload"
+            }
+          ]
+        },
+        {
+          "name": "X",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "CompositeLit",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ValueSpec",
+      "node_kind": "ValueSpec",
+      "fields": [
+        {
+          "name": "Names",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Values",
+          "required": false,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "CallExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "CompositeLit",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Type",
+          "required": false,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "IndexExpr",
+      "node_kind": "IndexExpr",
+      "fields": [
+        {
+          "name": "X",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "CallExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "SelectorExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Index",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BasicLit",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "BinaryExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ArrayType",
+      "node_kind": "ArrayType",
+      "fields": [
+        {
+          "name": "Elt",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DeclStmt",
+      "node_kind": "DeclStmt",
+      "fields": [
+        {
+          "name": "Decl",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "GenDecl",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SwitchStmt",
+      "node_kind": "SwitchStmt",
+      "fields": [
+        {
+          "name": "Body",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BlockStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CaseClause",
+      "node_kind": "CaseClause",
+      "fields": [
+        {
+          "name": "List",
+          "required": false,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "BinaryExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Body",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "AssignStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "IncDecStmt",
+      "node_kind": "IncDecStmt",
+      "fields": [
+        {
+          "name": "X",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Tok",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "token",
+              "terminal": "string_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CompositeLit",
+      "node_kind": "CompositeLit",
+      "fields": [
+        {
+          "name": "Type",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "ArrayType",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Elts",
+          "required": false,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "BasicLit",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "LineBreakBefore",
+          "required": false,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "composite_lit_line_break_before_index",
+              "terminal": "integer_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "TypeSpec",
+      "node_kind": "TypeSpec",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Type",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "StructType",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StructType",
+      "node_kind": "StructType",
+      "fields": [
+        {
+          "name": "Fields",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FieldList",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SliceExpr",
+      "node_kind": "SliceExpr",
+      "fields": [
+        {
+          "name": "X",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "SelectorExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Low",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BasicLit",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "RangeStmt",
+      "node_kind": "RangeStmt",
+      "fields": [
+        {
+          "name": "X",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BinaryExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Body",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BlockStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

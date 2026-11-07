@@ -1,0 +1,28 @@
+{
+  "name": "Manage Review Labels",
+  "on": {
+    "pull_request_review": {
+      "types": [
+        "submitted"
+      ]
+    }
+  },
+  "jobs": {
+    "label-on-review": {
+      "runs-on": "ubuntu-latest",
+      "permissions": {
+        "pull-requests": "write",
+        "issues": "write"
+      },
+      "steps": [
+        {
+          "name": "Manage LGTM Review Label",
+          "uses": "actions/github-script@v7",
+          "with": {
+            "script": "const LGTM_LABEL = 'lgtm';\n\n// Extract review details\nconst { state: reviewState } = context.payload.review;\nconst pullRequestNumber = context.payload.pull_request.number;\nconst repoDetails = {\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  issue_number: pullRequestNumber\n};\n\n// Log review information\nconsole.log(`Processing review for PR #${pullRequestNumber}`);\nconsole.log(`Review state: ${reviewState}`);\n\n// Helper function to check for LGTM label\nasync function hasLgtmLabel() {\n  const { data: labels } = await github.rest.issues.listLabelsOnIssue(repoDetails);\n  return labels.some(label => label.name === LGTM_LABEL);\n}\n\nif (reviewState === 'approved') {\n  const lgtmExists = await hasLgtmLabel();\n\n  if (!lgtmExists) {\n    console.log(`Adding ${LGTM_LABEL} label to PR #${pullRequestNumber}`);\n    await github.rest.issues.addLabels({\n      ...repoDetails,\n      labels: [LGTM_LABEL]\n    });\n    console.log('Label added successfully');\n  } else {\n    console.log(`${LGTM_LABEL} label already exists`);\n  }\n} else if (reviewState === 'changes_requested') {\n  const lgtmExists = await hasLgtmLabel();\n\n  if (lgtmExists) {\n    console.log(`Removing ${LGTM_LABEL} label from PR #${pullRequestNumber}`);\n    await github.rest.issues.removeLabel({\n      ...repoDetails,\n      name: LGTM_LABEL\n    });\n    console.log('Label removed successfully');\n  } else {\n    console.log(`No ${LGTM_LABEL} label to remove`);\n  }\n}\n"
+          }
+        }
+      ]
+    }
+  }
+}

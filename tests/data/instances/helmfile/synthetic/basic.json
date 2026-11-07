@@ -1,0 +1,57 @@
+{
+  "repositories": [
+    {
+      "name": "stable",
+      "url": "https://charts.helm.sh/stable"
+    },
+    {
+      "name": "bitnami",
+      "url": "https://charts.bitnami.com/bitnami"
+    }
+  ],
+  "releases": [
+    {
+      "name": "my-app",
+      "namespace": "default",
+      "chart": "stable/nginx",
+      "version": "1.41.3",
+      "values": [
+        "values/nginx-values.yaml"
+      ],
+      "set": [
+        {
+          "name": "replicaCount",
+          "value": "3"
+        },
+        {
+          "name": "service.type",
+          "value": "LoadBalancer"
+        }
+      ]
+    },
+    {
+      "name": "database",
+      "namespace": "data",
+      "chart": "bitnami/postgresql",
+      "version": "10.16.2",
+      "values": [
+        "values/postgres-values.yaml"
+      ],
+      "secrets": [
+        "secrets/postgres-secrets.yaml"
+      ]
+    }
+  ],
+  "environments": {
+    "default": {
+      "values": [
+        "environments/default/values.yaml"
+      ]
+    },
+    "production": {
+      "values": [
+        "environments/production/values.yaml"
+      ]
+    }
+  }
+}

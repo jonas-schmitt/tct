@@ -1,0 +1,354 @@
+{
+  "format_version": 1,
+  "review_date": "2026-11-07",
+  "reviewed_release_base": "94dc54434f5164343d0626958a472c16fb5204e3",
+  "scope": "Seven schema files embedded by src/generator/external_schemas.rs; source redistribution review. Other schema catalog entries and compiled distribution qualification are separate.",
+  "reproduction_profiles": {
+    "identity": "upstream_bytes",
+    "python-json-indent4-ascii-newline": "(json.dumps(json.loads(upstream_bytes), indent=4, ensure_ascii=True) + '\\n').encode('utf-8')"
+  },
+  "files": [
+    {
+      "local_path": "schemas/external/partial-eslint-plugins.json",
+      "source_revision": "4c41ffc223df321b410f504099351dc7d1613f8a",
+      "source_path": "src/schemas/json/partial-eslint-plugins.json",
+      "source_sha256": "f5445abc730a65ae8752a24ea1cd0d1843da3e49e1ce1e90e8e5573fecb645e7",
+      "local_sha256": "5621db3de6aac3874dd0a902ea872a283a9171a48e359d6b935599bec1e39b64",
+      "match": "json_value_equal",
+      "source_repository": "https://github.com/SchemaStore/schemastore",
+      "source_url": "https://raw.githubusercontent.com/SchemaStore/schemastore/4c41ffc223df321b410f504099351dc7d1613f8a/src/schemas/json/partial-eslint-plugins.json",
+      "source_git_blob_sha1": "3279e1ccab478a5af08ba2a693eb05808f8a9ec7",
+      "transformation": "source-copy-plus-publication-notice",
+      "retained_notices": [
+        "third_party/licenses/schemastore/LICENSE",
+        "third_party/licenses/schemastore/NOTICE",
+        "third_party/licenses/jsonschema-extractor/LICENSE",
+        "third_party/licenses/schema-eslint-inputs/angular-eslint-eslint-plugin-18.0.1/LICENSE",
+        "third_party/licenses/schema-eslint-inputs/typescript-eslint-eslint-plugin-7.13.1/LICENSE",
+        "third_party/licenses/schema-eslint-inputs/eslint-plugin-import-2.29.1/LICENSE",
+        "third_party/licenses/schema-eslint-inputs/eslint-plugin-import-2.29.1/memo-parser-LICENSE",
+        "third_party/licenses/schema-eslint-inputs/eslint-plugin-unicorn-54.0.0/license",
+        "third_party/licenses/schema-eslint-inputs/eslint-plugin-vue-9.26.0/LICENSE",
+        "third_party/licenses/schema-eslint-inputs/eslint-8.57.0/LICENSE"
+      ],
+      "review": {
+        "decision": "source_redistribution_reviewed_with_file_level_mpl_compliance",
+        "license_scope": [
+          "Apache-2.0",
+          "MPL-2.0",
+          "MIT"
+        ],
+        "basis": [
+          "Exact upstream schema match and historical SchemaStore notices verified.",
+          "SchemaStore regeneration commit beb246f25acc8f6cf473071d8ec15cf8359855f0 is JSON-value equal to a committed generated schema in the extractor repository at 648bbeb51fdb459c193acdc7756d5f79e1b3865a.",
+          "The extractor repository contains that generated schema, a root MPL-2.0 license and package license declaration, and no nested license exception. This review follows that source grant conservatively; it does not infer output licensing from merely running an MPL generator.",
+          "Five direct plugin inputs and inherited ESLint core metadata have exact package notice copies; package archive integrity matches the pinned extractor lock.",
+          "TCT retains source and makes this file and its modifications available under MPL-2.0 while retaining Apache-2.0 and MIT notices."
+        ],
+        "limits": [
+          "Applies to this schema file; no assertion that all TCT code is MPL or that upstream grants are replaced.",
+          "Binaries, wheels and generated crates embedding this material require these notices plus the exact schema source and a source-availability notice."
+        ]
+      },
+      "change_notice": "third_party/clearance/schemas/MODIFICATIONS.md",
+      "source_chain": {
+        "extractor_repository": "https://github.com/fox-projects/jsonschema-extractor",
+        "extractor_revision": "648bbeb51fdb459c193acdc7756d5f79e1b3865a",
+        "extractor_path": "schemas/partial-eslint.schema.json",
+        "extractor_schema_sha256": "53bb0a86b249d65573841733852c5ed21d430f44f858b4746f6afc3411b3429f",
+        "extractor_source_url": "https://raw.githubusercontent.com/fox-projects/jsonschema-extractor/648bbeb51fdb459c193acdc7756d5f79e1b3865a/schemas/partial-eslint.schema.json",
+        "schemastore_regeneration_revision": "beb246f25acc8f6cf473071d8ec15cf8359855f0",
+        "regenerated_schema_sha256": "484810b0bcf574212888474fdfe18aafc24fb3ad9bcf68c10c15e21879bb134e",
+        "regeneration_match": "json_value_equal",
+        "inputs_ledger": "third_party/clearance/schemas/eslint-plugin-inputs.json",
+        "post_regeneration_changes": "third_party/clearance/schemas/eslint-schema-changes.json"
+      },
+      "before_publication_notice_sha256": "710695547cdd01d06940993e7d85d93405cabe8326fd20e84db078ccdd9ff4d9",
+      "source_copy_transformation": "python-json-indent4-ascii-newline",
+      "publication_notice": {
+        "previous_comment": "For improvements to this schema, please send a PR to https://github.com/fox-projects/jsonschema-extractor.",
+        "added_text": "Modified by TCT: parsed and reformatted the pinned upstream JSON without changing its JSON values, then added this publication notice. This schema source and its modifications are available under MPL-2.0 with retained Apache-2.0 and MIT notices. Exact source, license paths and modification details: third_party/clearance/schemas/ESLINT_SOURCE_NOTICE.md.",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": false,
+          "final_newline": true
+        },
+        "before_sha256": "710695547cdd01d06940993e7d85d93405cabe8326fd20e84db078ccdd9ff4d9",
+        "after_sha256": "5621db3de6aac3874dd0a902ea872a283a9171a48e359d6b935599bec1e39b64"
+      },
+      "component_notice": "third_party/clearance/schemas/ESLINT_SOURCE_NOTICE.md"
+    },
+    {
+      "local_path": "schemas/popular/eslintrc.json",
+      "source_revision": "7c7e759616de7de0b87422b87772928a6fbde9f1",
+      "source_path": "src/schemas/json/eslintrc.json",
+      "source_sha256": "c02a1203b114085841fe912bf352ff8246a36e26f469df0d70ef5af59aa31867",
+      "local_sha256": "c02a1203b114085841fe912bf352ff8246a36e26f469df0d70ef5af59aa31867",
+      "match": "identical",
+      "source_repository": "https://github.com/SchemaStore/schemastore",
+      "source_url": "https://raw.githubusercontent.com/SchemaStore/schemastore/7c7e759616de7de0b87422b87772928a6fbde9f1/src/schemas/json/eslintrc.json",
+      "source_git_blob_sha1": "dd62dcae674674bf8f327f761493fb5783ec5ff9",
+      "transformation": "identity",
+      "retained_notices": [
+        "third_party/licenses/schemastore/LICENSE",
+        "third_party/licenses/schemastore/NOTICE"
+      ],
+      "review": {
+        "decision": "source_redistribution_reviewed",
+        "license_scope": [
+          "Apache-2.0"
+        ],
+        "basis": [
+          "Exact upstream bytes or exact documented JSON reserialization, not filename or $id inference.",
+          "Read schema contents, per-file history and historical tree: no narrower license/NOTICE file and no file-level license exception detected.",
+          "Root LICENSE and NOTICE at this exact schema revision match the retained copies."
+        ],
+        "limits": [
+          "Source distribution only; compiled packages must also carry notices and any required source availability.",
+          "No claim that the selected matching revision was the original download date."
+        ]
+      }
+    },
+    {
+      "local_path": "schemas/popular/prettierrc.json",
+      "source_revision": "b7c5bfd15927b4ce07a7f4025a5b9af7d904e97f",
+      "source_path": "src/schemas/json/prettierrc.json",
+      "source_sha256": "c0389f309141acae0038d02918fb70bc58067f8ef157a2409e049dcaa46d2481",
+      "local_sha256": "c0389f309141acae0038d02918fb70bc58067f8ef157a2409e049dcaa46d2481",
+      "match": "identical",
+      "source_repository": "https://github.com/SchemaStore/schemastore",
+      "source_url": "https://raw.githubusercontent.com/SchemaStore/schemastore/b7c5bfd15927b4ce07a7f4025a5b9af7d904e97f/src/schemas/json/prettierrc.json",
+      "source_git_blob_sha1": "477f011af2fabd912710ed0dc94fdb8143a48183",
+      "transformation": "identity",
+      "retained_notices": [
+        "third_party/licenses/schemastore/LICENSE",
+        "third_party/licenses/schemastore/NOTICE"
+      ],
+      "review": {
+        "decision": "source_redistribution_reviewed",
+        "license_scope": [
+          "Apache-2.0"
+        ],
+        "basis": [
+          "Exact upstream bytes or exact documented JSON reserialization, not filename or $id inference.",
+          "Read schema contents, per-file history and historical tree: no narrower license/NOTICE file and no file-level license exception detected.",
+          "Root LICENSE and NOTICE at this exact schema revision match the retained copies."
+        ],
+        "limits": [
+          "Source distribution only; compiled packages must also carry notices and any required source availability.",
+          "No claim that the selected matching revision was the original download date."
+        ]
+      }
+    },
+    {
+      "local_path": "schemas/popular/stylelintrc.json",
+      "source_revision": "a3795b437ffe9fdb82d6b23345dd804faf3dc9c2",
+      "source_path": "src/schemas/json/stylelintrc.json",
+      "source_sha256": "6ffe8218349f961f23ca6629f9a3847ea7fb494af933ae5fcdb5e561112b1b57",
+      "local_sha256": "6ffe8218349f961f23ca6629f9a3847ea7fb494af933ae5fcdb5e561112b1b57",
+      "match": "identical",
+      "source_repository": "https://github.com/SchemaStore/schemastore",
+      "source_url": "https://raw.githubusercontent.com/SchemaStore/schemastore/a3795b437ffe9fdb82d6b23345dd804faf3dc9c2/src/schemas/json/stylelintrc.json",
+      "source_git_blob_sha1": "abbabbafd6c9406f485c47c32ca013460a2af3b1",
+      "transformation": "identity",
+      "retained_notices": [
+        "third_party/licenses/schemastore/LICENSE",
+        "third_party/licenses/schemastore/NOTICE"
+      ],
+      "review": {
+        "decision": "source_redistribution_reviewed",
+        "license_scope": [
+          "Apache-2.0"
+        ],
+        "basis": [
+          "Exact upstream bytes or exact documented JSON reserialization, not filename or $id inference.",
+          "Read schema contents, per-file history and historical tree: no narrower license/NOTICE file and no file-level license exception detected.",
+          "Root LICENSE and NOTICE at this exact schema revision match the retained copies."
+        ],
+        "limits": [
+          "Source distribution only; compiled packages must also carry notices and any required source availability.",
+          "No claim that the selected matching revision was the original download date."
+        ]
+      }
+    },
+    {
+      "local_path": "schemas/popular/ava.json",
+      "source_revision": "4c222d40fbba94b062aaae610eba71f66b54febc",
+      "source_path": "src/schemas/json/ava.json",
+      "source_sha256": "3c02652299c240b152d8d30bc476dfa4bda7854132632dc9595afe53ac12ee0a",
+      "local_sha256": "3c02652299c240b152d8d30bc476dfa4bda7854132632dc9595afe53ac12ee0a",
+      "match": "identical",
+      "source_repository": "https://github.com/SchemaStore/schemastore",
+      "source_url": "https://raw.githubusercontent.com/SchemaStore/schemastore/4c222d40fbba94b062aaae610eba71f66b54febc/src/schemas/json/ava.json",
+      "source_git_blob_sha1": "3997d5d968b2bc500b0069b292b97880790b1bd8",
+      "transformation": "identity",
+      "retained_notices": [
+        "third_party/licenses/schemastore/LICENSE",
+        "third_party/licenses/schemastore/NOTICE"
+      ],
+      "review": {
+        "decision": "source_redistribution_reviewed",
+        "license_scope": [
+          "Apache-2.0"
+        ],
+        "basis": [
+          "Exact upstream bytes or exact documented JSON reserialization, not filename or $id inference.",
+          "Read schema contents, per-file history and historical tree: no narrower license/NOTICE file and no file-level license exception detected.",
+          "Root LICENSE and NOTICE at this exact schema revision match the retained copies."
+        ],
+        "limits": [
+          "Source distribution only; compiled packages must also carry notices and any required source availability.",
+          "No claim that the selected matching revision was the original download date."
+        ]
+      }
+    },
+    {
+      "local_path": "schemas/common/semantic-release.json",
+      "source_revision": "11e62f6fde72bab69d31a5d4274fd20e08a7d87f",
+      "source_path": "src/schemas/json/semantic-release.json",
+      "source_sha256": "007ed892392e2d1ee5478dbefa7728f395cf76a494a122728c9fb2f932d65fe8",
+      "local_sha256": "007ed892392e2d1ee5478dbefa7728f395cf76a494a122728c9fb2f932d65fe8",
+      "match": "identical",
+      "source_repository": "https://github.com/SchemaStore/schemastore",
+      "source_url": "https://raw.githubusercontent.com/SchemaStore/schemastore/11e62f6fde72bab69d31a5d4274fd20e08a7d87f/src/schemas/json/semantic-release.json",
+      "source_git_blob_sha1": "d1b0b7874c65e345a8c88d34c1ef1cd7c4e92cea",
+      "transformation": "identity",
+      "retained_notices": [
+        "third_party/licenses/schemastore/LICENSE",
+        "third_party/licenses/schemastore/NOTICE"
+      ],
+      "review": {
+        "decision": "source_redistribution_reviewed",
+        "license_scope": [
+          "Apache-2.0"
+        ],
+        "basis": [
+          "Exact upstream bytes or exact documented JSON reserialization, not filename or $id inference.",
+          "Read schema contents, per-file history and historical tree: no narrower license/NOTICE file and no file-level license exception detected.",
+          "Root LICENSE and NOTICE at this exact schema revision match the retained copies."
+        ],
+        "limits": [
+          "Source distribution only; compiled packages must also carry notices and any required source availability.",
+          "No claim that the selected matching revision was the original download date."
+        ]
+      }
+    },
+    {
+      "local_path": "schemas/external/jscpd.json",
+      "source_revision": "d6f9a7fe6b027cc682f0b43baa72a37e634c28f5",
+      "source_path": "src/schemas/json/jscpd.json",
+      "source_sha256": "8c021a0b0660fe79eafed34b96472eb92657a45f84bdd29d8af0b9022b6a23d6",
+      "local_sha256": "775731d82f867ec46ebea2e8a7c94d4d07fb8aa34afd3f37601aee399d187f47",
+      "match": "json_value_equal",
+      "source_repository": "https://github.com/SchemaStore/schemastore",
+      "source_url": "https://raw.githubusercontent.com/SchemaStore/schemastore/d6f9a7fe6b027cc682f0b43baa72a37e634c28f5/src/schemas/json/jscpd.json",
+      "source_git_blob_sha1": "0976a617fe4e2dd72832e57433caea9a2c4fe6c5",
+      "transformation": "source-copy-plus-publication-notice",
+      "retained_notices": [
+        "third_party/licenses/schemastore/LICENSE",
+        "third_party/licenses/schemastore/NOTICE"
+      ],
+      "review": {
+        "decision": "source_redistribution_reviewed",
+        "license_scope": [
+          "Apache-2.0"
+        ],
+        "basis": [
+          "Exact upstream bytes or exact documented JSON reserialization, not filename or $id inference.",
+          "Read schema contents, per-file history and historical tree: no narrower license/NOTICE file and no file-level license exception detected.",
+          "Root LICENSE and NOTICE at this exact schema revision match the retained copies."
+        ],
+        "limits": [
+          "Source distribution only; compiled packages must also carry notices and any required source availability.",
+          "No claim that the selected matching revision was the original download date."
+        ]
+      },
+      "change_notice": "third_party/clearance/schemas/MODIFICATIONS.md",
+      "before_publication_notice_sha256": "0d8c5901c0787fd0b6a99c1094d6d66fc78cb390dd4763152898f7f53b17b040",
+      "source_copy_transformation": "python-json-indent4-ascii-newline",
+      "publication_notice": {
+        "previous_comment": null,
+        "added_text": "Modified by TCT: parsed and reformatted the pinned upstream JSON without changing its JSON values, then added this publication notice. Exact source revision, transformation and Apache-2.0 notices: third_party/clearance/schemas/catalog-inventory.json.",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": false,
+          "final_newline": true
+        },
+        "before_sha256": "0d8c5901c0787fd0b6a99c1094d6d66fc78cb390dd4763152898f7f53b17b040",
+        "after_sha256": "775731d82f867ec46ebea2e8a7c94d4d07fb8aa34afd3f37601aee399d187f47"
+      }
+    }
+  ],
+  "notice_files": [
+    {
+      "local_path": "third_party/licenses/schemastore/LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "source_url": "https://raw.githubusercontent.com/SchemaStore/schemastore/4c41ffc223df321b410f504099351dc7d1613f8a/LICENSE",
+      "source_revision": "4c41ffc223df321b410f504099351dc7d1613f8a",
+      "source_path": "LICENSE"
+    },
+    {
+      "local_path": "third_party/licenses/schemastore/NOTICE",
+      "sha256": "8ef971b09c8988fab0872f534432611ba90611ed93da61cb9cf2722c69a570ef",
+      "source_url": "https://raw.githubusercontent.com/SchemaStore/schemastore/4c41ffc223df321b410f504099351dc7d1613f8a/NOTICE",
+      "source_revision": "4c41ffc223df321b410f504099351dc7d1613f8a",
+      "source_path": "NOTICE"
+    },
+    {
+      "local_path": "third_party/licenses/jsonschema-extractor/LICENSE",
+      "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+      "source_url": "https://raw.githubusercontent.com/fox-projects/jsonschema-extractor/648bbeb51fdb459c193acdc7756d5f79e1b3865a/LICENSE",
+      "source_revision": "648bbeb51fdb459c193acdc7756d5f79e1b3865a",
+      "source_path": "LICENSE"
+    },
+    {
+      "local_path": "third_party/licenses/schema-eslint-inputs/angular-eslint-eslint-plugin-18.0.1/LICENSE",
+      "sha256": "6e5ecb08edefb80f6e2a2be039e8a489da080bd2fb5762193358df049fbc2116",
+      "source_url": "https://registry.npmjs.org/@angular-eslint/eslint-plugin/-/eslint-plugin-18.0.1.tgz",
+      "source_revision": "e2006e5e9c99e5a943d1a999e0efa5247d29ec24",
+      "source_path": "package/LICENSE"
+    },
+    {
+      "local_path": "third_party/licenses/schema-eslint-inputs/typescript-eslint-eslint-plugin-7.13.1/LICENSE",
+      "sha256": "2eb5c7a0bba9deb77a98c81bf6b9d3fb1c67118eebf968b6b1a787b3f8928ee0",
+      "source_url": "https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-7.13.1.tgz",
+      "source_revision": "1212a8f30c5daa6a9b232a1d95e328d675430749",
+      "source_path": "package/LICENSE"
+    },
+    {
+      "local_path": "third_party/licenses/schema-eslint-inputs/eslint-plugin-import-2.29.1/LICENSE",
+      "sha256": "7829efc4266fad5f57f7fc489429a3b35d0c62183c0bd617ef6591f64c980c92",
+      "source_url": "https://registry.npmjs.org/eslint-plugin-import/-/eslint-plugin-import-2.29.1.tgz",
+      "source_revision": "ee5fadeffff68f2300bed7f67a310496cb969d61",
+      "source_path": "package/LICENSE"
+    },
+    {
+      "local_path": "third_party/licenses/schema-eslint-inputs/eslint-plugin-import-2.29.1/memo-parser-LICENSE",
+      "sha256": "7829efc4266fad5f57f7fc489429a3b35d0c62183c0bd617ef6591f64c980c92",
+      "source_url": "https://registry.npmjs.org/eslint-plugin-import/-/eslint-plugin-import-2.29.1.tgz",
+      "source_revision": "ee5fadeffff68f2300bed7f67a310496cb969d61",
+      "source_path": "package/memo-parser/LICENSE"
+    },
+    {
+      "local_path": "third_party/licenses/schema-eslint-inputs/eslint-plugin-unicorn-54.0.0/license",
+      "sha256": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3",
+      "source_url": "https://registry.npmjs.org/eslint-plugin-unicorn/-/eslint-plugin-unicorn-54.0.0.tgz",
+      "source_revision": "fce6ce390cc156282b507107427fc27322955039",
+      "source_path": "package/license"
+    },
+    {
+      "local_path": "third_party/licenses/schema-eslint-inputs/eslint-plugin-vue-9.26.0/LICENSE",
+      "sha256": "dbbf03317f0101fed5643cd87ca80fb769e358fa4f428445bf2315deeb23a154",
+      "source_url": "https://registry.npmjs.org/eslint-plugin-vue/-/eslint-plugin-vue-9.26.0.tgz",
+      "source_revision": "516253d9f80c5690e2d64513f6e9490977f6b4d1",
+      "source_path": "package/LICENSE"
+    },
+    {
+      "local_path": "third_party/licenses/schema-eslint-inputs/eslint-8.57.0/LICENSE",
+      "sha256": "3b6be04f862a077a4b97929dbf247299360824d9365f8603c263769303ace18c",
+      "source_url": "https://registry.npmjs.org/eslint/-/eslint-8.57.0.tgz",
+      "source_revision": "abea3b6f399fde9e28cf6dc5d6c013938f163cdc",
+      "source_path": "package/LICENSE"
+    }
+  ]
+}

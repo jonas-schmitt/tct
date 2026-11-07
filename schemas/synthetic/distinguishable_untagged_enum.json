@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Distinguishable Untagged Enum",
+  "description": "Untagged enum with truly distinguishable variants via string enums with disjoint vocabulary",
+  "oneOf": [
+    {
+      "type": "string",
+      "enum": ["success"],
+      "description": "Success variant: token 0"
+    },
+    {
+      "type": "string",
+      "enum": ["failure"],
+      "description": "Failure variant: token 1 (different from success)"
+    },
+    {
+      "type": "string",
+      "enum": ["pending"],
+      "description": "Pending variant: token 2 (different from others)"
+    }
+  ]
+}

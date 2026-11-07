@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OneOf String or Object Test",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "author": { "$ref": "#/definitions/Person" }
+  },
+  "required": ["name"],
+  "definitions": {
+    "Person": {
+      "oneOf": [
+        { "type": "string" },
+        {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "email": { "type": "string" }
+          },
+          "required": ["name"]
+        }
+      ]
+    }
+  }
+}

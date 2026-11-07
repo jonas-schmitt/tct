@@ -1,0 +1,6 @@
+{
+  "artifact_type": "sql_schema_linking_wide_gold_stub_v0",
+  "db_id": "tct_fixture_wide_menu",
+  "notes": "Wide-menu capacity fixture has no gold SQL queries; synthesizer path owns query generation. Not part of T11/T12 report bundle.",
+  "examples": []
+}

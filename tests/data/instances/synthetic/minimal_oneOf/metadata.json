@@ -1,0 +1,1 @@
+{"type": "minimal_oneOf", "description": "Root-level oneOf with string or number", "valid": ["hello world", 42, "test", 123.45], "invalid": [true, [], {}]}

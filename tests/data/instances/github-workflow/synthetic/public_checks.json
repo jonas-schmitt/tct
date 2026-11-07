@@ -1,0 +1,26 @@
+{
+  "name": "Synthetic fixture checks",
+  "on": {
+    "push": {"branches": ["fixture-main"]},
+    "pull_request": {}
+  },
+  "permissions": {"contents": "read"},
+  "jobs": {
+    "check": {
+      "runs-on": "ubuntu-latest",
+      "timeout-minutes": 5,
+      "env": {"FIXTURE_MODE": "check"},
+      "steps": [
+        {
+          "name": "Print fixture marker",
+          "run": "printf '%s\\n' 'synthetic fixture'"
+        },
+        {
+          "name": "Check shell arithmetic",
+          "shell": "bash",
+          "run": "test \"$((2 + 3))\" -eq 5"
+        }
+      ]
+    }
+  }
+}

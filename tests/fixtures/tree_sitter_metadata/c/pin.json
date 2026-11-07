@@ -1,0 +1,17 @@
+{
+  "pin_id": "tree_sitter_c_node_types_v0.24.2",
+  "grammar_package": "tree-sitter-c",
+  "grammar_version": "0.24.2",
+  "license": "MIT",
+  "license_file": "LICENSE",
+  "source_repository": "https://github.com/tree-sitter/tree-sitter-c",
+  "source_commit": "b780e47fc780ddc8da13afa35a3f4ed5c157823d",
+  "source_url": "https://raw.githubusercontent.com/tree-sitter/tree-sitter-c/v0.24.2/src/node-types.json",
+  "node_types_file": "node-types.json",
+  "node_types_sha256": "23e819ef1eefd357bb6eba844f47f8492f6a88da3e5046b06ec4acd4da8a9fd6",
+  "notes": [
+    "C grammar (tree-sitter-c) chosen as the second metadata pin: different language family from tree-sitter-json, well-versioned MIT export, rich subtypes/fields/children without a runtime Tree-sitter dependency.",
+    "Metadata pin + adapter lower only — not a C codec, not a Go inventory replacement, not I5.",
+    "Checked-in export only; no Tree-sitter runtime dependency."
+  ]
+}

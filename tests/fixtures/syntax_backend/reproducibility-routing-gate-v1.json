@@ -1,0 +1,110 @@
+{
+  "artifact_kind": "tct_syntax_backend_reproducibility_routing_gate",
+  "version": 1,
+  "tool": "syntax_backend_reproducibility_routing_gate",
+  "status": "sidecar_contract_only",
+  "source_token_vocabulary_bpe_routing_gate": {
+    "artifact_kind": "tct_syntax_backend_token_vocabulary_bpe_routing_gate",
+    "version": 1,
+    "module_path": "src/syntax_token_vocabulary_bpe_routing.rs",
+    "fixture_path": "tests/fixtures/syntax_backend/token-vocabulary-bpe-routing-gate-v1.json",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh",
+    "completed_promotion_class": "syntax backend token/vocabulary/BPE routing gate"
+  },
+  "source_generated_artifact_replay": {
+    "artifact_kind": "tct_syntax_backend_generated_artifact_reproducibility_replay",
+    "version": 1,
+    "module_path": "src/syntax_reproducibility_replay.rs",
+    "fixture_path": "tests/fixtures/syntax_backend/generated-artifact-replay-v1.json",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh",
+    "completed_promotion_class": "syntax backend generated artifact reproducibility replay gate"
+  },
+  "compiler_boundary": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "preserves_json_schema_backend_contract": true,
+    "production_grammar_compiler_path_changed": false,
+    "sidecar_only": true,
+    "tct_compiler_route_allowed": false
+  },
+  "route_state": {
+    "route_registered": false,
+    "route_enabled": false,
+    "public_api_changed": false,
+    "uses_json_schema_compiler": false,
+    "uses_syntax_renderer_api": false,
+    "persists_checked_in_generated_artifacts": false
+  },
+  "reproducibility_contract": {
+    "target_ids": [
+      "toy",
+      "csharp",
+      "go"
+    ],
+    "deterministic_hash_fields": [
+      "rendered_source_sha256",
+      "source_or_metadata_sha256",
+      "grammar_input_sha256",
+      "source_metadata_provenance_sha256",
+      "structural_model_sha256",
+      "token_layout_sha256",
+      "generated_crate_identity_sha256",
+      "generation_options_sha256",
+      "generated_artifact_envelope_sha256",
+      "validation_hook_sidecar_evidence_sha256",
+      "input_diagnostics_contract_sha256",
+      "input_diagnostics_negative_fixture_sha256",
+      "boundary_manifest_sha256",
+      "target_manifest_sha256"
+    ],
+    "volatile_report_fields": [
+      "volatile_report_dir",
+      "toy_report_path",
+      "parser_backed_report_path",
+      "report_artifact_kind"
+    ],
+    "source_fixture_hash_fields": [
+      "generated_artifact_envelope_sha256",
+      "validation_hook_sidecar_evidence_sha256",
+      "input_diagnostics_contract_sha256",
+      "input_diagnostics_negative_fixture_sha256",
+      "generated_artifact_replay_fixture_sha256"
+    ],
+    "route_owns_replay_before_renderer": true,
+    "deterministic_replay_required": true,
+    "volatile_reports_stay_under_target": true,
+    "does_not_depend_on_generated_source_substrings": true
+  },
+  "generated_codec_evidence": {
+    "test_path": "tests/syntax_generated_codec_gate_test.rs",
+    "renderer_api_module": "src/syntax_generated_codec.rs",
+    "replay_module": "src/syntax_reproducibility_replay.rs",
+    "target_ids": [
+      "toy",
+      "csharp",
+      "go"
+    ],
+    "required_test_markers": [
+      "toy_syntax_generated_codec_artifact_metadata_is_reproducible",
+      "parser_backed_syntax_generated_codec_artifact_metadata_is_reproducible",
+      "generated artifact replay identity",
+      "volatile report",
+      "target_manifest_sha256",
+      "generation_options_sha256",
+      "generated_crate_identity_sha256"
+    ],
+    "required_replay_policy_markers": [
+      "target/tct-syntax-generated-codec-reproducibility/toy-syntax-generated-codec.json",
+      "target/tct-syntax-generated-codec-reproducibility/parser-backed-syntax-generated-codecs.json",
+      "tct_syntax_generated_codec_reproducibility_report",
+      "tct_parser_backed_syntax_generated_codec_reproducibility_report"
+    ]
+  },
+  "blockers": [
+    "audit coverage"
+  ],
+  "completed_promotion_class": "syntax backend reproducibility routing gate",
+  "next_missing_stable_promotion_class": "syntax backend audit coverage routing gate"
+}

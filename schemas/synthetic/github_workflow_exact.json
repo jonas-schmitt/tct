@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GitHubWorkflowExact",
+  "description": "Exact reproduction of github-workflow 'on' field pattern",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "on": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/event"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/event"
+          },
+          "minItems": 1
+        },
+        {
+          "type": "object",
+          "properties": {
+            "push": {
+              "$ref": "#/definitions/eventObject"
+            },
+            "pull_request": {
+              "$ref": "#/definitions/eventObject"
+            },
+            "branch_protection_rule": {
+              "$ref": "#/definitions/eventObject"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": ["name", "on"],
+  "definitions": {
+    "event": {
+      "type": "string",
+      "enum": [
+        "branch_protection_rule",
+        "check_run",
+        "create",
+        "delete",
+        "push",
+        "pull_request"
+      ]
+    },
+    "eventObject": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "branches": {
+              "type": "array",
+              "items": {"type": "string"}
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

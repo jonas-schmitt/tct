@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "status": 200,
+  "message": "Synthetic page is complete",
+  "data": [
+    {
+      "id": 3,
+      "name": "widget"
+    },
+    {
+      "id": 4,
+      "name": "gadget"
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 2,
+    "total": 2,
+    "has_more": false
+  },
+  "metadata": {
+    "timestamp": "2026-01-01T00:00:00Z",
+    "version": "fixture-v1",
+    "request_id": "synthetic-page-1"
+  }
+}

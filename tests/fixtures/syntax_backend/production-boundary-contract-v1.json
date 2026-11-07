@@ -1,0 +1,110 @@
+{
+  "artifact_kind": "tct_syntax_backend_production_boundary_contract",
+  "version": 1,
+  "status": "sidecar_contract_only",
+  "source_evidence": {
+    "boundary_manifest": {
+      "artifact_kind": "tct_syntax_structural_model_boundary_manifest",
+      "path": "tests/fixtures/syntax_structural_model/boundary-manifest-v1.json",
+      "target_ids": [
+        "toy",
+        "csharp",
+        "go"
+      ],
+      "version": 1
+    },
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh",
+    "readiness_report": "reports/m6-cross-target-contract-closure-2026-07-21.md"
+  },
+  "compiler_boundary": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "preserves_json_schema_backend_contract": true,
+    "production_grammar_compiler_path_changed": false,
+    "sidecar_only": true,
+    "tct_compiler_route_allowed": false
+  },
+  "production_handoff": {
+    "input": {
+      "surface": "checked_syntax_input",
+      "requires": [
+        "source_or_metadata_sha256",
+        "parser_or_grammar_identity",
+        "unsupported_syntax_errors_with_rule_path"
+      ]
+    },
+    "normalization": {
+      "surface": "structural_model_boundary",
+      "requires": [
+        "GrammarIR -> StructuralModel",
+        "structural-model-v0",
+        "source_provenance",
+        "parser_provenance_when_available"
+      ]
+    },
+    "token_layout": {
+      "surface": "token_layout",
+      "requires": [
+        "structural_ranges",
+        "payload_ranges",
+        "PAD_TOKEN",
+        "VOCAB_SIZE",
+        "BPE_range_ownership"
+      ]
+    },
+    "generated_codec": {
+      "surface": "generated_codec_artifact_metadata",
+      "requires": [
+        "generated_crate_identity",
+        "rendered_source_sha256",
+        "target_manifest_sha256",
+        "generation_options_sha256"
+      ]
+    },
+    "decode": {
+      "surfaces": [
+        "strict_recovery_decode_policy",
+        "consumed_token_accounting"
+      ],
+      "requires": [
+        "strict_decode_authoritative",
+        "recovery_normalizes_only_trailing_PAD_TOKENs_after_complete_prefix",
+        "partial_prefix_failures_remain_hard_errors",
+        "consumed_tokens_reported_for_success_and_failure"
+      ]
+    },
+    "validation": {
+      "surface": "validation_hooks",
+      "requires": [
+        "source_reparse_or_equivalent_check",
+        "renderer_or_formatter_sidecar_status",
+        "external_checks_not_promoted_until_named"
+      ]
+    },
+    "audit": {
+      "surfaces": [
+        "audit_markers",
+        "maintained_documentation"
+      ],
+      "requires": [
+        "test-quality-audit.py",
+        "docs/syntax-backend-gate-strategy.md",
+        "TODO.md"
+      ]
+    }
+  },
+  "required_surfaces": [
+    "checked_syntax_input",
+    "structural_model_boundary",
+    "token_layout",
+    "generated_codec_artifact_metadata",
+    "strict_recovery_decode_policy",
+    "consumed_token_accounting",
+    "token_vocabulary_bpe_invariants",
+    "validation_hooks",
+    "audit_markers",
+    "maintained_documentation",
+    "external_sidecar_evidence"
+  ],
+  "next_missing_stable_promotion_class": "syntax backend JSON-backend parity routing gate"
+}

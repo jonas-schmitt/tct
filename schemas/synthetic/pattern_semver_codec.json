@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PatternSemverCodec",
+  "description": "Test schema with semantic version pattern requiring codec encoding",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Semantic version with pattern constraint",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "examples": [
+        "0.1.0",
+        "1.0.0",
+        "1.1.0",
+        "2.0.0",
+        "2.1.0",
+        "3.0.0"
+      ]
+    }
+  },
+  "required": ["version"],
+  "additionalProperties": false
+}

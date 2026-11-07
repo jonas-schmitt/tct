@@ -1,0 +1,82 @@
+{
+  "artifact_kind": "tct_syntax_backend_tct_compiler_routing_gate",
+  "version": 1,
+  "tool": "syntax_backend_tct_compiler_routing_gate",
+  "status": "sidecar_contract_only",
+  "source_generator_api_boundary": {
+    "artifact_kind": "tct_syntax_backend_production_generator_api_boundary",
+    "version": 1,
+    "api_version": "syntax-generator-api-v0",
+    "module_path": "src/syntax_backend_boundary.rs",
+    "contract_fixture": "tests/fixtures/syntax_backend/production-boundary-contract-v1.json",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh"
+  },
+  "source_renderer_api": {
+    "tool": "syntax_generated_codec_renderer_api",
+    "version": 1,
+    "module_path": "src/syntax_generated_codec.rs",
+    "artifact_builder_type": "SyntaxGeneratedCodecArtifact",
+    "build_functions": [
+      "build_toy_syntax_generated_codec_artifact",
+      "build_csharp_syntax_generated_codec_artifact",
+      "build_go_syntax_generated_codec_artifact"
+    ],
+    "renderer_functions": [
+      "render_toy_syntax_codec_fixture",
+      "render_csharp_syntax_codec_fixture",
+      "render_go_syntax_codec_fixture"
+    ]
+  },
+  "compiler_boundary": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "preserves_json_schema_backend_contract": true,
+    "production_grammar_compiler_path_changed": false,
+    "sidecar_only": true,
+    "tct_compiler_route_allowed": false
+  },
+  "tct_compiler_route": {
+    "route_name": "syntax",
+    "route_registered": false,
+    "route_enabled": false,
+    "public_api_changed": false,
+    "uses_json_schema_compiler": false,
+    "uses_syntax_renderer_api": false,
+    "future_input": "checked GrammarIR -> StructuralModel"
+  },
+  "routing_handoff": {
+    "accepted_input": "checked GrammarIR -> StructuralModel",
+    "renderer_api_module": "src/syntax_generated_codec.rs",
+    "output_artifact": "SyntaxGeneratedCodecArtifact",
+    "required_surfaces": [
+      "checked_syntax_input",
+      "structural_model_boundary",
+      "syntax_generated_codec_renderer_api",
+      "generated_codec_artifact_metadata",
+      "strict_recovery_decode_policy",
+      "consumed_token_accounting",
+      "token_vocabulary_bpe_invariants",
+      "validation_hooks",
+      "audit_markers"
+    ]
+  },
+  "json_backend_parity": {
+    "stable_json_schema_backend_unchanged": true,
+    "generated_json_schema_output_changed": false,
+    "existing_generated_templates_changed": false,
+    "requires_quality_check_before_route": true,
+    "requires_round_trip_smoke_before_route": true
+  },
+  "blockers": [
+    "JSON-backend parity gates",
+    "target-agnostic syntax boundary selection",
+    "strict/recovery decode behavior",
+    "consumed-token accounting",
+    "token/vocabulary/BPE invariants",
+    "reproducibility",
+    "audit coverage"
+  ],
+  "completed_promotion_class": "syntax backend production TctCompiler routing gate",
+  "next_missing_stable_promotion_class": "syntax backend JSON-backend parity routing gate"
+}

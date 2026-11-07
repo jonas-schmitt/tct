@@ -1,0 +1,10 @@
+{
+  "name": "field-order-test",
+  "config": {
+    "run": "cargo test",
+    "name": "Test",
+    "with": {
+      "profile": "debug"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "stages": ["test", "build", "deploy"],
+  "variables": {
+    "NODE_VERSION": "16",
+    "DOCKER_DRIVER": "overlay2"
+  },
+  "before_script": [
+    "apt-get update -qq && apt-get install -y -qq git"
+  ],
+  "test:unit": {
+    "stage": "test",
+    "image": "node:16",
+    "script": [
+      "npm install",
+      "npm test"
+    ],
+    "coverage": "/coverage/"
+  },
+  "build:app": {
+    "stage": "build",
+    "image": "node:16",
+    "script": [
+      "npm run build"
+    ],
+    "artifacts": {
+      "paths": ["dist/"]
+    }
+  },
+  "deploy:production": {
+    "stage": "deploy",
+    "script": [
+      "echo 'Deploying to production'"
+    ],
+    "only": ["main"]
+  }
+}

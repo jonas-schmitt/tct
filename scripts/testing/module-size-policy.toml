@@ -1,0 +1,881 @@
+# Tracked oversized Rust modules for the advisory module-size report.
+#
+# This is not a hard threshold policy. It records where splitting large files is
+# likely to improve ownership boundaries or focused testing. Use "defer" when a
+# candidate should stay tracked but its next action is explicitly gated on a
+# future behavior change.
+
+[[candidate]]
+path = "src/generator/struct_generator.rs"
+priority = "defer"
+owner = "generation/structs"
+rationale = "After extracting allOf validation, struct implementation, partial encoding, bit-packed rendering, and streaming decode-prefix rendering, the remaining production parent owns field assembly and default helpers while the file is oversized primarily because of tests."
+next_action = "Defer further parent splitting until field assembly behavior changes; avoid moving tests only to reduce line count."
+
+[[candidate]]
+path = "src/generator/struct_generator/streaming_decode.rs"
+priority = "defer"
+owner = "generation/structs/streaming"
+rationale = "After extracting standard partial-struct rendering, owns ordinary struct decode_prefix field-decoder branches for strings, containers, nested references, optional nested references, fallback recovery, and partial-field metadata."
+next_action = "Split field-specific decode attempt helpers only when decode_prefix behavior changes and focused generated-crate contracts pin the affected path."
+
+[[candidate]]
+path = "src/generator/struct_generator/streaming_decode/bitpacked.rs"
+priority = "defer"
+owner = "generation/structs/streaming"
+rationale = "Owns generated bit-packed streaming decode_prefix rendering after extraction from the standard streaming renderer."
+next_action = "Defer further split until bit-packed streaming decode behavior changes; keep zero-token const-first rendering in the sibling zero_token module."
+
+[[candidate]]
+path = "src/generator/struct_generator/streaming_decode/bitpacked/zero_token.rs"
+priority = "defer"
+owner = "generation/structs/streaming"
+rationale = "After extracting optional partial-struct assembly, owns generated const-first bit-packed streaming decode_prefix rendering for zero-token, nested-reference, and container paths."
+next_action = "Split required or optional nested/container decode branch helpers only when decode_prefix behavior changes and focused generated-code tests cover the affected path."
+
+[[candidate]]
+path = "src/generator/struct_generator/struct_impl.rs"
+priority = "defer"
+owner = "generation/structs/impls"
+rationale = "Owns generated struct JsonTokenEncoder impl rendering, decode-order validation, post-decode validation hooks, and pattern-aware serde routing after extraction from the parent struct generator."
+next_action = "Split standard token encoder rendering from pattern serde routing only when generated struct implementation behavior changes and focused generated-code tests cover the affected path."
+
+[[candidate]]
+path = "src/generator/type_analyzer.rs"
+priority = "defer"
+owner = "analysis tests/contracts"
+rationale = "After extracting Tarjan SCC support, decode-strategy inference, and trait derivability, the remaining production parent is below the advisory line threshold and the file is oversized primarily because of tests."
+next_action = "Defer further splitting until dependency-graph or generation-order behavior changes; avoid moving tests only to reduce line count."
+
+[[candidate]]
+path = "src/grammar.rs"
+priority = "defer"
+owner = "generated grammar assembly/tests"
+rationale = "After extracting sequence-boundary, BPE, and tokenizer renderers, the remaining parent production code is below the advisory threshold and the file is oversized primarily because of grammar assembly tests."
+next_action = "Defer further parent splitting until Grammar metadata, profiling, or definition assembly behavior changes; avoid moving tests only to reduce line count."
+
+[[candidate]]
+path = "src/grammar_ir_structural_model.rs"
+priority = "defer"
+owner = "non-json grammar boundary evidence"
+rationale = "The first additive GrammarIR-to-StructuralModel sidecar keeps the data model, lowering, and proof checks together while the evidence is limited to toy and Tree-sitter-metadata fixtures."
+next_action = "Split sidecar data structures from lowering/proof logic only when grammar-derived evidence expands beyond the current toy boundary or starts stable-backend promotion work."
+
+[[candidate]]
+path = "src/go_ast_schema_inventory.rs"
+priority = "defer"
+owner = "Go AST grammar coverage gate"
+rationale = "After extracting AST-wide grammar coverage report construction and validation, the checked Go AST inventory adapter owns pinned go/ast inventory parsing, renderer-position policy validation, GrammarIR lowering, and raw-tree renderer codegen coverage while the grammar coverage gate lives in a focused submodule."
+next_action = "Defer another split until renderer-position policy behavior or raw-tree renderer codegen coverage changes; then split the touched responsibility instead of growing the parent adapter."
+
+[[candidate]]
+path = "src/go_toolchain.rs"
+priority = "defer"
+owner = "pinned Go toolchain resolution"
+rationale = "Unified pinned-Go resolver (TCT_GO_BIN / PATH / sdk auto-discover) with process-env export and unit tests for discovery order; kept together so shell resolve-pinned-go.sh and Rust stay algorithm-aligned."
+next_action = "Split unit tests to a focused submodule only if production resolution grows past discovery/export; prefer keeping the algorithm single-file until then."
+
+[[candidate]]
+path = "src/go_ast_schema_inventory/grammar_coverage.rs"
+priority = "defer"
+owner = "Go AST grammar coverage gate"
+rationale = "Owns the AST-wide grammar coverage report, validation, token-layout summary, and raw state-machine coverage probe after extraction from the inventory adapter; the file is narrowly scoped and oversized only because the complete report contract is kept together."
+next_action = "Defer further split until grammar coverage report fields, raw state-machine coverage probing, or validation policy changes; then split the touched responsibility with go_ast_schema_inventory_test coverage."
+
+[[candidate]]
+path = "src/syntax_go_inventory_synthesis/registry.rs"
+priority = "P0"
+owner = "Go AST inventory synthesis registry"
+rationale = "The inventory synthesis registry is a declarative index of go/ast node-specific defaults, finite-domain requirements, field-order checks, and synthesis-plan wiring used by the reusable Go raw-token generator path; it is intentionally tracked while the generator core is still consolidating around inventory-derived records."
+next_action = "Before adding another broad inventory synthesis family, split registry constants and declarative specs by node-category group or generated inventory table so the reusable source-record generator core can consume data without growing this central registry."
+
+[[candidate]]
+path = "src/syntax_go_inventory_synthesis/template.rs"
+priority = "P0"
+owner = "Go AST inventory synthesis templates"
+rationale = "The template parent owns the checked source-file template IR and generic validation-to-raw-token lowering boundary for inventory-driven Go synthesis while expression, function-signature, and declarative submodules already hold the first extracted helpers."
+next_action = "When the source-record generator core adds a new template shape, split source-file template data structures or generic validation/lowering helpers before adding more behavior to the parent module."
+
+[[candidate]]
+path = "src/syntax_state_machine.rs"
+priority = "defer"
+owner = "raw syntax state-machine core"
+rationale = "After extracting StructuralModel model facts and raw replay/application state, the parent owns the public CompiledSyntaxModel and RawSyntaxStateMachineCore APIs, token-role layout, public state/error/event types, and decoded-node tree assembly."
+next_action = "Defer further parent splitting until token-role layout or decoded-tree assembly behavior changes; then split the touched responsibility without changing the public raw state-machine API."
+
+[[candidate]]
+path = "src/sql_schema_linking/runtime/tests.rs"
+priority = "defer"
+owner = "SQL schema-linking runtime tests"
+rationale = "Runtime-level behavioral tests for encode/elide/decode round trips, elided stream invertibility, policy-tagged stream contracts, and the join-ON structural masking payoff (singleton pair slices become forced and elided). Crossed the threshold when the join-ON policy tests landed with the structural masking tranche (d87a6d328)."
+next_action = "When the next runtime test tranche lands, split join-ON policy tests into a dedicated tests module (e.g. runtime/join_on_tests.rs) rather than growing this file."
+
+[[candidate]]
+path = "src/sql_schema_linking/runtime/factored_tests.rs"
+priority = "defer"
+owner = "SQL schema-linking runtime tests"
+rationale = "Factored column-addressing runtime tests extracted from the main runtime tests module so Flat vs Factored encode/decode, elision of singleton table digits, and paired stream-contract tags stay together."
+next_action = "Defer another split until factored-addressing behavior changes; do not move tests only to reduce line count."
+
+[[candidate]]
+path = "src/syntax_state_machine/raw_replay.rs"
+priority = "defer"
+owner = "raw syntax state-machine replay engine"
+rationale = "Owns mutable raw-prefix replay, frame/field/payload application state, admissible-token masks, transition accounting, and decoded event emission behind the public CompiledSyntaxModel API after extraction from the state-machine parent."
+next_action = "Defer further replay-engine splitting until raw replay semantics change; then split payload handling, admissible-mask collection, or structural frame transitions along the touched behavior with focused raw state-machine tests."
+
+[[candidate]]
+path = "src/syntax_state_machine/model_facts.rs"
+priority = "defer"
+owner = "raw syntax state-machine model facts"
+rationale = "Owns StructuralModel-derived model facts for the raw syntax state machine: record and field specs, children and payloads by field, multi-alternative nonterminal fields, discriminated-alternative derivation (alternatives_by_field, mixed_payload_fields), and ambiguity/boolean-identity rejection paths, plus the synthetic mixed-payload witness and its focused tests."
+next_action = "Defer splitting until the mixed-payload witness/test surface moves out or the alternative-derivation contract changes; do not free-form split for line count alone."
+
+[[candidate]]
+path = "src/syntax_state_machine/encode.rs"
+priority = "defer"
+owner = "raw syntax state-machine generic encode"
+rationale = "Language-neutral RawSyntaxDecodedNode → Vec<u32> inverse of decode (generic_codec_layer_contract_v0): model-order field walk, multi-alt and mixed-field choice tokens, homogeneous integer/utf8 payloads, field_missing/repeated_empty, and fail-closed non-conforming-tree errors, plus focused encode inverse unit tests."
+next_action = "Defer splitting until encode contract behavior changes (e.g. elided-stream encode or mixed-field accounting); then extract the touched walker or error helpers with focused encode unit tests rather than free-form line-count moves."
+
+[[candidate]]
+path = "src/syntax_go_tokenizer_generator.rs"
+priority = "P0"
+owner = "Go raw syntax tokenizer generator"
+rationale = "The first Go tokenizer generator report keeps parser-backed metadata loading, GrammarIR and StructuralModel lowering, raw syntax token emission, state-machine validation, and report validation together while the raw Go generator boundary is still fixture-scale evidence."
+next_action = "When the generator expands beyond the current fixture path or corpus gap runner, split report validation, source loading, or raw-token emission before adding more grammar-category behavior."
+
+[[candidate]]
+path = "src/syntax_scratch_generation.rs"
+priority = "P0"
+owner = "shared raw syntax scratch generator core"
+rationale = "Owns the target-neutral RawScratchGeneratorCore surface: empty-prefix, expanded selected-completion, incomplete-prefix rejection, token-only decode, and elided selected-completion over CompiledSyntaxModel so Go source-record evidence does not embed those walks in a language megamodule."
+next_action = "If the shared surface grows another stream-contract or claim-boundary family, split elided selected-completion or incomplete-prefix probe types into a focused submodule rather than continuing to grow this file."
+
+[[candidate]]
+path = "src/syntax_go_source_record_generator_core.rs"
+priority = "P0"
+owner = "Go source-record raw-token generator core"
+rationale = "Owns GoSourceRecordGeneratorCore, empty-prefix / expanded/elided selected-completion / incomplete-prefix / token-only evidence builders, GoSourceRecordInventoryScratchSeedWalk (expanded + elided selected-completion + incomplete-prefix rejection), inventory-model empty-prefix on the scratch-seed batch (RawScratchGeneratorCore::empty_prefix), inventory scratch-seed evidence summary construction (from_inventory_seed + frontier/render/reparse + nested elided/incomplete), GoSourceRecordInventoryScratchSeedBatch (inventory→model→empty-prefix+seeds→summaries + aggregates), GoSourceRecordInventoryScratchSubGate (batch + generator-core API stamps + fixed claim flags), GoSourceRecordManifestDepthRecordReadiness aggregation, full GoTokenizerGeneratorManifestDepthScratchGenerationGate assembly (oracle attachment + representative paths + inventory-sub + readiness merge), and GoSourceRecordManifestDepthRecordSourceFields (API/stream + empty-prefix/selected/elided-selected/incomplete/token-only stamp from evidence onto report and every manifest-depth record). Still inventory Go artifact + C# minimal_class only."
+next_action = "Next residual is elided selected-completion readiness on per-record aggregation and the full scratch-generation gate; split only if a new stream-contract or claim-boundary family forces growth."
+
+[[candidate]]
+path = "src/syntax_go_scratch_seed.rs"
+priority = "P0"
+owner = "Go scratch-generation seeds"
+rationale = "The Go AST scratch seed parent owns the public seed stream contract plus per-category seed constructors while constants, raw stream assembly helpers, and admissibility proofs live in focused submodules; expanding frontier witnesses has pushed it just beyond the advisory threshold."
+next_action = "When adding the next grammar-category witness, split seed constructors or raw-token builders by reusable category group before growing the parent further."
+
+[[candidate]]
+path = "src/syntax_go_raw_token_stream.rs"
+priority = "P0"
+owner = "Go raw-token generator assembly"
+rationale = "The raw-token stream builder centralizes reusable GoSourceFile, declaration, expression, statement, and literal token assembly for inventory-driven Go generator synthesis and scratch-regression witnesses so each selected token remains admitted by the shared raw state-machine boundary."
+next_action = "When adding the next Go generator category, split expression, statement, or type helper groups into focused syntax_go_raw_token_stream submodules instead of continuing to grow this helper file."
+
+[[candidate]]
+path = "src/syntax_go_raw_tree_renderer.rs"
+priority = "P0"
+owner = "Go raw decoded-tree source renderer"
+rationale = "The first raw decoded-tree Go source renderer keeps os/dir_unix traversal, comment anchors, expression rendering, statement rendering, and gofmt/reparse validation close to the first source-equality gate while unsupported-node diagnostics are still being defined."
+next_action = "Before extending coverage beyond os/dir_unix, split traversal, comment anchoring, expression rendering, or statement rendering along the next touched responsibility with focused raw-tree renderer tests."
+
+[[candidate]]
+path = "src/syntax_csharp_raw_tree_renderer.rs"
+priority = "P0"
+owner = "C# raw decoded-tree source renderer"
+rationale = "The C# raw decoded-tree source renderer keeps minimal-class, Shapes.cs, and Logger.cs whole-source rendering together while shared decoded-tree traversal helpers live in `syntax_csharp_raw_tree_renderer/decoded_tree_access.rs`; renderer-policy support remains fixture-scale evidence."
+next_action = "Before extending beyond Logger.cs, split compilation-unit source-file policies, statement rendering, or expression rendering along the next distinct C# source shape with focused raw-tree renderer tests."
+
+[[candidate]]
+path = "src/syntax_reproducibility_replay.rs"
+priority = "defer"
+owner = "syntax backend replay evidence"
+rationale = "The first generated-artifact replay contract keeps source fixture validation, target replay records, report policy, and sidecar compiler-boundary checks together while the syntax backend remains sidecar-only."
+next_action = "Split replay record validation or source-fixture validation only when production routing starts or additional syntax targets add distinct replay responsibilities."
+
+[[candidate]]
+path = "src/syntax_state_machine_replay.rs"
+priority = "P2"
+owner = "syntax state-machine replay evidence"
+rationale = "The raw-token alternative-identity replay task and generated-codec state API now reuse the same report, replay, prefix-state, payload-range, and transition-probe module. Invalid mutation builders have been extracted, but strict/recovery decode and exact-mask consumers will add more state API pressure."
+next_action = "Defer the next behavior-preserving split until P3 consumer wiring changes replay-engine, state API report, or report-validation responsibilities; then split the touched boundary instead of growing the parent module."
+
+[[candidate]]
+path = "src/syntax_generated_codec.rs"
+priority = "defer"
+owner = "syntax backend generated-code renderer"
+rationale = "The first sidecar-owned syntax generated-code renderer keeps toy, C#, and Go artifact builders, metadata handoff assembly, checked fixture consumers, and generated-source templates together so the promotion gate can review the complete API slice before production routing exists."
+next_action = "Split target-specific renderers or metadata handoff helpers only when production routing starts or a new syntax target adds a distinct renderer responsibility."
+
+[[candidate]]
+path = "src/syntax_production_route.rs"
+priority = "defer"
+owner = "syntax backend production route table"
+rationale = "The route table, gate contract, projector metadata setup, and checked sidecar compile entrypoint remain coupled while C# and Go parser-backed construct parity is still expanding."
+next_action = "Split construct table data from route compilation only when production routing starts or when a larger real-source corpus tranche makes route registration behavior distinct from gate validation."
+
+[[candidate]]
+path = "src/syntax_production_route/gate.rs"
+priority = "defer"
+owner = "syntax backend production route gate"
+rationale = "The production-route gate keeps source review linkage, feature-limited stable metadata, route contract, route setup, and JSON-backend parity checks together for the stable promotion tranche."
+next_action = "Split stable metadata and route contract validation only when post-promotion source-program claim handoff work adds distinct gate state or reusable validation helpers."
+
+[[candidate]]
+path = "src/syntax_source_program_handoff.rs"
+priority = "defer"
+owner = "syntax backend source-program handoff"
+rationale = "The first source-program handoff producer keeps the checked claim profile, generated report contract, record projection, and report validation together while the downstream source-validity boundary is still being defined."
+next_action = "Split checked profile validation from generated report projection only when the external validation control evidence gate adds reusable source-program report consumers."
+
+[[candidate]]
+path = "src/syntax_source_program_external_validation.rs"
+priority = "defer"
+owner = "syntax backend source-program external validation controls"
+rationale = "The first external validation control gate keeps the checked control fixture, handoff-report consumer, and sidecar-control validation together while the execution report boundary is still being defined."
+next_action = "Split report record control validation from fixture validation only when an execution report producer or additional source-program control evidence adds reusable consumers."
+
+[[candidate]]
+path = "src/syntax_source_program_external_validation_preservation.rs"
+priority = "defer"
+owner = "syntax backend source-program external validation preservation"
+rationale = "The first external validation execution preservation gate keeps source fixture identity, report refresh policy, stable report field coverage, volatile field coverage, blocked claims, and no-promotion checks together while type-checker feasibility remains the next boundary."
+next_action = "Split preserved report contract validation from policy validation only when type-checker or functional-validator control evidence adds reusable source-program preservation consumers."
+
+[[candidate]]
+path = "src/syntax_go_real_source_program_validity_corpus.rs"
+priority = "defer"
+owner = "syntax backend Go real-source program validity corpus gate"
+rationale = "The first Go real-source source-program validity corpus gate keeps manifest identity, volatile report field coverage, eligible record classification, sidecar-only claim policy, and next generated-codec corpus blocker together while the source-program validity boundary is still being defined."
+next_action = "Split manifest validation from eligibility policy only when a generated-codec corpus round-trip gate reuses the same real-source corpus records."
+
+[[candidate]]
+path = "src/syntax_go_real_source_generated_codec_corpus.rs"
+priority = "defer"
+owner = "syntax backend Go real-source generated-codec corpus gate"
+rationale = "The Go real-source generated-codec corpus gate keeps source-program corpus binding, generated report contract, supported subset validation, blocked-record disposition, and no-promotion policy together while whole-file corpus expansion is still being defined."
+next_action = "Split supported-record validation from blocked-record disposition when another generated-codec corpus tranche adds enough record-specific policy to obscure the shared gate contract."
+
+[[candidate]]
+path = "src/syntax_go_real_source_generated_codec_completion_handoff.rs"
+priority = "defer"
+owner = "syntax backend Go real-source generated-codec completion handoff"
+rationale = "The completion handoff keeps the completed corpus binding, final stable-promotion decision reference, claim boundary, and next-prerequisite validation together while the stable metadata implementation gate is still the next boundary."
+next_action = "Split corpus-reference validation from claim-boundary validation only when the stable metadata promotion implementation creates a reusable handoff consumer."
+
+[[candidate]]
+path = "src/syntax_csharp_real_source_generated_codec_completion_handoff.rs"
+priority = "defer"
+owner = "syntax backend C# real-source generated-codec completion handoff"
+rationale = "The C# completion handoff keeps the completed five-record corpus binding, source-corpus missing-evidence transition, claim boundary, and source-program handoff input validation together while C# source-program control evidence is still the next boundary."
+next_action = "Split corpus-reference validation from source-corpus handoff validation only when the C# source-program validation control tranche adds a reusable consumer."
+
+[[candidate]]
+path = "src/syntax_stable_metadata_promotion.rs"
+priority = "defer"
+owner = "syntax backend stable metadata promotion implementation gate"
+rationale = "The first stable metadata promotion implementation gate keeps Go completion handoff consumption, final decision consumption, production-route metadata checks, JSON-backend preservation, and blocked-claim policy together while the source-program claim handoff is still the next boundary."
+next_action = "Split source handoff, route metadata, or claim-boundary validators only when the source-program handoff adds reusable stable-promotion consumers."
+
+[[candidate]]
+path = "src/syntax_validation_matrix.rs"
+priority = "defer"
+owner = "syntax backend validation matrix"
+rationale = "The route-owned JSON-backend-grade syntax validation matrix keeps the category contract, sidecar-control checks, execution report policy, production-route binding, and compiler-route metadata validation together while stable promotion remains blocked on preserving release-depth execution evidence."
+next_action = "Split execution report policy and category validation helpers into a separate module only when the preservation path adds report validation structs or refresh-history state."
+
+[[candidate]]
+path = "src/toy_grammar_frontend.rs"
+priority = "defer"
+owner = "toy grammar boundary evidence"
+rationale = "The toy grammar now owns parser, tokenizer, renderer, and minimal GrammarIR exposure for the checked boundary fixture; the file is oversized only because the first grammar-derived evidence is intentionally kept in one toolchain-free probe."
+next_action = "Split GrammarIR exposure or parser/tokenizer pieces only when the toy grammar grows beyond the current assignment-language boundary or starts supporting a broader grammar adapter."
+
+[[candidate]]
+path = "src/tree_sitter_c_subset_codec.rs"
+priority = "defer"
+owner = "tree-sitter C subset codec (claim-bounded sidecar)"
+rationale = "Claim-bounded syntax-level tree-sitter-C minimal-function subset codec (not production-route code): C projection, parse/render, and emit remain local after CPU-2 extract of shared pin→SM→multi-alt / report / inventory helpers into tree_sitter_subset_framework.rs."
+next_action = "Defer further split unless C construct coverage grows and a named projection or inventory residual forces a reviewability extract; do not free-form split for line count."
+
+[[candidate]]
+path = "src/tree_sitter_json_subset_codec.rs"
+priority = "defer"
+owner = "tree-sitter JSON subset codec (claim-bounded sidecar)"
+rationale = "Claim-bounded syntax-level tree-sitter-JSON fixed construct subset codec (not production-route or JSON Schema TCT code): JSON projection, parse/render, and emit remain local after CPU-2 extract of shared framework helpers into tree_sitter_subset_framework.rs."
+next_action = "Defer further split unless the fixed subset expands and a named projection residual forces a reviewability extract; do not free-form split for line count."
+
+[[candidate]]
+path = "src/tree_sitter_subset_framework.rs"
+priority = "defer"
+owner = "tree-sitter subset shared framework"
+rationale = "Shared pin→StructuralModel→CompiledSyntaxModel core for claim-bounded tree-sitter subset codecs: multi-alt freezing, encode_decoded_tree + validate_encode_tokens, payload emit helpers, prefix/complete checks, and mixed-payload risk observation — intentionally co-located so JSON/C codecs stay thin language adapters."
+next_action = "Defer splitting until a new framework surface (beyond generic encode wrapping) lands; then extract the touched helper family with framework unit tests rather than free-form line-count moves."
+
+[[candidate]]
+path = "src/grammar/bpe.rs"
+priority = "defer"
+owner = "generated BPE renderer"
+rationale = "After extracting codec convenience wrappers and generated encode helpers, the parent renderer owns merge-table embedding, decode helper rendering, and decode-step budgets below the advisory line threshold."
+next_action = "Defer further splitting until generated BPE decode behavior, merge-table embedding, or decode-step budget policy changes and focused generated-code tests cover the affected template."
+
+[[candidate]]
+path = "src/bpe/trainer.rs"
+priority = "defer"
+owner = "BPE training"
+rationale = "The shared optimized BPE trainer is now library API used by the CLI and should keep trainer orchestration, state mutation, progress reporting, and artifact assembly reviewable."
+next_action = "Keep trainer state helpers isolated from public training orchestration; split progress/reporting or merge-table artifact assembly only when BPE training behavior changes."
+
+[[candidate]]
+path = "src/bpe/encoder.rs"
+priority = "defer"
+owner = "BPE runtime"
+rationale = "Runtime BPE encoding and decoding are performance-sensitive, but current production code is below the advisory threshold and the remaining file size is dominated by regression tests."
+next_action = "Defer splitting until BPE runtime behavior, allocation tracking, or generated hot-path evidence changes; avoid moving regression tests only to reduce line count."
+
+[[candidate]]
+path = "src/instance_encoder.rs"
+priority = "defer"
+owner = "generated helper assembly/tests"
+rationale = "After extracting metrics, helper project orchestration, generated helper rendering, and subprocess runtime execution, the parent instance encoder module is below the advisory threshold."
+next_action = "Defer further parent splitting until constructor, generated project setup, or cleanup behavior changes; avoid moving tests only to reduce line count."
+
+[[candidate]]
+path = "src/instance_encoder/process.rs"
+priority = "defer"
+owner = "generated helper subprocess runtime"
+rationale = "After extracting generated BPE and encode subprocess execution, the remaining production parent is below the advisory threshold while focused fake-helper tests dominate the file."
+next_action = "Defer further parent splitting until decode or decode_prefix subprocess behavior changes; avoid moving fake-helper tests only to reduce line count."
+
+[[candidate]]
+path = "src/instance_encoder/process/encode.rs"
+priority = "defer"
+owner = "generated helper encode subprocess runtime"
+rationale = "Owns single-file encode, encode-json temp-file delegation, encode-batch JSONL transport, encode summary/hot-path/validation metrics, and legacy parallel encode after extraction from process runtime."
+next_action = "Split summary-only metrics runners or legacy parallel encode only when generated helper encode behavior changes and fake-helper tests pin the affected path."
+
+[[candidate]]
+path = "src/schema_evolution.rs"
+priority = "defer"
+owner = "schema evolution reports"
+rationale = "After extracting BPE artifact, structural token-map, and stable-vocabulary policy helpers, the parent production code is below the advisory target and the remaining size is dominated by token-diff regression tests."
+next_action = "Defer further parent splitting until token-diff manifest assembly or schema-evolution regression coverage changes justify moving tests or compile-option helpers."
+
+[[candidate]]
+path = "src/schema_evolution/structural.rs"
+priority = "defer"
+owner = "schema evolution reports"
+rationale = "Structural token-map summarization and compatibility classification are isolated from token-diff manifest assembly but still combine emission metadata collection, object/enum compatibility proofs, and focused regression-owned helpers."
+next_action = "Split emission metadata collection from structural compatibility classification only when schema-evolution proofs expand and focused token-diff tests pin the new policy."
+
+[[candidate]]
+path = "src/generated_crate.rs"
+priority = "defer"
+owner = "generated Cargo policy"
+rationale = "After extracting generated-cargo environment/toolchain helpers, the parent owns generated Cargo.toml rendering and dependency pins below the advisory line threshold."
+next_action = "Keep template rendering centralized; revisit only when generated dependency, Rust-version, or package metadata policy changes."
+
+[[candidate]]
+path = "src/generator/enum_generator.rs"
+priority = "defer"
+owner = "generation/enums"
+rationale = "After extracting schema-aware validation, enum support/default helpers, streaming decode-prefix rendering, and discriminator partial-encoding rendering, the remaining production parent is below the advisory threshold while enum tests dominate the file."
+next_action = "Defer further parent splitting until enum variant modeling or token encode/decode behavior changes; avoid moving tests only to reduce line count."
+
+[[candidate]]
+path = "src/generator/enum_generator/partial_encoding.rs"
+priority = "defer"
+owner = "generation/enums/partial encoding"
+rationale = "Owns discriminator-driven enum from_json_partial, encode_partial, decode_partial, and gap-range offset rendering after extraction from enum generation."
+next_action = "Split discriminator extraction or gap-offset helpers only when enum partial-encoding behavior changes and generated-code tests pin the affected path."
+
+[[candidate]]
+path = "src/generator/enum_generator/streaming_decode.rs"
+priority = "defer"
+owner = "generation/enums/streaming"
+rationale = "Owns enum streaming decode_prefix rendering for standard, codec, zero-token, primitive, container, boxed, and referenced variants after extraction from enum generation."
+next_action = "Split container-specific streaming helpers only when enum decode_prefix behavior changes and focused streaming generated-code tests pin the affected path."
+
+[[candidate]]
+path = "src/generator/enum_generator/schema_validation.rs"
+priority = "defer"
+owner = "generation/enums/schema validation"
+rationale = "Owns anyOf/oneOf detection, variant schema constants, cached jsonschema validators, and custom schema-aware Deserialize rendering after extraction from enum generation."
+next_action = "Split schema-fragment completion from Deserialize rendering only when schema-aware enum selection semantics change and generated-crate regressions pin oneOf/anyOf behavior."
+
+[[candidate]]
+path = "src/generator/enum_generator/support.rs"
+priority = "defer"
+owner = "generation/enums/support"
+rationale = "Owns enum encoding-mode selection, generated container inner type qualification, and manual Default value construction after extraction from enum generation."
+next_action = "Keep small unless enum encoding or streaming Default behavior changes; avoid growing this module with validation or decode-prefix rendering."
+
+[[candidate]]
+path = "src/generator/schema_walker/struct_discovery/allof.rs"
+priority = "defer"
+owner = "discovery/structs"
+rationale = "After extracting allOf discovery helpers, this child module owns allOf member merging, required propagation, ref handling, and validation-only allOf shape checks."
+next_action = "Split allOf validation-only shape checks from merge/ref traversal only when allOf semantics change and schema-walker plus generated allOf tests pin the behavior."
+
+[[candidate]]
+path = "src/generator/schema_walker/discovery_core.rs"
+priority = "defer"
+owner = "discovery/core"
+rationale = "Core schema walking owns reference traversal, discovery context, and shared dispatch used by object, enum, and alias discovery paths."
+next_action = "Split reference traversal or dispatch helpers only with schema-walker contract tests that preserve discovery purity and error context."
+
+[[candidate]]
+path = "src/generator/schema_walker/type_determination.rs"
+priority = "defer"
+owner = "discovery/types"
+rationale = "After extracting inline member type helpers, type determination still owns type-kind classification, member-type dispatch, object and composition routing, transparent allOf references, and structural schema equality."
+next_action = "Split reference, object, or composition dispatch only with schema-walker contract tests that preserve discovery output and error context."
+
+[[candidate]]
+path = "src/generator/additional_properties_analyzer.rs"
+priority = "defer"
+owner = "generation/additionalProperties"
+rationale = "additionalProperties analysis remains correctness-sensitive, but current production code is below the advisory threshold and the remaining file size is dominated by tests."
+next_action = "Defer splitting until additionalProperties or patternProperties behavior changes and can be pinned by generated-crate regressions; avoid moving tests only to reduce line count."
+
+[[candidate]]
+path = "src/generator/structural_codec.rs"
+priority = "defer"
+owner = "generation/structural codec"
+rationale = "Structural codec helpers influence token layout and recovery behavior across generated encode/decode paths."
+next_action = "Split layout planning from TokenStream rendering only with token-range and round-trip tests for the affected structural mode."
+
+[[candidate]]
+path = "src/generator/bounded_integer_generator.rs"
+priority = "defer"
+owner = "generation/bounded integers"
+rationale = "Bounded-integer generation carries compact encoding math, token-count behavior, and malformed-token recovery tests in one module."
+next_action = "Split encode/token-count specialization helpers only when bounded integer layout or recovery behavior changes."
+
+[[candidate]]
+path = "src/generator/type_alias_generator.rs"
+priority = "defer"
+owner = "generation/type aliases"
+rationale = "After extracting JSON const wrappers and O3 primitive encoder rendering, the remaining production parent is below the advisory threshold while array, primitive, minimal-object, and alias assembly tests dominate the file."
+next_action = "Defer further parent splitting until array wrapper or primitive/minimal wrapper assembly behavior changes; avoid moving tests only to reduce line count."
+
+[[candidate]]
+path = "src/generator/type_alias_generator/primitive_encoding.rs"
+priority = "defer"
+owner = "generation/type aliases/primitive encoding"
+rationale = "Owns O3 constant-integer and format-specialized primitive wrapper JsonTokenEncoder rendering after extraction from type-alias assembly."
+next_action = "Split individual format encoders only when format semantics change or new format modes need focused generated-code regressions."
+
+[[candidate]]
+path = "src/generator/type_alias_generator/json_const.rs"
+priority = "defer"
+owner = "generation/type aliases/const wrappers"
+rationale = "Owns zero-token JSON const wrapper serde and JsonTokenEncoder rendering after extraction from type-alias assembly."
+next_action = "Keep small unless const-schema validation or zero-token wrapper behavior changes; pair changes with generated const-schema round trips."
+
+[[candidate]]
+path = "src/vocabulary_analyzer.rs"
+priority = "defer"
+owner = "vocabulary analysis"
+rationale = "After extracting recommendation assembly, efficiency scoring, compression strategy selection, and warning generation, the parent production code is below the advisory threshold while vocabulary-analysis tests dominate the file."
+next_action = "Defer further parent splitting until schema vocabulary accounting or recommendation semantics change; avoid moving tests only to reduce line count."
+
+[[candidate]]
+path = "src/generator/code_generator.rs"
+priority = "defer"
+owner = "generation orchestration"
+rationale = "After extracting generated runtime-support renderers, derive/member-type helpers, and per-type dispatch, the parent production code is below the advisory threshold while focused helper tests dominate the file."
+next_action = "Defer further parent splitting until root-generation orchestration or generator dependency plumbing changes; avoid moving tests only to reduce line count."
+
+[[candidate]]
+path = "src/generator/code_generator/runtime_support.rs"
+priority = "defer"
+owner = "generation runtime support"
+rationale = "Owns generated constrained-codec, constrained collection, constrained number, and partial-prefix support templates after extraction from generation orchestration."
+next_action = "Split constrained collection or number renderers only when max-vocabulary runtime support behavior changes and focused generated-code tests cover the affected template."
+
+[[candidate]]
+path = "src/compiler/mod.rs"
+priority = "defer"
+owner = "compiler pipeline"
+rationale = "After extracting grammar conversion and schema-warning traversal, the parent production code is below the advisory threshold while compiler contract tests dominate the remaining file size."
+next_action = "Defer further splitting until changing builder options, pass dependency ordering, or compile-output contracts supplies a semantic boundary; avoid moving tests only to reduce line count."
+
+[[candidate]]
+path = "src/wheel_builder.rs"
+priority = "defer"
+owner = "wheel/package generation"
+rationale = "After extracting the combined PyO3 wrapper renderer, the parent production code is below the advisory threshold while wheel and bundle wrapper tests dominate the remaining file size."
+next_action = "Defer further splitting until package metadata, bundle wrapper, or Hugging Face compatibility behavior changes; avoid moving tests only to reduce line count."
+
+[[candidate]]
+path = "src/wheel_builder/combined_lib.rs"
+priority = "defer"
+owner = "wheel/package generation/combined PyO3 lib"
+rationale = "Owns generate_combined_lib for assembled wheel packages: concatenates a log_debug stub, the generated tokenizer source, and the PyO3 wrapper (typed encode/decode with optional BPE, token_roles/strict_prefix_roles, sequence BOS/EOS helpers, optional decode_prefix streaming, and DecodeState cloneable prefix probing with optional root-token restriction)."
+next_action = "Split Mode-1 encode/decode/token-role templates from streaming DecodeState emission only when the wheel Python API surface or streaming decode-state behavior changes; pair with generate_combined_lib unit tests."
+
+[[candidate]]
+path = "src/generator/encoding_decision.rs"
+priority = "defer"
+owner = "optimization decisions"
+rationale = "Encoding-decision data and helper logic are central to token-layout compatibility, but current production code is below the advisory threshold and the remaining file size is test-heavy."
+next_action = "Defer splitting until adding structure-aware or frontend-specific encoding decisions supplies a semantic boundary and focused token-layout tests."
+
+[[candidate]]
+path = "src/optimization_pass/config.rs"
+priority = "defer"
+owner = "optimization configuration"
+rationale = "Optimization profile construction, built-in pass selection, base-vocabulary policy, and compatibility pass management share one public config module."
+next_action = "Split profile constructors or pass-name parsing only when optimization profile semantics or pass compatibility contracts change."
+
+[[candidate]]
+path = "src/bin/tct-bpe-lookup-benchmark.rs"
+priority = "defer"
+owner = "BPE lookup benchmark CLI"
+rationale = "The benchmark intentionally keeps CLI parsing, generated-style replay, lookup-strategy timing, and local parity tests together while lookup strategies are still experimental."
+next_action = "Defer splitting until another lookup strategy, report shape, or generated-hot-path evidence change lands; then extract replay/parity helpers without weakening SequentialBpeEncoder parity."
+
+[[candidate]]
+path = "src/schema_analyzer/mod.rs"
+priority = "defer"
+owner = "legacy schema analysis facade"
+rationale = "The module is oversized but not on the current compiler-critical path for P0/P1 generated-code correctness work."
+next_action = "Defer splitting until schema-analysis behavior changes require focused tests or a frontend route reuses this facade."
+
+[[candidate]]
+path = "src/schema_analyzer/domain_analyzer.rs"
+priority = "defer"
+owner = "legacy domain analysis"
+rationale = "Domain analysis is large but currently secondary to the active compiler/generator pipeline and non-JSON frontend route."
+next_action = "Defer splitting until domain-analysis output is reused by maintained compiler behavior or frontend-route evidence."
+
+[[candidate]]
+path = "src/pattern_analyzer.rs"
+priority = "defer"
+owner = "pattern analysis"
+rationale = "Pattern analysis is large but stable; splitting it without a pattern-semantics change would mostly move existing code."
+next_action = "Defer until adding or changing bounded-pattern, enumeration, or regex-conversion semantics with focused tests."
+
+[[candidate]]
+path = "src/bin/tct-measure-tokens.rs"
+priority = "defer"
+owner = "measurement CLI"
+rationale = "Large CLI is secondary to compiler/generator ownership unless measurement behavior changes."
+next_action = "Defer splitting until a measurement feature change needs isolated parsing, execution, or report modules."
+
+[[candidate]]
+path = "src/bin/tct-train-bpe.rs"
+priority = "defer"
+owner = "BPE CLI"
+rationale = "Large CLI should be split with BPE workflow changes, not as churn-only cleanup."
+next_action = "Defer splitting until BPE training workflow or artifact metadata changes need focused tests."
+
+[[candidate]]
+path = "src/bin/tct-prepare-data.rs"
+priority = "defer"
+owner = "data-preparation CLI"
+rationale = "Large CLI should be split around data workflow behavior, not by line count alone."
+next_action = "Defer splitting until corpus preparation formats or provenance behavior changes."
+
+[[candidate]]
+path = "src/error/mod.rs"
+priority = "defer"
+owner = "error contracts"
+rationale = "The error module is test-heavy and should be split around new error taxonomy or diagnostics contracts, not line count alone."
+next_action = "Defer until schema, token, generated-code, or CLI error behavior changes need isolated diagnostics tests."
+
+[[candidate]]
+path = "src/main.rs"
+priority = "defer"
+owner = "main CLI"
+rationale = "The main CLI is large but refactoring it does not currently unlock compiler correctness or frontend architecture work."
+next_action = "Defer splitting until command routing or configuration behavior changes require isolated tests."
+
+[[candidate]]
+path = "src/decoder/mod.rs"
+priority = "defer"
+owner = "runtime decoder"
+rationale = "The runtime decoder is partly contract/test heavy and should not be split without decode semantics or recovery policy changes."
+next_action = "Defer splitting until strict/recovery decoding behavior or prefix/gap APIs change."
+
+[[candidate]]
+path = "src/tokenizer/primitives.rs"
+priority = "defer"
+owner = "tokenizer primitive tests"
+rationale = "The file is test-heavy and its production primitive contracts are stable enough that line-count-only splitting would be churn."
+next_action = "Defer splitting until primitive token semantics or recovery behavior changes require isolated modules."
+
+[[candidate]]
+path = "src/bpe/mod.rs"
+priority = "defer"
+owner = "BPE table contracts"
+rationale = "The BPE module root is mostly public table types and validation tests; line-count-only splitting would add indirection around stable contracts."
+next_action = "Defer until BPE artifact validation or metadata compatibility behavior changes."
+
+[[candidate]]
+path = "src/generator/passes.rs"
+priority = "defer"
+owner = "pass tests/contracts"
+rationale = "This module is mostly pass-contract coverage; moving tests just to reduce file length would not improve ownership."
+next_action = "Defer splitting unless pass registration or dependency ordering changes create a behavior-preserving extraction point."
+
+[[candidate]]
+path = "src/generator/schema_discovery.rs"
+priority = "defer"
+owner = "legacy schema discovery tests"
+rationale = "The schema discovery facade is test-heavy and lower priority than the active schema-walker discovery modules."
+next_action = "Defer splitting unless legacy discovery behavior changes or the facade is retired."
+
+[[candidate]]
+path = "src/generator/schema_walker/mod.rs"
+priority = "defer"
+owner = "schema-walker tests/contracts"
+rationale = "The schema-walker module root is oversized primarily from tests and contract coverage around extracted discovery helpers."
+next_action = "Defer test relocation; add child-module splits only where discovery behavior changes."
+
+[[candidate]]
+path = "src/generator/type_analysis.rs"
+priority = "defer"
+owner = "legacy type-analysis contracts"
+rationale = "The legacy type-analysis module is test-heavy and secondary to the active type-analyzer and schema-walker ownership split."
+next_action = "Defer until type-analysis behavior changes or active analysis paths retire the legacy contract."
+
+[[candidate]]
+path = "src/generator/generation_output.rs"
+priority = "defer"
+owner = "generation data contracts"
+rationale = "The module is contract/test heavy and is less urgent than generation logic modules that mix planning with TokenStream emission."
+next_action = "Defer splitting until generation metadata contracts change."
+
+[[candidate]]
+path = "src/vocabulary_encoder/mod.rs"
+priority = "defer"
+owner = "vocabulary encoder contracts"
+rationale = "The vocabulary encoder is test-heavy and stable relative to current P0/P1 compiler correctness work."
+next_action = "Defer splitting until vocabulary encoding behavior or token-layout compatibility policy changes."
+
+[[candidate]]
+path = "src/bounded_integer.rs"
+priority = "defer"
+owner = "bounded integer runtime"
+rationale = "The bounded-integer runtime module is mostly contract coverage for stable compact integer behavior."
+next_action = "Defer splitting until bounded integer runtime semantics, base-vocabulary policy, or recovery behavior changes."
+
+[[candidate]]
+path = "src/generator/optimization_phase.rs"
+priority = "defer"
+owner = "optimization tests/contracts"
+rationale = "Optimization-phase size is partly contract coverage; split only with a concrete optimization-mode or compatibility change."
+next_action = "Defer churn-only extraction; revisit when adding new structure-aware or frontend-specific optimization decisions."
+
+[[candidate]]
+path = "src/sequence_bundle.rs"
+priority = "defer"
+owner = "sequence wrapper runtime"
+rationale = "Sequence-boundary behavior is active but should be split only when BOS/EOS, masking, or multi-schema wrapper semantics change."
+next_action = "Defer splitting until a sequence-boundary behavior change supplies focused tests."
+
+[[candidate]]
+path = "src/syntax_validation_hooks.rs"
+priority = "defer"
+owner = "syntax validation hook contracts"
+rationale = "The module now carries the validation-hook contract plus the parser-backed sidecar evidence fixture contract; splitting it during sidecar evidence validation would add churn around still-evolving syntax-backend evidence."
+next_action = "Revisit when generated-artifact replay or stable syntax-backend promotion creates a behavior-preserving extraction boundary."
+
+[[candidate]]
+path = "src/syntax_input_diagnostics.rs"
+priority = "defer"
+owner = "syntax input diagnostics contracts"
+rationale = "The module now carries the sidecar diagnostics contract plus the first negative checked-input fixture gate; splitting it during fixture validation work would add churn around still-evolving syntax-backend evidence."
+next_action = "Revisit when the negative fixture handoff or a broader syntax diagnostics API creates a behavior-preserving extraction boundary."
+
+[[candidate]]
+path = "src/syntax_source_corpus_evidence.rs"
+priority = "defer"
+owner = "syntax source-corpus evidence"
+rationale = "The first parser-backed source-corpus evidence gate keeps fixture validation, route-table record derivation, provenance hashing, generated-code metadata checks, and report assembly together while the report producer is still the next tranche."
+next_action = "Split report assembly or record-field validation only when the report producer or downstream validator creates a stable extraction boundary."
+
+[[candidate]]
+path = "src/syntax_csharp_real_source_generated_codec_feasibility.rs"
+priority = "defer"
+owner = "syntax backend C# real-source generated-codec feasibility"
+rationale = "The first C# generated-codec feasibility gate keeps the no-gap metadata handoff, corpus manifest binding, production route blocker, record validation, and no-promotion policy together until the first whole-source route supplies a reusable extraction boundary."
+next_action = "Split corpus manifest parsing or record validation only when csharp_compilation_unit_source_file_syntax_v0 implementation reuses those helpers across generated-codec corpus routes."
+
+[[candidate]]
+path = "src/syntax_csharp_real_source_generated_codec_corpus.rs"
+priority = "defer"
+owner = "syntax backend C# real-source generated-codec corpus"
+rationale = "The first C# generated-codec corpus gate keeps the feasibility handoff, report contract, supported Shapes record, blocked corpus records, and no-promotion policy together while only one real-source route is supported."
+next_action = "Split report-contract validation or blocked-record validation after additional checked C# route metadata fixtures make the corpus gate reusable across multiple supported records."
+
+[[candidate]]
+path = "src/syntax_go_source_instance_projection.rs"
+priority = "P2"
+owner = "Go source-instance projection evidence"
+rationale = "The Go source-instance projection module keeps checked projection records, generated-codec report assembly, and report validation together; source-instance projection is sidecar evidence rather than the stable backend boundary."
+next_action = "Split projection record validation from report assembly when another source-instance corpus or downstream consumer reuses the same projection contract."
+
+[[candidate]]
+path = "src/exact_mask_contract.rs"
+priority = "P2"
+owner = "shared exact-mask contract"
+rationale = "The shared exact-mask contract keeps the contract shape, validation, and checked report assembly together for its current consumers."
+next_action = "Split contract validation from report assembly only when another frontend consumes the contract."
+
+[[candidate]]
+path = "src/syntax_generated_codec_state_api_route.rs"
+priority = "P2"
+owner = "syntax generated-codec state API route evidence"
+rationale = "Route evidence remains central to the generalized state/mask framework and should be tracked while the shared raw-state transition contract is defined."
+next_action = "Split route report construction from compatibility validation when the shared raw-state contract or another syntax target changes this file."
+
+[[candidate]]
+path = "src/syntax_generated_codec_state_api_integration.rs"
+priority = "P2"
+owner = "syntax generated-codec state API integration"
+rationale = "Integration evidence connects generated codecs to active-mask consumers, so it must stay visible as strategic debt during the generalized state-machine push."
+next_action = "Split integration report validation from fixture assembly when shared contract wiring or JSON adapter comparison changes this file."
+
+[[candidate]]
+path = "src/syntax_generated_codec_state_api_handoff.rs"
+priority = "P2"
+owner = "syntax generated-codec state API handoff"
+rationale = "State API handoff evidence is close to the target-neutral contract boundary and should be tracked before further downstream or BPE consumer expansion."
+next_action = "Split handoff input validation from report projection when the shared raw-state transition contract starts consuming this boundary."
+
+[[candidate]]
+path = "src/bin/tct-syntax-go-tokenizer-generator.rs"
+priority = "P2"
+owner = "Go tokenizer-generator CLI dispatch"
+rationale = "After extracting stdlib coverage into tct_syntax_go_tokenizer_generator/stdlib_coverage.rs, the parent binary still owns clap dispatch, random-admissible-walk mode wiring, checked-report and manifest-depth builders, and shared projection regeneration helpers."
+next_action = "Extract checked-report/manifest-depth builders or projection regeneration only when those modes change; keep clap dispatch thin."
+
+[[candidate]]
+path = "src/bin/tct_syntax_go_tokenizer_generator/stdlib_coverage.rs"
+priority = "P2"
+owner = "Go stdlib syntax tokenizer coverage report"
+rationale = "Extracted from the generator bin: full-denominator/limited-smoke coverage report construction, record builders, gap buckets, and claim-boundary validation for M2-style stdlib evidence."
+next_action = "Split record construction from report validation only when the coverage report contract or parallel worker shape changes."
+
+[[candidate]]
+path = "src/syntax_go_random_admissible_walk.rs"
+priority = "P2"
+owner = "Go random admissible-walk validity gate"
+rationale = "M3 empty-prefix random admissible-walk validity owns sampling, decode/render, gofmt/parser sidecar checks, and claim-boundary validation for the unified Go artifact."
+next_action = "Split claim-boundary/report validation from walk sampling only when the walk contract or payload sampling rules change."
+
+[[candidate]]
+path = "src/instance_encoder/generated_helper/main_template/bpe.rs"
+priority = "defer"
+owner = "generated helper BPE template"
+rationale = "Generated-crate BPE helper template is slightly over the advisory line after template expansions; not an investigation surface."
+next_action = "Split only when generated BPE helper template behavior changes; avoid cosmetic line-count moves."
+
+[[candidate]]
+path = "src/grammar/tokenizer.rs"
+priority = "defer"
+owner = "grammar tokenizer scaffolding"
+rationale = "Grammar tokenizer path is slightly over the advisory line; retained scaffolding for GrammarIR-related tokenization, not obsolete investigation debt."
+next_action = "Review for consolidation only when grammar-tokenizer behavior or GrammarIR consumers change."
+
+[[candidate]]
+path = "src/sql_schema_linking/catalog.rs"
+priority = "defer"
+owner = "SQL schema-linking frontend catalog"
+rationale = "T1 pin-verified Spider-style catalog loader, fail-closed pin/path/PK/gold guards, and fixture bundle verification live together for the SQL frontend campaign; the file is oversized primarily because of focused fail-closed unit tests co-located with the loader."
+next_action = "Split pin validation, FK resolution, or gold-bundle verify only when catalog load behavior changes; avoid moving tests only to reduce line count."
+
+[[candidate]]
+path = "src/sql_schema_linking/report.rs"
+priority = "defer"
+owner = "SQL schema-linking frontend gold stats + handoff"
+rationale = "T11 gold-stats measurement and T12 models handoff envelope co-locate with focused tests and opt-in report writers for the SQL frontend campaign."
+next_action = "Split handoff construction from gold-stats aggregation only when the models consumer validator requires a new envelope field; avoid moving tests only to reduce line count."
+
+[[candidate]]
+path = "src/sql_schema_linking/codec.rs"
+priority = "defer"
+owner = "SQL schema-linking frontend codec"
+rationale = "T5–T9 generic-codec glue plus focused gold round-trip and mask/accept probes for the SQL frontend campaign; oversize is from co-located T7–T9 gate tests rather than production encode/decode."
+next_action = "Extract gold-fixture test helpers or SharedAlphabet probes into a sibling test module when T10/T11 change the codec surface; avoid moving tests only to reduce line count."
+
+[[candidate]]
+path = "src/sql_schema_linking/parser/mod.rs"
+priority = "defer"
+owner = "SQL schema-linking frontend parser"
+rationale = "T5–T9 SELECT/FROM/JOIN/clause walker and resolve helpers after extracting expression/literal parsers to parser/expr.rs; co-located focused parse tests remain."
+next_action = "Defer further split unless clause ownership grows again; expression surface lives in parser/expr.rs."
+
+[[candidate]]
+path = "src/sql_schema_linking/parser/expr.rs"
+priority = "defer"
+owner = "SQL schema-linking frontend parser expressions"
+rationale = "Behavior-preserving extract of AND/OR/comparison/atom/literal parsers from the SELECT walker."
+next_action = "Defer unless expression precedence or literal policy changes."
+
+[[candidate]]
+path = "src/sql_schema_linking/tree.rs"
+priority = "defer"
+owner = "SQL schema-linking frontend tree lower/raise"
+rationale = "T5–T9 AST ↔ RawSyntaxDecodedNode lower/raise for select/from/join/where/group/order/limit, aggregates, DISTINCT, subquery, and the full expression multi-alt tree; co-located for tree-identity round-trips on the generic codec."
+next_action = "Split expression/literal/aggregate raise-lower helpers when the tree shape changes again; keep field-order and missing-field markers with the select root."
+
+[[candidate]]
+path = "src/sql_schema_linking/render.rs"
+priority = "defer"
+owner = "SQL schema-linking frontend SQL renderer"
+rationale = "T5–T9 catalog-aware SELECT renderer with P8 precedence-aware boolean parentheses and render-fixpoint helpers; oversized primarily because of focused fixpoint unit tests co-located with the renderer."
+next_action = "Split expression/select-list rendering from clause renderers only when render fixpoint behavior changes; avoid moving tests only to reduce line count."
+
+[[candidate]]
+path = "src/sql_schema_linking/menu_binding.rs"
+priority = "defer"
+owner = "SQL schema-linking frontend menu binding"
+rationale = "Owns SQL menu-site binding construction (table sites, scope-derived column menus, select-root scope marking) plus the T-B/T-D capacity surface (`SQL_MAX_MENU_DIGITS`, `sql_menu_ordinal_capacity`, `require_within_sql_menu_capacity`) so wide Spider catalogs bind under two base-256 digits without widening the shared alphabet band; production binding helpers are small while the file is oversized from co-located wide-catalog mask, digit-boundary, and capacity fail-closed probes."
+next_action = "When max_menu_digits, ordinal capacity, or scope-column binding behavior changes, extract the wide-catalog capacity/mask probes or scope-column binding helpers into a sibling module with the touched contract; avoid moving tests only to reduce line count."
+
+[[candidate]]
+path = "src/sql_schema_linking/spider_coverage.rs"
+priority = "defer"
+owner = "SQL schema-linking Spider coverage diagnostic"
+rationale = "Honest Spider-scale producer diagnostic: parse/encode coverage measurement over multi-db tables.json + gold examples, plus residual blocker bucket classification (`classify_parse_error`, query-text refinement for set-ops / COUNT(DISTINCT) / ORDER BY aggregates) under an explicit non-claim boundary; not Primary metrics or paper-extractable."
+next_action = "When residual taxonomy needles, report fields, or encode/round-trip export modes change, split residual bucket classification from parse/encode measurement (or extract the opt-in host Spider probes) rather than growing the parent; avoid free-form line-count moves."
+
+[[candidate]]
+path = "src/sql_schema_linking/grammar.rs"
+priority = "defer"
+owner = "SQL schema-linking frontend GrammarIR"
+rationale = "Complete hand-written SQL v0 `GrammarIr` lowering shape for the SQLite/Spider subset ladder (M0–M6): rule/field constants, from-first select_statement field order (P6), IntegerPayload menu-site leaves (P3/P4), and `sql_schema_linking_grammar_ir` / StructuralModel lowering kept together so later parser tranches do not reshape the token stream."
+next_action = "When a new subset construct or select_statement field is added to the GrammarIR, split rule-name constants from IR assembly helpers (or extract clause-family builders for the touched rules) before growing the single grammar builder; pair with grammar-shape / layout pin tests."
+
+[[candidate]]
+path = "src/sql_schema_linking/runtime/mod.rs"
+priority = "defer"
+owner = "SQL schema-linking stage-1 runtime"
+rationale = "A5 encode/decode, incremental expanded TCT decode, and the canonical elided stream contract (elide/expand/begin_elided/strict_decode_elided) over SqlTctDecodeState; oversized after elision transforms and typed forced-run guards landed beside the expanded cursor."
+next_action = "Split elided-stream state/helpers into a sibling module when elision or incremental decode contracts change again; keep expanded and elided entry points on the same runtime surface until then."
+
+[[candidate]]
+path = "src/sql_schema_linking/elided_bpe_mask.rs"
+priority = "defer"
+owner = "SQL elided-stream BPE admissible mask"
+rationale = "BPE lift over the elided SQL free-choice walker: round-trip property, gold-path BPE admission, and ExactMaskContractReport assembly for free-choice prefixes. Slightly over the advisory line because report + mask + tests share one module for the first measurement tranche."
+next_action = "Split raw-contract case builders from BPE gold-path mask probing when train-scale full-vocab mask scans or a second syntax target needs a shared BPE-lift helper."
+
+[[candidate]]
+path = "src/python/sql_runtime.rs"
+priority = "defer"
+owner = "python/pyo3 SQL schema-linking bindings (experimental)"
+rationale = "Experimental PyO3 surface for the SQL schema-linking runtime (expanded, elided, and elided-BPE decode states, menu traces, and elision APIs) plus its binding tests; split out of src/python.rs so the core BPE bindings compile without the experimental feature."
+next_action = "Split the binding tests or the elided-BPE decode state into focused submodules when the SQL binding surface grows further."
+
+[[candidate]]
+path = "src/syntax_token_layout_diff.rs"
+priority = "defer"
+owner = "syntax token-layout diff and pin fixtures"
+rationale = "Syntax-side analog of tct-token-diff: layout descriptors, the conservative compatibility classes, and the checked Go (elided) and C# (expanded) pin fixtures share one module so a renumbering cannot land silently through a second code path. Crossed the advisory line as the C# pin joined the Go pin on the same descriptor types."
+next_action = "Split the pin-fixture constants and their loaders from the diff/classification core when a third syntax target needs a pin, since that is the point at which the fixture surface stops being incidental to the diff."

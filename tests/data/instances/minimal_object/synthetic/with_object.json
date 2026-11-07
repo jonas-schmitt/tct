@@ -1,0 +1,7 @@
+{
+  "name": "test-project",
+  "config": {
+    "setting1": "value1",
+    "setting2": 42
+  }
+}

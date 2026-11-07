@@ -1,0 +1,195 @@
+{
+  "artifact_kind": "tct_go_syntax_real_source_corpus_manifest_v1",
+  "version": 1,
+  "corpus_id": "go-stdlib-real-source-syntax-training-corpus-fifteen-record-v1",
+  "source_root": "tests/fixtures/go_syntax_corpus/src",
+  "source_manifest": "tests/fixtures/go_syntax_corpus/training-sources-fifteen-record-v1.txt",
+  "route_source_manifest_shape": {
+    "tool": "route_source_manifest",
+    "version": 1,
+    "target": "go-syntax",
+    "marker": "tct-go-syntax-route-corpus-v1",
+    "route_decision_marker": "tct-go-syntax-route-corpus-v1",
+    "corpus_fingerprint_sha256": "a6769232b738f7bc99416aa447e3c168f8c01fdcdc3f348f51abbbbdac23c42b",
+    "source_list_sha256": "6b94e03eaaf52dd0fb6c21574dc9aac43b9d75c103a668a8bef171cba329517c",
+    "minimum_entry_count": 14,
+    "fixture_scope": true
+  },
+  "selection": {
+    "source": "https://cs.opensource.google/go/go/+/refs/tags/go1.24.3:src",
+    "source_revision": "go1.24.3",
+    "license": "BSD-3-Clause",
+    "license_text_path": "tests/fixtures/go_syntax_corpus/LICENSE.go-BSD-3-Clause.txt",
+    "selection_note": "Fifteen Go standard-library syntax-token training records drawn from fourteen distinct source files: the fourteen-record mixed whole-source/source-span/source-instance corpus plus parser-backed net/nss.go source-instance generated-codec evidence with contextual raw-token provenance and canonical render/reparse checks.",
+    "expected_next_missing_construct": "",
+    "expected_entry_count": 14,
+    "representative_status": "real_source_stdlib_subset"
+  },
+  "entries": [
+    {
+      "manifest_path": "crypto/internal/sysrand/rand_windows.go",
+      "file": {
+        "path": "tests/fixtures/go_syntax_corpus/src/crypto/internal/sysrand/rand_windows.go",
+        "sha256": "8122c2f83776b2e76f45631835d8038853886e5db728e24fe97c60179197ed8b",
+        "bytes": 273
+      },
+      "license": "BSD-3-Clause",
+      "source_uri": "https://cs.opensource.google/go/go/+/refs/tags/go1.24.3:src/crypto/internal/sysrand/rand_windows.go",
+      "selection_note": "Parser-backed real-source Windows sysrand wrapper with an internal import, slice parameter type, selector call, and error return."
+    },
+    {
+      "manifest_path": "crypto/subtle/xor.go",
+      "file": {
+        "path": "tests/fixtures/go_syntax_corpus/src/crypto/subtle/xor.go",
+        "sha256": "f438a661cf333ea488b3c4b227bdba8d2fd5914d916c7b327eb39e343db27296",
+        "bytes": 606
+      },
+      "license": "BSD-3-Clause",
+      "source_uri": "https://cs.opensource.google/go/go/+/refs/tags/go1.24.3:src/crypto/subtle/xor.go",
+      "selection_note": "Parser-backed real-source subtle XOR wrapper with a second crypto package context, grouped slice parameters, doc comments, selector call, and three-call-argument return."
+    },
+    {
+      "manifest_path": "internal/coverage/uleb128/uleb128.go",
+      "file": {
+        "path": "tests/fixtures/go_syntax_corpus/src/internal/coverage/uleb128/uleb128.go",
+        "sha256": "608b9ea1f3cf69e6dd9886c91fafb412bac6aaf48fe211266a5505644934b422",
+        "bytes": 360
+      },
+      "license": "BSD-3-Clause",
+      "source_uri": "https://cs.opensource.google/go/go/+/refs/tags/go1.24.3:src/internal/coverage/uleb128/uleb128.go",
+      "selection_note": "Harness-selected parser-backed real-source uleb128 helper with a bare for loop, short variable declaration, compound shift/or assignments, append call, break, and return."
+    },
+    {
+      "manifest_path": "path/match.go",
+      "file": {
+        "path": "tests/fixtures/go_syntax_corpus/src/path/match.go",
+        "sha256": "bb88f659463a04e290492cff8d19c4d7d5c7d551db9b90b3049d3e51188d5ec8",
+        "bytes": 5465
+      },
+      "license": "BSD-3-Clause",
+      "source_uri": "https://cs.opensource.google/go/go/+/refs/tags/go1.24.3:src/path/match.go",
+      "selection_note": "Parser-backed real-source path matching code with loops, conditionals, switch cases, range-like character-class logic, and package-level declarations."
+    },
+    {
+      "manifest_path": "sort/example_interface_test.go",
+      "file": {
+        "path": "tests/fixtures/go_syntax_corpus/src/sort/example_interface_test.go",
+        "sha256": "74de942ab67e4d7725f9e06c2389e8face1118e80865536ae709a0fc3367d5f1",
+        "bytes": 1501
+      },
+      "license": "BSD-3-Clause",
+      "source_uri": "https://cs.opensource.google/go/go/+/refs/tags/go1.24.3:src/sort/example_interface_test.go",
+      "selection_note": "Parser-backed real-source sort example with type declarations, methods, composite literals, calls, and function literals."
+    },
+    {
+      "manifest_path": "sort/example_search_test.go",
+      "file": {
+        "path": "tests/fixtures/go_syntax_corpus/src/sort/example_search_test.go",
+        "sha256": "c65e8f2f0dab440d8f27a42c27199279f37256d4ef276863a7fd556529f4274d",
+        "bytes": 3294
+      },
+      "license": "BSD-3-Clause",
+      "source_uri": "https://cs.opensource.google/go/go/+/refs/tags/go1.24.3:src/sort/example_search_test.go",
+      "selection_note": "Parser-backed real-source sort examples with if/else branches, range loops, function literals, calls, and indexed expressions."
+    },
+    {
+      "manifest_path": "strings/compare.go",
+      "file": {
+        "path": "tests/fixtures/go_syntax_corpus/src/strings/compare.go",
+        "sha256": "af4e0fa7dfe63018d9808f89a4c511eeb8d773bd6f3b030f1c9592a1e0de7a85",
+        "bytes": 630
+      },
+      "license": "BSD-3-Clause",
+      "source_uri": "https://cs.opensource.google/go/go/+/refs/tags/go1.24.3:src/strings/compare.go",
+      "selection_note": "Parser-backed real-source strings wrapper covering imports, a simple function declaration, and call/return shape."
+    },
+    {
+      "manifest_path": "strings/clone.go",
+      "file": {
+        "path": "tests/fixtures/go_syntax_corpus/src/strings/clone.go",
+        "sha256": "5c18eb3b45b7d9ae63d0cc43f9e337c077de05dd47fd5a1ea49dafeb7e1b862b",
+        "bytes": 809
+      },
+      "license": "BSD-3-Clause",
+      "source_uri": "https://cs.opensource.google/go/go/+/refs/tags/go1.24.3:src/strings/clone.go",
+      "selection_note": "Parser-backed real-source strings wrapper covering an import block, a single-parameter function declaration, and call/return shape."
+    },
+    {
+      "manifest_path": "strings/search.go",
+      "file": {
+        "path": "tests/fixtures/go_syntax_corpus/src/strings/search.go",
+        "sha256": "4fdef1f79f6e854789d9140b17ce2c2bbdbf0d4067a801e42607cf7877698cd1",
+        "bytes": 4227
+      },
+      "license": "BSD-3-Clause",
+      "source_uri": "https://cs.opensource.google/go/go/+/refs/tags/go1.24.3:src/strings/search.go",
+      "selection_note": "Parser-backed real-source string search implementation with struct types, arrays, loops, if statements, methods, and index expressions."
+    },
+    {
+      "manifest_path": "os/signal/signal.go",
+      "file": {
+        "path": "tests/fixtures/go_syntax_corpus/src/os/signal/signal.go",
+        "sha256": "d99f44830137e1bc4da53ef7f0d5ce872d535219168e9f0408eb539c02f993fc",
+        "bytes": 8480
+      },
+      "source_span": {
+        "selection_report": "tests/fixtures/go_syntax_corpus/os-signal-source-span-selection-v1.json",
+        "span_id": "function_declaration:notifycontext",
+        "line_start": 263,
+        "line_end": 297,
+        "byte_start": 6278,
+        "byte_end": 7645,
+        "bytes": 1367,
+        "sha256": "25d16848c9cd1076b958404c550a0b1c6eed806e6b1d7f9e31d7dba9bb26870c"
+      },
+      "license": "BSD-3-Clause",
+      "source_uri": "https://cs.opensource.google/go/go/+/refs/tags/go1.24.3:src/os/signal/signal.go",
+      "selection_note": "Parser-backed os/signal NotifyContext source-span packaging record; preserves full source identity plus explicit span provenance without claiming whole-file os/signal generated-codec validity."
+    },
+    {
+      "manifest_path": "net/lookup_plan9.go",
+      "file": {
+        "path": "tests/fixtures/go_syntax_corpus/src/net/lookup_plan9.go",
+        "sha256": "4abcbf57125304d52839b0cfc13fbd0c2ae5b10c7f60374009e85ac47252bde2",
+        "bytes": 10127
+      },
+      "license": "BSD-3-Clause",
+      "source_uri": "https://cs.opensource.google/go/go/+/refs/tags/go1.24.3:src/net/lookup_plan9.go",
+      "selection_note": "Parser-backed net/lookup_plan9 source-instance generated-codec training record with select, send, channel type, labeled branch, const declaration, and contextual raw-token provenance."
+    },
+    {
+      "manifest_path": "syscall/fs_js.go",
+      "file": {
+        "path": "tests/fixtures/go_syntax_corpus/src/syscall/fs_js.go",
+        "sha256": "3c2647c02dda3e153206b26e2fa7215b3aad2e6e2f06080c4c61125e52dbfe67",
+        "bytes": 11594
+      },
+      "license": "BSD-3-Clause",
+      "source_uri": "https://cs.opensource.google/go/go/+/refs/tags/go1.24.3:src/syscall/fs_js.go",
+      "selection_note": "Parser-backed syscall/fs_js source-instance generated-codec training record with channel sends, map/struct/array types, type assertions, defer, range, switch, const declarations, integer lexeme payloads, and contextual raw-token provenance."
+    },
+    {
+      "manifest_path": "net/http/httptest/server.go",
+      "file": {
+        "path": "tests/fixtures/go_syntax_corpus/src/net/http/httptest/server.go",
+        "sha256": "296988a5f5008e804b8ba95e94c0942455188ad59440ad5055f70c285cd26b87",
+        "bytes": 10906
+      },
+      "license": "BSD-3-Clause",
+      "source_uri": "https://cs.opensource.google/go/go/+/refs/tags/go1.24.3:src/net/http/httptest/server.go",
+      "selection_note": "Parser-backed net/http/httptest server source-instance generated-codec training record with select, goroutine launch, defer, function literals, method declarations, interface/map/struct/channel types, and contextual raw-token provenance."
+    },
+    {
+      "manifest_path": "net/nss.go",
+      "file": {
+        "path": "tests/fixtures/go_syntax_corpus/src/net/nss.go",
+        "sha256": "b93ae402e153706ab688ac75cffc19aa8a097b964d937725d24ef9f7fac791a5",
+        "bytes": 5614
+      },
+      "license": "BSD-3-Clause",
+      "source_uri": "https://cs.opensource.google/go/go/+/refs/tags/go1.24.3:src/net/nss.go",
+      "selection_note": "Parser-backed net/nss source-instance generated-codec training record with nsswitch parsing, channel semaphore select/send, map/struct types, range, switch cases, branch statements, slice expressions, and contextual raw-token provenance."
+    }
+  ],
+  "no_stable_promotion_claim": "sidecar-only parser-backed corpus evidence; no TctCompiler route and no stable backend promotion"
+}

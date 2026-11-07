@@ -1,0 +1,54 @@
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "tct"
+version = "0.1.0"
+authors = [{name = "Jonas Schmitt"}]
+description = "Python bindings for the TCT compiler: turn JSON Schemas into schema-specific tokenizers"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "Apache-2.0"}
+keywords = ["tokenization", "llm", "bpe", "json-schema"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Rust",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.urls]
+Repository = "https://github.com/jonas-schmitt/tct"
+
+[tool.maturin]
+features = ["python-extension"]
+module-name = "tct"
+include = [
+    "LICENSE",
+    "NOTICE",
+    "schemas/external/partial-eslint-plugins.json",
+    "third_party/clearance/schemas/ESLINT_SOURCE_NOTICE.md",
+    "third_party/clearance/schemas/embedded-schemas.json",
+    "third_party/clearance/schemas/eslint-plugin-inputs.json",
+    "third_party/clearance/schemas/eslint-schema-changes.json",
+    "third_party/licenses/schemastore/LICENSE",
+    "third_party/licenses/schemastore/NOTICE",
+    "third_party/licenses/jsonschema-extractor/LICENSE",
+    "third_party/licenses/schema-eslint-inputs/angular-eslint-eslint-plugin-18.0.1/LICENSE",
+    "third_party/licenses/schema-eslint-inputs/typescript-eslint-eslint-plugin-7.13.1/LICENSE",
+    "third_party/licenses/schema-eslint-inputs/eslint-plugin-import-2.29.1/LICENSE",
+    "third_party/licenses/schema-eslint-inputs/eslint-plugin-import-2.29.1/memo-parser-LICENSE",
+    "third_party/licenses/schema-eslint-inputs/eslint-plugin-unicorn-54.0.0/license",
+    "third_party/licenses/schema-eslint-inputs/eslint-plugin-vue-9.26.0/LICENSE",
+    "third_party/licenses/schema-eslint-inputs/eslint-8.57.0/LICENSE",
+]

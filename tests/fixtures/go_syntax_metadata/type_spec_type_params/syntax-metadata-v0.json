@@ -1,0 +1,190 @@
+{
+  "artifact_kind": "tct_go_syntax_metadata_v0",
+  "version": 0,
+  "source": {
+    "path": "tests/fixtures/go_syntax_corpus/src/type_spec_type_params/main.go",
+    "sha256": "038287eb30f80a7f28f3c4f7b19a23246858ac8f00c9f453ff44b99fe33c5d7f"
+  },
+  "parser": {
+    "tool": "go",
+    "version": "go1.24.3",
+    "package": "go/parser",
+    "package_version": "go1.24.3"
+  },
+  "rules": [
+    {
+      "name": "File",
+      "node_kind": "File",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Decls",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "GenDecl",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ident",
+      "node_kind": "Ident",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GenDecl",
+      "node_kind": "GenDecl",
+      "fields": [
+        {
+          "name": "Tok",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "token",
+              "terminal": "string_payload"
+            }
+          ]
+        },
+        {
+          "name": "Specs",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "TypeSpec",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "TypeSpec",
+      "node_kind": "TypeSpec",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "TypeParams",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FieldList",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Type",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "StructType",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FieldList",
+      "node_kind": "FieldList",
+      "fields": [
+        {
+          "name": "List",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Field",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Field",
+      "node_kind": "Field",
+      "fields": [
+        {
+          "name": "Names",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Type",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StructType",
+      "node_kind": "StructType",
+      "fields": [
+        {
+          "name": "Fields",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FieldList",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

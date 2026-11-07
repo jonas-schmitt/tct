@@ -1,0 +1,460 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Package.json subset - first 11",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "The name of the package.",
+      "type": "string",
+      "maxLength": 214,
+      "minLength": 1,
+      "pattern": "^(?:(?:@(?:[a-z0-9-*~][a-z0-9-*._~]*)?/[a-z0-9-._~])|[a-z0-9-~])[a-z0-9-._~]*$"
+    },
+    "version": {
+      "description": "Version must be parsable by node-semver, which is bundled with npm as a dependency.",
+      "type": "string"
+    },
+    "description": {
+      "description": "This helps people discover your package, as it's listed in 'npm search'.",
+      "type": "string"
+    },
+    "keywords": {
+      "description": "This helps people discover your package as it's listed in 'npm search'.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "homepage": {
+      "description": "The url to the project homepage.",
+      "type": "string"
+    },
+    "bugs": {
+      "description": "The url to your project's issue tracker and / or the email address to which issues should be reported. These are helpful for people who encounter issues with your package.",
+      "type": [
+        "object",
+        "string"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "The url to your project's issue tracker.",
+          "format": "uri"
+        },
+        "email": {
+          "type": "string",
+          "description": "The email address to which issues should be reported.",
+          "format": "email"
+        }
+      }
+    },
+    "license": {
+      "$ref": "#/definitions/license",
+      "description": "You should specify a license for your package so that people know how they are permitted to use it, and any restrictions you're placing on it."
+    },
+    "licenses": {
+      "description": "DEPRECATED: Instead, use SPDX expressions, like this: { \"license\": \"ISC\" } or { \"license\": \"(MIT OR Apache-2.0)\" } see: 'https://docs.npmjs.com/files/package.json#license'.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/license"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "author": {
+      "$ref": "#/definitions/person"
+    },
+    "contributors": {
+      "description": "A list of people who contributed to this package.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/person"
+      }
+    },
+    "maintainers": {
+      "description": "A list of people who maintains this package.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/person"
+      }
+    }
+  },
+  "anyOf": [
+    {
+      "type": "object",
+      "not": {
+        "required": [
+          "bundledDependencies",
+          "bundleDependencies"
+        ]
+      }
+    },
+    {
+      "type": "object",
+      "not": {
+        "required": [
+          "bundleDependencies"
+        ]
+      },
+      "required": [
+        "bundledDependencies"
+      ]
+    },
+    {
+      "type": "object",
+      "not": {
+        "required": [
+          "bundledDependencies"
+        ]
+      },
+      "required": [
+        "bundleDependencies"
+      ]
+    }
+  ],
+  "definitions": {
+    "person": {
+      "description": "A person who has been involved in creating or maintaining this package.",
+      "type": [
+        "object",
+        "string"
+      ],
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        }
+      }
+    },
+    "dependency": {
+      "description": "Dependencies are specified with a simple hash of package name to version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "devDependency": {
+      "description": "Specifies dependencies that are required for the development and testing of the project. These dependencies are not needed in the production environment.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "optionalDependency": {
+      "description": "Specifies dependencies that are optional for your project. These dependencies are attempted to be installed during the npm install process, but if they fail to install, the installation process will not fail.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "peerDependency": {
+      "description": "Specifies dependencies that are required by the package but are expected to be provided by the consumer of the package.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "peerDependencyMeta": {
+      "description": "When a user installs your package, warnings are emitted if packages specified in \"peerDependencies\" are not already installed. The \"peerDependenciesMeta\" field serves to provide more information on how your peer dependencies are utilized. Most commonly, it allows peer dependencies to be marked as optional. Metadata for this field is specified with a simple hash of the package name to a metadata object.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "optional": {
+            "description": "Specifies that this peer dependency is optional and should not be installed automatically.",
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "license": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "enum": [
+            "AGPL-3.0-only",
+            "Apache-2.0",
+            "BSD-2-Clause",
+            "BSD-3-Clause",
+            "BSL-1.0",
+            "CC0-1.0",
+            "CDDL-1.0",
+            "CDDL-1.1",
+            "EPL-1.0",
+            "EPL-2.0",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "ISC",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-only",
+            "LGPL-3.0-or-later",
+            "MIT",
+            "MPL-2.0",
+            "MS-PL",
+            "UNLICENSED"
+          ]
+        }
+      ]
+    },
+    "scriptsInstallAfter": {
+      "description": "Run AFTER the package is installed.",
+      "type": "string",
+      "x-intellij-language-injection": "Shell Script"
+    },
+    "scriptsPublishAfter": {
+      "description": "Run AFTER the package is published.",
+      "type": "string",
+      "x-intellij-language-injection": "Shell Script"
+    },
+    "scriptsRestart": {
+      "description": "Run by the 'npm restart' command. Note: 'npm restart' will run the stop and start scripts if no restart script is provided.",
+      "type": "string",
+      "x-intellij-language-injection": "Shell Script"
+    },
+    "scriptsStart": {
+      "description": "Run by the 'npm start' command.",
+      "type": "string",
+      "x-intellij-language-injection": "Shell Script"
+    },
+    "scriptsStop": {
+      "description": "Run by the 'npm stop' command.",
+      "type": "string",
+      "x-intellij-language-injection": "Shell Script"
+    },
+    "scriptsTest": {
+      "description": "Run by the 'npm test' command.",
+      "type": "string",
+      "x-intellij-language-injection": "Shell Script"
+    },
+    "scriptsUninstallBefore": {
+      "description": "Run BEFORE the package is uninstalled.",
+      "type": "string",
+      "x-intellij-language-injection": "Shell Script"
+    },
+    "scriptsVersionBefore": {
+      "description": "Run BEFORE bump the package version.",
+      "type": "string",
+      "x-intellij-language-injection": "Shell Script"
+    },
+    "packageExportsEntryPath": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The module path that is resolved when this specifier is imported. Set to `null` to disallow importing this module.",
+      "pattern": "^\\./"
+    },
+    "packageExportsEntryObject": {
+      "type": "object",
+      "description": "Used to specify conditional exports, note that Conditional exports are unsupported in older environments, so it's recommended to use the fallback array option if support for those environments is a concern.",
+      "properties": {
+        "require": {
+          "$ref": "#/definitions/packageExportsEntryOrFallback",
+          "description": "The module path that is resolved when this specifier is imported as a CommonJS module using the `require(...)` function."
+        },
+        "import": {
+          "$ref": "#/definitions/packageExportsEntryOrFallback",
+          "description": "The module path that is resolved when this specifier is imported as an ECMAScript module using an `import` declaration or the dynamic `import(...)` function."
+        },
+        "module-sync": {
+          "$ref": "#/definitions/packageExportsEntryOrFallback",
+          "$comment": "https://nodejs.org/api/packages.html#conditional-exports#:~:text=%22module-sync%22",
+          "description": "The same as `import`, but can be used with require(esm) in Node 20+. This requires the files to not use any top-level awaits."
+        },
+        "node": {
+          "$ref": "#/definitions/packageExportsEntryOrFallback",
+          "description": "The module path that is resolved when this environment is Node.js."
+        },
+        "default": {
+          "$ref": "#/definitions/packageExportsEntryOrFallback",
+          "description": "The module path that is resolved when no other export type matches."
+        },
+        "types": {
+          "$ref": "#/definitions/packageExportsEntryOrFallback",
+          "description": "The module path that is resolved for TypeScript types when this specifier is imported. Should be listed before other conditions. Additionally, versioned \"types\" condition in the form \"types@{selector}\" are supported."
+        }
+      },
+      "patternProperties": {
+        "^[^.0-9]+$": {
+          "$ref": "#/definitions/packageExportsEntryOrFallback",
+          "description": "The module path that is resolved when this environment matches the property name."
+        },
+        "^types@.+$": {
+          "$ref": "#/definitions/packageExportsEntryOrFallback",
+          "description": "The module path that is resolved for TypeScript types when this specifier is imported. Should be listed before other conditions. Additionally, versioned \"types\" condition in the form \"types@{selector}\" are supported."
+        }
+      },
+      "additionalProperties": false
+    },
+    "packageExportsEntry": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/packageExportsEntryPath"
+        },
+        {
+          "$ref": "#/definitions/packageExportsEntryObject"
+        }
+      ]
+    },
+    "packageExportsFallback": {
+      "type": "array",
+      "description": "Used to allow fallbacks in case this environment doesn't support the preceding entries.",
+      "items": {
+        "$ref": "#/definitions/packageExportsEntry"
+      }
+    },
+    "packageExportsEntryOrFallback": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/packageExportsEntry"
+        },
+        {
+          "$ref": "#/definitions/packageExportsFallback"
+        }
+      ]
+    },
+    "packageImportsEntryPath": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The module path that is resolved when this specifier is imported. Set to `null` to disallow importing this module."
+    },
+    "packageImportsEntryObject": {
+      "type": "object",
+      "description": "Used to specify conditional exports, note that Conditional exports are unsupported in older environments, so it's recommended to use the fallback array option if support for those environments is a concern.",
+      "properties": {
+        "require": {
+          "$ref": "#/definitions/packageImportsEntryOrFallback",
+          "description": "The module path that is resolved when this specifier is imported as a CommonJS module using the `require(...)` function."
+        },
+        "import": {
+          "$ref": "#/definitions/packageImportsEntryOrFallback",
+          "description": "The module path that is resolved when this specifier is imported as an ECMAScript module using an `import` declaration or the dynamic `import(...)` function."
+        },
+        "node": {
+          "$ref": "#/definitions/packageImportsEntryOrFallback",
+          "description": "The module path that is resolved when this environment is Node.js."
+        },
+        "default": {
+          "$ref": "#/definitions/packageImportsEntryOrFallback",
+          "description": "The module path that is resolved when no other export type matches."
+        },
+        "types": {
+          "$ref": "#/definitions/packageImportsEntryOrFallback",
+          "description": "The module path that is resolved for TypeScript types when this specifier is imported. Should be listed before other conditions. Additionally, versioned \"types\" condition in the form \"types@{selector}\" are supported."
+        }
+      },
+      "patternProperties": {
+        "^[^.0-9]+$": {
+          "$ref": "#/definitions/packageImportsEntryOrFallback",
+          "description": "The module path that is resolved when this environment matches the property name."
+        },
+        "^types@.+$": {
+          "$ref": "#/definitions/packageImportsEntryOrFallback",
+          "description": "The module path that is resolved for TypeScript types when this specifier is imported. Should be listed before other conditions. Additionally, versioned \"types\" condition in the form \"types@{selector}\" are supported."
+        }
+      },
+      "additionalProperties": false
+    },
+    "packageImportsEntry": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/packageImportsEntryPath"
+        },
+        {
+          "$ref": "#/definitions/packageImportsEntryObject"
+        }
+      ]
+    },
+    "packageImportsFallback": {
+      "type": "array",
+      "description": "Used to allow fallbacks in case this environment doesn't support the preceding entries.",
+      "items": {
+        "$ref": "#/definitions/packageImportsEntry"
+      }
+    },
+    "packageImportsEntryOrFallback": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/packageImportsEntry"
+        },
+        {
+          "$ref": "#/definitions/packageImportsFallback"
+        }
+      ]
+    },
+    "fundingUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to a website with details about how to fund the package."
+    },
+    "fundingWay": {
+      "type": "object",
+      "description": "Used to inform about ways to help fund development of the package.",
+      "properties": {
+        "url": {
+          "$ref": "#/definitions/fundingUrl"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of funding or the platform through which funding can be provided, e.g. patreon, opencollective, tidelift or github."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "url"
+      ]
+    },
+    "devEngineDependency": {
+      "description": "Specifies requirements for development environment components such as operating systems, runtimes, or package managers. Used to ensure consistent development environments across the team.",
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the dependency, with allowed values depending on the parent field"
+        },
+        "version": {
+          "type": "string",
+          "description": "The version range for the dependency"
+        },
+        "onFail": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warn",
+            "error",
+            "download"
+          ],
+          "description": "What action to take if validation fails"
+        }
+      }
+    }
+  },
+  "$comment": "Modified by TCT: selected the recorded properties and retained definitions/anyOf from the pinned SchemaStore package schema, and replaced the title. Source revisions, transformation, and Apache-2.0 license/NOTICE: third_party/clearance/schemas/derived-schemas.json. Publication change: added this notice."
+}

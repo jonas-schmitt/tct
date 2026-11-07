@@ -1,0 +1,7 @@
+{
+  "name": "object-test",
+  "value": {
+    "key": "value",
+    "extra": "data"
+  }
+}

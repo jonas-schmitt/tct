@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MultiPrimitiveUnion",
+  "description": "Tests string/number/boolean/object union pattern found in large schemas",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "configuration": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "nested_config": {
+              "type": "string"
+            }
+          },
+          "required": ["nested_config"],
+          "additionalProperties": false
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    }
+  },
+  "required": ["name", "configuration"],
+  "additionalProperties": false
+}

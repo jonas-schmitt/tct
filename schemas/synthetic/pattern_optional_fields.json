@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Pattern Properties with Optional Fields",
+  "description": "Tests that properties remain optional when pattern properties exist",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Required field"
+    },
+    "homepage": {
+      "type": "string",
+      "description": "Optional field"
+    },
+    "version": {
+      "type": "string",
+      "description": "Optional field"
+    }
+  },
+  "patternProperties": {
+    "^x-": {
+      "type": "string",
+      "description": "Custom fields starting with x-"
+    }
+  },
+  "required": ["name"],
+  "additionalProperties": false
+}

@@ -1,0 +1,110 @@
+{
+  "name": "Preview Deploy",
+  "on": {
+    "workflow_run": {
+      "workflows": [
+        "Preview Build"
+      ],
+      "types": [
+        "completed"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "jobs": {
+    "upstream-workflow-summary": {
+      "name": "upstream workflow summary",
+      "runs-on": "ubuntu-latest",
+      "if": "github.event.workflow_run.event == 'pull_request'",
+      "outputs": {
+        "jobs": "${{ steps.prep-summary.outputs.result }}",
+        "build-success": "${{ steps.prep-summary.outputs.build-success }}",
+        "build-failure": "${{ steps.prep-summary.outputs.build-failure }}"
+      },
+      "steps": [
+        {
+          "name": "summary jobs status",
+          "uses": "actions/github-script@v8",
+          "id": "prep-summary",
+          "with": {
+            "script": "const response = await github.rest.actions.listJobsForWorkflowRun({\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  run_id: ${{ github.event.workflow_run.id }},\n});\n\n// { [name]: [conclusion] }, e.g. { 'build preview': 'success' }\nconst jobs = (response.data?.jobs ?? []).reduce((acc, job) => {\n  if(job?.status === 'completed' && 'name' in job && 'conclusion' in job) {\n    acc[job.name] = job.conclusion;\n  }\n  return acc;\n}, {});\n\nconst total = Object.keys(jobs).length;\nif(total === 0) core.setFailed('no jobs found');\n\n// the name here must be the same as `jobs.xxx.{name}` in preview-build.yml\n// set output\ncore.setOutput('build-success', jobs['build preview'] === 'success');\ncore.setOutput('build-failure', jobs['build preview'] === 'failure');\nreturn jobs;\n"
+          }
+        }
+      ]
+    },
+    "deploy-preview": {
+      "name": "deploy preview",
+      "permissions": {
+        "actions": "read",
+        "issues": "write",
+        "pull-requests": "write"
+      },
+      "runs-on": "ubuntu-latest",
+      "needs": "upstream-workflow-summary",
+      "if": "github.event.workflow_run.event == 'pull_request'",
+      "steps": [
+        {
+          "name": "download pr artifact",
+          "uses": "dawidd6/action-download-artifact@v11",
+          "with": {
+            "workflow": "${{ github.event.workflow_run.workflow_id }}",
+            "run_id": "${{ github.event.workflow_run.id }}",
+            "name": "pr"
+          }
+        },
+        {
+          "name": "save PR id",
+          "id": "pr",
+          "run": "pr_id=$(<pr-id.txt)\nif ! [[ \"$pr_id\" =~ ^[0-9]+$ ]]; then\n  echo \"Error: pr-id.txt does not contain a valid numeric PR id. Please check.\"\n  exit 1\nfi\necho \"id=$pr_id\" >> $GITHUB_OUTPUT\n"
+        },
+        {
+          "name": "download site artifact",
+          "if": "${{ fromJSON(needs.upstream-workflow-summary.outputs.build-success) }}",
+          "uses": "dawidd6/action-download-artifact@v11",
+          "with": {
+            "workflow": "${{ github.event.workflow_run.workflow_id }}",
+            "run_id": "${{ github.event.workflow_run.id }}",
+            "name": "site"
+          }
+        },
+        {
+          "name": "upload surge service",
+          "id": "deploy",
+          "continue-on-error": true,
+          "env": {
+            "PR_ID": "${{ steps.pr.outputs.id }}"
+          },
+          "run": "export DEPLOY_DOMAIN=https://preview-${PR_ID}-ant-design.surge.sh\nnpx surge --project ./ --domain $DEPLOY_DOMAIN --token ${{ secrets.SURGE_TOKEN }}\n"
+        },
+        {
+          "name": "success comment",
+          "uses": "actions-cool/maintain-one-comment@v3",
+          "if": "${{ steps.deploy.outcome == 'success' }}",
+          "with": {
+            "token": "${{ secrets.GITHUB_TOKEN }}",
+            "body": "[<img width=\"300\" alt=\"Preview is ready\" src=\"https://user-images.githubusercontent.com/5378891/72400743-23dbb200-3785-11ea-9d13-1a2d92743846.png\">](https://preview-${{ steps.pr.outputs.id }}-ant-design.surge.sh)\n<!-- AUTO_PREVIEW_HOOK -->\n",
+            "body-include": "<!-- AUTO_PREVIEW_HOOK -->",
+            "number": "${{ steps.pr.outputs.id }}"
+          }
+        },
+        {
+          "name": "failed comment",
+          "if": "${{ fromJSON(needs.upstream-workflow-summary.outputs.build-failure) || steps.deploy.outcome == 'failure' || failure() }}",
+          "uses": "actions-cool/maintain-one-comment@v3",
+          "with": {
+            "token": "${{ secrets.GITHUB_TOKEN }}",
+            "body": "[<img width=\"300\" alt=\"Preview failed\" src=\"https://user-images.githubusercontent.com/5378891/75333447-1e63a280-58c1-11ea-975d-235367fd1522.png\">](https://preview-${{ steps.pr.outputs.id }}-ant-design.surge.sh)\n<!-- AUTO_PREVIEW_HOOK -->\n",
+            "body-include": "<!-- AUTO_PREVIEW_HOOK -->",
+            "number": "${{ steps.pr.outputs.id }}"
+          }
+        },
+        {
+          "name": "Check surge deploy result and exit if failed",
+          "run": "if [ \"${{ steps.deploy.outcome }}\" != \"success\" ]; then\n  echo \"Surge Deploy failed.\"\n  exit 1\nfi\n"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "format_version": 1,
+  "notice_files": [
+    {
+      "local_path": "third_party/licenses/taplo/LICENSE.md",
+      "sha256": "552604656340642782345c47dda89218136f141a25aaecdfd1501180841ff98b",
+      "source_repository": "https://github.com/tamasfe/taplo",
+      "source_revision": "f988f472fbeb3f2522fec32e400e7bb1a3551cac",
+      "source_path": "LICENSE.md",
+      "source_url": "https://raw.githubusercontent.com/tamasfe/taplo/f988f472fbeb3f2522fec32e400e7bb1a3551cac/LICENSE.md"
+    },
+    {
+      "local_path": "third_party/licenses/rustfmt/LICENSE-MIT",
+      "sha256": "ae0f1f791e3b4faccf981c0b530199235a8b8a021c7ef0c3c85c6c676ea4d27f",
+      "source_repository": "https://github.com/rust-lang/rustfmt",
+      "source_revision": "a7e0c15d264fcc655c3b249d924e0852009d93fc",
+      "source_path": "LICENSE-MIT",
+      "source_url": "https://raw.githubusercontent.com/rust-lang/rustfmt/a7e0c15d264fcc655c3b249d924e0852009d93fc/LICENSE-MIT"
+    },
+    {
+      "local_path": "third_party/licenses/rustfmt/LICENSE-APACHE",
+      "sha256": "092c8e82c47fb859d7385253c1b04052dbd65a8bcf0bbd8b6f7dba58a9e8753d",
+      "source_repository": "https://github.com/rust-lang/rustfmt",
+      "source_revision": "a7e0c15d264fcc655c3b249d924e0852009d93fc",
+      "source_path": "LICENSE-APACHE",
+      "source_url": "https://raw.githubusercontent.com/rust-lang/rustfmt/a7e0c15d264fcc655c3b249d924e0852009d93fc/LICENSE-APACHE"
+    }
+  ],
+  "taplo": {
+    "source_files": [
+      {
+        "schemastore_path": "src/schemas/json/cargo.json",
+        "schemastore_import_revision": "67e535d6845c9d07b7cf2a6aea9bf9c27940aa1d",
+        "schemastore_import_sha256": "1f3900522da8587216ad16b84ac208f5c199fb939349d95c73685feeea821caf",
+        "original_repository": "https://github.com/tamasfe/taplo",
+        "original_revision": "f988f472fbeb3f2522fec32e400e7bb1a3551cac",
+        "original_path": "schemas/Cargo.toml.json",
+        "original_sha256": "c55dec96168dd60f036065b565482bbb85285c7335ab3d5e610cdbb5f1f40b69",
+        "initial_json_match": false,
+        "basis": "SchemaStore introduction commit explicitly identifies Taplo imports. Historical schema bodies and MIT notice were retrieved; all later SchemaStore edits remain covered by its own Apache-2.0 grant."
+      },
+      {
+        "schemastore_path": "src/schemas/json/cargo-make.json",
+        "schemastore_import_revision": "67e535d6845c9d07b7cf2a6aea9bf9c27940aa1d",
+        "schemastore_import_sha256": "52aeb5032ef98478f6713a39fbf9d7b6bb45d2d5e12277ec4ecfb65b5ddbfdab",
+        "original_repository": "https://github.com/tamasfe/taplo",
+        "original_revision": "f988f472fbeb3f2522fec32e400e7bb1a3551cac",
+        "original_path": "schemas/makefile.toml.json",
+        "original_sha256": "f3e9e6253d33c4419127c5f09ee3ff493cbb64d40af02120fd4a7e1bfa46c144",
+        "initial_json_match": true,
+        "basis": "SchemaStore introduction commit explicitly identifies Taplo imports. Historical schema bodies and MIT notice were retrieved; all later SchemaStore edits remain covered by its own Apache-2.0 grant."
+      },
+      {
+        "schemastore_path": "src/schemas/json/pyproject.json",
+        "schemastore_import_revision": "67e535d6845c9d07b7cf2a6aea9bf9c27940aa1d",
+        "schemastore_import_sha256": "a7340cb95b4157c907e197923b09af607cc4fa918f014f0af3a7181ee5a046ef",
+        "original_repository": "https://github.com/tamasfe/taplo",
+        "original_revision": "f988f472fbeb3f2522fec32e400e7bb1a3551cac",
+        "original_path": "schemas/pyproject.toml.json",
+        "original_sha256": "2abae87c06099627a1d70e0b6867a83b4df9f09787a572d0850caa7cab3fc548",
+        "initial_json_match": false,
+        "basis": "SchemaStore introduction commit explicitly identifies Taplo imports. Historical schema bodies and MIT notice were retrieved; all later SchemaStore edits remain covered by its own Apache-2.0 grant."
+      },
+      {
+        "schemastore_path": "src/schemas/json/rust-toolchain.json",
+        "schemastore_import_revision": "67e535d6845c9d07b7cf2a6aea9bf9c27940aa1d",
+        "schemastore_import_sha256": "febc95929a26c076a4ba3a0da47a267e4cc3bf2ffa237f4687fb388447f01336",
+        "original_repository": "https://github.com/tamasfe/taplo",
+        "original_revision": "f988f472fbeb3f2522fec32e400e7bb1a3551cac",
+        "original_path": "schemas/rust-toolchain.toml.json",
+        "original_sha256": "58f3be0d26fd60dcaf2e7444ad79afa387e6f34a647e6b935d36eb25ee2cef66",
+        "initial_json_match": false,
+        "basis": "SchemaStore introduction commit explicitly identifies Taplo imports. Historical schema bodies and MIT notice were retrieved; all later SchemaStore edits remain covered by its own Apache-2.0 grant."
+      },
+      {
+        "schemastore_path": "src/schemas/json/rustfmt.json",
+        "schemastore_import_revision": "67e535d6845c9d07b7cf2a6aea9bf9c27940aa1d",
+        "schemastore_import_sha256": "1e69b96093a267e15fcd1e535f948e4d0f5504d12e585795d200e76bb7a5468d",
+        "original_repository": "https://github.com/tamasfe/taplo",
+        "original_revision": "f988f472fbeb3f2522fec32e400e7bb1a3551cac",
+        "original_path": "schemas/rustfmt.toml.json",
+        "original_sha256": "5a92b1450039f96462c1481d42720612d53879002fc39a883016ee049e436327",
+        "initial_json_match": true,
+        "basis": "SchemaStore introduction commit explicitly identifies Taplo imports. Historical schema bodies and MIT notice were retrieved; all later SchemaStore edits remain covered by its own Apache-2.0 grant."
+      }
+    ],
+    "retained_notice": "third_party/licenses/taplo/LICENSE.md",
+    "applicable_local_paths": [
+      "schemas/popular/cargo.json",
+      "schemas/common/cargo-make.json",
+      "schemas/common/pyproject.json",
+      "schemas/popular/pyproject.json",
+      "schemas/common/rust-toolchain.json",
+      "schemas/common/rustfmt.json",
+      "schemas/common/poetry.json",
+      "schemas/popular/poetry.json"
+    ],
+    "license_scope": [
+      "MIT",
+      "Apache-2.0"
+    ]
+  },
+  "rustfmt": {
+    "local_path": "schemas/common/rustfmt.json",
+    "basis": "The exact SchemaStore file explicitly identifies copied Rustfmt material, its 2024-10-21 copy date, and MIT/Apache-2.0 alternatives. Retain original Rustfmt notices as well as the earlier Taplo MIT notice; do not rely only on SchemaStore root terms.",
+    "source_repository": "https://github.com/rust-lang/rustfmt",
+    "notice_and_documentation_revision": "a7e0c15d264fcc655c3b249d924e0852009d93fc",
+    "documentation_path": "Configurations.md",
+    "documentation_sha256": "7b0aab25285c89a26efdd5bc083c96730009d6f176bdeb344ff252bbe25ebcdd",
+    "revision_scope": "A pinned documentation and notice snapshot at the file-declared copy date; the original exact copy commit is not asserted. The immediate SchemaStore source revision and bytes are exact.",
+    "retained_notices": [
+      "third_party/licenses/rustfmt/LICENSE-MIT",
+      "third_party/licenses/rustfmt/LICENSE-APACHE"
+    ],
+    "selected_original_license": "MIT"
+  },
+  "mprocs": {
+    "local_path": "schemas/specialized/mprocs-0.6.4.json",
+    "original_gist_revision": "217102af8baa2245578ea14a5f8cfd639f908bfe",
+    "original_gist_url": "https://gist.githubusercontent.com/Vorelli/54255d010838ed9f71dd98f800a6595c/raw/217102af8baa2245578ea14a5f8cfd639f908bfe/mprocs-schema-0.6.4.json",
+    "original_gist_sha256": "2a6dc8d1ed5905a17ff171cf7c983ffda6cf6667068cb56a844dfae196234483",
+    "schemastore_contribution_revision": "cede345dd378c9f0e1c3a1eaf85054ebd1f72eb2",
+    "contributor": "Natale Toscano (Vorelli)",
+    "basis": "The original Gist author contributed this schema to SchemaStore under its repository Apache-2.0 license. The pinned Gist differs from the contributed schema only in $id and one selectOperator description spelling. The Apache source grant is the identified author contribution to SchemaStore, not an assumption that public Gists are licensed.",
+    "difference_paths": [
+      "/$id",
+      "/definitions/selectOperator/properties/$select/description"
+    ],
+    "license_scope": [
+      "Apache-2.0"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "apiVersion": "v1",
+  "kind": "ConfigMap",
+  "metadata": {
+    "name": "tct-public-settings",
+    "namespace": "tct-fixtures",
+    "labels": {
+      "app": "tct-public-demo",
+      "purpose": "round-trip"
+    },
+    "annotations": {
+      "fixtures.tct.example.invalid/origin": "authored-synthetic"
+    }
+  },
+  "immutable": false,
+  "data": {
+    "welcome.txt": "Hello from a synthetic TCT fixture.\nSecond line: café.\n",
+    "settings.json": "{\"enabled\":true,\"retry_count\":3}",
+    "empty.txt": ""
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "artifact_kind": "tct_csharp_syntax_metadata_v0",
+  "version": 0,
+  "source": {
+    "path": "tests/fixtures/csharp_syntax_sources/struct_declaration/source.cs",
+    "sha256": "65e74491d4d6e43bb8d30b9aa8f978c2a468fcc9232379b9b7cdabb46299746a"
+  },
+  "parser": {
+    "tool": "dotnet",
+    "version": "10.0.203",
+    "package": "Microsoft.CodeAnalysis.CSharp",
+    "package_version": "5.3.0"
+  },
+  "rules": [
+    {
+      "name": "CompilationUnitSyntax",
+      "node_kind": "CompilationUnitSyntax",
+      "fields": [
+        {
+          "name": "Members",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "NamespaceDeclarationSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "NamespaceDeclarationSyntax",
+      "node_kind": "NamespaceDeclarationSyntax",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "qualified_identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "Members",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "StructDeclarationSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StructDeclarationSyntax",
+      "node_kind": "StructDeclarationSyntax",
+      "fields": [
+        {
+          "name": "Identifier",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "Members",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "PropertyDeclarationSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PropertyDeclarationSyntax",
+      "node_kind": "PropertyDeclarationSyntax",
+      "fields": [
+        {
+          "name": "Identifier",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "Type",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "PredefinedTypeSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Initializer",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "StringLiteralExpressionSyntax",
+              "terminal": "string_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PredefinedTypeSyntax",
+      "node_kind": "PredefinedTypeSyntax",
+      "fields": [
+        {
+          "name": "Keyword",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "string_keyword",
+              "terminal": "identifier_payload"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

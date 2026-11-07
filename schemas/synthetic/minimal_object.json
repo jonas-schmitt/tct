@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MinimalObject",
+  "description": "Schema to reproduce minimal object definition empty struct generation",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "config": {
+      "oneOf": [
+        {
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "additionalProperties": true
+    }
+  },
+  "required": ["name"],
+  "additionalProperties": false
+}

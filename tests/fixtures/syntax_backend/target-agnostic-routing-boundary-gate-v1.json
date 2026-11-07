@@ -1,0 +1,112 @@
+{
+  "artifact_kind": "tct_syntax_backend_target_agnostic_routing_boundary_gate",
+  "version": 1,
+  "tool": "syntax_backend_target_agnostic_routing_boundary_gate",
+  "status": "sidecar_contract_only",
+  "source_json_backend_parity_gate": {
+    "artifact_kind": "tct_syntax_backend_json_backend_parity_routing_gate",
+    "version": 1,
+    "module_path": "src/syntax_json_backend_parity.rs",
+    "fixture_path": "tests/fixtures/syntax_backend/json-backend-parity-routing-gate-v1.json",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh",
+    "completed_promotion_class": "syntax backend JSON-backend parity routing gate"
+  },
+  "source_structural_model_manifest": {
+    "path": "tests/fixtures/syntax_structural_model/boundary-manifest-v1.json",
+    "artifact_kind": "tct_syntax_structural_model_boundary_manifest",
+    "version": 1,
+    "model_version": "structural-model-v0",
+    "boundary": "GrammarIR -> StructuralModel",
+    "target_ids": [
+      "toy",
+      "csharp",
+      "go"
+    ],
+    "target_agnostic": true,
+    "shared_structural_categories": [
+      "records",
+      "finite_domains",
+      "variants",
+      "lists",
+      "optionals",
+      "references",
+      "payload_leaves",
+      "token_ranges",
+      "renderer_metadata",
+      "validation_hooks",
+      "decision_graph_nodes",
+      "decision_graph_edges",
+      "source_provenance",
+      "parser_provenance"
+    ]
+  },
+  "compiler_boundary": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "preserves_json_schema_backend_contract": true,
+    "production_grammar_compiler_path_changed": false,
+    "sidecar_only": true,
+    "tct_compiler_route_allowed": false
+  },
+  "route_state": {
+    "route_registered": false,
+    "route_enabled": false,
+    "public_api_changed": false,
+    "uses_json_schema_compiler": false,
+    "uses_syntax_renderer_api": false
+  },
+  "accepted_route_input": {
+    "input_boundary": "checked GrammarIR -> StructuralModel",
+    "requires_checked_grammar_ir": true,
+    "requires_structural_model": true,
+    "target_agnostic": true,
+    "rejects_goir_arena_ir": true,
+    "rejects_csharp_arena_ir": true,
+    "rejects_target_specific_schema_shape": true,
+    "target_ids": [
+      "toy",
+      "csharp",
+      "go"
+    ],
+    "shared_structural_categories": [
+      "records",
+      "finite_domains",
+      "variants",
+      "lists",
+      "optionals",
+      "references",
+      "payload_leaves",
+      "token_ranges",
+      "renderer_metadata",
+      "validation_hooks",
+      "decision_graph_nodes",
+      "decision_graph_edges",
+      "source_provenance",
+      "parser_provenance"
+    ]
+  },
+  "routing_handoff": {
+    "accepted_input": "checked GrammarIR -> StructuralModel",
+    "renderer_api_module": "src/syntax_generated_codec.rs",
+    "output_artifact": "SyntaxGeneratedCodecArtifact",
+    "required_pre_route_evidence": [
+      "stable_json_backend_parity",
+      "target_agnostic_structural_model_manifest",
+      "strict_recovery_decode_policy",
+      "consumed_token_accounting",
+      "token_vocabulary_bpe_invariants",
+      "generated_artifact_reproducibility",
+      "audit_markers"
+    ]
+  },
+  "blockers": [
+    "strict/recovery decode behavior",
+    "consumed-token accounting",
+    "token/vocabulary/BPE invariants",
+    "reproducibility",
+    "audit coverage"
+  ],
+  "completed_promotion_class": "syntax backend target-agnostic routing boundary gate",
+  "next_missing_stable_promotion_class": "syntax backend strict/recovery decode routing gate"
+}

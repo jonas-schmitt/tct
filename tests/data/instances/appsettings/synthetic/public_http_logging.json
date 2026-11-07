@@ -1,0 +1,22 @@
+{
+  "AllowedHosts": "service.example.invalid",
+  "Kestrel": {
+    "Endpoints": {
+      "FixtureHttp": {
+        "Url": "http://127.0.0.1:5100",
+        "Protocols": "Http1"
+      }
+    }
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning",
+      "Tct.Fixtures": "Debug"
+    },
+    "Console": {
+      "LogLevel": {
+        "Default": "Information"
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "name": "test-workflow-simple",
+  "trigger": "branch_protection_rule"
+}

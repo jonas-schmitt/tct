@@ -1,0 +1,50 @@
+{
+  "name": "check",
+  "on": {
+    "workflow_dispatch": null,
+    "pull_request": {
+      "types": [
+        "opened",
+        "synchronize",
+        "reopened"
+      ]
+    }
+  },
+  "concurrency": {
+    "group": "${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}",
+    "cancel-in-progress": true
+  },
+  "jobs": {
+    "check": {
+      "runs-on": "ubuntu-latest",
+      "steps": [
+        {
+          "uses": "actions/checkout@v4"
+        },
+        {
+          "name": "changed files",
+          "id": "files",
+          "run": "git fetch origin master:master\nANY_CHANGED=false\nALL_CHANGED_FILES=$(git diff --name-only master -- streams/ | tr '\\n' ' ')\nif [ -n \"${ALL_CHANGED_FILES}\" ]; then\n  ANY_CHANGED=true\nfi\necho \"all_changed_files=$ALL_CHANGED_FILES\" >> \"$GITHUB_OUTPUT\"\necho \"any_changed=$ANY_CHANGED\" >> \"$GITHUB_OUTPUT\"\n"
+        },
+        {
+          "uses": "actions/setup-node@v4",
+          "if": "${{ !env.ACT && steps.files.outputs.any_changed == 'true' }}",
+          "with": {
+            "node-version": 22,
+            "cache": "npm"
+          }
+        },
+        {
+          "name": "install dependencies",
+          "if": "steps.files.outputs.any_changed == 'true'",
+          "run": "npm install"
+        },
+        {
+          "name": "validate",
+          "if": "steps.files.outputs.any_changed == 'true'",
+          "run": "npm run playlist:lint -- ${{ steps.files.outputs.all_changed_files }}\nnpm run playlist:validate -- ${{ steps.files.outputs.all_changed_files }}"
+        }
+      ]
+    }
+  }
+}

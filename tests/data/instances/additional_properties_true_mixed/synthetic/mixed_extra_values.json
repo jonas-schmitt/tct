@@ -1,0 +1,11 @@
+{
+  "name": "demo",
+  "extra_string": "ok",
+  "extra_bool": true,
+  "extra_number": 42,
+  "extra_object": {
+    "nested": "value"
+  },
+  "extra_array": [1, "two", false],
+  "extra_null": null
+}

@@ -1,0 +1,97 @@
+{
+  "artifact_kind": "tct_syntax_backend_json_backend_parity_routing_gate",
+  "version": 1,
+  "tool": "syntax_backend_json_backend_parity_routing_gate",
+  "status": "sidecar_contract_only",
+  "source_routing_gate": {
+    "artifact_kind": "tct_syntax_backend_tct_compiler_routing_gate",
+    "version": 1,
+    "module_path": "src/syntax_tct_compiler_routing.rs",
+    "fixture_path": "tests/fixtures/syntax_backend/tct-compiler-routing-gate-v1.json",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh",
+    "completed_promotion_class": "syntax backend production TctCompiler routing gate"
+  },
+  "compiler_boundary": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "preserves_json_schema_backend_contract": true,
+    "production_grammar_compiler_path_changed": false,
+    "sidecar_only": true,
+    "tct_compiler_route_allowed": false
+  },
+  "route_state": {
+    "route_registered": false,
+    "route_enabled": false,
+    "public_api_changed": false,
+    "uses_json_schema_compiler": false,
+    "uses_syntax_renderer_api": false
+  },
+  "stable_json_backend": {
+    "backend_surfaces": [
+      "schema_compilation",
+      "generated_code_compilation",
+      "token_encoding",
+      "token_decoding",
+      "data_validation",
+      "vocabulary_accounting",
+      "bpe_integration",
+      "maintained_docs",
+      "stable_gate_commands"
+    ],
+    "schema_compilation_unchanged": true,
+    "generated_code_compilation_unchanged": true,
+    "token_encoding_unchanged": true,
+    "token_decoding_unchanged": true,
+    "data_validation_unchanged": true,
+    "vocabulary_accounting_unchanged": true,
+    "bpe_integration_unchanged": true,
+    "maintained_docs_unchanged": true,
+    "generated_json_schema_output_changed": false,
+    "existing_generated_templates_changed": false
+  },
+  "stable_gate_commands": [
+    {
+      "command": "./scripts/testing/quality-check.sh",
+      "proves": [
+        "schema_compilation",
+        "generated_code_compilation",
+        "token_encoding",
+        "token_decoding",
+        "data_validation",
+        "vocabulary_accounting",
+        "bpe_integration",
+        "maintained_docs"
+      ]
+    },
+    {
+      "command": "cargo test --test round_trip_test test_round_trip",
+      "proves": [
+        "schema_compilation",
+        "generated_code_compilation",
+        "token_encoding",
+        "token_decoding",
+        "data_validation",
+        "vocabulary_accounting"
+      ]
+    },
+    {
+      "command": "python3 scripts/testing/test-quality-audit.py --fail-on-gaps",
+      "proves": [
+        "maintained_docs",
+        "audit coverage",
+        "stable_gate_commands"
+      ]
+    }
+  ],
+  "blockers": [
+    "target-agnostic syntax boundary selection",
+    "strict/recovery decode behavior",
+    "consumed-token accounting",
+    "token/vocabulary/BPE invariants",
+    "reproducibility",
+    "audit coverage"
+  ],
+  "completed_promotion_class": "syntax backend JSON-backend parity routing gate",
+  "next_missing_stable_promotion_class": "syntax backend target-agnostic routing boundary gate"
+}

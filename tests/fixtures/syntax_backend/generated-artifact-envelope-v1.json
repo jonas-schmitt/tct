@@ -1,0 +1,106 @@
+{
+  "artifact_kind": "tct_syntax_backend_generated_artifact_envelope",
+  "version": 1,
+  "api_version": "syntax-generator-api-v0",
+  "source_api_boundary": {
+    "artifact_kind": "tct_syntax_backend_production_generator_api_boundary",
+    "version": 1,
+    "api_version": "syntax-generator-api-v0",
+    "module_path": "src/syntax_backend_boundary.rs",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "contract_fixture": "tests/fixtures/syntax_backend/production-boundary-contract-v1.json",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh"
+  },
+  "artifact_metadata": {
+    "surface": "generated_codec_artifact_metadata",
+    "target_ids": [
+      "toy",
+      "csharp",
+      "go"
+    ],
+    "required_fields": [
+      "artifact_kind",
+      "version",
+      "artifact_version",
+      "api_version",
+      "source_contract",
+      "compiler_boundary",
+      "inputs",
+      "outputs",
+      "generated_codec_artifact_metadata",
+      "rendered_source",
+      "rendered_source_sha256",
+      "generated_crate",
+      "generated_crate_identity",
+      "boundary_manifest",
+      "target_manifest_sha256",
+      "generation_options",
+      "generation_options_sha256",
+      "source_metadata_provenance",
+      "structural_model",
+      "token_layout",
+      "sidecar_boundary",
+      "validation_hook_contract",
+      "validation_hook_contract_sha256",
+      "validation_hook_sidecar_evidence",
+      "validation_hook_sidecar_evidence_sha256",
+      "generated_artifact_replay",
+      "generated_artifact_replay_sha256",
+      "input_diagnostics_contract",
+      "input_diagnostics_contract_sha256",
+      "input_diagnostics_negative_fixture",
+      "input_diagnostics_negative_fixture_sha256"
+    ],
+    "volatile_report_dir": "target/tct-syntax-generated-codec-reproducibility"
+  },
+  "provenance_hashes": {
+    "required": [
+      "rendered_source_sha256",
+      "boundary_manifest_sha256",
+      "target_manifest_sha256",
+      "generation_options_sha256",
+      "source_metadata_provenance_sha256",
+      "structural_model_sha256",
+      "token_layout_sha256"
+    ]
+  },
+  "persistence_policy": {
+    "checked_in": false,
+    "volatile_report_dir": "target/tct-syntax-generated-codec-reproducibility",
+    "promotion_required_for_checked_in_artifacts": true
+  },
+  "decode_policy": {
+    "strict_decode_authoritative": true,
+    "recovery_normalizes_trailing_pad_only": true,
+    "partial_prefix_failures_are_hard": true,
+    "consumed_token_accounting_required": true
+  },
+  "token_layout_metadata": {
+    "required_fields": [
+      "pad_token",
+      "vocab_size",
+      "raw_base_vocab_size",
+      "structural_ranges",
+      "payload_ranges",
+      "bpe_boundary"
+    ],
+    "boundary_manifest_path": "tests/fixtures/syntax_structural_model/boundary-manifest-v1.json",
+    "requires_bpe_collision_evidence": true
+  },
+  "compiler_boundary": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "preserves_json_schema_backend_contract": true,
+    "production_grammar_compiler_path_changed": false,
+    "sidecar_only": true,
+    "tct_compiler_route_allowed": false
+  },
+  "non_goals": [
+    "no TctCompiler route",
+    "no generated JSON Schema output change",
+    "no checked-in syntax artifact persistence",
+    "no external parser or formatter stable promotion"
+  ],
+  "completed_promotion_class": "syntax backend generated artifact envelope fixture",
+  "next_missing_stable_promotion_class": "syntax backend JSON-backend parity routing gate"
+}

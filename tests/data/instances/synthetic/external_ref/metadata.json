@@ -1,0 +1,9 @@
+{
+  "description": "Test instances for external reference handling",
+  "instances": [
+    {
+      "file": "test1.json",
+      "description": "Object with external references that should use serde_json::Value"
+    }
+  ]
+}

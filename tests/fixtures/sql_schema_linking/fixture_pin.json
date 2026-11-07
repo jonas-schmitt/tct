@@ -1,0 +1,33 @@
+{
+  "artifact_type": "sql_schema_linking_fixture_pin_v0",
+  "db_id": "tct_fixture_join",
+  "paths": {
+    "tables_json": "tests/fixtures/sql_schema_linking/tables.json",
+    "gold_queries_json": "tests/fixtures/sql_schema_linking/gold_queries.json"
+  },
+  "tables_json_sha256": "4e009388a1cf347645b1370d716dedec1d6d9af9ff8b54adc8bef13b425c64c0",
+  "gold_queries_json_sha256": "a4be7da20cad3ea1bc248153d3b531cc25db8111a3022e8dced847e88bd8a871",
+  "optional_host_spider_census": {
+    "notes": "The downstream census used Spider validation under a host path. Container runs should not depend on this path; use in-repo fixtures first. Bounded Spider gold stats may consume a later checked-in sample or an operator-mounted corpus.",
+    "corpus": "spider",
+    "split": "validation",
+    "tables_json_sha256": "b68de9166952871d64554486fca4b25ff88509e983857a6af428250ffd58b67f",
+    "examples_json_sha256": "1d3c834ea5b50afa33e4119e598b85f9750d171e62e4043478e1b2ecb617d84e",
+    "models_decision": "promote_sql_frontend"
+  },
+  "version": 1,
+  "optional_wide_menu_capacity_fixture": {
+    "db_id": "tct_fixture_wide_menu",
+    "note": "T-D synthetic wide catalog for multi-digit menu capacity. Not part of load_fixture_bundle(); T11/T12 gold-stats and handoff digests stay pinned to tct_fixture_join only.",
+    "paths": {
+      "tables_json": "tests/fixtures/sql_schema_linking/wide_menu_capacity/tables.json",
+      "gold_queries_json": "tests/fixtures/sql_schema_linking/wide_menu_capacity/gold_queries.json"
+    },
+    "tables_json_sha256": "e7507d205f8b36b36f36d9a043f54eea0346bb3b65d0338bf4f841cac3fb72bc",
+    "gold_queries_json_sha256": "401351ce7d096bf1c57986a334ebf083a511fe6bd11fd43d8c78cff1d0298092",
+    "tables": 300,
+    "columns_per_table": 10,
+    "total_real_columns": 3000
+  },
+  "note": "Join fixture for T11/T12 golds. Band width remains 256; SQL menu capacity is width^max_menu_digits (2 \u2192 65536). Wide synthetic catalog lives under wide_menu_capacity/ (db_id tct_fixture_wide_menu) and is NOT loaded by load_fixture_bundle."
+}

@@ -1,0 +1,116 @@
+{
+  "format_version": 1,
+  "scope": "These exact npm archives are integrity-checked against the extractor lock at 648bbeb51fdb459c193acdc7756d5f79e1b3865a. Notice retention includes five direct plugin inputs and inherited ESLint core metadata.",
+  "extractor_repository": "https://github.com/fox-projects/jsonschema-extractor",
+  "extractor_revision": "648bbeb51fdb459c193acdc7756d5f79e1b3865a",
+  "extractor_lock_path": "pnpm-lock.yaml",
+  "extractor_lock_sha256": "40a288a6d888e82e9aae2746926d76ea7f9f2c88945d150750a1b4d1d6e2aac9",
+  "packages": [
+    {
+      "name": "@angular-eslint/eslint-plugin",
+      "version": "18.0.1",
+      "license": "MIT",
+      "git_head": "e2006e5e9c99e5a943d1a999e0efa5247d29ec24",
+      "repository": {
+        "url": "git+https://github.com/angular-eslint/angular-eslint.git",
+        "type": "git",
+        "directory": "packages/eslint-plugin"
+      },
+      "tarball_url": "https://registry.npmjs.org/@angular-eslint/eslint-plugin/-/eslint-plugin-18.0.1.tgz",
+      "tarball_sha256": "d4a64d01acd19b5dea0aeff4d046b3e07c94795805dc87413387f41555b7ac7e",
+      "tarball_integrity": "sha512-pS3SYLa9DA+ENklGxEUlcw6/xCxgDk9fgjyaheuSjDxL3TIh1pTa4V2TptODdcPh7XCYXiVmy+e/w79mXlGzOw==",
+      "integrity_matches_extractor_lock": true,
+      "retained_notices": [
+        "third_party/licenses/schema-eslint-inputs/angular-eslint-eslint-plugin-18.0.1/LICENSE"
+      ]
+    },
+    {
+      "name": "@typescript-eslint/eslint-plugin",
+      "version": "7.13.1",
+      "license": "MIT",
+      "git_head": "1212a8f30c5daa6a9b232a1d95e328d675430749",
+      "repository": {
+        "url": "git+https://github.com/typescript-eslint/typescript-eslint.git",
+        "type": "git",
+        "directory": "packages/eslint-plugin"
+      },
+      "tarball_url": "https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-7.13.1.tgz",
+      "tarball_sha256": "071741e90857ab7f73fabe424a03b4136a968a90388ed018b50ab24cad63838c",
+      "tarball_integrity": "sha512-kZqi+WZQaZfPKnsflLJQCz6Ze9FFSMfXrrIOcyargekQxG37ES7DJNpJUE9Q/X5n3yTIP/WPutVNzgknQ7biLg==",
+      "integrity_matches_extractor_lock": true,
+      "retained_notices": [
+        "third_party/licenses/schema-eslint-inputs/typescript-eslint-eslint-plugin-7.13.1/LICENSE"
+      ]
+    },
+    {
+      "name": "eslint-plugin-import",
+      "version": "2.29.1",
+      "license": "MIT",
+      "git_head": "ee5fadeffff68f2300bed7f67a310496cb969d61",
+      "repository": {
+        "url": "git+https://github.com/import-js/eslint-plugin-import.git",
+        "type": "git"
+      },
+      "tarball_url": "https://registry.npmjs.org/eslint-plugin-import/-/eslint-plugin-import-2.29.1.tgz",
+      "tarball_sha256": "f240fe2245197376331e44c7acdc3641ca8b375f43db97af1a8c99f637a05b45",
+      "tarball_integrity": "sha512-BbPC0cuExzhiMo4Ff1BTVwHpjjv28C5R+btTOGaCRC7UEz801up0JadwkeSk5Ued6TG34uaczuVuH6qyy5YUxw==",
+      "integrity_matches_extractor_lock": true,
+      "retained_notices": [
+        "third_party/licenses/schema-eslint-inputs/eslint-plugin-import-2.29.1/LICENSE",
+        "third_party/licenses/schema-eslint-inputs/eslint-plugin-import-2.29.1/memo-parser-LICENSE"
+      ]
+    },
+    {
+      "name": "eslint-plugin-unicorn",
+      "version": "54.0.0",
+      "license": "MIT",
+      "git_head": "fce6ce390cc156282b507107427fc27322955039",
+      "repository": {
+        "url": "git+https://github.com/sindresorhus/eslint-plugin-unicorn.git",
+        "type": "git"
+      },
+      "tarball_url": "https://registry.npmjs.org/eslint-plugin-unicorn/-/eslint-plugin-unicorn-54.0.0.tgz",
+      "tarball_sha256": "f147ddc03ad49c261687eeb4c260a65ef113402738690b097fb09485fcac802f",
+      "tarball_integrity": "sha512-XxYLRiYtAWiAjPv6z4JREby1TAE2byBC7wlh0V4vWDCpccOSU1KovWV//jqPXF6bq3WKxqX9rdjoRQ1EhdmNdQ==",
+      "integrity_matches_extractor_lock": true,
+      "retained_notices": [
+        "third_party/licenses/schema-eslint-inputs/eslint-plugin-unicorn-54.0.0/license"
+      ]
+    },
+    {
+      "name": "eslint-plugin-vue",
+      "version": "9.26.0",
+      "license": "MIT",
+      "git_head": "516253d9f80c5690e2d64513f6e9490977f6b4d1",
+      "repository": {
+        "url": "git+https://github.com/vuejs/eslint-plugin-vue.git",
+        "type": "git"
+      },
+      "tarball_url": "https://registry.npmjs.org/eslint-plugin-vue/-/eslint-plugin-vue-9.26.0.tgz",
+      "tarball_sha256": "068bc582efc41a5f01b0151c27550b9216d85f2ee330a6a0370f53fdd7e38b4e",
+      "tarball_integrity": "sha512-eTvlxXgd4ijE1cdur850G6KalZqk65k1JKoOI2d1kT3hr8sPD07j1q98FRFdNnpxBELGPWxZmInxeHGF/GxtqQ==",
+      "integrity_matches_extractor_lock": true,
+      "retained_notices": [
+        "third_party/licenses/schema-eslint-inputs/eslint-plugin-vue-9.26.0/LICENSE"
+      ]
+    },
+    {
+      "name": "eslint",
+      "version": "8.57.0",
+      "license": "MIT",
+      "git_head": "abea3b6f399fde9e28cf6dc5d6c013938f163cdc",
+      "repository": {
+        "url": "git+https://github.com/eslint/eslint.git",
+        "type": "git"
+      },
+      "tarball_url": "https://registry.npmjs.org/eslint/-/eslint-8.57.0.tgz",
+      "tarball_sha256": "97ec696de2427643aaa7cfa0478ea4fc8ef964c3b2fc9b1f4b57b5180629cf12",
+      "tarball_integrity": "sha512-dZ6+mexnaTIbSBZWgou51U6OmzIhYM2VcNdtiTtI7qPNZm35Akpr0f6vtw3w1Kmn5PYo+tZVfh13WrhpS6oLqQ==",
+      "integrity_matches_extractor_lock": true,
+      "scope": "Core rule metadata inherited by typescript-eslint and eslint-plugin-vue through the extractor-pinned ESLint runtime.",
+      "retained_notices": [
+        "third_party/licenses/schema-eslint-inputs/eslint-8.57.0/LICENSE"
+      ]
+    }
+  ]
+}

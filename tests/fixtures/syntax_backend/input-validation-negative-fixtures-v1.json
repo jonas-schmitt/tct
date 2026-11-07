@@ -1,0 +1,342 @@
+{
+  "artifact_kind": "tct_syntax_backend_input_validation_negative_fixtures",
+  "version": 1,
+  "api_version": "syntax-generator-api-v0",
+  "source_input_diagnostics_contract": {
+    "artifact_kind": "tct_syntax_backend_input_validation_diagnostics_contract",
+    "version": 1,
+    "fixture_path": "tests/fixtures/syntax_backend/input-validation-diagnostics-v1.json",
+    "module_path": "src/syntax_input_diagnostics.rs",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh"
+  },
+  "target_ids": [
+    "toy",
+    "csharp",
+    "go"
+  ],
+  "fixtures": [
+    {
+      "id": "toy-missing-expression",
+      "target_id": "toy",
+      "input_kind": "malformed_syntax",
+      "synthetic_input": {
+        "source_path": "synthetic://syntax-backend/toy/missing-expression.toy",
+        "text": "let answer =",
+        "source_or_metadata_sha256": "64cf4d1671030d182eb92906457f569c11a88c592f2052a33f1313af30a3b83d"
+      },
+      "parser_or_grammar_identity": {
+        "kind": "grammar",
+        "grammar_id": "toy_assignment",
+        "grammar_version": 1
+      },
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "toy.assignment.missing_expression",
+          "message": "assignment requires an expression after '='",
+          "rule_path": [
+            "assignment",
+            "expression"
+          ],
+          "source_path": "synthetic://syntax-backend/toy/missing-expression.toy",
+          "span": {
+            "start": 12,
+            "end": 12
+          }
+        }
+      ],
+      "unsupported_syntax_errors": [],
+      "sidecar_boundary": {
+        "boundary": "GrammarIR -> StructuralModel",
+        "sidecar_only": true,
+        "tct_compiler_route_allowed": false
+      },
+      "sidecar_boundary_sha256": "804760aa2029cc38992c9e050941a467b045d30c787cc2c3ab470978165e9373",
+      "diagnostic_contract_sha256": "bff53d31ac4525f47a76238174e7b7727e57acd275d1643b4527039c68c4cec3"
+    },
+    {
+      "id": "toy-unsupported-call-expression",
+      "target_id": "toy",
+      "input_kind": "unsupported_syntax",
+      "synthetic_input": {
+        "source_path": "synthetic://syntax-backend/toy/unsupported-call.toy",
+        "text": "let answer = call(1)",
+        "source_or_metadata_sha256": "a55a09fc7357ab76bedf6563b1cfd0296d1ebc900a6d189bc91e435531dda38a"
+      },
+      "parser_or_grammar_identity": {
+        "kind": "grammar",
+        "grammar_id": "toy_assignment",
+        "grammar_version": 1
+      },
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "code": "toy.assignment.unsupported_call_expression",
+          "message": "call expressions are not part of the toy syntax sidecar profile",
+          "rule_path": [
+            "assignment",
+            "expression",
+            "call"
+          ],
+          "source_path": "synthetic://syntax-backend/toy/unsupported-call.toy",
+          "span": {
+            "start": 13,
+            "end": 20
+          }
+        }
+      ],
+      "unsupported_syntax_errors": [
+        {
+          "target_id": "toy",
+          "unsupported_kind": "CallExpr",
+          "rule_path": [
+            "assignment",
+            "expression",
+            "call"
+          ],
+          "message": "CallExpr is intentionally unsupported by the toy syntax sidecar profile",
+          "source_or_metadata_sha256": "a55a09fc7357ab76bedf6563b1cfd0296d1ebc900a6d189bc91e435531dda38a",
+          "parser_or_grammar_identity": {
+            "kind": "grammar",
+            "grammar_id": "toy_assignment",
+            "grammar_version": 1
+          }
+        }
+      ],
+      "sidecar_boundary": {
+        "boundary": "GrammarIR -> StructuralModel",
+        "sidecar_only": true,
+        "tct_compiler_route_allowed": false
+      },
+      "sidecar_boundary_sha256": "804760aa2029cc38992c9e050941a467b045d30c787cc2c3ab470978165e9373",
+      "diagnostic_contract_sha256": "bff53d31ac4525f47a76238174e7b7727e57acd275d1643b4527039c68c4cec3"
+    },
+    {
+      "id": "csharp-empty-field-alternatives",
+      "target_id": "csharp",
+      "input_kind": "malformed_syntax",
+      "synthetic_input": {
+        "source_path": "synthetic://syntax-backend/csharp/empty-field-alternatives/syntax-metadata-v0.json",
+        "text": "{\"target\":\"csharp\",\"rule\":\"ClassDeclarationSyntax\",\"field\":\"Identifier\",\"alternatives\":[]}",
+        "source_or_metadata_sha256": "c2df15d7d36fa99aff8597381cb2e643ad5f0084c930659b475eb45358e421dc"
+      },
+      "parser_or_grammar_identity": {
+        "kind": "parser",
+        "tool": "dotnet",
+        "version": "10.0.203",
+        "package": "Microsoft.CodeAnalysis.CSharp",
+        "package_version": "5.3.0"
+      },
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "csharp.syntax_metadata.empty_field_alternatives",
+          "message": "ClassDeclarationSyntax.Identifier requires at least one parser-backed alternative",
+          "rule_path": [
+            "CompilationUnitSyntax",
+            "ClassDeclarationSyntax",
+            "Identifier"
+          ],
+          "source_path": "synthetic://syntax-backend/csharp/empty-field-alternatives/syntax-metadata-v0.json",
+          "span": {
+            "start": 66,
+            "end": 83
+          }
+        }
+      ],
+      "unsupported_syntax_errors": [],
+      "sidecar_boundary": {
+        "boundary": "GrammarIR -> StructuralModel",
+        "sidecar_only": true,
+        "tct_compiler_route_allowed": false
+      },
+      "sidecar_boundary_sha256": "804760aa2029cc38992c9e050941a467b045d30c787cc2c3ab470978165e9373",
+      "diagnostic_contract_sha256": "bff53d31ac4525f47a76238174e7b7727e57acd275d1643b4527039c68c4cec3"
+    },
+    {
+      "id": "csharp-unsupported-pointer-type",
+      "target_id": "csharp",
+      "input_kind": "unsupported_syntax",
+      "synthetic_input": {
+        "source_path": "synthetic://syntax-backend/csharp/unsupported-pointer-type/syntax-metadata-v0.json",
+        "text": "{\"target\":\"csharp\",\"node_kind\":\"PointerTypeSyntax\",\"rule_path\":[\"CompilationUnitSyntax\",\"ClassDeclarationSyntax\",\"PropertyDeclarationSyntax\",\"PointerTypeSyntax\"]}",
+        "source_or_metadata_sha256": "b2ea151cf4293c45e65383bda9166799692a1bf5fea09e17b94ed9c8da1a3314"
+      },
+      "parser_or_grammar_identity": {
+        "kind": "parser",
+        "tool": "dotnet",
+        "version": "10.0.203",
+        "package": "Microsoft.CodeAnalysis.CSharp",
+        "package_version": "5.3.0"
+      },
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "code": "csharp.syntax_metadata.unsupported_pointer_type",
+          "message": "PointerTypeSyntax is sidecar evidence and is not supported by the minimal C# syntax profile",
+          "rule_path": [
+            "CompilationUnitSyntax",
+            "ClassDeclarationSyntax",
+            "PropertyDeclarationSyntax",
+            "PointerTypeSyntax"
+          ],
+          "source_path": "synthetic://syntax-backend/csharp/unsupported-pointer-type/syntax-metadata-v0.json",
+          "span": {
+            "start": 31,
+            "end": 48
+          }
+        }
+      ],
+      "unsupported_syntax_errors": [
+        {
+          "target_id": "csharp",
+          "unsupported_kind": "PointerTypeSyntax",
+          "rule_path": [
+            "CompilationUnitSyntax",
+            "ClassDeclarationSyntax",
+            "PropertyDeclarationSyntax",
+            "PointerTypeSyntax"
+          ],
+          "message": "PointerTypeSyntax is intentionally unsupported by the minimal C# syntax sidecar profile",
+          "source_or_metadata_sha256": "b2ea151cf4293c45e65383bda9166799692a1bf5fea09e17b94ed9c8da1a3314",
+          "parser_or_grammar_identity": {
+            "kind": "parser",
+            "tool": "dotnet",
+            "version": "10.0.203",
+            "package": "Microsoft.CodeAnalysis.CSharp",
+            "package_version": "5.3.0"
+          }
+        }
+      ],
+      "sidecar_boundary": {
+        "boundary": "GrammarIR -> StructuralModel",
+        "sidecar_only": true,
+        "tct_compiler_route_allowed": false
+      },
+      "sidecar_boundary_sha256": "804760aa2029cc38992c9e050941a467b045d30c787cc2c3ab470978165e9373",
+      "diagnostic_contract_sha256": "bff53d31ac4525f47a76238174e7b7727e57acd275d1643b4527039c68c4cec3"
+    },
+    {
+      "id": "go-empty-field-alternatives",
+      "target_id": "go",
+      "input_kind": "malformed_syntax",
+      "synthetic_input": {
+        "source_path": "synthetic://syntax-backend/go/empty-field-alternatives/syntax-metadata-v0.json",
+        "text": "{\"target\":\"go\",\"rule\":\"FuncDecl\",\"field\":\"Name\",\"alternatives\":[]}",
+        "source_or_metadata_sha256": "5a4ec49de918892be11678cf6ad147f9332f3a9c69dbd1befa191e06ea59b955"
+      },
+      "parser_or_grammar_identity": {
+        "kind": "parser",
+        "tool": "go",
+        "version": "go1.24.3",
+        "package": "go/parser",
+        "package_version": "go1.24.3"
+      },
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "go.syntax_metadata.empty_field_alternatives",
+          "message": "FuncDecl.Name requires at least one parser-backed alternative",
+          "rule_path": [
+            "File",
+            "FuncDecl",
+            "Name"
+          ],
+          "source_path": "synthetic://syntax-backend/go/empty-field-alternatives/syntax-metadata-v0.json",
+          "span": {
+            "start": 55,
+            "end": 72
+          }
+        }
+      ],
+      "unsupported_syntax_errors": [],
+      "sidecar_boundary": {
+        "boundary": "GrammarIR -> StructuralModel",
+        "sidecar_only": true,
+        "tct_compiler_route_allowed": false
+      },
+      "sidecar_boundary_sha256": "804760aa2029cc38992c9e050941a467b045d30c787cc2c3ab470978165e9373",
+      "diagnostic_contract_sha256": "bff53d31ac4525f47a76238174e7b7727e57acd275d1643b4527039c68c4cec3"
+    },
+    {
+      "id": "go-unsupported-gostmt",
+      "target_id": "go",
+      "input_kind": "unsupported_syntax",
+      "synthetic_input": {
+        "source_path": "synthetic://syntax-backend/go/unsupported-gostmt/syntax-metadata-v0.json",
+        "text": "{\"target\":\"go\",\"node_kind\":\"GoStmt\",\"rule_path\":[\"File\",\"FuncDecl\",\"Body\",\"GoStmt\"]}",
+        "source_or_metadata_sha256": "81d61959795974c8994a82e6022c672eb0e6e8f824378ab018c43a849d3f808d"
+      },
+      "parser_or_grammar_identity": {
+        "kind": "parser",
+        "tool": "go",
+        "version": "go1.24.3",
+        "package": "go/parser",
+        "package_version": "go1.24.3"
+      },
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "code": "go.syntax_metadata.unsupported_gostmt",
+          "message": "GoStmt is sidecar evidence and is not supported by the minimal Go syntax profile",
+          "rule_path": [
+            "File",
+            "FuncDecl",
+            "Body",
+            "GoStmt"
+          ],
+          "source_path": "synthetic://syntax-backend/go/unsupported-gostmt/syntax-metadata-v0.json",
+          "span": {
+            "start": 23,
+            "end": 29
+          }
+        }
+      ],
+      "unsupported_syntax_errors": [
+        {
+          "target_id": "go",
+          "unsupported_kind": "GoStmt",
+          "rule_path": [
+            "File",
+            "FuncDecl",
+            "Body",
+            "GoStmt"
+          ],
+          "message": "GoStmt is intentionally unsupported by the minimal Go syntax sidecar profile",
+          "source_or_metadata_sha256": "81d61959795974c8994a82e6022c672eb0e6e8f824378ab018c43a849d3f808d",
+          "parser_or_grammar_identity": {
+            "kind": "parser",
+            "tool": "go",
+            "version": "go1.24.3",
+            "package": "go/parser",
+            "package_version": "go1.24.3"
+          }
+        }
+      ],
+      "sidecar_boundary": {
+        "boundary": "GrammarIR -> StructuralModel",
+        "sidecar_only": true,
+        "tct_compiler_route_allowed": false
+      },
+      "sidecar_boundary_sha256": "804760aa2029cc38992c9e050941a467b045d30c787cc2c3ab470978165e9373",
+      "diagnostic_contract_sha256": "bff53d31ac4525f47a76238174e7b7727e57acd275d1643b4527039c68c4cec3"
+    }
+  ],
+  "sidecar_status": {
+    "sidecar_only": true,
+    "stable_gate_promoted": false,
+    "live_toolchain_required": false,
+    "generated_hot_path_external_checks_allowed": false
+  },
+  "compiler_boundary": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "preserves_json_schema_backend_contract": true,
+    "production_grammar_compiler_path_changed": false,
+    "sidecar_only": true,
+    "tct_compiler_route_allowed": false
+  },
+  "completed_promotion_class": "syntax backend input validation negative fixture gate",
+  "next_missing_stable_promotion_class": "syntax backend JSON-backend parity routing gate"
+}

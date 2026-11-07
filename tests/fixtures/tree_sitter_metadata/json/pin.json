@@ -1,0 +1,17 @@
+{
+  "pin_id": "tree_sitter_json_node_types_v0.24.8",
+  "grammar_package": "tree-sitter-json",
+  "grammar_version": "0.24.8",
+  "license": "MIT",
+  "license_file": "LICENSE",
+  "source_repository": "https://github.com/tree-sitter/tree-sitter-json",
+  "source_commit": "ee35a6ebefcef0c5c416c0d1ccec7370cfca5a24",
+  "source_url": "https://raw.githubusercontent.com/tree-sitter/tree-sitter-json/v0.24.8/src/node-types.json",
+  "node_types_file": "node-types.json",
+  "node_types_sha256": "620b6f5d38676a97526e9d128972d4b156ddbdf6e130cd7e6b9c35e6823e943f",
+  "notes": [
+    "JSON text grammar (tree-sitter-json), not JSON Schema.",
+    "Checked-in export only; no Tree-sitter runtime dependency.",
+    "Adapter lowers named nodes, field maps, field-less children, and subtypes into GrammarIR."
+  ]
+}

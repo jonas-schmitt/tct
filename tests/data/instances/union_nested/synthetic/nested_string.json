@@ -1,0 +1,6 @@
+{
+  "name": "nested-test",
+  "config": {
+    "value": "simple-string"
+  }
+}

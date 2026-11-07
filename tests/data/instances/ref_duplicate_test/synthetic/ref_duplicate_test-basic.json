@@ -1,0 +1,8 @@
+{
+  "field1": "simple string",
+  "field2": ["array", "of", "strings"],
+  "config": {
+    "extends": "base-config",
+    "plugins": ["plugin1", "plugin2"]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "axios": {
+      "version": "^1.0.0",
+      "optional": false
+    }
+  },
+  "peerDependencies": {
+    "react": ">=16.0.0"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.0.0"
+  },
+  "bundledDependencies": ["internal-lib", "shared-utils"]
+}

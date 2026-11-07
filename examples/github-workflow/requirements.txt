@@ -1,0 +1,2 @@
+# Install the wheel you built with `tct --target python` (see README.md), then:
+tiktoken>=0.7.0  # only for example_vs_tiktoken.py

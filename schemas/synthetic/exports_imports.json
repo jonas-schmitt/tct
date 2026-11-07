@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Exports Imports Test",
+  "description": "Tests package.json exports/imports patterns",
+  "type": "object",
+  "definitions": {
+    "exportEntry": {
+      "oneOf": [
+        {"type": "string"},
+        {"type": "null"},
+        {
+          "type": "object",
+          "properties": {
+            "require": {
+              "oneOf": [
+                {"$ref": "#/definitions/exportEntry"}
+              ]
+            },
+            "import": {
+              "oneOf": [
+                {"$ref": "#/definitions/exportEntry"}
+              ]
+            },
+            "node": {"$ref": "#/definitions/exportEntry"},
+            "default": {"$ref": "#/definitions/exportEntry"}
+          },
+          "additionalProperties": {"$ref": "#/definitions/exportEntry"}
+        },
+        {
+          "type": "array",
+          "items": {"$ref": "#/definitions/exportEntry"}
+        }
+      ]
+    }
+  },
+  "properties": {
+    "exports": {"$ref": "#/definitions/exportEntry"},
+    "imports": {
+      "type": "object",
+      "additionalProperties": {"$ref": "#/definitions/exportEntry"}
+    }
+  }
+}

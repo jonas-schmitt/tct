@@ -1,0 +1,239 @@
+{
+  "artifact_kind": "tct_csharp_syntax_metadata_v0",
+  "version": 0,
+  "source": {
+    "path": "tests/fixtures/csharp_syntax_sources/nullable_property_declaration/source.cs",
+    "sha256": "d9079d23234933565e24a217bbfbe71da6aa1857249cbb4b74c9cbf21d9075a3"
+  },
+  "parser": {
+    "tool": "dotnet",
+    "version": "10.0.300",
+    "package": "Microsoft.CodeAnalysis.CSharp",
+    "package_version": "5.3.0"
+  },
+  "rules": [
+    {
+      "name": "CompilationUnitSyntax",
+      "node_kind": "CompilationUnitSyntax",
+      "fields": [
+        {
+          "name": "Members",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "FileScopedNamespaceDeclarationSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FileScopedNamespaceDeclarationSyntax",
+      "node_kind": "FileScopedNamespaceDeclarationSyntax",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "qualified_identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "Members",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "ClassDeclarationSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ClassDeclarationSyntax",
+      "node_kind": "ClassDeclarationSyntax",
+      "fields": [
+        {
+          "name": "Identifier",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "Members",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "PropertyDeclarationSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PropertyDeclarationSyntax",
+      "node_kind": "PropertyDeclarationSyntax",
+      "fields": [
+        {
+          "name": "Identifier",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "Type",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "NullableTypeSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "AccessorList",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "AccessorListSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Initializer",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "LiteralExpressionSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "NullableTypeSyntax",
+      "node_kind": "NullableTypeSyntax",
+      "fields": [
+        {
+          "name": "ElementType",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "PredefinedTypeSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "QuestionToken",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "nullable_marker",
+              "terminal": "string_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PredefinedTypeSyntax",
+      "node_kind": "PredefinedTypeSyntax",
+      "fields": [
+        {
+          "name": "Keyword",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "string_keyword",
+              "terminal": "identifier_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AccessorListSyntax",
+      "node_kind": "AccessorListSyntax",
+      "fields": [
+        {
+          "name": "Accessors",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "AccessorDeclarationSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AccessorDeclarationSyntax",
+      "node_kind": "AccessorDeclarationSyntax",
+      "fields": [
+        {
+          "name": "Keyword",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "get_accessor_keyword",
+              "terminal": "string_payload"
+            },
+            {
+              "node_kind": "init_accessor_keyword",
+              "terminal": "string_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "LiteralExpressionSyntax",
+      "node_kind": "LiteralExpressionSyntax",
+      "fields": [
+        {
+          "name": "Token",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "null_literal",
+              "terminal": "identifier_payload"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

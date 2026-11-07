@@ -1,0 +1,24 @@
+{
+  "success": false,
+  "status": 422,
+  "message": "Synthetic request did not pass validation",
+  "data": {
+    "accepted": false,
+    "retryable": true
+  },
+  "errors": [
+    {
+      "code": "VALUE_REQUIRED",
+      "field": "label",
+      "message": "Provide a nonempty label"
+    },
+    {
+      "code": "RANGE_INVALID",
+      "message": "Count must be positive"
+    }
+  ],
+  "metadata": {
+    "version": "fixture-v1",
+    "request_id": "synthetic-error-1"
+  }
+}

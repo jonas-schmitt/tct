@@ -1,0 +1,25 @@
+{
+  "sass": {
+    "dist": {
+      "options": {
+        "style": "compressed"
+      },
+      "files": {
+        "main.css": "main.scss"
+      }
+    }
+  },
+  "watch": {
+    "sass": {
+      "files": ["scss/**/*.scss"],
+      "tasks": ["sass"]
+    }
+  },
+  "uglify": {
+    "my_target": {
+      "files": {
+        "dest/output.min.js": ["src/input1.js", "src/input2.js"]
+      }
+    }
+  }
+}

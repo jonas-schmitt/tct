@@ -1,0 +1,18 @@
+{
+  "displayName": "fixture-unit",
+  "testMatch": [
+    "<rootDir>/test/**/*.unit.js"
+  ],
+  "testEnvironment": "node",
+  "clearMocks": true,
+  "collectCoverage": true,
+  "bail": 1,
+  "coverageThreshold": {
+    "global": {
+      "branches": 75,
+      "functions": 80,
+      "lines": 85,
+      "statements": 85
+    }
+  }
+}

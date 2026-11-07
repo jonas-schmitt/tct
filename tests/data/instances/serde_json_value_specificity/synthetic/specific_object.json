@@ -1,0 +1,6 @@
+{
+  "name": "test-specific",
+  "flexible_field": {
+    "specific_setting": "required_value"
+  }
+}

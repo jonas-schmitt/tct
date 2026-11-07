@@ -1,0 +1,10 @@
+{
+  "name": "field-order-test",
+  "config": {
+    "name": "Checkout",
+    "uses": "actions/checkout@v4",
+    "with": {
+      "ref": "main"
+    }
+  }
+}

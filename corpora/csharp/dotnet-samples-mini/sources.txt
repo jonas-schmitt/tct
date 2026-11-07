@@ -1,0 +1,6 @@
+# tct-csharp-route-corpus-v1
+delegates-and-events/Logger.cs
+events/VersionOne.cs
+iterators/IteratorMethods.cs
+pattern-matching/Shapes.cs
+serialization/Loan.cs

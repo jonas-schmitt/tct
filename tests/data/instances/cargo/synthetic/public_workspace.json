@@ -1,0 +1,27 @@
+{
+  "package": {
+    "name": "tct-public-fixture",
+    "version": "0.0.0",
+    "edition": "2021",
+    "license": "Apache-2.0",
+    "publish": false,
+    "readme": false
+  },
+  "lib": {
+    "path": "src/lib.rs",
+    "doctest": true
+  },
+  "dependencies": {
+    "fixture-support": {
+      "path": "../fixture-support",
+      "optional": true,
+      "default-features": false
+    }
+  },
+  "features": {
+    "default": [],
+    "extra": [
+      "dep:fixture-support"
+    ]
+  }
+}

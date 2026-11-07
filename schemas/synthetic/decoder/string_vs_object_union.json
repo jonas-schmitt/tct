@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "String vs Object Union Disambiguation Test",
+  "description": "Tests schema-aware decoding of unions where string tokens could be misinterpreted as object boolean fields",
+  "type": "object",
+  "properties": {
+    "version": {
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "Simple version string like '1.0.0'"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "workspace": {
+              "type": "boolean",
+              "description": "Required boolean field that creates false positive"
+            }
+          },
+          "required": ["workspace"],
+          "additionalProperties": false,
+          "description": "Workspace inheritance object"
+        }
+      ]
+    }
+  },
+  "required": ["version"],
+  "additionalProperties": false
+}

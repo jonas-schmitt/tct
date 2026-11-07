@@ -1,0 +1,5 @@
+# Selected target-schema depth gate.
+# Format: schema-name:schema-folder[:bpe-preset]
+package:popular:legacy-tct-500
+api-response:api
+microservice-config:configuration

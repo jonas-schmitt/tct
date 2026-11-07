@@ -1,0 +1,269 @@
+[package]
+name = "tct"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+default-run = "tct"
+license = "Apache-2.0"
+authors = ["Jonas Schmitt"]
+description = "Compile JSON Schemas into compact, schema-specific tokenizers whose output always has the schema's structure"
+repository = "https://github.com/jonas-schmitt/tct"
+readme = "README.md"
+keywords = ["tokenizer", "json-schema", "llm", "bpe", "code-generation"]
+categories = ["compilers", "encoding", "parser-implementations"]
+exclude = [
+    "/publication/",
+    "schemas/bpe/*",
+    "tests/data/*",
+    "examples/*",
+    "corpora/*",
+    "reports/*",
+    # Frontend test fixtures stay out of the package, except the files that the
+    # experimental frontend modules embed with include_str!/include_bytes!.
+    "tests/fixtures/*",
+    "!tests/fixtures/go_ast_schema_inventory/go1.24.3-ast-schema-inventory-v1.json",
+    "!tests/fixtures/go_syntax_corpus/src/concurrency_map_interface_type_assertion/main.go",
+    "!tests/fixtures/go_syntax_corpus/src/crypto/internal/sysrand/rand_windows.go",
+    "!tests/fixtures/go_syntax_corpus/src/crypto/subtle/xor.go",
+    "!tests/fixtures/go_syntax_corpus/src/import_spec_comment/main.go",
+    "!tests/fixtures/go_syntax_corpus/src/import_spec_name/main.go",
+    "!tests/fixtures/go_syntax_corpus/src/local_generic_function/main.go",
+    "!tests/fixtures/go_syntax_corpus/src/local_variadic_ellipsis/main.go",
+    "!tests/fixtures/go_syntax_corpus/src/path/match.go",
+    "!tests/fixtures/go_syntax_corpus/src/strings/search.go",
+    "!tests/fixtures/go_syntax_corpus/src/type_spec_type_params/main.go",
+    "!tests/fixtures/go_syntax_corpus/src/value_spec_comment/main.go",
+    "!tests/fixtures/sql_schema_linking/qualified_menu/tables.json",
+    "!tests/fixtures/syntax_backend/generated-artifact-envelope-v1.json",
+    "!tests/fixtures/syntax_backend/generated-artifact-replay-v1.json",
+    "!tests/fixtures/syntax_backend/input-validation-diagnostics-v1.json",
+    "!tests/fixtures/syntax_backend/input-validation-negative-fixtures-v1.json",
+    "!tests/fixtures/syntax_backend/production-boundary-contract-v1.json",
+    "!tests/fixtures/syntax_backend/validation-hook-contract-v1.json",
+    "!tests/fixtures/syntax_backend/validation-hook-sidecar-evidence-v1.json",
+]
+
+[lib]
+crate-type = ["lib", "cdylib"]
+
+[features]
+default = []
+extended-benchmarks = []
+comprehensive-tests = []
+round-trip-tests = []
+python = ["pyo3"]
+python-extension = ["python", "pyo3/extension-module"]
+# Experimental non-JSON frontends (SQL schema linking, syntax layer with Go and
+# C# targets, tree-sitter subset codecs, exact-mask contract), their binaries,
+# and their integration tests. No stability guarantees.
+experimental = []
+
+# Experimental frontend binaries: built only with `--features experimental`.
+[[bin]]
+name = "tct-sql-band-mixing-census"
+path = "src/bin/tct-sql-band-mixing-census.rs"
+required-features = ["experimental"]
+
+[[bin]]
+name = "tct-sql-elided-bpe-encode-corpus"
+path = "src/bin/tct-sql-elided-bpe-encode-corpus.rs"
+required-features = ["experimental"]
+
+[[bin]]
+name = "tct-sql-elided-bpe-validate"
+path = "src/bin/tct-sql-elided-bpe-validate.rs"
+required-features = ["experimental"]
+
+[[bin]]
+name = "tct-sql-elided-encode-corpus"
+path = "src/bin/tct-sql-elided-encode-corpus.rs"
+required-features = ["experimental"]
+
+[[bin]]
+name = "tct-sql-shared-pool-corpus-gate"
+path = "src/bin/tct-sql-shared-pool-corpus-gate.rs"
+required-features = ["experimental"]
+
+[[bin]]
+name = "tct-syntax-go-tokenizer-generator"
+path = "src/bin/tct-syntax-go-tokenizer-generator.rs"
+required-features = ["experimental"]
+
+[[bin]]
+name = "tct-syntax-source-corpus-evidence"
+path = "src/bin/tct-syntax-source-corpus-evidence.rs"
+required-features = ["experimental"]
+
+[[bin]]
+name = "tct-syntax-source-program-external-validation"
+path = "src/bin/tct-syntax-source-program-external-validation.rs"
+required-features = ["experimental"]
+
+[[bin]]
+name = "tct-syntax-source-program-handoff"
+path = "src/bin/tct-syntax-source-program-handoff.rs"
+required-features = ["experimental"]
+
+# Experimental frontend integration tests: run only with `--features experimental`.
+[[test]]
+name = "csharp_syntax_metadata_adapter_test"
+path = "tests/csharp_syntax_metadata_adapter_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "exact_mask_contract_test"
+path = "tests/exact_mask_contract_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "go_ast_schema_inventory_test"
+path = "tests/go_ast_schema_inventory_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "go_syntax_metadata_adapter_test"
+path = "tests/go_syntax_metadata_adapter_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "i5_shared_alphabet_arity_boundary_test"
+path = "tests/i5_shared_alphabet_arity_boundary_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "i5_shared_alphabet_arity_census_test"
+path = "tests/i5_shared_alphabet_arity_census_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "i5_shared_alphabet_layout_diff_test"
+path = "tests/i5_shared_alphabet_layout_diff_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "i5_shared_alphabet_mask_accept_consistency_test"
+path = "tests/i5_shared_alphabet_mask_accept_consistency_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "i5_shared_alphabet_mixed_payload_dispatch_test"
+path = "tests/i5_shared_alphabet_mixed_payload_dispatch_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "i5_shared_alphabet_multi_grammar_same_space_test"
+path = "tests/i5_shared_alphabet_multi_grammar_same_space_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "maintained_cli_binaries_test"
+path = "tests/maintained_cli_binaries_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "sql_renderer_sqlite_test"
+path = "tests/sql_renderer_sqlite_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "syntax_backend_boundary_test"
+path = "tests/syntax_backend_boundary_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "syntax_decision_comparison_test"
+path = "tests/syntax_decision_comparison_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "syntax_generated_codec_gate_test"
+path = "tests/syntax_generated_codec_gate_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "syntax_go_canonical_render_fidelity_test"
+path = "tests/syntax_go_canonical_render_fidelity_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "syntax_go_source_instance_projection_test"
+path = "tests/syntax_go_source_instance_projection_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "syntax_go_unified_artifact_test"
+path = "tests/syntax_go_unified_artifact_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "syntax_state_machine_replay_test"
+path = "tests/syntax_state_machine_replay_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "syntax_structural_model_conformance_test"
+path = "tests/syntax_structural_model_conformance_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "syntax_structural_model_cross_target_equivalence_test"
+path = "tests/syntax_structural_model_cross_target_equivalence_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "toy_grammar_frontend_test"
+path = "tests/toy_grammar_frontend_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "tree_sitter_c_subset_codec_test"
+path = "tests/tree_sitter_c_subset_codec_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "tree_sitter_json_subset_codec_test"
+path = "tests/tree_sitter_json_subset_codec_test.rs"
+required-features = ["experimental"]
+
+[[test]]
+name = "tree_sitter_metadata_adapter_test"
+path = "tests/tree_sitter_metadata_adapter_test.rs"
+required-features = ["experimental"]
+
+[dependencies]
+serde = { version = "1.0.228", features = ["derive"] }
+# unbounded_depth: deeply nested instances and schemas can exceed serde_json's
+# default recursion limit of 128; the compiler validates depth itself.
+serde_json = { version = "1.0.149", features = ["preserve_order", "unbounded_depth"] }
+quote = "1.0.45"
+proc-macro2 = "1.0.106"
+stringcase = "0.4.0"
+syn = { version = "2.0.117", features = ["full"] }
+prettyplease = "0.2.37"
+clap = { version = "4.6.1", features = ["derive"] }
+regex = "1.12.3"
+lazy_static = "1.5.0"
+# Used by tests only: generated crates declare their own dependency (see
+# src/generated_crate.rs). Kept a normal dependency so dev and normal builds share
+# one serde_json feature set (as a dev-dependency, doctests see two serde_json
+# builds and fail to compile). The default features would add an HTTP/TLS stack
+# for fetching remote $refs, which TCT never does.
+jsonschema = { version = "0.46.2", default-features = false }
+rustc-hash = "2.1.2"  # FxHashMap for 2-3x faster non-cryptographic hashing
+rayon = "1.12.0"  # Parallel iterators for BPE training speedup
+ahash = "0.8.12"  # Fast non-cryptographic hashing for BPE training optimization
+chrono = { version = "0.4.44", features = ["serde"] }  # Date formatting for BPE training
+glob = "0.3.3"  # File pattern matching for BPE training
+rand = "0.10.1"  # Random sampling for BPE training dataset selection
+base64 = "0.22.1"  # Base64 encoding/decoding for byte format optimization
+pyo3 = { version = "0.29.3", optional = true }  # Python bindings
+sha2 = "0.11.0"  # SHA-256 provenance hashes for generated artifacts
+
+[dev-dependencies]
+tempfile = "3.27.0"
+rand = "0.10.1"
+quickcheck = "1.1.0"
+proptest = "1.11.0"
+arbitrary = { version = "1.4.2", features = ["derive"] }
+chrono = { version = "0.4.44", features = ["serde"] }
+expect-test = "1.5.1"

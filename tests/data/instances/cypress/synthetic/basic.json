@@ -1,0 +1,15 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "supportFile": "cypress/support/index.js",
+  "specPattern": "cypress/e2e/**/*.cy.{js,jsx,ts,tsx}",
+  "viewportWidth": 1280,
+  "viewportHeight": 720,
+  "video": false,
+  "screenshotOnRunFailure": true,
+  "env": {
+    "apiUrl": "http://localhost:8080/api"
+  },
+  "e2e": {
+    "setupNodeEvents": true
+  }
+}

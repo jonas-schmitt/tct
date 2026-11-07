@@ -1,0 +1,6 @@
+{
+  "name": "test-object",
+  "configuration": {
+    "nested_config": "object_value"
+  }
+}

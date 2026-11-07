@@ -1,0 +1,7 @@
+{
+  "flexible_field": {
+    "nested": "object",
+    "with": "properties"
+  },
+  "required_field": "test3"
+}

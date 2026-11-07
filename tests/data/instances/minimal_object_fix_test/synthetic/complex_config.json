@@ -1,0 +1,11 @@
+{
+  "name": "test-project",
+  "config": {
+    "database": {
+      "host": "localhost",
+      "port": 5432
+    },
+    "features": ["feature1", "feature2"],
+    "timeout": 30.5
+  }
+}

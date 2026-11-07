@@ -1,0 +1,40 @@
+{
+  "files": [
+    "test/**/*",
+    "!test/exclude-files-in-this-directory",
+    "!**/exclude-files-with-this-name.*"
+  ],
+  "match": [
+    "*oo",
+    "!foo"
+  ],
+  "concurrency": 5,
+  "failFast": true,
+  "failWithoutAssertions": false,
+  "environmentVariables": {
+    "MY_ENVIRONMENT_VARIABLE": "some value",
+    "NODE_ENV": "test"
+  },
+  "verbose": true,
+  "require": [
+    "./my-helper-module.js"
+  ],
+  "nodeArguments": [
+    "--trace-deprecation",
+    "--napi-modules"
+  ],
+  "cache": true,
+  "workerThreads": true,
+  "serial": false,
+  "snapshotDir": "test/snapshots",
+  "typescript": {
+    "rewritePaths": {
+      "src/": "build/"
+    },
+    "compile": false,
+    "extensions": [
+      "ts",
+      "tsx"
+    ]
+  }
+}

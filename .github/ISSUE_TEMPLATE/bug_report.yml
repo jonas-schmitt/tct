@@ -1,0 +1,53 @@
+name: Bug report
+description: Wrong output, a crash, a schema that fails to compile, or a round trip that changes data
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. A small reproducer is the fastest way to a fix:
+        reduce the schema to the keywords that matter and keep the instance as
+        short as possible. For a suspected security problem, use the private
+        reporting described in [SECURITY.md](https://github.com/jonas-schmitt/tct/blob/main/SECURITY.md) instead.
+  - type: textarea
+    id: schema
+    attributes:
+      label: Schema
+      description: The JSON Schema, or a minimal one that reproduces the problem.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: instance
+    attributes:
+      label: Instance or token stream
+      description: The JSON instance, or the tokens, if encoding or decoding is involved.
+      render: json
+  - type: textarea
+    id: command
+    attributes:
+      label: Command or API call
+      description: The exact command line or code, including optimization level and flags.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Output and error
+      description: The full error output, or what the decoded value looked like compared with what you expected.
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: TCT version or commit
+      placeholder: "0.1.0 or a commit hash"
+    validations:
+      required: true
+  - type: input
+    id: toolchain
+    attributes:
+      label: Rust toolchain and platform
+      description: Output of `rustc --version` and your OS and architecture.

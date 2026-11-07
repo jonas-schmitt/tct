@@ -1,0 +1,129 @@
+{
+  "name": "\ud83d\udc40 Visual Regression Diff Finish",
+  "on": {
+    "workflow_run": {
+      "workflows": [
+        "\ud83d\udc40 Visual Regression Diff Build"
+      ],
+      "types": [
+        "completed"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "jobs": {
+    "upstream-workflow-summary": {
+      "name": "upstream workflow summary",
+      "runs-on": "ubuntu-latest",
+      "outputs": {
+        "jobs": "${{ steps.visual_diff_build_job_status.outputs.result }}",
+        "upstream-job-link": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}/job/${{ steps.visual_diff_build_job_status.outputs.job-id }}",
+        "build-status": "${{ steps.visual_diff_build_job_status.outputs.build-status }}"
+      },
+      "steps": [
+        {
+          "name": "summary jobs status",
+          "uses": "actions/github-script@v8",
+          "id": "visual_diff_build_job_status",
+          "with": {
+            "script": "const response = await github.rest.actions.listJobsForWorkflowRun({\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  run_id: ${{ github.event.workflow_run.id }},\n});\n\n// { [name]: [conclusion] }, e.g. { 'test image': 'success' }\nconst jobs = (response.data?.jobs ?? []).reduce((acc, job) => {\n  if(job?.status === 'completed' && 'name' in job && 'conclusion' in job) {\n    acc[job.name] = {\n      id: job.id,\n      status: job.conclusion,\n    };\n  }\n  return acc;\n}, {});\n\nconst total = Object.keys(jobs).length;\nif(total === 0) core.setFailed('no jobs found');\n\n// the name here must be the same as `jobs.xxx.{name}`\nconsole.log('visual-diff report job status: %s', jobs['visual-diff report'].status);\n\n// set output\ncore.setOutput('job-id', jobs['visual-diff report'].id);\ncore.setOutput('build-status', jobs['visual-diff report'].status);\nreturn jobs;\n"
+          }
+        }
+      ]
+    },
+    "download-visual-regression-report": {
+      "name": "download visual-regression report",
+      "permissions": {
+        "actions": "read",
+        "issues": "write",
+        "pull-requests": "write",
+        "statuses": "write"
+      },
+      "runs-on": "ubuntu-latest",
+      "needs": [
+        "upstream-workflow-summary"
+      ],
+      "steps": [
+        {
+          "uses": "actions/checkout@v5"
+        },
+        {
+          "uses": "oven-sh/setup-bun@v2"
+        },
+        {
+          "name": "download image snapshot artifact",
+          "uses": "dawidd6/action-download-artifact@v11",
+          "with": {
+            "workflow": "${{ github.event.workflow_run.workflow_id }}",
+            "run_id": "${{ github.event.workflow_run.id }}",
+            "name": "visual-regression-diff-ref",
+            "path": "./tmp"
+          }
+        },
+        {
+          "name": "save PR id",
+          "id": "pr",
+          "run": "pr_id=$(<tmp/visual-regression-pr-id.txt)\nif ! [[ \"$pr_id\" =~ ^[0-9]+$ ]]; then\n  echo \"Error: pr-id.txt does not contain a valid numeric PR id. Please check.\"\n  exit 1\nfi\necho \"id=$pr_id\" >> $GITHUB_OUTPUT\n"
+        },
+        {
+          "name": "download report artifact",
+          "id": "download_report",
+          "if": "${{ needs.upstream-workflow-summary.outputs.build-status == 'success' || needs.upstream-workflow-summary.outputs.build-status == 'failure' }}",
+          "uses": "dawidd6/action-download-artifact@v11",
+          "with": {
+            "workflow": "${{ github.event.workflow_run.workflow_id }}",
+            "run_id": "${{ github.event.workflow_run.id }}",
+            "name": "visual-regression-report",
+            "path": "./tmp"
+          }
+        },
+        {
+          "name": "upload visual-regression report",
+          "id": "report",
+          "env": {
+            "ALI_OSS_AK_ID": "${{ secrets.ALI_OSS_AK_ID }}",
+            "ALI_OSS_AK_SECRET": "${{ secrets.ALI_OSS_AK_SECRET }}",
+            "PR_ID": "${{ steps.pr.outputs.id }}"
+          },
+          "run": "mkdir ./visualRegressionReport\ntar -xzvf tmp/visualRegressionReport.tar.gz -C ./visualRegressionReport\necho \"\u2705 Uncompress Finished\"\n\nrm package.json\nbun add ali-oss --no-save\necho \"\u2705 Install `ali-oss` Finished\"\n\necho \"\ud83e\udd16 Uploading\"\nnode scripts/visual-regression/upload.js ./visualRegressionReport --ref=pr-$PR_ID\necho \"\u2705 Uploaded\"\n\ndelimiter=\"$(openssl rand -hex 8)\"\necho \"content<<${delimiter}\" >> \"${GITHUB_OUTPUT}\"\necho \"$(<visualRegressionReport/report.md)\" >> \"${GITHUB_OUTPUT}\"\necho \"${delimiter}\" >> \"${GITHUB_OUTPUT}\"\n"
+        },
+        {
+          "name": "success comment",
+          "uses": "actions-cool/maintain-one-comment@v3",
+          "if": "${{ steps.report.outcome == 'success' }}",
+          "with": {
+            "token": "${{ secrets.GITHUB_TOKEN }}",
+            "body": "${{ steps.report.outputs.content }}\n<!-- VISUAL_DIFF_REGRESSION_HOOK -->\n",
+            "body-include": "<!-- VISUAL_DIFF_REGRESSION_HOOK -->",
+            "number": "${{ steps.pr.outputs.id }}"
+          }
+        },
+        {
+          "name": "failed comment",
+          "if": "${{ steps.download_report.outcome == 'failure' || steps.report.outcome == 'failure' || failure() }}",
+          "uses": "actions-cool/maintain-one-comment@v3",
+          "with": {
+            "token": "${{ secrets.GITHUB_TOKEN }}",
+            "body": "## Visual Regression Build for PR #${{ steps.pr.outputs.id }} Failed \u274c\nPotential causes:\n  - `upstream workflow` status: ${{ needs.upstream-workflow-summary.outputs.build-status }} [upstream job link](${{ needs.upstream-workflow-summary.outputs.upstream-job-link }})\n  - `current workflow` summary:\n    - `download report artifact` status: ${{ steps.download_report.outcome }}\n    - `report upload` status: ${{ steps.report.outcome }}\n    - workflow url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\n<!-- VISUAL_DIFF_REGRESSION_HOOK -->\n",
+            "body-include": "<!-- VISUAL_DIFF_REGRESSION_HOOK -->",
+            "number": "${{ steps.pr.outputs.id }}"
+          }
+        },
+        {
+          "name": "Reset Commit Status",
+          "uses": "actions/github-script@v8",
+          "if": "${{ steps.report.outcome == 'success' }}",
+          "env": {
+            "PR_ID": "${{ steps.pr.outputs.id }}"
+          },
+          "with": {
+            "github-token": "${{ secrets.GITHUB_TOKEN }}",
+            "script": "const prResponse = await github.rest.pulls.get({\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  pull_number: process.env.PR_ID,\n});\nconst prHeadSha = prResponse.data.head.sha;\n\nconst fullContent = ${{ toJSON(steps.report.outputs.content) }};\nconst hasVisualDiffSuccess = fullContent.includes('VISUAL_DIFF_SUCCESS');\nconst hasVisualDiffFailed = fullContent.includes('VISUAL_DIFF_FAILED');\n\nconst mergedStatus = hasVisualDiffSuccess ? 'success' : hasVisualDiffFailed ? 'failure' : 'pending';\n\nawait github.rest.repos.createCommitStatus({\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  sha: prHeadSha,\n  state: mergedStatus,\n  context: 'Visual Regression Diff Wait Approve',\n  description: hasVisualDiffSuccess ? 'Visual diff check pass' : 'Visual diff check failed',\n});\n"
+          }
+        }
+      ]
+    }
+  }
+}

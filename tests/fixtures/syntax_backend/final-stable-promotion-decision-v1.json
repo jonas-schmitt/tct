@@ -1,0 +1,103 @@
+{
+  "artifact_kind": "tct_syntax_backend_final_stable_promotion_decision_gate",
+  "version": 1,
+  "tool": "syntax_backend_final_stable_promotion_decision_gate",
+  "status": "stable_promotion_ready_decision",
+  "source_validation_matrix_preservation_gate": {
+    "artifact_kind": "tct_syntax_backend_validation_matrix_execution_preservation_gate",
+    "version": 1,
+    "tool": "syntax_backend_validation_matrix_execution_preservation_gate",
+    "module_path": "src/syntax_validation_matrix_preservation.rs",
+    "fixture_path": "tests/fixtures/syntax_backend/validation-matrix-execution-preservation-v1.json",
+    "source_validation_matrix_fixture": "tests/fixtures/syntax_backend/validation-matrix-gate-v1.json",
+    "execution_report_path": "target/tct-syntax-validation-matrix/execution-report-v1.json",
+    "report_validator_command": "python3 scripts/testing/run-syntax-validation-matrix.py --validate-report target/tct-syntax-validation-matrix/execution-report-v1.json",
+    "completed_promotion_class": "syntax backend validation matrix execution evidence preservation gate",
+    "next_missing_stable_promotion_class": "syntax backend final stable-promotion review gate"
+  },
+  "compiler_boundary": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "preserves_json_schema_backend_contract": true,
+    "production_grammar_compiler_path_changed": false,
+    "sidecar_only": false,
+    "tct_compiler_route_allowed": true
+  },
+  "evidence_snapshot": {
+    "matrix_id": "syntax-json-backend-grade-validation-matrix-v1",
+    "route_entrypoint": "compile_checked_syntax_compiler_route",
+    "production_route_entrypoint": "compile_checked_syntax_production_route",
+    "route_gate": "syntax-production-route-v0",
+    "route_metadata_field": "target_agnostic_compiler_route",
+    "preservation_policy_id": "syntax-validation-matrix-execution-preservation-v1",
+    "execution_report_path": "target/tct-syntax-validation-matrix/execution-report-v1.json",
+    "execution_report_status": "release_depth_execution_report",
+    "audit_inventory_helper": "scripts/testing/test-quality-audit.py",
+    "promotion_readiness_report": "reports/m6-cross-target-contract-closure-2026-07-21.md",
+    "json_backend_parity_fixture": "tests/fixtures/syntax_backend/json-backend-parity-routing-gate-v1.json",
+    "completed_classes": [
+      "syntax backend production route implementation gate",
+      "syntax backend JSON-backend parity routing gate",
+      "syntax backend JSON-backend-grade validation matrix route ownership gate",
+      "syntax backend validation matrix execution report helper gate",
+      "syntax backend validation matrix execution evidence preservation gate"
+    ],
+    "required_categories": [
+      "input_validation",
+      "generated_code_compilation",
+      "semantic_round_trips",
+      "strict_recovery_decode",
+      "consumed_token_accounting",
+      "token_vocabulary_bpe",
+      "generated_artifact_reproducibility",
+      "maintained_documentation",
+      "audit_coverage",
+      "json_backend_parity"
+    ],
+    "route_owned_evidence": [
+      "csharp_minimal_class_syntax_v0",
+      "csharp_local_string_return_literal_syntax_v0",
+      "go_minimal_function_syntax_v0",
+      "go_local_declaration_syntax_v0",
+      "generated_go_minimal_function_real_source_strings_compare_demo"
+    ],
+    "required_evidence_inputs": [
+      "tests/fixtures/syntax_backend/validation-matrix-gate-v1.json",
+      "tests/fixtures/syntax_backend/validation-matrix-execution-preservation-v1.json",
+      "tests/fixtures/syntax_backend/json-backend-parity-routing-gate-v1.json",
+      "tests/fixtures/syntax_backend/production-route-implementation-gate-v1.json",
+      "scripts/testing/test-quality-audit.py",
+      "reports/m6-cross-target-contract-closure-2026-07-21.md",
+      "target/tct-syntax-validation-matrix/execution-report-v1.json"
+    ],
+    "required_validation_commands": [
+      "python3 scripts/testing/run-syntax-validation-matrix.py --output target/tct-syntax-validation-matrix/execution-report-v1.json",
+      "python3 scripts/testing/run-syntax-validation-matrix.py --validate-report target/tct-syntax-validation-matrix/execution-report-v1.json",
+      "./scripts/testing/quality-check.sh",
+      "cargo test --test syntax_generated_codec_gate_test",
+      "cargo test --test syntax_backend_boundary_test",
+      "./scripts/testing/test-syntax-backend-gates.sh",
+      "python3 scripts/testing/test-quality-audit.py --fail-on-gaps",
+      "git diff --check"
+    ],
+    "report_refresh_validated_for_decision": true,
+    "audit_inventory_current": true,
+    "json_schema_backend_unchanged": true,
+    "arena_ir_proof_used": false
+  },
+  "promotion_decision": {
+    "decision": "ready_for_stable_metadata_promotion_implementation",
+    "stable_ready": true,
+    "stable_backend_promoted_in_this_gate": false,
+    "route_enabled": true,
+    "next_task": "syntax backend stable metadata promotion implementation gate",
+    "stable_backend_scope": "feature_limited_parser_backed_syntax_backend",
+    "report_refresh_validated": true,
+    "preserves_json_schema_backend": true,
+    "arena_ir_proof_used": false,
+    "external_sidecars_promoted": false,
+    "remaining_blockers": []
+  },
+  "completed_promotion_class": "syntax backend final stable-promotion review gate",
+  "next_missing_stable_promotion_class": "syntax backend stable metadata promotion implementation gate"
+}

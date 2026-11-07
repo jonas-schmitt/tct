@@ -1,0 +1,7 @@
+{
+  "name": "test-generic",
+  "flexible_field": {
+    "any_property": "any_value",
+    "another_prop": 42
+  }
+}

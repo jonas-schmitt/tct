@@ -1,0 +1,106 @@
+{
+  "artifact_kind": "tct_syntax_backend_validation_hook_contract",
+  "version": 1,
+  "api_version": "syntax-generator-api-v0",
+  "source_artifact_envelope": {
+    "artifact_kind": "tct_syntax_backend_generated_artifact_envelope",
+    "version": 1,
+    "fixture_path": "tests/fixtures/syntax_backend/generated-artifact-envelope-v1.json",
+    "module_path": "src/syntax_artifact_envelope.rs",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh"
+  },
+  "target_ids": [
+    "toy",
+    "csharp",
+    "go"
+  ],
+  "validation_surfaces": [
+    "source_reparse_or_equivalent_check",
+    "renderer_or_formatter_sidecar_status",
+    "external_check_non_promotion_policy",
+    "validation_hook_provenance"
+  ],
+  "source_reparse_or_equivalent_checks": {
+    "required": true,
+    "checks": [
+      {
+        "target": "toy",
+        "check_kind": "source_parse_render_equivalence",
+        "sidecar_evidence": "tests/toy_grammar_frontend_test.rs"
+      },
+      {
+        "target": "csharp",
+        "check_kind": "parser_metadata_reproduction",
+        "sidecar_evidence": "scripts/analysis/csharp_syntax_metadata_smoke.py --self-test"
+      },
+      {
+        "target": "go",
+        "check_kind": "parser_metadata_reproduction",
+        "sidecar_evidence": "go run scripts/analysis/go_syntax_metadata_smoke.go --self-test"
+      }
+    ]
+  },
+  "renderer_formatter_status": {
+    "renderer_metadata_required": true,
+    "formatter_status_sidecar_only": true,
+    "external_formatter_stable_gate_promoted": false,
+    "generated_hot_path_external_checks_allowed": false,
+    "required_external_checks": [
+      "renderer_metadata",
+      "formatter_sidecar_status",
+      "no_external_toolchain_in_generated_hot_path"
+    ]
+  },
+  "external_check_policy": {
+    "stable_gate_promoted": false,
+    "sidecar_only_until_explicit_promotion": true,
+    "disallowed_in_generated_hot_path": true,
+    "checks": [
+      "parser",
+      "renderer",
+      "formatter",
+      "compiler",
+      "functional_validator"
+    ]
+  },
+  "validation_hook_requirements": {
+    "source_module": "src/grammar_ir_structural_model.rs",
+    "runs_in_generated_hot_path": false,
+    "required_hook_ids": [
+      "grammar_ir.required_fields",
+      "toy_grammar_frontend.strict_decode",
+      "grammar_structural_token_ranges"
+    ],
+    "required_owner_modules": [
+      "src/grammar_ir.rs",
+      "src/toy_grammar_frontend.rs",
+      "src/grammar_ir_structural_model.rs"
+    ]
+  },
+  "provenance_fields": [
+    "target_id",
+    "source_or_metadata_sha256",
+    "parser_or_grammar_identity",
+    "renderer_metadata_id",
+    "validation_hook_ids",
+    "external_check_policy",
+    "sidecar_boundary_sha256"
+  ],
+  "compiler_boundary": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "preserves_json_schema_backend_contract": true,
+    "production_grammar_compiler_path_changed": false,
+    "sidecar_only": true,
+    "tct_compiler_route_allowed": false
+  },
+  "non_goals": [
+    "no TctCompiler route",
+    "no generated JSON Schema output change",
+    "no external parser or formatter stable promotion",
+    "no generated hot path external checks"
+  ],
+  "completed_promotion_class": "syntax backend validation hook contract fixture",
+  "next_missing_stable_promotion_class": "syntax backend JSON-backend parity routing gate"
+}

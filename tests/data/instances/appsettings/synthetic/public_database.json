@@ -1,0 +1,22 @@
+{
+  "AllowedHosts": "localhost",
+  "ConnectionStrings": {
+    "FixtureStore": "Data Source=fixture.db"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information"
+    },
+    "Console": {
+      "IncludeScopes": false
+    }
+  },
+  "FixtureOptions": {
+    "Enabled": true,
+    "BatchSize": 8,
+    "Tags": [
+      "alpha",
+      "beta"
+    ]
+  }
+}

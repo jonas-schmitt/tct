@@ -1,0 +1,53 @@
+{
+  "artifact_kind": "tct_sql_schema_linking_token_layout_pin",
+  "version": 0,
+  "note": "Absolute pin of sql_syntax_token_layout ranges, pad, vocab, fixed role offsets, and the shared payload pool (SQL_SHARED_PAYLOAD_POOL_WIDTH=256). Canonical SQL schema-linking streams use the elided stream contract (raw-syntax-stream-elided-v1): mask-forced tokens are omitted; expand via SqlSchemaLinkingRuntime::expand_elided_tokens. The raw syntax state machine remains expanded-native; elide/expand are pure total transforms. This pin is a breaking_change vs the pre-collapse four-band layout (vocab 833→321): utf8_byte_payload, u8_integer_payload, and menu_index_payload are exact-coincident roles on [64, 320); structural_decisions stays disjoint at [0, 64). Downstream raw-token corpora and BPE artifacts must be rematerialized (non-exact_reuse). This is a token-layout pin for the SQL schema-linking frontend only — not a tree-sitter grammar pin and not a production route. VOCAB_SIZE is catalog-independent (P4). SQL opts out of cross-language shared bands; do not edit Go or C# golden layout pins from the SQL lane. Integer value domain uses variable-width escape multi-digit on the 256-wide shared pool (capacity 16_777_215).",
+  "current": {
+    "token_layout": {
+      "layout_id": "sql-schema-linking-token-layout-v1",
+      "layout_version": 1,
+      "stream_contract": "raw-syntax-stream-elided-v1",
+      "vocab_size": 321,
+      "pad_token": 320,
+      "ranges": [
+        {
+          "id": "sql.structural_tokens",
+          "role": "structural_decisions",
+          "start": 0,
+          "end_exclusive": 64
+        },
+        {
+          "id": "sql.utf8_byte_payload",
+          "role": "utf8_byte_payload",
+          "start": 64,
+          "end_exclusive": 320
+        },
+        {
+          "id": "sql.u8_integer_payload",
+          "role": "u8_integer_payload",
+          "start": 64,
+          "end_exclusive": 320
+        },
+        {
+          "id": "sql.menu_index_payload",
+          "role": "menu_index_payload",
+          "start": 64,
+          "end_exclusive": 320
+        }
+      ],
+      "role_offsets": {
+        "boolean_false": 8,
+        "boolean_true": 9,
+        "field_end": 3,
+        "field_missing": 4,
+        "field_start": 2,
+        "node_end": 1,
+        "node_start": 0,
+        "payload_end": 7,
+        "repeated_empty": 5,
+        "terminal": 6
+      },
+      "alternative_node_start_tokens": {}
+    }
+  }
+}

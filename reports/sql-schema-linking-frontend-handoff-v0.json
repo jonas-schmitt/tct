@@ -1,0 +1,139 @@
+{
+  "artifact_kind": "tct_sql_schema_linking_frontend_handoff_v0",
+  "version": 0,
+  "claim_boundary": "compiler_sql_schema_linking_only",
+  "no_training_claims": true,
+  "not_a_production_route": true,
+  "repo_commit": "086d722501bfdce526bd91176c4cc502cca78dd4",
+  "tokenizer_module_id": "sql_schema_linking_sqlite_subset_v0",
+  "layout_id": "sql-schema-linking-token-layout-v1",
+  "layout_pin_fixture": "tests/fixtures/syntax_structural_model/sql-token-layout-pin-v0.json",
+  "vocab_size": 321,
+  "pad_token": 320,
+  "menu_band": {
+    "role": "menu_index_payload",
+    "width": 256,
+    "max_digits": 2,
+    "capacity": 65536,
+    "notes": "Scope-relative table/column ordinals; VOCAB_SIZE catalog-independent (P4). Band width stays 256 (SharedAlphabet u8 alias, P9); multi-digit radix capacity is width^max_digits (SQL max_digits=2 → 65536)."
+  },
+  "schema_pin": {
+    "db_id": "tct_fixture_join",
+    "fixture_dir": "tests/fixtures/sql_schema_linking/",
+    "tables_json_sha256": "4e009388a1cf347645b1370d716dedec1d6d9af9ff8b54adc8bef13b425c64c0",
+    "gold_queries_json_sha256": "a4be7da20cad3ea1bc248153d3b531cc25db8111a3022e8dced847e88bd8a871",
+    "pin_artifact": "sql_schema_linking_fixture_pin_v0"
+  },
+  "encode_decode": {
+    "generic_codec": true,
+    "round_trip_claim": "tree identity + render fixpoint (P8); not byte-identity with arbitrary SQL",
+    "decode_to_executable_sql": "decode tokens → AST → render_select → canonical SQL",
+    "subset_id": "sql_schema_linking_m0_m5_select_v0"
+  },
+  "shared_alphabet": {
+    "per_grammar_default": true,
+    "shared_mode_supported": true,
+    "menus_under_shared": "u8_integer_payload band alias (width 256); multi-digit capacity base^max_digits; no SHARED_ALPHABET_* edits"
+  },
+  "gold_stats_summary": "reports/sql-schema-linking-gold-stats-v0.json",
+  "example_token_hashes": [
+    {
+      "gold_id": "select_one_table",
+      "token_count": 67,
+      "menu_token_count": 3,
+      "stream_sha256": "0f410ddfb0800ac7bd07485364fdf6debbf881f656cdcc5676544a7272509f52",
+      "rendered_sql": "SELECT \"name\", \"city\" FROM \"customers\""
+    },
+    {
+      "gold_id": "join_two_tables",
+      "token_count": 122,
+      "menu_token_count": 6,
+      "stream_sha256": "0e5eb58b6752e606d21614d890f24b030e910fd9825ba168ac5f5bd149809dc5",
+      "rendered_sql": "SELECT \"customers\".\"name\", \"orders\".\"amount\" FROM \"customers\" JOIN \"orders\" ON \"customers\".\"customer_id\" = \"orders\".\"customer_id\""
+    },
+    {
+      "gold_id": "star_structural",
+      "token_count": 40,
+      "menu_token_count": 1,
+      "stream_sha256": "d09d9fc120c0d30e54cdbde4dae59fd1398700911b6498bab95cc6642628e122",
+      "rendered_sql": "SELECT * FROM \"products\""
+    },
+    {
+      "gold_id": "three_table_join",
+      "token_count": 189,
+      "menu_token_count": 10,
+      "stream_sha256": "8de18d69d80880c47800848836368d890de1bba0415cb24568296ce4382943c6",
+      "rendered_sql": "SELECT \"customers\".\"name\", \"products\".\"title\", \"orders\".\"amount\" FROM \"customers\" JOIN \"orders\" ON \"customers\".\"customer_id\" = \"orders\".\"customer_id\" JOIN \"products\" ON \"products\".\"product_id\" = \"orders\".\"product_id\""
+    },
+    {
+      "gold_id": "where_eq_string",
+      "token_count": 101,
+      "menu_token_count": 3,
+      "stream_sha256": "085f5d4f21d837fd164fc354805b6d2027c977d7f9bf4a580a01c32bc88a8a9e",
+      "rendered_sql": "SELECT \"name\" FROM \"customers\" WHERE \"city\" = 'Springfield'"
+    },
+    {
+      "gold_id": "where_cmp_and_or",
+      "token_count": 222,
+      "menu_token_count": 6,
+      "stream_sha256": "054b42b036d031f5ef34acb5c25bb75eca7774ea74bd2ed6df25dd218868fbae",
+      "rendered_sql": "SELECT \"name\", \"city\" FROM \"customers\" WHERE \"customer_id\" > 0 AND \"city\" = 'Springfield' OR \"city\" = 'Shelbyville'"
+    },
+    {
+      "gold_id": "join_with_where",
+      "token_count": 157,
+      "menu_token_count": 7,
+      "stream_sha256": "ba676d23962f25d45cbcc6f1d4ac02e1f1f214f6d7c58098178eb82168e34b7b",
+      "rendered_sql": "SELECT \"customers\".\"name\", \"orders\".\"amount\" FROM \"customers\" JOIN \"orders\" ON \"customers\".\"customer_id\" = \"orders\".\"customer_id\" WHERE \"orders\".\"amount\" >= 100"
+    },
+    {
+      "gold_id": "group_order_limit",
+      "token_count": 90,
+      "menu_token_count": 4,
+      "stream_sha256": "3658ad611e28fb0f5faea861a6d08f056e46d3eea8d984e825aff925f08db553",
+      "rendered_sql": "SELECT \"city\" FROM \"customers\" GROUP BY \"city\" ORDER BY \"city\" ASC LIMIT 5"
+    },
+    {
+      "gold_id": "where_group_having_order_limit",
+      "token_count": 170,
+      "menu_token_count": 6,
+      "stream_sha256": "b0a3cf19b1dc2451ef2e98e94205828ad7f97faeed0b06f85c6e75436369fd69",
+      "rendered_sql": "SELECT \"city\" FROM \"customers\" WHERE \"customer_id\" > 0 GROUP BY \"city\" HAVING \"city\" = 'Springfield' ORDER BY \"city\" DESC LIMIT 10"
+    },
+    {
+      "gold_id": "count_star",
+      "token_count": 51,
+      "menu_token_count": 1,
+      "stream_sha256": "d3f1648e178c00af7a2aa45b7d0ca89c189aa5e696846ef7253d5512c843c06a",
+      "rendered_sql": "SELECT COUNT(*) FROM \"customers\""
+    },
+    {
+      "gold_id": "sum_aggregate",
+      "token_count": 67,
+      "menu_token_count": 2,
+      "stream_sha256": "7cb39b536225041b721ba7ed92e2473c3d8e91405161af20f59c5c38db78e53f",
+      "rendered_sql": "SELECT SUM(\"amount\") FROM \"orders\""
+    },
+    {
+      "gold_id": "select_distinct",
+      "token_count": 57,
+      "menu_token_count": 2,
+      "stream_sha256": "45f8733d8c747eba652c968f20a65ef6339c7f5de9a2abce8febb267fa1a1cb1",
+      "rendered_sql": "SELECT DISTINCT \"city\" FROM \"customers\""
+    },
+    {
+      "gold_id": "scalar_subquery",
+      "token_count": 150,
+      "menu_token_count": 5,
+      "stream_sha256": "a01ca018a387cba368343237832ca4add7fb849959da985d41542c385cca4bb2",
+      "rendered_sql": "SELECT \"name\" FROM \"customers\" WHERE \"customer_id\" = (SELECT \"customer_id\" FROM \"orders\" LIMIT 1)"
+    }
+  ],
+  "consumer_notes": [
+    "Not a production route; do not register in SYNTAX_CODEC_REGISTRY.",
+    "Column menus are scope-tracking (FROM/JOIN order), not global catalog-only.",
+    "Qualifier uses need no token; star and COUNT(*) are structural (P7).",
+    "Tokens per schema reference are scope-dependent, not always 1 (multi-digit menu ordinals when live cardinality exceeds band width).",
+    "Train/eval ownership stays in the downstream training repository after consumer validator lands."
+  ]
+}

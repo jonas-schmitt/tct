@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Array vs Object Disambiguation Test",
+  "description": "Tests schema-aware decoding when arrays and objects with similar token patterns could be confused",
+  "type": "object",
+  "properties": {
+    "data": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Array of strings"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": ["items"],
+          "additionalProperties": false,
+          "description": "Object with items array"
+        }
+      ]
+    }
+  },
+  "required": ["data"],
+  "additionalProperties": false
+}

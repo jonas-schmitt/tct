@@ -1,0 +1,90 @@
+{
+  "artifact_kind": "tct_syntax_backend_input_validation_diagnostics_contract",
+  "version": 1,
+  "api_version": "syntax-generator-api-v0",
+  "source_validation_hook_contract": {
+    "artifact_kind": "tct_syntax_backend_validation_hook_contract",
+    "version": 1,
+    "fixture_path": "tests/fixtures/syntax_backend/validation-hook-contract-v1.json",
+    "module_path": "src/syntax_validation_hooks.rs",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh"
+  },
+  "target_ids": [
+    "toy",
+    "csharp",
+    "go"
+  ],
+  "input_surface": {
+    "surface": "checked_syntax_input",
+    "required_fields": [
+      "target_id",
+      "source_or_metadata_sha256",
+      "parser_or_grammar_identity",
+      "diagnostics",
+      "unsupported_syntax_errors",
+      "sidecar_boundary"
+    ],
+    "rule_path_required": true,
+    "source_or_metadata_sha256_required": true,
+    "parser_or_grammar_identity_required": true
+  },
+  "diagnostic_shape": {
+    "fields": [
+      "severity",
+      "code",
+      "message",
+      "rule_path",
+      "source_path",
+      "span"
+    ],
+    "required_severities": [
+      "error",
+      "warning"
+    ],
+    "rule_path_format": "grammar_rule_or_parser_node_path",
+    "span_policy": "optional_when_source_offsets_unavailable"
+  },
+  "unsupported_syntax_error_shape": {
+    "required": true,
+    "fields": [
+      "target_id",
+      "unsupported_kind",
+      "rule_path",
+      "message",
+      "source_or_metadata_sha256",
+      "parser_or_grammar_identity"
+    ],
+    "requires_rule_path": true,
+    "stable_gate_promoted": false
+  },
+  "provenance_fields": [
+    "target_id",
+    "source_or_metadata_sha256",
+    "parser_or_grammar_identity",
+    "sidecar_boundary_sha256",
+    "diagnostic_contract_sha256"
+  ],
+  "sidecar_status": {
+    "sidecar_only": true,
+    "stable_gate_promoted": false,
+    "live_toolchain_required": false,
+    "generated_hot_path_external_checks_allowed": false
+  },
+  "compiler_boundary": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "preserves_json_schema_backend_contract": true,
+    "production_grammar_compiler_path_changed": false,
+    "sidecar_only": true,
+    "tct_compiler_route_allowed": false
+  },
+  "non_goals": [
+    "no TctCompiler route",
+    "no generated JSON Schema output change",
+    "no external parser or formatter stable promotion",
+    "no live toolchain requirement for fixture validation"
+  ],
+  "completed_promotion_class": "syntax backend input validation diagnostics contract fixture",
+  "next_missing_stable_promotion_class": "syntax backend JSON-backend parity routing gate"
+}

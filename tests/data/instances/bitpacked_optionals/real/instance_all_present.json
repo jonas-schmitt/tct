@@ -1,0 +1,14 @@
+{
+  "required_field": "always present",
+  "optional1": "value1",
+  "optional2": 42,
+  "optional3": true,
+  "optional4": 3.14,
+  "optional5": "value5",
+  "optional6": 99,
+  "optional7": false,
+  "optional8": 2.71,
+  "optional9": "value9",
+  "optional10": 123,
+  "nullable_optional": "nullable value"
+}

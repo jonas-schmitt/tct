@@ -1,0 +1,182 @@
+{
+  "artifact_kind": "tct_syntax_backend_production_route_implementation_gate",
+  "version": 1,
+  "tool": "syntax_backend_production_route_implementation_gate",
+  "status": "feature_limited_stable_metadata_promoted",
+  "source_stable_promotion_review_gate": {
+    "artifact_kind": "tct_syntax_backend_stable_promotion_review_gate",
+    "version": 1,
+    "module_path": "src/syntax_stable_promotion_review.rs",
+    "fixture_path": "tests/fixtures/syntax_backend/stable-promotion-review-gate-v1.json",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh",
+    "completed_promotion_class": "syntax backend stable promotion review gate",
+    "source_audit_coverage_routing_gate": {
+      "artifact_kind": "tct_syntax_backend_audit_coverage_routing_gate",
+      "version": 1,
+      "module_path": "src/syntax_audit_coverage_routing.rs",
+      "fixture_path": "tests/fixtures/syntax_backend/audit-coverage-routing-gate-v1.json",
+      "completed_promotion_class": "syntax backend audit coverage routing gate"
+    }
+  },
+  "route_state": {
+    "route_name": "syntax",
+    "route_registered": true,
+    "route_enabled": true,
+    "public_api_changed": false,
+    "uses_json_schema_compiler": false,
+    "uses_syntax_renderer_api": true,
+    "stable_backend_promoted": true,
+    "route_entrypoint": "compile_checked_syntax_production_route",
+    "route_gate": "syntax-production-route-v0"
+  },
+  "stable_metadata": {
+    "stable_backend_scope": "feature_limited_parser_backed_syntax_backend",
+    "promotion_decision": "ready_for_stable_metadata_promotion_implementation",
+    "promotion_decision_fixture": "tests/fixtures/syntax_backend/final-stable-promotion-decision-v1.json",
+    "completed_promotion_class": "syntax backend stable metadata promotion implementation gate",
+    "next_missing_stable_promotion_class": "Build Go Source-Record Raw-Token Generator Core",
+    "generated_json_schema_output_changed": false,
+    "core_compiler_path_changed": false,
+    "arena_ir_proof_used": false,
+    "external_sidecars_promoted": false
+  },
+  "compiler_boundary": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "preserves_json_schema_backend_contract": true,
+    "production_grammar_compiler_path_changed": false,
+    "sidecar_only": false,
+    "tct_compiler_route_allowed": true
+  },
+  "route_contract": {
+    "accepted_input": "checked GrammarIR -> StructuralModel",
+    "target_ids": [
+      "toy",
+      "csharp",
+      "go"
+    ],
+    "target_agnostic_compiler_entrypoint": "compile_checked_syntax_compiler_route",
+    "target_inference_source": "src/syntax_production_route.rs::SYNTAX_PRODUCTION_ROUTE_CONSTRUCTS",
+    "paired_route_evidence": [
+      "csharp_minimal_class_syntax_v0",
+      "csharp_local_string_return_literal_syntax_v0",
+      "go_minimal_function_syntax_v0",
+      "go_local_declaration_syntax_v0",
+      "generated_go_minimal_function_real_source_strings_compare_demo"
+    ],
+    "parser_backed_reproducibility_evidence": [
+      "csharp_minimal_class_syntax_v0",
+      "csharp_local_string_return_literal_syntax_v0",
+      "go_minimal_function_syntax_v0",
+      "go_local_declaration_syntax_v0"
+    ],
+    "strict_recovery_decode_route_evidence": [
+      "csharp_minimal_class_syntax_v0",
+      "csharp_local_string_return_literal_syntax_v0",
+      "go_minimal_function_syntax_v0",
+      "go_local_declaration_syntax_v0",
+      "generated_go_minimal_function_real_source_strings_compare_demo"
+    ],
+    "consumed_token_accounting_route_evidence": [
+      "csharp_minimal_class_syntax_v0",
+      "csharp_local_string_return_literal_syntax_v0",
+      "go_minimal_function_syntax_v0",
+      "go_local_declaration_syntax_v0",
+      "generated_go_minimal_function_real_source_strings_compare_demo"
+    ],
+    "token_vocabulary_bpe_route_evidence": [
+      "csharp_minimal_class_syntax_v0",
+      "csharp_local_string_return_literal_syntax_v0",
+      "go_minimal_function_syntax_v0",
+      "go_local_declaration_syntax_v0",
+      "generated_go_minimal_function_real_source_strings_compare_demo"
+    ],
+    "validation_matrix_categories": [
+      "input_validation",
+      "generated_code_compilation",
+      "semantic_round_trips",
+      "strict_recovery_decode",
+      "consumed_token_accounting",
+      "token_vocabulary_bpe",
+      "generated_artifact_reproducibility",
+      "maintained_documentation",
+      "audit_coverage",
+      "json_backend_parity"
+    ],
+    "validation_matrix_route_evidence": [
+      "csharp_minimal_class_syntax_v0",
+      "csharp_local_string_return_literal_syntax_v0",
+      "go_minimal_function_syntax_v0",
+      "go_local_declaration_syntax_v0",
+      "generated_go_minimal_function_real_source_strings_compare_demo"
+    ],
+    "validation_matrix_completed_promotion_class": "syntax backend JSON-backend-grade validation matrix route ownership gate",
+    "renderer_api_module": "src/syntax_generated_codec.rs",
+    "renderer_functions": [
+      "render_toy_syntax_codec_fixture",
+      "render_csharp_syntax_codec_fixture",
+      "render_go_syntax_codec_fixture"
+    ],
+    "output_artifact": "SyntaxGeneratedCodecArtifact",
+    "required_surfaces": [
+      "checked_syntax_input",
+      "structural_model_boundary",
+      "syntax_generated_codec_renderer_api",
+      "generated_codec_artifact_metadata",
+      "strict_recovery_decode_policy",
+      "consumed_token_accounting",
+      "token_vocabulary_bpe_invariants",
+      "generated_artifact_reproducibility",
+      "audit_markers",
+      "json_backend_parity",
+      "validation_matrix"
+    ],
+    "stable_metadata_claims": [
+      "feature_limited_parser_backed_syntax_backend",
+      "stable_route_metadata_promoted",
+      "no_arena_ir_promotion",
+      "no_generated_json_schema_output_change",
+      "no_core_compiler_path_change",
+      "no_json_schema_compiler_pass_change",
+      "no_generated_source_substring_dependency"
+    ]
+  },
+  "route_setup": {
+    "source_of_truth": "src/syntax_production_route.rs::SYNTAX_PRODUCTION_ROUTE_CONSTRUCTS",
+    "completed_promotion_class": "syntax backend route setup normalization tranche",
+    "construct_identity_fields": [
+      "target_id",
+      "grammar_id",
+      "completed_promotion_class",
+      "metadata_path",
+      "generated_test_markers"
+    ],
+    "next_missing_stable_promotion_class_source": "src/syntax_production_route.rs::NEXT_MISSING_STABLE_PROMOTION_CLASS",
+    "projector_metadata_setup_source": "src/syntax_production_route.rs::syntax_production_route_projector_metadata_setup",
+    "projector_metadata_setup_fields": [
+      "projector_command",
+      "checked_metadata_path",
+      "generated_output_path",
+      "route_manifest_projector_backed"
+    ],
+    "completed_projector_metadata_setup_class": "syntax backend projector-driven metadata route setup tranche",
+    "checked_csharp_metadata_projector": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/minimal_class/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/minimal_class/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+    "checked_go_metadata_projector": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture <fixture> --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/<fixture>.syntax-metadata-v0.json --self-test",
+    "projector_driven_checked_metadata": true,
+    "build_script_required": false
+  },
+  "json_backend_parity": {
+    "stable_json_schema_backend_unchanged": true,
+    "generated_json_schema_output_changed": false,
+    "existing_generated_templates_changed": false,
+    "json_schema_compiler_passes_changed": false,
+    "required_validation": [
+      "cargo test --test round_trip_test test_round_trip",
+      "python3 scripts/testing/test-quality-audit.py --fail-on-gaps",
+      "./scripts/testing/test-syntax-backend-gates.sh"
+    ]
+  },
+  "completed_promotion_class": "syntax backend production route implementation gate",
+  "next_missing_stable_promotion_class": "Build Go Source-Record Raw-Token Generator Core"
+}

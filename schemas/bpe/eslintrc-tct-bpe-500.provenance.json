@@ -1,0 +1,111 @@
+{
+  "command": [
+    "/home/jonas/git/tct/target/publication-clearance/public-bpe-20261107/cargo-target/debug/tct-train-bpe",
+    "--schema",
+    "schemas/popular/eslintrc.json",
+    "--instances",
+    "tests/data/instances/eslintrc/synthetic/public_*.json",
+    "--target-vocab",
+    "500",
+    "--output",
+    "schemas/bpe/eslintrc-tct-bpe-500.json",
+    "--name",
+    "eslintrc",
+    "--optimization",
+    "O3"
+  ],
+  "schema_name": "eslintrc",
+  "instances_pattern": "tests/data/instances/eslintrc/synthetic/public_*.json",
+  "encoded_input": null,
+  "cache_path": null,
+  "schema_file": {
+    "path": "schemas/popular/eslintrc.json",
+    "bytes": 55190,
+    "sha256": "c02a1203b114085841fe912bf352ff8246a36e26f469df0d70ef5af59aa31867"
+  },
+  "encoded_input_file": null,
+  "prepare_data_metadata_file": null,
+  "cache_file": null,
+  "input_files": [
+    {
+      "path": "schemas/popular/eslintrc.json",
+      "bytes": 55190,
+      "sha256": "c02a1203b114085841fe912bf352ff8246a36e26f469df0d70ef5af59aa31867"
+    },
+    {
+      "path": "tests/data/instances/eslintrc/synthetic/public_minimal.json",
+      "bytes": 419,
+      "sha256": "7dd2a1bf3b54dc753acd598b310f6191ae4e800141115d4a1576e8b6486643f6"
+    },
+    {
+      "path": "tests/data/instances/eslintrc/synthetic/public_overrides.json",
+      "bytes": 543,
+      "sha256": "bb57710fa04e79cf86cb8698ad801ad974a459b4be6689f4e4d53fadb5fe406a"
+    },
+    {
+      "path": "tests/data/instances/eslintrc/synthetic/public_rule_options.json",
+      "bytes": 612,
+      "sha256": "c1ca156964a3ed05d94273336fbfbb8397eed12a6ddfc380ceb10a366548e2e3"
+    }
+  ],
+  "input_corpus_fingerprint": "f21c8aea16d2aa6eb803b892a88c45aeea5ba2e8c091d9c4bd1d58058aae2a79",
+  "token_corpus": {
+    "source": "instance_encoding",
+    "sequence_count": 3,
+    "sequence_fingerprint": "cd42d9226d2cd812fec2b034e8a20283cefb4bb72fdf211f6b38c388d9d90236",
+    "sample_size": null,
+    "sample_seed": null,
+    "cache_path": null,
+    "cache_hit": false,
+    "cache_written": false,
+    "parallel_early_stop": false,
+    "truncated_to_sample_size": false,
+    "selected_instance_files": [],
+    "accepted_instance_files": [
+      {
+        "path": "tests/data/instances/eslintrc/synthetic/public_minimal.json",
+        "bytes": 419,
+        "sha256": "7dd2a1bf3b54dc753acd598b310f6191ae4e800141115d4a1576e8b6486643f6"
+      },
+      {
+        "path": "tests/data/instances/eslintrc/synthetic/public_overrides.json",
+        "bytes": 543,
+        "sha256": "bb57710fa04e79cf86cb8698ad801ad974a459b4be6689f4e4d53fadb5fe406a"
+      },
+      {
+        "path": "tests/data/instances/eslintrc/synthetic/public_rule_options.json",
+        "bytes": 612,
+        "sha256": "c1ca156964a3ed05d94273336fbfbb8397eed12a6ddfc380ceb10a366548e2e3"
+      }
+    ],
+    "rejected_instance_files": []
+  },
+  "output_files": [
+    {
+      "path": "schemas/bpe/eslintrc-tct-bpe-500.json",
+      "bytes": 25996,
+      "sha256": "d8e833378372e03bb5df45b597d80bea690176d172f8fa45147807ea9183ed7f"
+    }
+  ],
+  "base_vocab_size": 257,
+  "base_vocab_source": "schema",
+  "optimization_level": "O3",
+  "target_vocab": 500,
+  "target_avg_length": null,
+  "schema_ids": [],
+  "reserved_special_tokens": 2,
+  "max_merges_deprecated": null,
+  "checkpoints": null,
+  "sample_size": null,
+  "trained_on_instances": 3,
+  "generated_merges": 240,
+  "timings": {
+    "training_wall_time_ns": 5121298,
+    "provenance_hashing_ns": 1247294
+  },
+  "provenance_path": "schemas/bpe/eslintrc-tct-bpe-500.provenance.json",
+  "created_at": "2026-11-07T11:10:32.745532106+00:00",
+  "tct_version": "0.1.0",
+  "repo_commit": "cd962f24e751cdb7a0f9225e519659058839e250",
+  "repo_dirty": false
+}

@@ -1,0 +1,15 @@
+{
+  "description": "Test instances for simple untagged enum (string vs number)",
+  "instances": [
+    {
+      "file": "test1.json",
+      "description": "String variant",
+      "expected_variant": "string"
+    },
+    {
+      "file": "test2.json",
+      "description": "Number variant",
+      "expected_variant": "number"
+    }
+  ]
+}

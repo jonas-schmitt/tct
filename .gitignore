@@ -1,0 +1,31 @@
+# Cargo build output
+/target/
+**/*.rs.bk
+*.pdb
+
+# Python
+.venv/
+**/__pycache__/
+*.pyc
+.pytest_cache/
+
+# Root data directory for downloaded corpora; test fixtures under tests/data/
+# are tracked
+/data/
+
+# Generated wheel packages (build artifacts)
+wheels/
+examples/**/*.whl
+
+# Logs and editor files
+*.log
+*.swp
+.idea/
+.vscode/
+
+# Local environment and OS files
+.env
+.env.*
+.DS_Store
+Thumbs.db
+

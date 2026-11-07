@@ -1,0 +1,17 @@
+{
+  "bin": [
+    {
+      "name": "my-binary",
+      "path": "src/main.rs"
+    },
+    {
+      "name": "helper-tool"
+    }
+  ],
+  "test": [
+    {
+      "name": "unit-tests",
+      "path": "tests/lib.rs"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "title": "ESLintConfig",
+  "type": "object",
+  "properties": {
+    "env": {
+      "type": "object",
+      "properties": {
+        "browser": {"type": "boolean"},
+        "node": {"type": "boolean"},
+        "es6": {"type": "boolean"},
+        "jest": {"type": "boolean"}
+      }
+    },
+    "extends": {
+      "oneOf": [
+        {"type": "string"},
+        {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      ]
+    },
+    "parserOptions": {
+      "type": "object",
+      "properties": {
+        "ecmaVersion": {
+          "oneOf": [
+            {"type": "integer"},
+            {"type": "string"}
+          ]
+        },
+        "sourceType": {
+          "enum": ["script", "module"]
+        },
+        "ecmaFeatures": {
+          "type": "object",
+          "properties": {
+            "jsx": {"type": "boolean"},
+            "globalReturn": {"type": "boolean"},
+            "impliedStrict": {"type": "boolean"}
+          }
+        }
+      }
+    },
+    "rules": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z-]+(/[a-z-]+)*$": {
+          "oneOf": [
+            {"enum": ["off", "warn", "error", "zero", "one", "two"]},
+            {
+              "type": "array",
+              "items": [
+                {"enum": ["off", "warn", "error", "zero", "one", "two"]}
+              ],
+              "additionalItems": true
+            }
+          ]
+        }
+      }
+    },
+    "plugins": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "globals": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z_$][a-zA-Z0-9_$]*$": {
+          "oneOf": [
+            {"type": "boolean"},
+            {"enum": ["readonly", "writable", "off"]}
+          ]
+        }
+      }
+    }
+  }
+}

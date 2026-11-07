@@ -1,0 +1,43 @@
+{
+  "name": "Issue Close Require",
+  "on": {
+    "schedule": [
+      {
+        "cron": "0 0 * * *"
+      }
+    ]
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "jobs": {
+    "issue-close-require": {
+      "permissions": {
+        "issues": "write",
+        "pull-requests": "write"
+      },
+      "runs-on": "ubuntu-latest",
+      "steps": [
+        {
+          "name": "need reproduce",
+          "uses": "actions-cool/issues-helper@v3",
+          "with": {
+            "actions": "close-issues",
+            "labels": "\ud83e\udd14 Need Reproduce",
+            "inactive-day": 3
+          }
+        },
+        {
+          "name": "needs more info",
+          "uses": "actions-cool/issues-helper@v3",
+          "with": {
+            "actions": "close-issues",
+            "labels": "needs-more-info",
+            "inactive-day": 3,
+            "body": "Since the issue was labeled with `needs-more-info`, but no response in 3 days. This issue will be closed. If you have any questions, you can comment and reply.\n\n\u7531\u4e8e\u8be5 issue \u88ab\u6807\u8bb0\u4e3a\u9700\u8981\u66f4\u591a\u4fe1\u606f\uff0c\u5374 3 \u5929\u672a\u6536\u5230\u56de\u5e94\u3002\u73b0\u5173\u95ed issue\uff0c\u82e5\u6709\u4efb\u4f55\u95ee\u9898\uff0c\u53ef\u8bc4\u8bba\u56de\u590d\u3002\n"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,346 @@
+name: TCT Extended Quality
+
+"on":
+  workflow_dispatch:
+    inputs:
+      gate:
+        description: Extended gate to run
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - coverage-stable
+          - target-schemas
+          - round-trip-bpe-smoke
+          - bpe-artifact-reproducibility
+          - generated-reproducibility
+          - wheel-smoke
+          - synthetic-ignored-coverage
+  # These gates are slow; run them manually or locally when a change touches
+  # generated crates, wheels, BPE artifacts, or the target schema set.
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: 0
+  CARGO_PROFILE_DEV_DEBUG: 0
+  CARGO_PROFILE_TEST_DEBUG: 0
+
+jobs:
+  target-schemas:
+    name: Target Schema Round Trips
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    if: github.event.inputs.gate == 'all' || github.event.inputs.gate == 'target-schemas'
+    env:
+      TCT_GENERATED_CARGO_TARGET_DIR: ${{ github.workspace }}/target/tct-generated-cargo/target-schemas
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Free runner disk space
+        shell: bash
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/.ghcup
+          sudo docker image prune --all --force >/dev/null 2>&1 || true
+          df -h /
+
+      - name: Install pinned Rust toolchain
+        shell: bash
+        run: |
+          toolchain="$(python3 -c 'import tomllib; print(tomllib.load(open("rust-toolchain.toml", "rb"))["toolchain"]["channel"])')"
+          rustup toolchain install "${toolchain}" --profile minimal
+          rustup default "${toolchain}"
+          echo "RUSTUP_TOOLCHAIN=${toolchain}" >> "${GITHUB_ENV}"
+          rustup show active-toolchain
+
+      - name: Cache Cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/git
+            ~/.cargo/registry
+          key: ${{ runner.os }}-cargo-target-schemas-${{ hashFiles('Cargo.lock', 'rust-toolchain.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
+      - name: Run target schema gate
+        run: ./scripts/testing/test-target-schemas.sh
+
+  coverage-stable:
+    name: Stable Coverage Report
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    if: github.event_name == 'workflow_dispatch' && (github.event.inputs.gate == 'all' || github.event.inputs.gate == 'coverage-stable')
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Free runner disk space
+        shell: bash
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/.ghcup
+          sudo docker image prune --all --force >/dev/null 2>&1 || true
+          df -h /
+
+      - name: Install pinned Rust toolchain
+        shell: bash
+        run: |
+          toolchain="$(python3 -c 'import tomllib; print(tomllib.load(open("rust-toolchain.toml", "rb"))["toolchain"]["channel"])')"
+          rustup toolchain install "${toolchain}" --profile minimal
+          rustup default "${toolchain}"
+          echo "RUSTUP_TOOLCHAIN=${toolchain}" >> "${GITHUB_ENV}"
+          rustup show active-toolchain
+
+      - name: Cache Cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/git
+            ~/.cargo/registry
+          key: ${{ runner.os }}-cargo-coverage-stable-${{ hashFiles('Cargo.lock', 'rust-toolchain.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
+      - name: Install coverage tool
+        run: cargo install cargo-llvm-cov --locked
+
+      - name: Run stable coverage report
+        run: ./scripts/testing/coverage-check.sh stable
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tct-coverage-stable
+          path: target/tct-coverage/stable
+          if-no-files-found: ignore
+
+  round-trip-bpe-smoke:
+    name: BPE And No-BPE Round Trips
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    if: github.event.inputs.gate == 'all' || github.event.inputs.gate == 'round-trip-bpe-smoke'
+    env:
+      TCT_GENERATED_CARGO_TARGET_DIR: ${{ github.workspace }}/target/tct-generated-cargo/round-trip-bpe-smoke
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Free runner disk space
+        shell: bash
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/.ghcup
+          sudo docker image prune --all --force >/dev/null 2>&1 || true
+          df -h /
+
+      - name: Install pinned Rust toolchain
+        shell: bash
+        run: |
+          toolchain="$(python3 -c 'import tomllib; print(tomllib.load(open("rust-toolchain.toml", "rb"))["toolchain"]["channel"])')"
+          rustup toolchain install "${toolchain}" --profile minimal
+          rustup default "${toolchain}"
+          echo "RUSTUP_TOOLCHAIN=${toolchain}" >> "${GITHUB_ENV}"
+          rustup show active-toolchain
+
+      - name: Cache Cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/git
+            ~/.cargo/registry
+          key: ${{ runner.os }}-cargo-round-trip-bpe-${{ hashFiles('Cargo.lock', 'rust-toolchain.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
+      - name: Run BPE/no-BPE smoke
+        run: ./scripts/testing/test-round-trip-bpe-smoke.sh
+
+  generated-reproducibility:
+    name: Generated Artifact Reproducibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    if: github.event.inputs.gate == 'all' || github.event.inputs.gate == 'generated-reproducibility'
+    env:
+      TCT_GENERATED_CARGO_TARGET_DIR: ${{ github.workspace }}/target/tct-generated-cargo/generated-reproducibility
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Free runner disk space
+        shell: bash
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/.ghcup
+          sudo docker image prune --all --force >/dev/null 2>&1 || true
+          df -h /
+
+      - name: Install pinned Rust toolchain
+        shell: bash
+        run: |
+          toolchain="$(python3 -c 'import tomllib; print(tomllib.load(open("rust-toolchain.toml", "rb"))["toolchain"]["channel"])')"
+          rustup toolchain install "${toolchain}" --profile minimal --component clippy --component rustfmt
+          rustup default "${toolchain}"
+          echo "RUSTUP_TOOLCHAIN=${toolchain}" >> "${GITHUB_ENV}"
+          rustup show active-toolchain
+
+      - name: Cache Cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/git
+            ~/.cargo/registry
+          key: ${{ runner.os }}-cargo-generated-reproducibility-${{ hashFiles('Cargo.lock', 'rust-toolchain.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
+      - name: Set up Python wheel tooling
+        if: github.event.inputs.gate == 'generated-reproducibility'
+        run: python3 -m pip install --upgrade pip wheel maturin
+
+      - name: Run generated reproducibility gate
+        shell: bash
+        run: |
+          if [[ "${{ github.event.inputs.gate }}" == "all" ]]; then
+            TCT_GENERATED_REPRODUCIBILITY_SKIP_WHEEL=1 ./scripts/testing/test-generated-reproducibility.sh
+          else
+            ./scripts/testing/test-generated-reproducibility.sh
+          fi
+
+  bpe-artifact-reproducibility:
+    name: BPE Artifact Reproducibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    if: github.event_name == 'workflow_dispatch' && (github.event.inputs.gate == 'all' || github.event.inputs.gate == 'bpe-artifact-reproducibility')
+    env:
+      TCT_GENERATED_CARGO_TARGET_DIR: ${{ github.workspace }}/target/tct-generated-cargo/bpe-artifact-reproducibility
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Free runner disk space
+        shell: bash
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/.ghcup
+          sudo docker image prune --all --force >/dev/null 2>&1 || true
+          df -h /
+
+      - name: Install pinned Rust toolchain
+        shell: bash
+        run: |
+          toolchain="$(python3 -c 'import tomllib; print(tomllib.load(open("rust-toolchain.toml", "rb"))["toolchain"]["channel"])')"
+          rustup toolchain install "${toolchain}" --profile minimal
+          rustup default "${toolchain}"
+          echo "RUSTUP_TOOLCHAIN=${toolchain}" >> "${GITHUB_ENV}"
+          rustup show active-toolchain
+
+      - name: Cache Cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/git
+            ~/.cargo/registry
+          key: ${{ runner.os }}-cargo-bpe-artifact-reproducibility-${{ hashFiles('Cargo.lock', 'rust-toolchain.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
+      - name: Populate locked dependency cache
+        run: cargo fetch --locked
+
+      - name: Retrain and compare all six public BPE artifacts
+        run: python3 scripts/testing/test-bpe-artifact-reproducibility.py --public-artifacts
+
+  wheel-smoke:
+    name: Generated Wheel Smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    if: github.event.inputs.gate == 'all' || github.event.inputs.gate == 'wheel-smoke'
+    env:
+      TCT_GENERATED_CARGO_TARGET_DIR: ${{ github.workspace }}/target/tct-generated-cargo/wheel-smoke
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Free runner disk space
+        shell: bash
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/.ghcup
+          sudo docker image prune --all --force >/dev/null 2>&1 || true
+          df -h /
+
+      - name: Install pinned Rust toolchain
+        shell: bash
+        run: |
+          toolchain="$(python3 -c 'import tomllib; print(tomllib.load(open("rust-toolchain.toml", "rb"))["toolchain"]["channel"])')"
+          rustup toolchain install "${toolchain}" --profile minimal
+          rustup default "${toolchain}"
+          echo "RUSTUP_TOOLCHAIN=${toolchain}" >> "${GITHUB_ENV}"
+          rustup show active-toolchain
+
+      - name: Cache Cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/git
+            ~/.cargo/registry
+          key: ${{ runner.os }}-cargo-wheel-smoke-${{ hashFiles('Cargo.lock', 'rust-toolchain.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
+      - name: Set up Python wheel tooling
+        run: python3 -m pip install --upgrade pip wheel maturin
+
+      - name: Run generated wheel smoke
+        run: ./scripts/testing/test-wheel-builds.sh
+
+  synthetic-ignored-coverage:
+    name: Ignored Synthetic Coverage
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    if: github.event.inputs.gate == 'all' || github.event.inputs.gate == 'synthetic-ignored-coverage'
+    env:
+      TCT_GENERATED_CARGO_TARGET_DIR: ${{ github.workspace }}/target/tct-generated-cargo/synthetic-ignored
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Free runner disk space
+        shell: bash
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/.ghcup
+          sudo docker image prune --all --force >/dev/null 2>&1 || true
+          df -h /
+
+      - name: Install pinned Rust toolchain
+        shell: bash
+        run: |
+          toolchain="$(python3 -c 'import tomllib; print(tomllib.load(open("rust-toolchain.toml", "rb"))["toolchain"]["channel"])')"
+          rustup toolchain install "${toolchain}" --profile minimal
+          rustup default "${toolchain}"
+          echo "RUSTUP_TOOLCHAIN=${toolchain}" >> "${GITHUB_ENV}"
+          rustup show active-toolchain
+
+      - name: Cache Cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/git
+            ~/.cargo/registry
+          key: ${{ runner.os }}-cargo-synthetic-ignored-${{ hashFiles('Cargo.lock', 'rust-toolchain.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
+      - name: Install coverage tool
+        run: cargo install cargo-llvm-cov --locked
+
+      - name: Run ignored synthetic coverage
+        run: ./scripts/testing/coverage-check.sh synthetic-ignored

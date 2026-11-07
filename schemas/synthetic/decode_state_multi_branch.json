@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DecodeStateMultiBranch",
+  "description": "Minimal multi-branch object oneOf for DecodeState prefix-equivalence and root-token restriction tests. Keep small for default cargo test gates.",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "name"],
+      "properties": {
+        "kind": { "const": "alpha" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 16 }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "count"],
+      "properties": {
+        "kind": { "const": "beta" },
+        "count": { "type": "integer", "minimum": 0, "maximum": 100 }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "flag"],
+      "properties": {
+        "kind": { "const": "gamma" },
+        "flag": { "type": "boolean" }
+      }
+    }
+  ]
+}

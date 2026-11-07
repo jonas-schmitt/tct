@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PrimitiveInDefinition",
+  "type": "object",
+  "properties": {
+    "name": {
+      "$ref": "#/definitions/MyString"
+    },
+    "version": {
+      "$ref": "#/definitions/SemVerString"
+    },
+    "count": {
+      "$ref": "#/definitions/MyNumber"
+    },
+    "enabled": {
+      "$ref": "#/definitions/MyBoolean"
+    }
+  },
+  "required": ["name"],
+  "definitions": {
+    "MyString": {
+      "type": "string",
+      "description": "Simple string type in definition"
+    },
+    "SemVerString": {
+      "type": "string",
+      "format": "semver",
+      "description": "String with semver format (like cargo.json SemVer)",
+      "default": "0.1.0"
+    },
+    "MyNumber": {
+      "type": "number",
+      "description": "Simple number type in definition"
+    },
+    "MyBoolean": {
+      "type": "boolean",
+      "description": "Simple boolean type in definition"
+    }
+  }
+}

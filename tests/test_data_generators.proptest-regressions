@@ -1,0 +1,8 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc 2b49b50c20a9839ad592826f826d4fd2e6d557b52c1edfc0e3c4aaaa590fc2d5 # shrinks to schema = Object {"allOf": Array [Object {"type": String("object"), "properties": Object {"_": Object {"type": String("string")}}}, Object {"type": String("object"), "properties": Object {"a": Object {"type": String("string")}}}]}
+cc 61440e03879c60e8a43093b9be7042c05aa655bf7d2ef692738a6732ff8e257e # shrinks to schema = Object {"allOf": Array [Object {"type": String("object"), "properties": Object {"_": Object {"type": String("integer"), "minimum": Number(0), "maximum": Number(1001)}}}, Object {"type": String("object"), "properties": Object {"_": Object {"type": String("string")}}}]}

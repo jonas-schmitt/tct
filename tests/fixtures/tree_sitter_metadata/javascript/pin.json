@@ -1,0 +1,18 @@
+{
+  "pin_id": "tree_sitter_javascript_node_types_v0.25.0",
+  "grammar_package": "tree-sitter-javascript",
+  "grammar_version": "0.25.0",
+  "license": "MIT",
+  "license_file": "LICENSE",
+  "source_repository": "https://github.com/tree-sitter/tree-sitter-javascript",
+  "source_commit": "44c892e0be055ac465d5eeddae6d3e194424e7de",
+  "source_url": "https://raw.githubusercontent.com/tree-sitter/tree-sitter-javascript/v0.25.0/src/node-types.json",
+  "node_types_file": "node-types.json",
+  "node_types_sha256": "188a8baa97018edaf63bf7ece372c07bc0d74d1301004bc8f211eb7dee5a6e70",
+  "notes": [
+    "Second pinned real grammar (after tree-sitter-json): proves lower_pinned_grammar_dir is not JSON-only.",
+    "JavaScript chosen over C for a smaller, well-versioned MIT export with rich subtypes, named fields, and field-less children.",
+    "Checked-in export only; no Tree-sitter runtime dependency.",
+    "Metadata pin + adapter lower only \u2014 no full JS codec, no Go layout pins, no M5 package."
+  ]
+}

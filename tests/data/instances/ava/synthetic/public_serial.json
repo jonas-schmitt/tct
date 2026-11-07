@@ -1,0 +1,16 @@
+{
+  "files": [
+    "checks/**/*.js"
+  ],
+  "extensions": [
+    "js"
+  ],
+  "serial": true,
+  "cache": false,
+  "failFast": true,
+  "timeout": 15,
+  "environmentVariables": {
+    "FIXTURE_MODE": "serial",
+    "LOG_LEVEL": "debug"
+  }
+}

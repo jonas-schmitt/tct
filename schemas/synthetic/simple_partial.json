@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Simple Partial Encoding Test",
+  "description": "Minimal schema for testing partial instance encoding with 3 fields",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Required field - always present"
+    },
+    "age": {
+      "type": "integer",
+      "description": "Optional field - may be missing in partial instances",
+      "default": 0
+    },
+    "email": {
+      "type": "string",
+      "description": "Optional field - may be missing in partial instances",
+      "default": ""
+    }
+  },
+  "required": ["name"],
+  "additionalProperties": false
+}

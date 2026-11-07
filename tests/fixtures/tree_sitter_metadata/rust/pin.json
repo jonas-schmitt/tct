@@ -1,0 +1,19 @@
+{
+  "pin_id": "tree_sitter_rust_node_types_v0.24.0",
+  "grammar_package": "tree-sitter-rust",
+  "grammar_version": "0.24.0",
+  "license": "MIT",
+  "license_file": "LICENSE",
+  "source_repository": "https://github.com/tree-sitter/tree-sitter-rust",
+  "source_commit": "18b0515fca567f5a10aee9978c6d2640e878671a",
+  "source_url": "https://raw.githubusercontent.com/tree-sitter/tree-sitter-rust/v0.24.0/src/node-types.json",
+  "node_types_file": "node-types.json",
+  "node_types_sha256": "7aa048da68d64014402935bec749d57e05b1fd0d7fee1d111edfffc537342e1b",
+  "notes": [
+    "HELD-OUT generalization test pin for TODO CPU-5 T5. Test evidence only.",
+    "Chosen by an external criterion (TCT's own implementation language), not by inspecting this grammar's node-types.",
+    "This grammar's structure was deliberately NOT analyzed while T1-T4 were designed, so that T5 measures generalization rather than tuning. Preserve that discipline: do not special-case any kind appearing only here.",
+    "No codec, no corpus, no entropy or forced-share evidence is authorized for this pin.",
+    "Checked-in export only; no Tree-sitter runtime dependency."
+  ]
+}

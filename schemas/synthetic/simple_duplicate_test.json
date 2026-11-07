@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Simple Duplicate Test",
+  "description": "Minimal schema that reproduces duplicate type generation issue",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "config": {
+      "type": "object",
+      "properties": {
+        "extends": {
+          "description": "This oneOf was causing duplicate enum generation",
+          "oneOf": [
+            {"type": "string"},
+            {"type": "array", "items": {"type": "string"}}
+          ]
+        }
+      }
+    }
+  }
+}

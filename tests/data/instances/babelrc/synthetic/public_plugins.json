@@ -1,0 +1,19 @@
+{
+  "presets": [
+    "./fixture-preset.cjs"
+  ],
+  "plugins": [
+    [
+      "./fixture-plugin.cjs",
+      {
+        "enabled": true,
+        "label": "synthetic"
+      }
+    ]
+  ],
+  "comments": false,
+  "sourceMaps": true,
+  "ignore": [
+    "generated/**"
+  ]
+}

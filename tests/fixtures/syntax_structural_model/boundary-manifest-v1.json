@@ -1,0 +1,271 @@
+{
+  "artifact_kind": "tct_syntax_structural_model_boundary_manifest",
+  "compiler_boundary_claim": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "generated_rust_source_substrings_used": false,
+    "production_grammar_compiler_path_changed": false,
+    "semantic_evidence": "structured_structural_model_fields",
+    "sidecar_only": true,
+    "tct_compiler_changed": false
+  },
+  "sidecar_boundary": "GrammarIR -> StructuralModel",
+  "targets": [
+    {
+      "artifact_kind": "tct_grammar_ir_structural_model_sidecar",
+      "boundary": {
+        "core_compiler_path_changed": false,
+        "generated_json_schema_output_changed": false,
+        "production_grammar_compiler_path_changed": false,
+        "role": "sidecar_evidence_only"
+      },
+      "grammar_id": "toy_assignment_v1",
+      "grammar_shape": {
+        "alternatives": 5,
+        "fields": 3,
+        "nonterminal_references": 1,
+        "payload_terminals": 4,
+        "repeated_fields": 1,
+        "required_fields": 3,
+        "rules": 2
+      },
+      "grammar_version": 1,
+      "metadata_path": null,
+      "metadata_sha256": null,
+      "model_version": "structural-model-v0",
+      "parser": null,
+      "proof_checks": {
+        "decision_graph_edges_resolve": true,
+        "decision_graph_fields_match_fields": true,
+        "decision_graph_payloads_match_payload_terminals": true,
+        "decision_graph_rules_match_records": true,
+        "decision_graph_token_ranges_known": true,
+        "field_domain_count_matches_fields": true,
+        "integer_domains_match_integer_payloads": true,
+        "list_count_matches_repeated_fields": true,
+        "optional_count_matches_optional_fields": true,
+        "pad_token_below_vocab_size": true,
+        "payload_count_matches_payload_terminals": true,
+        "record_count_matches_rules": true,
+        "reference_count_matches_nonterminals": true,
+        "renderer_metadata_present": true,
+        "token_ranges_below_vocab_size": true,
+        "token_ranges_do_not_overlap": true,
+        "validation_hooks_present": true
+      },
+      "source_kind": "hand_written_toy_grammar",
+      "source_path": "src/toy_grammar_frontend.rs",
+      "source_sha256": "021d2c977aaf7e7cf67939fc311c0678e05373e4dd9ce6f101917b45634d5329",
+      "structural_category_coverage": {
+        "decision_graph_edges": true,
+        "decision_graph_nodes": true,
+        "finite_domains": true,
+        "lists": true,
+        "optionals": false,
+        "parser_provenance": false,
+        "payload_leaves": true,
+        "records": true,
+        "references": true,
+        "renderer_metadata": true,
+        "source_provenance": true,
+        "token_ranges": true,
+        "validation_hooks": true,
+        "variants": true
+      },
+      "structural_counts": {
+        "bounded_integers": 1,
+        "decision_graph_edges": 8,
+        "decision_graph_nodes": 10,
+        "finite_domains": 3,
+        "lists": 1,
+        "optionals": 0,
+        "payload_leaves": 4,
+        "records": 2,
+        "references": 1,
+        "renderer_metadata": 1,
+        "token_ranges": 3,
+        "validation_hooks": 3
+      },
+      "target": "toy",
+      "token_range_roles": [
+        "structural_decisions",
+        "u8_integer_payload",
+        "utf8_byte_payload"
+      ]
+    },
+    {
+      "artifact_kind": "tct_grammar_ir_structural_model_sidecar",
+      "boundary": {
+        "core_compiler_path_changed": false,
+        "generated_json_schema_output_changed": false,
+        "production_grammar_compiler_path_changed": false,
+        "role": "sidecar_evidence_only"
+      },
+      "grammar_id": "csharp_minimal_class_syntax_v0",
+      "grammar_shape": {
+        "alternatives": 9,
+        "fields": 9,
+        "nonterminal_references": 4,
+        "payload_terminals": 5,
+        "repeated_fields": 3,
+        "required_fields": 9,
+        "rules": 5
+      },
+      "grammar_version": 1,
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/minimal_class/syntax-metadata-v0.json",
+      "metadata_sha256": "cef195ae3315ca24cd3a11b2ef3a407c85f08168390ae585861940a18bad8e93",
+      "model_version": "structural-model-v0",
+      "parser": {
+        "package": "Microsoft.CodeAnalysis.CSharp",
+        "package_version": "5.3.0",
+        "tool": "dotnet",
+        "version": "10.0.203"
+      },
+      "proof_checks": {
+        "decision_graph_edges_resolve": true,
+        "decision_graph_fields_match_fields": true,
+        "decision_graph_payloads_match_payload_terminals": true,
+        "decision_graph_rules_match_records": true,
+        "decision_graph_token_ranges_known": true,
+        "field_domain_count_matches_fields": true,
+        "integer_domains_match_integer_payloads": true,
+        "list_count_matches_repeated_fields": true,
+        "optional_count_matches_optional_fields": true,
+        "pad_token_below_vocab_size": true,
+        "payload_count_matches_payload_terminals": true,
+        "record_count_matches_rules": true,
+        "reference_count_matches_nonterminals": true,
+        "renderer_metadata_present": true,
+        "token_ranges_below_vocab_size": true,
+        "token_ranges_do_not_overlap": true,
+        "validation_hooks_present": true
+      },
+      "source_kind": "csharp_syntax_metadata",
+      "source_path": "tests/fixtures/csharp_syntax_sources/minimal_class/source.cs",
+      "source_sha256": "baab4d0526ab5d0d9f33472fba4a90f6e3e11b2a719a47a60d94291ff37094f1",
+      "structural_category_coverage": {
+        "decision_graph_edges": true,
+        "decision_graph_nodes": true,
+        "finite_domains": true,
+        "lists": true,
+        "optionals": false,
+        "parser_provenance": true,
+        "payload_leaves": true,
+        "records": true,
+        "references": true,
+        "renderer_metadata": true,
+        "source_provenance": true,
+        "token_ranges": true,
+        "validation_hooks": true,
+        "variants": false
+      },
+      "structural_counts": {
+        "bounded_integers": 0,
+        "decision_graph_edges": 18,
+        "decision_graph_nodes": 23,
+        "finite_domains": 9,
+        "lists": 3,
+        "optionals": 0,
+        "payload_leaves": 5,
+        "records": 5,
+        "references": 4,
+        "renderer_metadata": 1,
+        "token_ranges": 2,
+        "validation_hooks": 3
+      },
+      "target": "csharp",
+      "token_range_roles": [
+        "structural_decisions",
+        "utf8_byte_payload"
+      ]
+    },
+    {
+      "artifact_kind": "tct_grammar_ir_structural_model_sidecar",
+      "boundary": {
+        "core_compiler_path_changed": false,
+        "generated_json_schema_output_changed": false,
+        "production_grammar_compiler_path_changed": false,
+        "role": "sidecar_evidence_only"
+      },
+      "grammar_id": "go_minimal_function_syntax_v0",
+      "grammar_shape": {
+        "alternatives": 21,
+        "fields": 20,
+        "nonterminal_references": 16,
+        "payload_terminals": 5,
+        "repeated_fields": 7,
+        "required_fields": 19,
+        "rules": 12
+      },
+      "grammar_version": 1,
+      "metadata_path": "tests/fixtures/go_syntax_metadata/minimal_function/syntax-metadata-v0.json",
+      "metadata_sha256": "226b7373a59f9d91b30f4700b73a9d31e27dd4e95a1c80859d0eaa86420b42f6",
+      "model_version": "structural-model-v0",
+      "parser": {
+        "package": "go/parser",
+        "package_version": "go1.24.3",
+        "tool": "go",
+        "version": "go1.24.3"
+      },
+      "proof_checks": {
+        "decision_graph_edges_resolve": true,
+        "decision_graph_fields_match_fields": true,
+        "decision_graph_payloads_match_payload_terminals": true,
+        "decision_graph_rules_match_records": true,
+        "decision_graph_token_ranges_known": true,
+        "field_domain_count_matches_fields": true,
+        "integer_domains_match_integer_payloads": true,
+        "list_count_matches_repeated_fields": true,
+        "optional_count_matches_optional_fields": true,
+        "pad_token_below_vocab_size": true,
+        "payload_count_matches_payload_terminals": true,
+        "record_count_matches_rules": true,
+        "reference_count_matches_nonterminals": true,
+        "renderer_metadata_present": true,
+        "token_ranges_below_vocab_size": true,
+        "token_ranges_do_not_overlap": true,
+        "validation_hooks_present": true
+      },
+      "source_kind": "go_syntax_metadata",
+      "source_path": "tests/fixtures/go_syntax_sources/minimal/main.go",
+      "source_sha256": "f0a87ff5993e610218e870cf01576c90d2779efd4278c56db68678ef30a63b78",
+      "structural_category_coverage": {
+        "decision_graph_edges": true,
+        "decision_graph_nodes": true,
+        "finite_domains": true,
+        "lists": true,
+        "optionals": true,
+        "parser_provenance": true,
+        "payload_leaves": true,
+        "records": true,
+        "references": true,
+        "renderer_metadata": true,
+        "source_provenance": true,
+        "token_ranges": true,
+        "validation_hooks": true,
+        "variants": true
+      },
+      "structural_counts": {
+        "bounded_integers": 0,
+        "decision_graph_edges": 41,
+        "decision_graph_nodes": 53,
+        "finite_domains": 20,
+        "lists": 7,
+        "optionals": 1,
+        "payload_leaves": 5,
+        "records": 12,
+        "references": 16,
+        "renderer_metadata": 1,
+        "token_ranges": 3,
+        "validation_hooks": 3
+      },
+      "target": "go",
+      "token_range_roles": [
+        "structural_decisions",
+        "u8_integer_payload",
+        "utf8_byte_payload"
+      ]
+    }
+  ],
+  "version": 1
+}

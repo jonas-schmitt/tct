@@ -1,0 +1,32 @@
+{
+  "codecov": {
+    "require_ci_to_pass": true,
+    "notify": {
+      "after_n_builds": 2,
+      "wait_for_ci": true
+    }
+  },
+  "coverage": {
+    "precision": 2,
+    "round": "nearest",
+    "status": {
+      "project": {
+        "default": {
+          "target": "85%",
+          "threshold": "1%",
+          "informational": false
+        }
+      },
+      "patch": {
+        "default": {
+          "target": 80,
+          "threshold": "0%"
+        }
+      }
+    }
+  },
+  "ignore": [
+    "generated/**"
+  ],
+  "comment": false
+}

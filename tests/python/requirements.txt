@@ -1,0 +1,2 @@
+# Optional: run the Python maintenance tests through pytest instead of unittest.
+pytest>=7.0.0

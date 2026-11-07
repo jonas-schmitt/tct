@@ -1,0 +1,464 @@
+{
+  "format_version": 1,
+  "files": [
+    {
+      "local_path": "schemas/synthetic/package_first_11.json",
+      "local_sha256": "8513a846f56c58f1de95af37f4b3f26840ff96b013abb51eba91b125308d0669",
+      "source_repository": "https://github.com/SchemaStore/schemastore",
+      "source_revision": "8cf3bac4e0240e6cb2eee52768fb79d42f8146ef",
+      "source_path": "src/schemas/json/package.json",
+      "source_sha256": "53622ab9933a5cd41fd63e5617199c6751fca513e2d7b7bb7a7b785631a83a18",
+      "transformation": {
+        "kind": "selected-package-properties",
+        "top_level_keys": [
+          "$schema",
+          "title",
+          "type",
+          "properties",
+          "anyOf",
+          "definitions"
+        ],
+        "selected_properties": [
+          "name",
+          "version",
+          "description",
+          "keywords",
+          "homepage",
+          "bugs",
+          "license",
+          "licenses",
+          "author",
+          "contributors",
+          "maintainers"
+        ],
+        "title": "Package.json subset - first 11",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": true,
+          "final_newline": false
+        }
+      },
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "decision": "source_derivation_reviewed",
+      "retained_notices": [
+        "third_party/licenses/schemastore/LICENSE",
+        "third_party/licenses/schemastore/NOTICE"
+      ],
+      "before_publication_notice_sha256": "874eded95684bc31274e12f4233d5631a37f0e433cb1b8e44255eedde29c7d48",
+      "publication_notice": {
+        "previous_comment": null,
+        "added_text": "Modified by TCT: selected the recorded properties and retained definitions/anyOf from the pinned SchemaStore package schema, and replaced the title. Source revisions, transformation, and Apache-2.0 license/NOTICE: third_party/clearance/schemas/derived-schemas.json. Publication change: added this notice.",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": false,
+          "final_newline": true
+        },
+        "before_sha256": "874eded95684bc31274e12f4233d5631a37f0e433cb1b8e44255eedde29c7d48",
+        "after_sha256": "8513a846f56c58f1de95af37f4b3f26840ff96b013abb51eba91b125308d0669"
+      }
+    },
+    {
+      "local_path": "schemas/synthetic/package_first_13.json",
+      "local_sha256": "72b8941ae2a3d692b144124018cea1106361f28cc683c9985904c1c1830d4447",
+      "source_repository": "https://github.com/SchemaStore/schemastore",
+      "source_revision": "8cf3bac4e0240e6cb2eee52768fb79d42f8146ef",
+      "source_path": "src/schemas/json/package.json",
+      "source_sha256": "53622ab9933a5cd41fd63e5617199c6751fca513e2d7b7bb7a7b785631a83a18",
+      "transformation": {
+        "kind": "selected-package-properties",
+        "top_level_keys": [
+          "$schema",
+          "title",
+          "type",
+          "properties",
+          "anyOf",
+          "definitions"
+        ],
+        "selected_properties": [
+          "name",
+          "version",
+          "description",
+          "keywords",
+          "homepage",
+          "bugs",
+          "license",
+          "licenses",
+          "author",
+          "contributors",
+          "maintainers",
+          "files",
+          "main"
+        ],
+        "title": "Package.json subset - first 13",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": true,
+          "final_newline": false
+        }
+      },
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "decision": "source_derivation_reviewed",
+      "retained_notices": [
+        "third_party/licenses/schemastore/LICENSE",
+        "third_party/licenses/schemastore/NOTICE"
+      ],
+      "before_publication_notice_sha256": "a5e8eae33b3831abe415ff47d52a607b4df6bdbdbbf33f00acb275321ea7bca2",
+      "publication_notice": {
+        "previous_comment": null,
+        "added_text": "Modified by TCT: selected the recorded properties and retained definitions/anyOf from the pinned SchemaStore package schema, and replaced the title. Source revisions, transformation, and Apache-2.0 license/NOTICE: third_party/clearance/schemas/derived-schemas.json. Publication change: added this notice.",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": false,
+          "final_newline": true
+        },
+        "before_sha256": "a5e8eae33b3831abe415ff47d52a607b4df6bdbdbbf33f00acb275321ea7bca2",
+        "after_sha256": "72b8941ae2a3d692b144124018cea1106361f28cc683c9985904c1c1830d4447"
+      }
+    },
+    {
+      "local_path": "schemas/synthetic/package_first_14.json",
+      "local_sha256": "92f7e4a0531b40196fc0e5e9843082c7c592df95cac8243587ac834c588d70bc",
+      "source_repository": "https://github.com/SchemaStore/schemastore",
+      "source_revision": "8cf3bac4e0240e6cb2eee52768fb79d42f8146ef",
+      "source_path": "src/schemas/json/package.json",
+      "source_sha256": "53622ab9933a5cd41fd63e5617199c6751fca513e2d7b7bb7a7b785631a83a18",
+      "transformation": {
+        "kind": "selected-package-properties",
+        "top_level_keys": [
+          "$schema",
+          "title",
+          "type",
+          "properties",
+          "anyOf",
+          "definitions"
+        ],
+        "selected_properties": [
+          "name",
+          "version",
+          "description",
+          "keywords",
+          "homepage",
+          "bugs",
+          "license",
+          "licenses",
+          "author",
+          "contributors",
+          "maintainers",
+          "files",
+          "main",
+          "exports"
+        ],
+        "title": "Package.json subset - first 14",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": true,
+          "final_newline": false
+        }
+      },
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "decision": "source_derivation_reviewed",
+      "retained_notices": [
+        "third_party/licenses/schemastore/LICENSE",
+        "third_party/licenses/schemastore/NOTICE"
+      ],
+      "before_publication_notice_sha256": "13c8d0a1b037efda0da70051f55bfad66152aacf6cd1cebd8dd1299715a92a83",
+      "publication_notice": {
+        "previous_comment": null,
+        "added_text": "Modified by TCT: selected the recorded properties and retained definitions/anyOf from the pinned SchemaStore package schema, and replaced the title. Source revisions, transformation, and Apache-2.0 license/NOTICE: third_party/clearance/schemas/derived-schemas.json. Publication change: added this notice.",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": false,
+          "final_newline": true
+        },
+        "before_sha256": "13c8d0a1b037efda0da70051f55bfad66152aacf6cd1cebd8dd1299715a92a83",
+        "after_sha256": "92f7e4a0531b40196fc0e5e9843082c7c592df95cac8243587ac834c588d70bc"
+      }
+    },
+    {
+      "local_path": "schemas/synthetic/package_first_15.json",
+      "local_sha256": "aa16343e1f9b032810e28459bb26928f368b81d71e63431aff44b2980ef29d74",
+      "source_repository": "https://github.com/SchemaStore/schemastore",
+      "source_revision": "8cf3bac4e0240e6cb2eee52768fb79d42f8146ef",
+      "source_path": "src/schemas/json/package.json",
+      "source_sha256": "53622ab9933a5cd41fd63e5617199c6751fca513e2d7b7bb7a7b785631a83a18",
+      "transformation": {
+        "kind": "selected-package-properties",
+        "top_level_keys": [
+          "$schema",
+          "title",
+          "type",
+          "properties",
+          "anyOf",
+          "definitions"
+        ],
+        "selected_properties": [
+          "name",
+          "version",
+          "description",
+          "keywords",
+          "homepage",
+          "bugs",
+          "license",
+          "licenses",
+          "author",
+          "contributors",
+          "maintainers",
+          "files",
+          "main",
+          "exports",
+          "imports"
+        ],
+        "title": "Package.json subset - first_15",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": true,
+          "final_newline": false
+        }
+      },
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "decision": "source_derivation_reviewed",
+      "retained_notices": [
+        "third_party/licenses/schemastore/LICENSE",
+        "third_party/licenses/schemastore/NOTICE"
+      ],
+      "before_publication_notice_sha256": "accd7155bea137bc2f60d5fd018eaf814b5c54d2312c75893b7292d2b691a0e2",
+      "publication_notice": {
+        "previous_comment": null,
+        "added_text": "Modified by TCT: selected the recorded properties and retained definitions/anyOf from the pinned SchemaStore package schema, and replaced the title. Source revisions, transformation, and Apache-2.0 license/NOTICE: third_party/clearance/schemas/derived-schemas.json. Publication change: added this notice.",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": false,
+          "final_newline": true
+        },
+        "before_sha256": "accd7155bea137bc2f60d5fd018eaf814b5c54d2312c75893b7292d2b691a0e2",
+        "after_sha256": "aa16343e1f9b032810e28459bb26928f368b81d71e63431aff44b2980ef29d74"
+      }
+    },
+    {
+      "local_path": "schemas/synthetic/package_first_3.json",
+      "local_sha256": "dcc4360fe3abb3a6cbcb2ab357584f061a05e32a564b576f61f50354e801b666",
+      "source_repository": "https://github.com/SchemaStore/schemastore",
+      "source_revision": "8cf3bac4e0240e6cb2eee52768fb79d42f8146ef",
+      "source_path": "src/schemas/json/package.json",
+      "source_sha256": "53622ab9933a5cd41fd63e5617199c6751fca513e2d7b7bb7a7b785631a83a18",
+      "transformation": {
+        "kind": "selected-package-properties",
+        "top_level_keys": [
+          "$schema",
+          "title",
+          "type",
+          "properties",
+          "anyOf",
+          "definitions"
+        ],
+        "selected_properties": [
+          "name",
+          "version",
+          "description"
+        ],
+        "title": "Package.json subset - first_3",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": true,
+          "final_newline": false
+        }
+      },
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "decision": "source_derivation_reviewed",
+      "retained_notices": [
+        "third_party/licenses/schemastore/LICENSE",
+        "third_party/licenses/schemastore/NOTICE"
+      ],
+      "before_publication_notice_sha256": "42c8d46ab86188ceea31b370e4b699fd62c6e2eaf47e97f79de6fe7da2d256b3",
+      "publication_notice": {
+        "previous_comment": null,
+        "added_text": "Modified by TCT: selected the recorded properties and retained definitions/anyOf from the pinned SchemaStore package schema, and replaced the title. Source revisions, transformation, and Apache-2.0 license/NOTICE: third_party/clearance/schemas/derived-schemas.json. Publication change: added this notice.",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": false,
+          "final_newline": true
+        },
+        "before_sha256": "42c8d46ab86188ceea31b370e4b699fd62c6e2eaf47e97f79de6fe7da2d256b3",
+        "after_sha256": "dcc4360fe3abb3a6cbcb2ab357584f061a05e32a564b576f61f50354e801b666"
+      }
+    },
+    {
+      "local_path": "schemas/synthetic/package_first_7.json",
+      "local_sha256": "0b5fc58c1b471af74651126cdb1dbc547315d8266b3f40dead5a28bc339affc2",
+      "source_repository": "https://github.com/SchemaStore/schemastore",
+      "source_revision": "8cf3bac4e0240e6cb2eee52768fb79d42f8146ef",
+      "source_path": "src/schemas/json/package.json",
+      "source_sha256": "53622ab9933a5cd41fd63e5617199c6751fca513e2d7b7bb7a7b785631a83a18",
+      "transformation": {
+        "kind": "selected-package-properties",
+        "top_level_keys": [
+          "$schema",
+          "title",
+          "type",
+          "properties",
+          "anyOf",
+          "definitions"
+        ],
+        "selected_properties": [
+          "name",
+          "version",
+          "description",
+          "keywords",
+          "homepage",
+          "bugs",
+          "license"
+        ],
+        "title": "Package.json subset - first_7",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": true,
+          "final_newline": false
+        }
+      },
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "decision": "source_derivation_reviewed",
+      "retained_notices": [
+        "third_party/licenses/schemastore/LICENSE",
+        "third_party/licenses/schemastore/NOTICE"
+      ],
+      "before_publication_notice_sha256": "b213e91adb12eb5d60dd53e103360b41aa263c43b5c9101da46b581e5b5e98f9",
+      "publication_notice": {
+        "previous_comment": null,
+        "added_text": "Modified by TCT: selected the recorded properties and retained definitions/anyOf from the pinned SchemaStore package schema, and replaced the title. Source revisions, transformation, and Apache-2.0 license/NOTICE: third_party/clearance/schemas/derived-schemas.json. Publication change: added this notice.",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": false,
+          "final_newline": true
+        },
+        "before_sha256": "b213e91adb12eb5d60dd53e103360b41aa263c43b5c9101da46b581e5b5e98f9",
+        "after_sha256": "0b5fc58c1b471af74651126cdb1dbc547315d8266b3f40dead5a28bc339affc2"
+      }
+    },
+    {
+      "local_path": "schemas/synthetic/package_subset_first30.json",
+      "local_sha256": "26cbfc8310d8816ba08ec1dec67d6732ca3f673993eb931064f6bbdaf0a36218",
+      "source_repository": "https://github.com/SchemaStore/schemastore",
+      "source_revision": "8cf3bac4e0240e6cb2eee52768fb79d42f8146ef",
+      "source_path": "src/schemas/json/package.json",
+      "source_sha256": "53622ab9933a5cd41fd63e5617199c6751fca513e2d7b7bb7a7b785631a83a18",
+      "transformation": {
+        "kind": "selected-package-properties",
+        "top_level_keys": [
+          "$schema",
+          "title",
+          "type",
+          "properties",
+          "anyOf",
+          "definitions"
+        ],
+        "selected_properties": [
+          "name",
+          "version",
+          "description",
+          "keywords",
+          "homepage",
+          "bugs",
+          "license",
+          "licenses",
+          "author",
+          "contributors",
+          "maintainers",
+          "files",
+          "main",
+          "exports",
+          "imports",
+          "bin",
+          "type",
+          "types",
+          "typings",
+          "typesVersions",
+          "man",
+          "directories",
+          "repository",
+          "funding",
+          "scripts",
+          "config",
+          "dependencies",
+          "devDependencies",
+          "optionalDependencies",
+          "peerDependencies"
+        ],
+        "title": "Package.json subset - first 30 properties",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": true,
+          "final_newline": false
+        }
+      },
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "decision": "source_derivation_reviewed",
+      "retained_notices": [
+        "third_party/licenses/schemastore/LICENSE",
+        "third_party/licenses/schemastore/NOTICE"
+      ],
+      "before_publication_notice_sha256": "cb6416716abac8ce7028cc50c6d7f57b42aeac1bac0894db3849cba1c95ecc4c",
+      "publication_notice": {
+        "previous_comment": null,
+        "added_text": "Modified by TCT: selected the recorded properties and retained definitions/anyOf from the pinned SchemaStore package schema, and replaced the title. Source revisions, transformation, and Apache-2.0 license/NOTICE: third_party/clearance/schemas/derived-schemas.json. Publication change: added this notice.",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": false,
+          "final_newline": true
+        },
+        "before_sha256": "cb6416716abac8ce7028cc50c6d7f57b42aeac1bac0894db3849cba1c95ecc4c",
+        "after_sha256": "26cbfc8310d8816ba08ec1dec67d6732ca3f673993eb931064f6bbdaf0a36218"
+      }
+    },
+    {
+      "local_path": "schemas/popular/github-workflow.json",
+      "local_sha256": "c1a5cc4654785203aeb613814b5150e8da275cfedb6d8777b0af741a39224315",
+      "source_repository": "https://github.com/SchemaStore/schemastore",
+      "source_revision": "8cf3bac4e0240e6cb2eee52768fb79d42f8146ef",
+      "source_path": "src/schemas/json/github-workflow.json",
+      "source_sha256": "72a6127a6ceefe1723e1fa7f868c3ce040de20d10a0c46df6f5618505b7a4d46",
+      "original_import_commit": "e901f1735f139c2ecb85111225c4be7528d8adfd",
+      "original_import_path": "tests/data/schemas/external/github-workflow.schema.json",
+      "original_import_matches_source_bytes": true,
+      "transformation": {
+        "kind": "owner-compatibility-changes",
+        "json_patch": "third_party/clearance/schemas/github-workflow-changes.json",
+        "byte_patch": "third_party/clearance/schemas/github-workflow-changes.patch",
+        "byte_patch_sha256": "decc5d16bc225948acc000fa6b943fd6333b6732161b6be5958402a27b758783"
+      },
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "decision": "source_derivation_reviewed",
+      "retained_notices": [
+        "third_party/licenses/schemastore/LICENSE",
+        "third_party/licenses/schemastore/NOTICE"
+      ],
+      "before_publication_notice_sha256": "197622c892872577bef6e102eb39934249bcc8a576700d5908d837987216575e",
+      "publication_notice": {
+        "previous_comment": "https://help.github.com/en/github/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions",
+        "added_text": "Modified by TCT: applied compatibility changes for workflow environment values, glob forms, concurrency groups, shell/run fields, strategy and dispatch events; the exact byte and JSON patches are retained. Source revisions, transformation, and Apache-2.0 license/NOTICE: third_party/clearance/schemas/derived-schemas.json. Publication change: added this notice.",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": false,
+          "final_newline": true
+        },
+        "before_sha256": "197622c892872577bef6e102eb39934249bcc8a576700d5908d837987216575e",
+        "after_sha256": "c1a5cc4654785203aeb613814b5150e8da275cfedb6d8777b0af741a39224315"
+      }
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "from_revision": "8cf3bac4e0240e6cb2eee52768fb79d42f8146ef",
+  "source_path": "src/schemas/json/github-workflow.json",
+  "scope": "Exact JSON-value patch for local compatibility changes, before the publication notice. Retain SchemaStore Apache-2.0 notices.",
+  "operations": [
+    {
+      "op": "add",
+      "path": "/definitions/concurrency/properties/group/oneOf",
+      "value": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "op": "remove",
+      "path": "/definitions/concurrency/properties/group/type"
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/env/oneOf",
+      "value": [
+        {
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        {
+          "$ref": "#/definitions/stringContainingExpressionSyntax"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    {
+      "op": "remove",
+      "path": "/definitions/globs/items"
+    },
+    {
+      "op": "remove",
+      "path": "/definitions/globs/minItems"
+    },
+    {
+      "op": "add",
+      "path": "/definitions/globs/oneOf",
+      "value": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      ]
+    },
+    {
+      "op": "remove",
+      "path": "/definitions/globs/type"
+    },
+    {
+      "op": "remove",
+      "path": "/definitions/normalJob/properties/strategy/required"
+    },
+    {
+      "op": "remove",
+      "path": "/definitions/reusableWorkflowCallJob/properties/strategy/required"
+    },
+    {
+      "op": "remove",
+      "path": "/definitions/shell/anyOf"
+    },
+    {
+      "op": "add",
+      "path": "/definitions/shell/type",
+      "value": "string"
+    },
+    {
+      "op": "add",
+      "path": "/definitions/step/properties/run/oneOf",
+      "value": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "op": "remove",
+      "path": "/definitions/step/properties/run/type"
+    },
+    {
+      "op": "remove",
+      "path": "/definitions/workflowDispatchInput/required"
+    },
+    {
+      "op": "add",
+      "path": "/definitions/workflowDispatchSecret",
+      "value": {
+        "$comment": "https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_dispatchsecrets",
+        "description": "A secret parameter for workflow_dispatch events. Each secret has a unique identifier and optional description and required fields.",
+        "type": "object",
+        "properties": {
+          "description": {
+            "description": "A string description of the secret parameter.",
+            "type": "string"
+          },
+          "required": {
+            "description": "A boolean to indicate whether the secret must be supplied. Set to true when the parameter is required.",
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/properties/on/oneOf/2/properties/workflow_dispatch/properties/inputs/additionalProperties",
+      "value": {
+        "$ref": "#/definitions/workflowDispatchInput"
+      }
+    },
+    {
+      "op": "remove",
+      "path": "/properties/on/oneOf/2/properties/workflow_dispatch/properties/inputs/patternProperties"
+    },
+    {
+      "op": "add",
+      "path": "/properties/on/oneOf/2/properties/workflow_dispatch/properties/secrets",
+      "value": {
+        "$comment": "https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_dispatchsecrets",
+        "description": "Secrets that can be passed to the manually triggered workflow.",
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/definitions/workflowDispatchSecret"
+        }
+      }
+    }
+  ]
+}

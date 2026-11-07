@@ -1,0 +1,6 @@
+{
+  "name": "test-with-object",
+  "config": {
+    "setting": "value"
+  }
+}

@@ -1,0 +1,241 @@
+{
+  "artifact_kind": "tct_go_syntax_metadata_v0",
+  "version": 0,
+  "source": {
+    "path": "tests/fixtures/go_syntax_metadata/local_unary_integer_return_expression/main.go",
+    "sha256": "e5e80da0a6c39c781446240e28ff66217085da735d181535300e32a3a7be931b"
+  },
+  "parser": {
+    "tool": "go",
+    "version": "go1.24.3",
+    "package": "go/parser",
+    "package_version": "go1.24.3"
+  },
+  "rules": [
+    {
+      "name": "File",
+      "node_kind": "File",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "package_identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "Decls",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "FuncDecl",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FuncDecl",
+      "node_kind": "FuncDecl",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "Type",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FuncType",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Body",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BlockStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FuncType",
+      "node_kind": "FuncType",
+      "fields": [
+        {
+          "name": "Params",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FieldList",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Results",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FieldList",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FieldList",
+      "node_kind": "FieldList",
+      "fields": [
+        {
+          "name": "List",
+          "required": false,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Field",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Field",
+      "node_kind": "Field",
+      "fields": [
+        {
+          "name": "Type",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BlockStmt",
+      "node_kind": "BlockStmt",
+      "fields": [
+        {
+          "name": "List",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "ReturnStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ReturnStmt",
+      "node_kind": "ReturnStmt",
+      "fields": [
+        {
+          "name": "Results",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "UnaryExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "UnaryExpr",
+      "node_kind": "UnaryExpr",
+      "fields": [
+        {
+          "name": "Op",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "unary_operator",
+              "terminal": "string_payload"
+            }
+          ]
+        },
+        {
+          "name": "X",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BasicLit",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BasicLit",
+      "node_kind": "BasicLit",
+      "fields": [
+        {
+          "name": "Value",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "integer_literal",
+              "terminal": "integer_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ident",
+      "node_kind": "Ident",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

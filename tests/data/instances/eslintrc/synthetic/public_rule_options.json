@@ -1,0 +1,32 @@
+{
+  "noInlineConfig": false,
+  "reportUnusedDisableDirectives": true,
+  "ignorePatterns": "output/**",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "commonjs"
+  },
+  "globals": {
+    "fixtureDisabled": "off",
+    "fixtureReadOnly": false
+  },
+  "rules": {
+    "curly": [2, "multi-line"],
+    "no-restricted-syntax": [
+      2,
+      {
+        "selector": "WithStatement",
+        "message": "Synthetic fixture rejects with-statements"
+      }
+    ],
+    "no-console": "off"
+  },
+  "overrides": [
+    {
+      "files": "*.spec.js",
+      "rules": {
+        "no-undef": 0
+      }
+    }
+  ]
+}

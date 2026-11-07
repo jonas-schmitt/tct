@@ -1,0 +1,53 @@
+{
+  "name": "Upgrade Dependencies",
+  "on": {
+    "schedule": [
+      {
+        "cron": "0 18 * * *"
+      }
+    ]
+  },
+  "jobs": {
+    "upgrade-deps": {
+      "runs-on": "ubuntu-latest",
+      "if": "github.repository == 'ant-design/ant-design' && github.ref == 'refs/heads/master'",
+      "permissions": {
+        "pull-requests": "write",
+        "contents": "write"
+      },
+      "steps": [
+        {
+          "name": "checkout",
+          "uses": "actions/checkout@v5",
+          "with": {
+            "sparse-checkout": ".github\n.ncurc.js\npackage.json\n"
+          }
+        },
+        {
+          "name": "setup bun",
+          "uses": "oven-sh/setup-bun@v2"
+        },
+        {
+          "name": "upgrade deps",
+          "id": "upgrade",
+          "run": "if [ ! -d .tmp ] ; then\n  mkdir .tmp\nfi\n$(bunx npm-check-updates -u > .tmp/upgrade-deps-logs.txt) 2>&1 || true\nif [ -s .tmp/upgrade-deps-logs.txt ]; then\n  cat .tmp/upgrade-deps-logs.txt\n  echo \"logs<<EOF\" >> $GITHUB_OUTPUT\n  cat .tmp/upgrade-deps-logs.txt >> $GITHUB_OUTPUT\n  echo \"EOF\" >> $GITHUB_OUTPUT\nfi\n"
+        },
+        {
+          "name": "create pull request",
+          "id": "cpr",
+          "uses": "peter-evans/create-pull-request@v7",
+          "with": {
+            "token": "${{ secrets.GITHUB_TOKEN }}",
+            "assignees": "afc163, yoyo837, Wxh16144, li-jia-nan, thinkasany",
+            "title": "chore: upgrade deps",
+            "commit-message": "chore: upgrade deps",
+            "body": "Upgrade dependencies\n\n```\n${{ steps.upgrade.outputs.logs }}\n```\n",
+            "branch": "auto-upgrade-deps",
+            "delete-branch": true,
+            "add-paths": "package.json\n"
+          }
+        }
+      ]
+    }
+  }
+}

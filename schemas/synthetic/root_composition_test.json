@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Root Composition Test",
+  "description": "Minimal test for root-level anyOf/oneOf with complex object variants",
+  "anyOf": [
+    {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "version": {"type": "string"}
+      },
+      "required": ["name"]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string"},
+        "description": {"type": "string"}
+      },
+      "required": ["title"]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "extends": ["@commitlint/config-conventional"],
+  "parserPreset": {
+    "name": "conventional-changelog-conventionalcommits",
+    "path": "./custom-parser"
+  }
+}

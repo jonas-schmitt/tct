@@ -1,0 +1,20 @@
+{
+  "files": [
+    "src/**/*.test.ts"
+  ],
+  "require": [
+    "./test/setup.cjs"
+  ],
+  "concurrency": 2,
+  "workerThreads": true,
+  "timeout": "25s",
+  "typescript": {
+    "extensions": [
+      "ts"
+    ],
+    "rewritePaths": {
+      "src/": "output/"
+    },
+    "compile": false
+  }
+}

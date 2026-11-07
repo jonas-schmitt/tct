@@ -1,0 +1,10 @@
+{
+  "config": {
+    "name": "test",
+    "value": 42
+  },
+  "reference": {
+    "name": "ref_test",
+    "value": 100
+  }
+}

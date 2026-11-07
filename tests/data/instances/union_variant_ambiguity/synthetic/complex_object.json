@@ -1,0 +1,11 @@
+{
+  "name": "test-workflow",
+  "trigger": {
+    "push": {
+      "branches": ["master", "main"]
+    },
+    "pull_request": {
+      "branches": ["master"]
+    }
+  }
+}

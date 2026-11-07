@@ -1,0 +1,5 @@
+{
+  "name": "test-package",
+  "displayName": "Test Package",
+  "unknownField": "should be allowed by default"
+}

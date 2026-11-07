@@ -1,0 +1,5 @@
+{
+  "name": "test",
+  "tags": ["alpha", "beta"],
+  "numbers": [1, 2, 3]
+}

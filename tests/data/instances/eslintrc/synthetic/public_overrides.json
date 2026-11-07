@@ -1,0 +1,26 @@
+{
+  "root": true,
+  "extends": ["./fixture-base.cjs", "./fixture-strict.cjs"],
+  "ignorePatterns": ["generated/**", "scratch/*.js"],
+  "settings": {
+    "fixture": {
+      "mode": "test",
+      "attempts": 2,
+      "enabled": true
+    }
+  },
+  "overrides": [
+    {
+      "files": ["test/**/*.js", "checks/**/*.js"],
+      "excludedFiles": "test/generated/**",
+      "env": {
+        "node": true,
+        "browser": false
+      },
+      "rules": {
+        "no-console": ["warn", {"allow": ["info"]}],
+        "no-undef": 2
+      }
+    }
+  ]
+}

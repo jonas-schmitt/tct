@@ -1,0 +1,89 @@
+{
+  "name": "Issue Labeled",
+  "on": {
+    "issues": {
+      "types": [
+        "labeled"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "jobs": {
+    "issue-labeled": {
+      "permissions": {
+        "issues": "write",
+        "pull-requests": "write"
+      },
+      "runs-on": "ubuntu-latest",
+      "steps": [
+        {
+          "name": "help wanted",
+          "if": "github.event.label.name == 'help wanted'",
+          "uses": "actions-cool/issues-helper@v3",
+          "with": {
+            "actions": "create-comment",
+            "token": "${{ secrets.GITHUB_TOKEN }}",
+            "issue-number": "${{ github.event.issue.number }}",
+            "body": "Hello @${{ github.event.issue.user.login }}. We totally like your proposal/feedback, welcome to [send us a Pull Request](https://help.github.com/en/articles/creating-a-pull-request) for it. Please send your Pull Request to proper branch (feature branch for the new feature, master for bugfix and other changes), fill the [Pull Request Template](https://github.com/ant-design/ant-design/blob/master/.github/PULL_REQUEST_TEMPLATE.md) here, provide changelog/TypeScript/documentation/test cases if needed and make sure CI passed, we will review it soon. We appreciate your effort in advance and looking forward to your contribution!\n\n\u4f60\u597d @${{ github.event.issue.user.login }}\uff0c\u6211\u4eec\u5b8c\u5168\u540c\u610f\u4f60\u7684\u63d0\u8bae/\u53cd\u9988\uff0c\u6b22\u8fce\u76f4\u63a5\u5728\u6b64\u4ed3\u5e93 [\u521b\u5efa\u4e00\u4e2a Pull Request](https://help.github.com/en/articles/creating-a-pull-request) \u6765\u89e3\u51b3\u8fd9\u4e2a\u95ee\u9898\u3002\u8bf7\u5c06 Pull Request \u53d1\u5230\u6b63\u786e\u7684\u5206\u652f\uff08\u65b0\u7279\u6027\u53d1\u5230 feature \u5206\u652f\uff0c\u5176\u4ed6\u53d1\u5230 master \u5206\u652f\uff09\uff0c\u52a1\u5fc5\u586b\u5199 Pull Request \u5185\u7684[\u9884\u8bbe\u6a21\u677f](https://github.com/ant-design/ant-design/blob/master/.github/PULL_REQUEST_TEMPLATE.md)\uff0c\u63d0\u4f9b\u6539\u52a8\u6240\u9700\u76f8\u5e94\u7684 changelog\u3001TypeScript \u5b9a\u4e49\u3001\u6d4b\u8bd5\u7528\u4f8b\u3001\u6587\u6863\u7b49\uff0c\u5e76\u786e\u4fdd CI \u901a\u8fc7\uff0c\u6211\u4eec\u4f1a\u5c3d\u5feb\u8fdb\u884c Review\uff0c\u63d0\u524d\u611f\u8c22\u548c\u671f\u5f85\u60a8\u7684\u8d21\u732e\u3002\n\n![giphy](https://user-images.githubusercontent.com/507615/62342668-4735dc00-b51a-11e9-92a7-d46fbb1cc0c7.gif)\n"
+          }
+        },
+        {
+          "name": "\ud83e\udd14 Need Reproduce",
+          "if": "github.event.label.name == '\ud83e\udd14 Need Reproduce'",
+          "uses": "actions-cool/issues-helper@v3",
+          "with": {
+            "actions": "create-comment",
+            "token": "${{ secrets.GITHUB_TOKEN }}",
+            "issue-number": "${{ github.event.issue.number }}",
+            "body": "Hello @${{ github.event.issue.user.login }}, We need you to provide an online reproduction example to help us investigate the issue. You can either fork this [online reproduction template](https://u.ant.design/reproduce) or create a minimal project repository using our [Scaffolding Guide](https://u.ant.design/guide). This issue will be automatically closed if no follow-up is made within 3 days.\n\n\u4f60\u597d @${{ github.event.issue.user.login }}\uff0c\u6211\u4eec\u9700\u8981\u4f60\u63d0\u4f9b\u4e00\u4e2a\u5728\u7ebf\u7684\u91cd\u73b0\u793a\u4f8b\u4ee5\u4fbf\u4e8e\u6211\u4eec\u5e2e\u4f60\u6392\u67e5\u95ee\u9898\u3002\u4f60\u53ef\u4ee5\u901a\u8fc7 fork \u8fd9\u4e2a[\u5728\u7ebf\u91cd\u73b0\u6a21\u677f](https://u.ant.design/reproduce)\uff0c\u6216\u8005\u57fa\u4e8e\u6211\u4eec\u7684[\u811a\u624b\u67b6\u6307\u5357](https://u.ant.design/guide) \u65b0\u5efa\u4e00\u4e2a\u6700\u5c0f\u5316\u9879\u76ee\u4ed3\u5e93\u30023 \u5929\u5185\u672a\u8ddf\u8fdb\u6b64 issue \u5c06\u4f1a\u88ab\u81ea\u52a8\u5173\u95ed\u3002\n\n> [\u4ec0\u4e48\u662f\u6700\u5c0f\u5316\u91cd\u73b0\uff0c\u4e3a\u4ec0\u4e48\u8fd9\u662f\u5fc5\u9700\u7684\uff1f](https://github.com/ant-design/ant-design/wiki/%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%80%E5%B0%8F%E5%8C%96%E9%87%8D%E7%8E%B0%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E6%98%AF%E5%BF%85%E9%9C%80%E7%9A%84%EF%BC%9F)\n\n![](https://gw.alipayobjects.com/zos/antfincdn/y9kwg7DVCd/reproduce.gif)\n"
+          }
+        },
+        {
+          "name": "Usage",
+          "if": "github.event.label.name == 'Usage' || github.event.label.name == 'Question'",
+          "uses": "actions-cool/issues-helper@v3",
+          "with": {
+            "actions": "create-comment,close-issue",
+            "token": "${{ secrets.GITHUB_TOKEN }}",
+            "issue-number": "${{ github.event.issue.number }}",
+            "body": "Hello @${{ github.event.issue.user.login }}, we use GitHub issues to trace bugs or discuss plans of Ant Design. So, please [don't ask usage questions](https://github.com/ant-design/ant-design/issues/2320) here. You can try to open a new discussion in [antd discussions](https://github.com/ant-design/ant-design/discussions), select `Q&A` to ask questions, also can ask questions on [Stack Overflow](http://stackoverflow.com/questions/tagged/antd) or [Segment Fault](https://segmentfault.com/t/antd), then apply tag `antd` and `react` to your question.\n\n\u4f60\u597d @${{ github.event.issue.user.login }}\uff0cAnt Design Issue \u677f\u5757\u662f\u7528\u4e8e bug \u53cd\u9988\u4e0e\u9700\u6c42\u8ba8\u8bba\u7684\u5730\u65b9\u3002\u8bf7[\u52ff\u8be2\u95ee\u5982\u4f55\u4f7f\u7528\u7684\u95ee\u9898](https://github.com/ant-design/ant-design/issues/2320)\uff0c\u4f60\u53ef\u4ee5\u8bd5\u7740\u5728 [antd discussions](https://github.com/ant-design/ant-design/discussions) \u65b0\u5f00\u4e00\u4e2a discussion\uff0c\u9009\u62e9 `Q&A` \u7c7b\u522b\u8fdb\u884c\u63d0\u95ee\uff0c\u4e5f\u53ef\u4ee5\u5728 [Stack Overflow](http://stackoverflow.com/questions/tagged/antd) \u6216\u8005 [Segment Fault](https://segmentfault.com/t/antd) \u4e2d\u63d0\u95ee\uff08\u8bb0\u5f97\u6dfb\u52a0 `antd` \u548c `react` \u6807\u7b7e\u54e6~\uff09\u3002\n"
+          }
+        },
+        {
+          "name": "3.x or 4.x",
+          "if": "github.event.label.name == '3.x' || github.event.label.name == '4.x'",
+          "uses": "actions-cool/issues-helper@v3",
+          "with": {
+            "actions": "create-comment,close-issue",
+            "token": "${{ secrets.GITHUB_TOKEN }}",
+            "issue-number": "${{ github.event.issue.number }}",
+            "body": "Hi @${{ github.event.issue.user.login }}. Current version (${{ github.event.label.name }}) is off the maintenance period. We may not accept pull request or fix bug with it anymore. This topic will be auto closed.\n\n\u4f60\u597d @${{ github.event.issue.user.login }}\uff0c\u5f53\u524d\u7248\u672c\uff08${{ github.event.label.name }}\uff09\u5df2\u7ecf\u8fc7\u4e86\u7ef4\u62a4\u671f\u3002\u6211\u4eec\u4e0d\u4f1a\u518d\u63a5\u53d7\u5bf9\u5176\u7684\u76f8\u5173 PR \u4e0e issue\u3002\u5f53\u524d topic \u4f1a\u88ab\u81ea\u52a8\u5173\u95ed\u3002\n"
+          }
+        },
+        {
+          "name": "invalid",
+          "if": "github.event.label.name == 'Invalid'",
+          "uses": "actions-cool/issues-helper@v3",
+          "with": {
+            "actions": "create-comment,close-issue",
+            "token": "${{ secrets.GITHUB_TOKEN }}",
+            "issue-number": "${{ github.event.issue.number }}",
+            "body": "Hello @${{ github.event.issue.user.login }}, your issue has been closed because it does not conform to our issue requirements. Please use the [Issue Helper](http://new-issue.ant.design) to create an issue, thank you!\n\n\u4f60\u597d @${{ github.event.issue.user.login }}\uff0c\u4e3a\u4e86\u80fd\u591f\u8fdb\u884c\u9ad8\u6548\u6c9f\u901a\uff0c\u6211\u4eec\u5bf9 issue \u6709\u4e00\u5b9a\u7684\u683c\u5f0f\u8981\u6c42\uff0c\u4f60\u7684 issue \u56e0\u4e3a\u4e0d\u7b26\u5408\u8981\u6c42\u800c\u88ab\u81ea\u52a8\u5173\u95ed\u3002\u4f60\u53ef\u4ee5\u901a\u8fc7 [issue \u52a9\u624b](http://new-issue.ant.design) \u6765\u521b\u5efa issue \u4ee5\u65b9\u4fbf\u6211\u4eec\u5b9a\u4f4d\u9519\u8bef\u3002\u8c22\u8c22\u914d\u5408\uff01\n"
+          }
+        },
+        {
+          "name": "remove unconfirmed label",
+          "if": "github.event.label.name != 'unconfirmed'",
+          "uses": "actions-cool/issues-helper@v3",
+          "with": {
+            "actions": "remove-labels",
+            "issue-number": "${{ github.event.issue.number }}",
+            "labels": "unconfirmed"
+          }
+        }
+      ]
+    }
+  }
+}

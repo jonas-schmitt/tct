@@ -1,0 +1,12 @@
+# Check text files out with LF on every platform. Many fixtures are pinned by
+# sha256, so a CRLF checkout (core.autocrlf on Windows) would break the pins.
+* text=auto eol=lf
+
+# Keep GitHub's language statistics and diffs focused on the compiler itself.
+tests/data/** linguist-vendored
+tests/fixtures/** linguist-vendored
+schemas/** linguist-vendored
+corpora/** linguist-vendored
+
+# Preserve the exact upstream bytes recorded in notice inventories.
+third_party/licenses/** -text

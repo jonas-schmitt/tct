@@ -1,0 +1,17 @@
+{
+  "rules": {
+    "type-enum": [
+      2,
+      "always",
+      [
+        "feat",
+        "fix",
+        "docs"
+      ]
+    ],
+    "type-empty": [
+      2,
+      "never"
+    ]
+  }
+}

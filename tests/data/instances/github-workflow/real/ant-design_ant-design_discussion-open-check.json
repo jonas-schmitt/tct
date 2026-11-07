@@ -1,0 +1,34 @@
+{
+  "name": "Discussions",
+  "on": {
+    "discussion": {
+      "types": [
+        "created"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "jobs": {
+    "discussion-create": {
+      "permissions": {
+        "contents": "read"
+      },
+      "runs-on": "ubuntu-latest",
+      "steps": [
+        {
+          "name": "send to dingtalk",
+          "uses": "visiky/dingtalk-release-notify@main",
+          "with": {
+            "DING_TALK_TOKEN": "${{ secrets.DINGDING_BOT_TOKEN }}\n${{ secrets.DINGDING_BOT_COLLABORATOR_TOKEN }}\n",
+            "notify_title": "\ud83d\udd25 @${{ github.event.discussion.user.login }} \u521b\u5efa\u4e86\u8ba8\u8bba\uff1a${{ github.event.discussion.title }} ${{ github.event.discussion.html_url }}",
+            "notify_body": "### \ud83d\udd25 [@${{ github.event.discussion.user.login }}](https://github.com/${{ github.event.discussion.user.login }}) \u5f00\u542f\u4e86\u4e00\u4e2a\u8ba8\u8bba\uff1a\n[${{ github.event.discussion.title }}](${{ github.event.discussion.html_url }})\n<hr />\n",
+            "notify_footer": "> \ud83e\udef5\ud83c\udffb \u6b22\u8fce\u524d\u5f80 GitHub \u8fdb\u884c\u8ba8\u8bba\uff0c\u793e\u533a\u9700\u8981\u4f60\u7684\u5e2e\u52a9\uff01",
+            "at_all": false
+          }
+        }
+      ]
+    }
+  }
+}

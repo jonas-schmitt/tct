@@ -1,0 +1,7 @@
+{
+  "name": "test_app",
+  "config_database": "postgres://localhost",
+  "config_port": "8080",
+  "setting_timeout": 30,
+  "setting_retries": 3
+}

@@ -1,0 +1,22 @@
+{
+  "root": true,
+  "env": {
+    "es2021": true,
+    "node": true
+  },
+  "extends": "./fixture-base.cjs",
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
+  "globals": {
+    "fixtureInput": "readonly",
+    "fixtureCounter": true
+  },
+  "rules": {
+    "eqeqeq": "error",
+    "no-unused-vars": 1,
+    "semi": ["error", "always"],
+    "quotes": ["warn", "double", {"avoidEscape": true}]
+  }
+}

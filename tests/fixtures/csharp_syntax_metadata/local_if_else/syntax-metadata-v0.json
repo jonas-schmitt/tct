@@ -1,0 +1,455 @@
+{
+  "artifact_kind": "tct_csharp_syntax_metadata_v0",
+  "version": 0,
+  "source": {
+    "path": "tests/fixtures/csharp_syntax_sources/local_if_else/source.cs",
+    "sha256": "d8079742a005317be0ac0a0dbcd192c00ecdf39d1e3370648d8ff7d133815517"
+  },
+  "parser": {
+    "tool": "dotnet",
+    "version": "10.0.203",
+    "package": "Microsoft.CodeAnalysis.CSharp",
+    "package_version": "5.3.0"
+  },
+  "rules": [
+    {
+      "name": "CompilationUnitSyntax",
+      "node_kind": "CompilationUnitSyntax",
+      "fields": [
+        {
+          "name": "Members",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "FileScopedNamespaceDeclarationSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FileScopedNamespaceDeclarationSyntax",
+      "node_kind": "FileScopedNamespaceDeclarationSyntax",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "qualified_identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "Members",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "ClassDeclarationSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ClassDeclarationSyntax",
+      "node_kind": "ClassDeclarationSyntax",
+      "fields": [
+        {
+          "name": "Identifier",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "Members",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "MethodDeclarationSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MethodDeclarationSyntax",
+      "node_kind": "MethodDeclarationSyntax",
+      "fields": [
+        {
+          "name": "Identifier",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "ReturnType",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "PredefinedTypeSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Body",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BlockSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PredefinedTypeSyntax",
+      "node_kind": "PredefinedTypeSyntax",
+      "fields": [
+        {
+          "name": "Keyword",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "int_keyword",
+              "terminal": "identifier_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BlockSyntax",
+      "node_kind": "BlockSyntax",
+      "fields": [
+        {
+          "name": "Statements",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "LocalDeclarationStatementSyntax",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "IfStatementSyntax",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "ExpressionStatementSyntax",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "ReturnStatementSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "LocalDeclarationStatementSyntax",
+      "node_kind": "LocalDeclarationStatementSyntax",
+      "fields": [
+        {
+          "name": "Declaration",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "VariableDeclarationSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "VariableDeclarationSyntax",
+      "node_kind": "VariableDeclarationSyntax",
+      "fields": [
+        {
+          "name": "Type",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "PredefinedTypeSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Variables",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "VariableDeclaratorSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "VariableDeclaratorSyntax",
+      "node_kind": "VariableDeclaratorSyntax",
+      "fields": [
+        {
+          "name": "Identifier",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "Initializer",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "EqualsValueClauseSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "EqualsValueClauseSyntax",
+      "node_kind": "EqualsValueClauseSyntax",
+      "fields": [
+        {
+          "name": "Value",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "LiteralExpressionSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "IfStatementSyntax",
+      "node_kind": "IfStatementSyntax",
+      "fields": [
+        {
+          "name": "Condition",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BinaryExpressionSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Statement",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BlockSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Else",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "ElseClauseSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ElseClauseSyntax",
+      "node_kind": "ElseClauseSyntax",
+      "fields": [
+        {
+          "name": "Statement",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BlockSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BinaryExpressionSyntax",
+      "node_kind": "BinaryExpressionSyntax",
+      "fields": [
+        {
+          "name": "Left",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "IdentifierNameSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "OperatorToken",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "greater_than_token",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "Right",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "LiteralExpressionSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ExpressionStatementSyntax",
+      "node_kind": "ExpressionStatementSyntax",
+      "fields": [
+        {
+          "name": "Expression",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "AssignmentExpressionSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AssignmentExpressionSyntax",
+      "node_kind": "AssignmentExpressionSyntax",
+      "fields": [
+        {
+          "name": "Left",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "IdentifierNameSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Right",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "LiteralExpressionSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "LiteralExpressionSyntax",
+      "node_kind": "LiteralExpressionSyntax",
+      "fields": [
+        {
+          "name": "Token",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "integer_literal",
+              "terminal": "integer_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ReturnStatementSyntax",
+      "node_kind": "ReturnStatementSyntax",
+      "fields": [
+        {
+          "name": "Expression",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "IdentifierNameSyntax",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "IdentifierNameSyntax",
+      "node_kind": "IdentifierNameSyntax",
+      "fields": [
+        {
+          "name": "Identifier",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

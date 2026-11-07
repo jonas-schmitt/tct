@@ -1,0 +1,55 @@
+{
+  "name": "PR Open Check",
+  "on": {
+    "pull_request_target": {
+      "types": [
+        "opened",
+        "edited",
+        "reopened",
+        "synchronize"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "jobs": {
+    "refuse": {
+      "permissions": {
+        "issues": "write",
+        "pull-requests": "write"
+      },
+      "runs-on": "ubuntu-latest",
+      "steps": [
+        {
+          "uses": "actions-cool/pr-welcome@v1",
+          "with": {
+            "refuse-issue-label": "\ud83c\udfb1 Collaborate PR only",
+            "need-creator-authority": "write",
+            "comment": "Hi @${{ github.event.pull_request.user.login }}. The issue mentioned in this PR needs to be confirmed with the designer or core team. Thank you for your contribution! \ud83d\ude0a\n\n\u4f60\u597d @${{ github.event.pull_request.user.login }}\u3002\u8fd9\u4e2a PR \u63d0\u53ca\u7684 issue \u9700\u8981\u548c\u8bbe\u8ba1\u5e08\u6216\u6838\u5fc3\u56e2\u961f\u8fdb\u884c\u786e\u8ba4\uff01\u611f\u8c22\u60a8\u7684\u8d21\u732e\uff01\ud83d\ude0a\n",
+            "close": false,
+            "reviewers": "MadCcc\nzombieJ\n"
+          }
+        }
+      ]
+    },
+    "check-changelog": {
+      "permissions": {
+        "pull-requests": "write"
+      },
+      "runs-on": "ubuntu-latest",
+      "steps": [
+        {
+          "name": "check fill",
+          "uses": "actions-cool/pr-check-fill@v1",
+          "with": {
+            "filter-start": "|",
+            "require-include": "\ud83c\uddfa\ud83c\uddf8 English, \ud83c\udde8\ud83c\uddf3 Chinese, \ud83c\uddfa\ud83c\uddf8 \u82f1\u6587, \ud83c\udde8\ud83c\uddf3 \u4e2d\u6587",
+            "comment-body": "- \ud83d\udea8 @${{ github.event.pull_request.user.login }}, Please fill changelog in PR content\n  > - Read [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) like a cat tracks a laser pointer.\n  > - Describe the impact of the changes on developers, not the solution approach.\n  > - Reference: https://ant.design/changelog\n\n- \ud83d\udea8 @${{ github.event.pull_request.user.login }}, \u8bf7\u586b\u5199 PR \u4e2d\u7684 changelog\n  > - \u90d1\u91cd\u5730\u9605\u8bfb [\u5982\u4f55\u7ef4\u62a4\u66f4\u65b0\u65e5\u5fd7](https://keepachangelog.com/zh-CN/1.1.0/)\n  > - \u63cf\u8ff0\u6539\u52a8\u5bf9\u5f00\u53d1\u8005\u6709\u54ea\u4e9b\u5f71\u54cd\uff0c\u800c\u975e\u89e3\u51b3\u65b9\u5f0f\n  > - \u53ef\u53c2\u8003\uff1ahttps://ant.design/changelog-cn\n\n![](https://github.com/ant-design/ant-design/assets/507615/14c767db-e40f-42a1-9aab-553037eb1ab6)\n",
+            "skip-title-start": "docs, chore, test, ci"
+          }
+        }
+      ]
+    }
+  }
+}

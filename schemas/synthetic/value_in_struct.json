@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ValueInStruct",
+  "description": "Synthetic schema to test serde_json::Value in struct fields - should NOT derive Ord/PartialOrd",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "A simple string field"
+    },
+    "metadata": {
+      "description": "An unconstrained object that becomes serde_json::Value",
+      "type": "object"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "description": "Array of unconstrained objects",
+        "type": "object"
+      }
+    }
+  },
+  "required": ["name"]
+}

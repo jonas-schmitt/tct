@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransitiveRef",
+  "description": "Synthetic schema to test transitive $ref resolution (A refs B, property refs A)",
+  "type": "object",
+  "properties": {
+    "branches": {
+      "$ref": "#/definitions/branch"
+    },
+    "paths": {
+      "$ref": "#/definitions/path"
+    }
+  },
+  "definitions": {
+    "branch": {
+      "$ref": "#/definitions/globs",
+      "description": "Branch filter - references globs"
+    },
+    "path": {
+      "$ref": "#/definitions/globs",
+      "description": "Path filter - references globs"
+    },
+    "globs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    }
+  }
+}

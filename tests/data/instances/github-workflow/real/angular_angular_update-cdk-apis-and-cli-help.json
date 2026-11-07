@@ -1,0 +1,89 @@
+{
+  "name": "Update ADEV Angular CDK APIs and CLI Help",
+  "on": {
+    "workflow_dispatch": {
+      "inputs": {}
+    },
+    "push": {
+      "branches": [
+        "main",
+        "[0-9]+.[0-9]+.x"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "jobs": {
+    "update_adev_docs": {
+      "name": "Update Angular CDK APIs and CLI Help (if necessary)",
+      "if": "github.repository == 'angular/angular'",
+      "runs-on": "ubuntu-latest",
+      "concurrency": {
+        "group": "${{ github.workflow }}-${{ github.ref }}",
+        "cancel-in-progress": true
+      },
+      "steps": [
+        {
+          "name": "Checkout the repository",
+          "uses": "actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8",
+          "with": {
+            "persist-credentials": false
+          }
+        },
+        {
+          "name": "Generate CDK apis",
+          "run": "node adev/scripts/update-cdk-apis/index.mjs",
+          "env": {
+            "ANGULAR_CDK_BUILDS_READONLY_GITHUB_TOKEN": "${{ secrets.ANGULAR_CDK_BUILDS_READONLY_GITHUB_TOKEN }}"
+          }
+        },
+        {
+          "name": "Create a PR CDK apis (if necessary)",
+          "uses": "peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e",
+          "with": {
+            "token": "${{ secrets.ANGULAR_ROBOT_ACCESS_TOKEN }}",
+            "push-to-fork": "angular-robot/angular",
+            "delete-branch": true,
+            "maintainer-can-modify": false,
+            "branch": "docs-update-cdk-apis-${{github.ref_name}}",
+            "committer": "Angular Robot <angular-robot@google.com>",
+            "author": "Angular Robot <angular-robot@google.com>",
+            "title": "docs: update Angular CDK apis [${{github.ref_name}}]",
+            "body": "Updated Angular CDK api files.\n",
+            "labels": "action: merge\narea: docs\ntarget: automation\n",
+            "commit-message": "docs: update Angular CDK apis\n\nUpdated Angular CDK api files.\n"
+          }
+        },
+        {
+          "name": "Reset to current GitHub ref",
+          "run": "git reset --hard ${{ github.ref }}\n"
+        },
+        {
+          "name": "Generate CLI help",
+          "run": "node adev/scripts/update-cli-help/index.mjs",
+          "env": {
+            "ANGULAR_CLI_BUILDS_READONLY_GITHUB_TOKEN": "${{ secrets.ANGULAR_CLI_BUILDS_READONLY_GITHUB_TOKEN }}"
+          }
+        },
+        {
+          "name": "Create a PR CLI help (if necessary)",
+          "uses": "peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e",
+          "with": {
+            "token": "${{ secrets.ANGULAR_ROBOT_ACCESS_TOKEN }}",
+            "push-to-fork": "angular-robot/angular",
+            "delete-branch": true,
+            "maintainer-can-modify": false,
+            "branch": "docs-update-cli-help-${{github.ref_name}}",
+            "committer": "Angular Robot <angular-robot@google.com>",
+            "author": "Angular Robot <angular-robot@google.com>",
+            "title": "docs: update Angular CLI help [${{github.ref_name}}]",
+            "body": "Updated Angular CLI help contents.\n",
+            "labels": "action: merge\narea: docs\ntarget: automation\n",
+            "commit-message": "docs: update Angular CLI help\n\nUpdated Angular CLI help contents.\n"
+          }
+        }
+      ]
+    }
+  }
+}

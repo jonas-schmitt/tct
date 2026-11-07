@@ -1,0 +1,47 @@
+TCT - Type-Constrained Tokenization
+Copyright 2026 Jonas Schmitt
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Third-party source and fixture notices:
+
+Third-party material retains its own applicable terms. See
+the source distribution's THIRD_PARTY_NOTICES.md and hash-bound inventories under
+third_party/clearance/ for source revisions, modifications, and notices.
+
+- SchemaStore material retains the Apache-2.0 license and the JSON Schema
+  Store notice naming Mads Kristensen and Contributors. Other schema origins
+  and their notices are identified individually in the schema inventory.
+- schemas/external/partial-eslint-plugins.json and its modifications retain
+  the committed upstream schema's MPL-2.0 source terms, with SchemaStore
+  Apache-2.0 and plugin-input MIT notices. Its exact source form and license
+  notices accompany this source distribution. See
+  third_party/clearance/schemas/ESLINT_SOURCE_NOTICE.md.
+- Copied Go standard-library source, excerpts, and derived metadata retain
+  Copyright The Go Authors and BSD-3-Clause notices. The vendored inventory
+  distinguishes those files from repository-authored examples and records
+  additional retained notices where applicable.
+- C# source from dotnet/samples and tree-sitter metadata retain their MIT
+  license notices under third_party/licenses/.
+- Individually sourced configuration fixtures retain their recorded upstream
+  terms and copyright notices. YAML files were converted to JSON. CC-BY-4.0
+  source attribution and change disclosures are in
+  third_party/clearance/instances/ATTRIBUTION.md; full license texts are
+  retained alongside the corresponding upstream notices.
+
+These notices do not relicense input schemas or user data, imply upstream
+endorsement, or clear material excluded by the publication scope.
+
+Only notices for material incorporated in a particular artifact apply to that
+artifact; this source-level index does not assert that every listed input is
+packaged in every generated tokenizer or wheel.

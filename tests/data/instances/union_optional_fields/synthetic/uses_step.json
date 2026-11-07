@@ -1,0 +1,7 @@
+{
+  "name": "test-workflow",
+  "step": {
+    "name": "Checkout code",
+    "uses": "actions/checkout@v4"
+  }
+}

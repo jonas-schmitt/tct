@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OneOf Array String",
+  "description": "Test oneOf with array of strings and single string variants",
+  "type": "object",
+  "properties": {
+    "extends": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "required": ["extends"]
+}

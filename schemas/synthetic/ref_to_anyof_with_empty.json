@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RefToAnyOfWithEmpty",
+  "description": "Test $ref to definition containing anyOf with empty schema - matches codecov.json pattern",
+  "type": "object",
+  "properties": {
+    "layout_field": {
+      "$ref": "#/definitions/layout"
+    },
+    "name": {
+      "type": "string"
+    }
+  },
+  "required": ["name"],
+  "definitions": {
+    "layout": {
+      "anyOf": [
+        {},
+        {
+          "enum": ["option1", "option2", "option3"]
+        }
+      ]
+    }
+  }
+}

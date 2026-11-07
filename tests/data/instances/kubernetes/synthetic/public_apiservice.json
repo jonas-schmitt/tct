@@ -1,0 +1,22 @@
+{
+  "apiVersion": "apiregistration.k8s.io/v1",
+  "kind": "APIService",
+  "metadata": {
+    "name": "v1alpha1.widgets.example.invalid",
+    "labels": {
+      "purpose": "round-trip"
+    }
+  },
+  "spec": {
+    "group": "widgets.example.invalid",
+    "version": "v1alpha1",
+    "groupPriorityMinimum": 2000,
+    "versionPriority": 15,
+    "insecureSkipTLSVerify": false,
+    "service": {
+      "name": "tct-public-api",
+      "namespace": "tct-fixtures",
+      "port": 8443
+    }
+  }
+}

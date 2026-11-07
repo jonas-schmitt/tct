@@ -1,0 +1,690 @@
+{
+  "artifact_kind": "tct_go_syntax_token_layout_pin",
+  "version": 1,
+  "current": {
+    "token_layout": {
+      "layout_id": "go-syntax-token-layout-v2",
+      "layout_version": 2,
+      "stream_contract": "raw-syntax-stream-elided-v1",
+      "vocab_size": 641,
+      "pad_token": 640,
+      "ranges": [
+        {
+          "id": "go.structural_tokens",
+          "role": "structural_decisions",
+          "start": 0,
+          "end_exclusive": 128
+        },
+        {
+          "id": "go.utf8_byte_payload",
+          "role": "utf8_byte_payload",
+          "start": 128,
+          "end_exclusive": 384
+        },
+        {
+          "id": "go.u8_integer_payload",
+          "role": "u8_integer_payload",
+          "start": 384,
+          "end_exclusive": 640
+        }
+      ],
+      "role_offsets": {
+        "boolean_false": 8,
+        "boolean_true": 9,
+        "field_end": 3,
+        "field_missing": 4,
+        "field_start": 2,
+        "node_end": 1,
+        "node_start": 0,
+        "payload_end": 7,
+        "repeated_empty": 5,
+        "terminal": 6
+      },
+      "alternative_node_start_tokens": {
+        "ArrayType": 10,
+        "AssignStmt": 11,
+        "BasicLit": 12,
+        "BinaryExpr": 13,
+        "BlockStmt": 14,
+        "BranchStmt": 15,
+        "CallExpr": 16,
+        "CaseClause": 17,
+        "ChanType": 18,
+        "CommClause": 19,
+        "CompositeLit": 20,
+        "DeclStmt": 21,
+        "DeferStmt": 22,
+        "Ellipsis": 23,
+        "EmptyStmt": 24,
+        "ExprStmt": 25,
+        "ForStmt": 26,
+        "FuncDecl": 27,
+        "FuncLit": 28,
+        "FuncType": 29,
+        "GenDecl": 30,
+        "GoStmt": 31,
+        "Ident": 32,
+        "IfStmt": 33,
+        "ImportSpec": 34,
+        "IncDecStmt": 35,
+        "IndexExpr": 36,
+        "IndexListExpr": 37,
+        "InterfaceType": 38,
+        "KeyValueExpr": 39,
+        "LabeledStmt": 40,
+        "MapType": 41,
+        "ParenExpr": 42,
+        "RangeStmt": 43,
+        "ReturnStmt": 44,
+        "SelectStmt": 45,
+        "SelectorExpr": 46,
+        "SendStmt": 47,
+        "SliceExpr": 48,
+        "StarExpr": 49,
+        "StructType": 50,
+        "SwitchStmt": 51,
+        "TypeAssertExpr": 52,
+        "TypeSpec": 53,
+        "TypeSwitchStmt": 54,
+        "UnaryExpr": 55,
+        "ValueSpec": 56
+      }
+    },
+    "source_file_token_layout": {
+      "layout_id": "go-syntax-source-file-token-layout-v2",
+      "layout_version": 2,
+      "stream_contract": "raw-syntax-stream-elided-v1",
+      "vocab_size": 641,
+      "pad_token": 640,
+      "ranges": [
+        {
+          "id": "go.structural_tokens",
+          "role": "structural_decisions",
+          "start": 0,
+          "end_exclusive": 128
+        },
+        {
+          "id": "go.utf8_byte_payload",
+          "role": "utf8_byte_payload",
+          "start": 128,
+          "end_exclusive": 384
+        },
+        {
+          "id": "go.integer_lexeme_payload",
+          "role": "integer_lexeme_payload",
+          "start": 384,
+          "end_exclusive": 640
+        }
+      ],
+      "role_offsets": {
+        "boolean_false": 8,
+        "boolean_true": 9,
+        "field_end": 3,
+        "field_missing": 4,
+        "field_start": 2,
+        "node_end": 1,
+        "node_start": 0,
+        "payload_end": 7,
+        "repeated_empty": 5,
+        "terminal": 6
+      },
+      "alternative_node_start_tokens": {
+        "ArrayType": 10,
+        "AssignStmt": 11,
+        "BasicLit": 12,
+        "BinaryExpr": 13,
+        "BlockStmt": 14,
+        "BranchStmt": 15,
+        "CallExpr": 16,
+        "CaseClause": 17,
+        "ChanType": 18,
+        "CommClause": 19,
+        "CompositeLit": 20,
+        "DeclStmt": 21,
+        "DeferStmt": 22,
+        "Ellipsis": 23,
+        "EmptyStmt": 24,
+        "ExprStmt": 25,
+        "ForStmt": 26,
+        "FuncDecl": 27,
+        "FuncLit": 28,
+        "FuncType": 29,
+        "GenDecl": 30,
+        "GoStmt": 31,
+        "Ident": 32,
+        "IfStmt": 33,
+        "ImportSpec": 34,
+        "IncDecStmt": 35,
+        "IndexExpr": 36,
+        "IndexListExpr": 37,
+        "InterfaceType": 38,
+        "KeyValueExpr": 39,
+        "LabeledStmt": 40,
+        "MapType": 41,
+        "ParenExpr": 42,
+        "RangeStmt": 43,
+        "ReturnStmt": 44,
+        "SelectStmt": 45,
+        "SelectorExpr": 46,
+        "SendStmt": 47,
+        "SliceExpr": 48,
+        "StarExpr": 49,
+        "StructType": 50,
+        "SwitchStmt": 51,
+        "TypeAssertExpr": 52,
+        "TypeSpec": 53,
+        "TypeSwitchStmt": 54,
+        "UnaryExpr": 55,
+        "ValueSpec": 56
+      }
+    }
+  },
+  "previous_layout": {
+    "note": "Pre-pinning 577-era layouts assigned alternative node_start tokens alphabetically per sidecar, so per-record token maps could disagree with the full-inventory map (for example CallExpr was 14 in the strings_reader per-record grammar but 16 globally). The alternative table recorded here is the full-inventory assignment, which the pinned table preserves unchanged.",
+    "token_layout": {
+      "layout_id": "go-syntax-token-layout-v1",
+      "layout_version": 1,
+      "stream_contract": "raw-syntax-stream-expanded-v1",
+      "vocab_size": 577,
+      "pad_token": 576,
+      "ranges": [
+        {
+          "id": "go.structural_tokens",
+          "role": "structural_decisions",
+          "start": 0,
+          "end_exclusive": 64
+        },
+        {
+          "id": "go.utf8_byte_payload",
+          "role": "utf8_byte_payload",
+          "start": 64,
+          "end_exclusive": 320
+        },
+        {
+          "id": "go.u8_integer_payload",
+          "role": "u8_integer_payload",
+          "start": 320,
+          "end_exclusive": 576
+        }
+      ],
+      "role_offsets": {
+        "boolean_false": 8,
+        "boolean_true": 9,
+        "field_end": 3,
+        "field_missing": 4,
+        "field_start": 2,
+        "node_end": 1,
+        "node_start": 0,
+        "payload_end": 7,
+        "repeated_empty": 5,
+        "terminal": 6
+      },
+      "alternative_node_start_tokens": {
+        "ArrayType": 10,
+        "AssignStmt": 11,
+        "BasicLit": 12,
+        "BinaryExpr": 13,
+        "BlockStmt": 14,
+        "BranchStmt": 15,
+        "CallExpr": 16,
+        "CaseClause": 17,
+        "ChanType": 18,
+        "CommClause": 19,
+        "CompositeLit": 20,
+        "DeclStmt": 21,
+        "DeferStmt": 22,
+        "Ellipsis": 23,
+        "EmptyStmt": 24,
+        "ExprStmt": 25,
+        "ForStmt": 26,
+        "FuncDecl": 27,
+        "FuncLit": 28,
+        "FuncType": 29,
+        "GenDecl": 30,
+        "GoStmt": 31,
+        "Ident": 32,
+        "IfStmt": 33,
+        "ImportSpec": 34,
+        "IncDecStmt": 35,
+        "IndexExpr": 36,
+        "IndexListExpr": 37,
+        "InterfaceType": 38,
+        "KeyValueExpr": 39,
+        "LabeledStmt": 40,
+        "MapType": 41,
+        "ParenExpr": 42,
+        "RangeStmt": 43,
+        "ReturnStmt": 44,
+        "SelectStmt": 45,
+        "SelectorExpr": 46,
+        "SendStmt": 47,
+        "SliceExpr": 48,
+        "StarExpr": 49,
+        "StructType": 50,
+        "SwitchStmt": 51,
+        "TypeAssertExpr": 52,
+        "TypeSpec": 53,
+        "TypeSwitchStmt": 54,
+        "UnaryExpr": 55,
+        "ValueSpec": 56
+      }
+    },
+    "source_file_token_layout": {
+      "layout_id": "go-syntax-source-file-token-layout-v1",
+      "layout_version": 1,
+      "stream_contract": "raw-syntax-stream-expanded-v1",
+      "vocab_size": 577,
+      "pad_token": 576,
+      "ranges": [
+        {
+          "id": "go.structural_tokens",
+          "role": "structural_decisions",
+          "start": 0,
+          "end_exclusive": 64
+        },
+        {
+          "id": "go.utf8_byte_payload",
+          "role": "utf8_byte_payload",
+          "start": 64,
+          "end_exclusive": 320
+        },
+        {
+          "id": "go.integer_lexeme_payload",
+          "role": "integer_lexeme_payload",
+          "start": 320,
+          "end_exclusive": 576
+        }
+      ],
+      "role_offsets": {
+        "boolean_false": 8,
+        "boolean_true": 9,
+        "field_end": 3,
+        "field_missing": 4,
+        "field_start": 2,
+        "node_end": 1,
+        "node_start": 0,
+        "payload_end": 7,
+        "repeated_empty": 5,
+        "terminal": 6
+      },
+      "alternative_node_start_tokens": {
+        "ArrayType": 10,
+        "AssignStmt": 11,
+        "BasicLit": 12,
+        "BinaryExpr": 13,
+        "BlockStmt": 14,
+        "BranchStmt": 15,
+        "CallExpr": 16,
+        "CaseClause": 17,
+        "ChanType": 18,
+        "CommClause": 19,
+        "CompositeLit": 20,
+        "DeclStmt": 21,
+        "DeferStmt": 22,
+        "Ellipsis": 23,
+        "EmptyStmt": 24,
+        "ExprStmt": 25,
+        "ForStmt": 26,
+        "FuncDecl": 27,
+        "FuncLit": 28,
+        "FuncType": 29,
+        "GenDecl": 30,
+        "GoStmt": 31,
+        "Ident": 32,
+        "IfStmt": 33,
+        "ImportSpec": 34,
+        "IncDecStmt": 35,
+        "IndexExpr": 36,
+        "IndexListExpr": 37,
+        "InterfaceType": 38,
+        "KeyValueExpr": 39,
+        "LabeledStmt": 40,
+        "MapType": 41,
+        "ParenExpr": 42,
+        "RangeStmt": 43,
+        "ReturnStmt": 44,
+        "SelectStmt": 45,
+        "SelectorExpr": 46,
+        "SendStmt": 47,
+        "SliceExpr": 48,
+        "StarExpr": 49,
+        "StructType": 50,
+        "SwitchStmt": 51,
+        "TypeAssertExpr": 52,
+        "TypeSpec": 53,
+        "TypeSwitchStmt": 54,
+        "UnaryExpr": 55,
+        "ValueSpec": 56
+      }
+    }
+  },
+  "transition": {
+    "token_layout": {
+      "compatibility": "breaking_change",
+      "old_layout_id": "go-syntax-token-layout-v1",
+      "new_layout_id": "go-syntax-token-layout-v2",
+      "vocab_size_change": [
+        577,
+        641
+      ],
+      "pad_token_change": [
+        576,
+        640
+      ],
+      "stream_contract_change": [
+        "raw-syntax-stream-expanded-v1",
+        "raw-syntax-stream-elided-v1"
+      ],
+      "moved_ranges": [
+        "structural_decisions",
+        "u8_integer_payload",
+        "utf8_byte_payload"
+      ],
+      "added_ranges": [],
+      "removed_ranges": [],
+      "changed_role_offsets": [],
+      "renumbered_alternatives": [],
+      "removed_alternatives": [],
+      "added_alternatives": [],
+      "reasons": [
+        "range structural_decisions moved from 0..64 to 0..128",
+        "range u8_integer_payload moved from 320..576 to 384..640",
+        "range utf8_byte_payload moved from 64..320 to 128..384",
+        "vocab size changed from 577 to 641",
+        "pad token changed from 576 to 640",
+        "stream contract changed from raw-syntax-stream-expanded-v1 to raw-syntax-stream-elided-v1"
+      ],
+      "evidence_scope": "compiler_artifact_evidence_only",
+      "downstream_claims_allowed": false,
+      "notes": [
+        "Syntax layout diffs are compiler-local compatibility evidence, not downstream model evidence.",
+        "additive_compatible covers only appended alternative tokens inside unchanged ranges.",
+        "breaking_change requires retraining or explicit migration of downstream raw-token corpora, BPE artifacts, and embeddings.",
+        "A stream_contract change is a breaking_change even when every token range is identical: encoded streams are not interchangeable across stream contracts."
+      ]
+    },
+    "source_file_token_layout": {
+      "compatibility": "breaking_change",
+      "old_layout_id": "go-syntax-source-file-token-layout-v1",
+      "new_layout_id": "go-syntax-source-file-token-layout-v2",
+      "vocab_size_change": [
+        577,
+        641
+      ],
+      "pad_token_change": [
+        576,
+        640
+      ],
+      "stream_contract_change": [
+        "raw-syntax-stream-expanded-v1",
+        "raw-syntax-stream-elided-v1"
+      ],
+      "moved_ranges": [
+        "integer_lexeme_payload",
+        "structural_decisions",
+        "utf8_byte_payload"
+      ],
+      "added_ranges": [],
+      "removed_ranges": [],
+      "changed_role_offsets": [],
+      "renumbered_alternatives": [],
+      "removed_alternatives": [],
+      "added_alternatives": [],
+      "reasons": [
+        "range integer_lexeme_payload moved from 320..576 to 384..640",
+        "range structural_decisions moved from 0..64 to 0..128",
+        "range utf8_byte_payload moved from 64..320 to 128..384",
+        "vocab size changed from 577 to 641",
+        "pad token changed from 576 to 640",
+        "stream contract changed from raw-syntax-stream-expanded-v1 to raw-syntax-stream-elided-v1"
+      ],
+      "evidence_scope": "compiler_artifact_evidence_only",
+      "downstream_claims_allowed": false,
+      "notes": [
+        "Syntax layout diffs are compiler-local compatibility evidence, not downstream model evidence.",
+        "additive_compatible covers only appended alternative tokens inside unchanged ranges.",
+        "breaking_change requires retraining or explicit migration of downstream raw-token corpora, BPE artifacts, and embeddings.",
+        "A stream_contract change is a breaking_change even when every token range is identical: encoded streams are not interchangeable across stream contracts."
+      ]
+    }
+  },
+  "previous_contract": {
+    "note": "Pre-elision 641 layouts carried the expanded stream contract: every mask-forced token was represented in canonical encoded streams. The deliberate elision break flipped the live contract to elided-v1 with zero moved token ranges; expanded-era raw-token corpora and BPE artifacts are not interchangeable with elided streams.",
+    "token_layout": {
+      "layout_id": "go-syntax-token-layout-v2",
+      "layout_version": 2,
+      "stream_contract": "raw-syntax-stream-expanded-v1",
+      "vocab_size": 641,
+      "pad_token": 640,
+      "ranges": [
+        {
+          "id": "go.structural_tokens",
+          "role": "structural_decisions",
+          "start": 0,
+          "end_exclusive": 128
+        },
+        {
+          "id": "go.utf8_byte_payload",
+          "role": "utf8_byte_payload",
+          "start": 128,
+          "end_exclusive": 384
+        },
+        {
+          "id": "go.u8_integer_payload",
+          "role": "u8_integer_payload",
+          "start": 384,
+          "end_exclusive": 640
+        }
+      ],
+      "role_offsets": {
+        "boolean_false": 8,
+        "boolean_true": 9,
+        "field_end": 3,
+        "field_missing": 4,
+        "field_start": 2,
+        "node_end": 1,
+        "node_start": 0,
+        "payload_end": 7,
+        "repeated_empty": 5,
+        "terminal": 6
+      },
+      "alternative_node_start_tokens": {
+        "ArrayType": 10,
+        "AssignStmt": 11,
+        "BasicLit": 12,
+        "BinaryExpr": 13,
+        "BlockStmt": 14,
+        "BranchStmt": 15,
+        "CallExpr": 16,
+        "CaseClause": 17,
+        "ChanType": 18,
+        "CommClause": 19,
+        "CompositeLit": 20,
+        "DeclStmt": 21,
+        "DeferStmt": 22,
+        "Ellipsis": 23,
+        "EmptyStmt": 24,
+        "ExprStmt": 25,
+        "ForStmt": 26,
+        "FuncDecl": 27,
+        "FuncLit": 28,
+        "FuncType": 29,
+        "GenDecl": 30,
+        "GoStmt": 31,
+        "Ident": 32,
+        "IfStmt": 33,
+        "ImportSpec": 34,
+        "IncDecStmt": 35,
+        "IndexExpr": 36,
+        "IndexListExpr": 37,
+        "InterfaceType": 38,
+        "KeyValueExpr": 39,
+        "LabeledStmt": 40,
+        "MapType": 41,
+        "ParenExpr": 42,
+        "RangeStmt": 43,
+        "ReturnStmt": 44,
+        "SelectStmt": 45,
+        "SelectorExpr": 46,
+        "SendStmt": 47,
+        "SliceExpr": 48,
+        "StarExpr": 49,
+        "StructType": 50,
+        "SwitchStmt": 51,
+        "TypeAssertExpr": 52,
+        "TypeSpec": 53,
+        "TypeSwitchStmt": 54,
+        "UnaryExpr": 55,
+        "ValueSpec": 56
+      }
+    },
+    "source_file_token_layout": {
+      "layout_id": "go-syntax-source-file-token-layout-v2",
+      "layout_version": 2,
+      "stream_contract": "raw-syntax-stream-expanded-v1",
+      "vocab_size": 641,
+      "pad_token": 640,
+      "ranges": [
+        {
+          "id": "go.structural_tokens",
+          "role": "structural_decisions",
+          "start": 0,
+          "end_exclusive": 128
+        },
+        {
+          "id": "go.utf8_byte_payload",
+          "role": "utf8_byte_payload",
+          "start": 128,
+          "end_exclusive": 384
+        },
+        {
+          "id": "go.integer_lexeme_payload",
+          "role": "integer_lexeme_payload",
+          "start": 384,
+          "end_exclusive": 640
+        }
+      ],
+      "role_offsets": {
+        "boolean_false": 8,
+        "boolean_true": 9,
+        "field_end": 3,
+        "field_missing": 4,
+        "field_start": 2,
+        "node_end": 1,
+        "node_start": 0,
+        "payload_end": 7,
+        "repeated_empty": 5,
+        "terminal": 6
+      },
+      "alternative_node_start_tokens": {
+        "ArrayType": 10,
+        "AssignStmt": 11,
+        "BasicLit": 12,
+        "BinaryExpr": 13,
+        "BlockStmt": 14,
+        "BranchStmt": 15,
+        "CallExpr": 16,
+        "CaseClause": 17,
+        "ChanType": 18,
+        "CommClause": 19,
+        "CompositeLit": 20,
+        "DeclStmt": 21,
+        "DeferStmt": 22,
+        "Ellipsis": 23,
+        "EmptyStmt": 24,
+        "ExprStmt": 25,
+        "ForStmt": 26,
+        "FuncDecl": 27,
+        "FuncLit": 28,
+        "FuncType": 29,
+        "GenDecl": 30,
+        "GoStmt": 31,
+        "Ident": 32,
+        "IfStmt": 33,
+        "ImportSpec": 34,
+        "IncDecStmt": 35,
+        "IndexExpr": 36,
+        "IndexListExpr": 37,
+        "InterfaceType": 38,
+        "KeyValueExpr": 39,
+        "LabeledStmt": 40,
+        "MapType": 41,
+        "ParenExpr": 42,
+        "RangeStmt": 43,
+        "ReturnStmt": 44,
+        "SelectStmt": 45,
+        "SelectorExpr": 46,
+        "SendStmt": 47,
+        "SliceExpr": 48,
+        "StarExpr": 49,
+        "StructType": 50,
+        "SwitchStmt": 51,
+        "TypeAssertExpr": 52,
+        "TypeSpec": 53,
+        "TypeSwitchStmt": 54,
+        "UnaryExpr": 55,
+        "ValueSpec": 56
+      }
+    }
+  },
+  "stream_contract_transition": {
+    "token_layout": {
+      "compatibility": "breaking_change",
+      "old_layout_id": "go-syntax-token-layout-v2",
+      "new_layout_id": "go-syntax-token-layout-v2",
+      "vocab_size_change": null,
+      "pad_token_change": null,
+      "stream_contract_change": [
+        "raw-syntax-stream-expanded-v1",
+        "raw-syntax-stream-elided-v1"
+      ],
+      "moved_ranges": [],
+      "added_ranges": [],
+      "removed_ranges": [],
+      "changed_role_offsets": [],
+      "renumbered_alternatives": [],
+      "removed_alternatives": [],
+      "added_alternatives": [],
+      "reasons": [
+        "stream contract changed from raw-syntax-stream-expanded-v1 to raw-syntax-stream-elided-v1"
+      ],
+      "evidence_scope": "compiler_artifact_evidence_only",
+      "downstream_claims_allowed": false,
+      "notes": [
+        "Syntax layout diffs are compiler-local compatibility evidence, not downstream model evidence.",
+        "additive_compatible covers only appended alternative tokens inside unchanged ranges.",
+        "breaking_change requires retraining or explicit migration of downstream raw-token corpora, BPE artifacts, and embeddings.",
+        "A stream_contract change is a breaking_change even when every token range is identical: encoded streams are not interchangeable across stream contracts."
+      ]
+    },
+    "source_file_token_layout": {
+      "compatibility": "breaking_change",
+      "old_layout_id": "go-syntax-source-file-token-layout-v2",
+      "new_layout_id": "go-syntax-source-file-token-layout-v2",
+      "vocab_size_change": null,
+      "pad_token_change": null,
+      "stream_contract_change": [
+        "raw-syntax-stream-expanded-v1",
+        "raw-syntax-stream-elided-v1"
+      ],
+      "moved_ranges": [],
+      "added_ranges": [],
+      "removed_ranges": [],
+      "changed_role_offsets": [],
+      "renumbered_alternatives": [],
+      "removed_alternatives": [],
+      "added_alternatives": [],
+      "reasons": [
+        "stream contract changed from raw-syntax-stream-expanded-v1 to raw-syntax-stream-elided-v1"
+      ],
+      "evidence_scope": "compiler_artifact_evidence_only",
+      "downstream_claims_allowed": false,
+      "notes": [
+        "Syntax layout diffs are compiler-local compatibility evidence, not downstream model evidence.",
+        "additive_compatible covers only appended alternative tokens inside unchanged ranges.",
+        "breaking_change requires retraining or explicit migration of downstream raw-token corpora, BPE artifacts, and embeddings.",
+        "A stream_contract change is a breaking_change even when every token range is identical: encoded streams are not interchangeable across stream contracts."
+      ]
+    }
+  }
+}

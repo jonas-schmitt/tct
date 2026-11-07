@@ -1,0 +1,182 @@
+{
+  "artifact_kind": "tct_m6_cross_target_contract_closure_v1",
+  "version": 1,
+  "date": "2026-07-21",
+  "branch": "go-dev",
+  "pre_closure_head": "2f98fa1c7543b98aaf11692243d3cceb5bdafe4b",
+  "audit_base_retained": "99cbf6654",
+  "status": "satisfied",
+  "decision": "M6 shared Go/C# raw syntax-state-machine contracts are covered by retained executable gates; no new suite or C# breadth required.",
+  "north_star_outcome": "target-agnostic raw syntax-state-machine boundary shared by Go and one second grammar (C# minimal_class)",
+  "claim_boundary": {
+    "m6_shared_contracts_satisfied": true,
+    "csharp_breadth_not_required": true,
+    "stable_backend_promotion_allowed": false,
+    "paper_facing_claim_allowed": false,
+    "type_correctness_claim_allowed": false,
+    "bpe_as_validity_authority": false,
+    "arena_ir_or_goir_required": false
+  },
+  "contracts": [
+    {
+      "category": "state",
+      "shared_surface": "state_after_raw_prefix",
+      "go_gates": [
+        "tests/syntax_state_machine_replay_test.rs::shared_generated_codec_state_api_handoff_consumes_go_and_csharp_state_api_reports",
+        "tests/fixtures/syntax_backend/shared-generated-codec-state-api-handoff-v1.json"
+      ],
+      "csharp_gates": [
+        "tests/syntax_state_machine_replay_test.rs::csharp_state_machine_parity_consumes_shared_replay_api_contract",
+        "tests/syntax_state_machine_replay_test.rs::csharp_minimal_class_scratch_seed_uses_admissible_raw_state_machine_transitions"
+      ],
+      "result": "covered"
+    },
+    {
+      "category": "transition",
+      "shared_surface": "candidate_raw_token_transition",
+      "go_gates": [
+        "tests/syntax_state_machine_replay_test.rs::transition_acceptance_matches_admissible_mask_over_checked_corpora"
+      ],
+      "csharp_gates": [
+        "tests/syntax_state_machine_replay_test.rs::csharp_minimal_class_scratch_seed_uses_admissible_raw_state_machine_transitions"
+      ],
+      "result": "covered"
+    },
+    {
+      "category": "admissible_token",
+      "shared_surface": "admissible_next_raw_token_ids_and_ranges",
+      "go_gates": [
+        "tests/syntax_state_machine_replay_test.rs::matched_go_csharp_presence_masks_use_target_neutral_state_api"
+      ],
+      "csharp_gates": [
+        "tests/syntax_state_machine_replay_test.rs::matched_go_csharp_presence_masks_use_target_neutral_state_api"
+      ],
+      "result": "covered"
+    },
+    {
+      "category": "strict_recovery_decode_and_consumed_token_accounting",
+      "shared_surface": "strict_decode_recovery_decode_consumed_raw_token_accounting",
+      "go_gates": [
+        "tests/fixtures/syntax_backend/strict-recovery-decode-routing-gate-v1.json",
+        "tests/fixtures/syntax_backend/consumed-token-accounting-routing-gate-v1.json",
+        "tests/fixtures/syntax_backend/shared-generated-codec-state-api-handoff-v1.json"
+      ],
+      "csharp_gates": [
+        "tests/syntax_state_machine_replay_test.rs::csharp_state_machine_parity_consumes_shared_replay_api_contract",
+        "tests/fixtures/syntax_backend/shared-generated-codec-state-api-handoff-v1.json"
+      ],
+      "result": "covered"
+    },
+    {
+      "category": "token_layout",
+      "shared_surface": "vocab_size_pad_token_non_collision_roles",
+      "go_gates": [
+        "src/syntax_token_layout.rs::go_syntax_token_layout",
+        "tests/syntax_state_machine_replay_test.rs::token_roles_validation_rejects_malformed_layouts",
+        "tests/fixtures/syntax_structural_model/boundary-manifest-v1.json"
+      ],
+      "csharp_gates": [
+        "src/syntax_token_layout.rs::csharp_syntax_token_layout",
+        "tests/fixtures/syntax_structural_model/boundary-manifest-v1.json"
+      ],
+      "result": "covered"
+    },
+    {
+      "category": "validation",
+      "shared_surface": "structural_model_profile_and_syntax_backend_gates",
+      "go_gates": [
+        "tests/syntax_structural_model_conformance_test.rs",
+        "scripts/testing/test-syntax-backend-gates.sh"
+      ],
+      "csharp_gates": [
+        "tests/syntax_structural_model_conformance_test.rs",
+        "scripts/testing/test-syntax-backend-gates.sh"
+      ],
+      "result": "covered"
+    },
+    {
+      "category": "structural_model_cross_target_shape",
+      "shared_surface": "matched_go_csharp_structural_model_categories",
+      "go_gates": [
+        "tests/syntax_structural_model_cross_target_equivalence_test.rs"
+      ],
+      "csharp_gates": [
+        "tests/syntax_structural_model_cross_target_equivalence_test.rs"
+      ],
+      "result": "covered"
+    }
+  ],
+  "stable_artifact_facts": {
+    "boundary_manifest": "tests/fixtures/syntax_structural_model/boundary-manifest-v1.json",
+    "targets": [
+      {
+        "target": "toy",
+        "grammar_id": "toy_assignment_v1",
+        "rules": 2,
+        "records": 2,
+        "decision_graph_nodes": 10,
+        "decision_graph_edges": 8,
+        "token_range_count": 3
+      },
+      {
+        "target": "csharp",
+        "grammar_id": "csharp_minimal_class_syntax_v0",
+        "rules": 5,
+        "records": 5,
+        "decision_graph_nodes": 23,
+        "decision_graph_edges": 18,
+        "token_range_count": 2,
+        "metadata_sha256": "cef195ae3315ca24cd3a11b2ef3a407c85f08168390ae585861940a18bad8e93"
+      },
+      {
+        "target": "go",
+        "grammar_id": "go_minimal_function_syntax_v0",
+        "rules": 12,
+        "records": 12,
+        "decision_graph_nodes": 53,
+        "decision_graph_edges": 41,
+        "token_range_count": 3,
+        "metadata_sha256": "226b7373a59f9d91b30f4700b73a9d31e27dd4e95a1c80859d0eaa86420b42f6"
+      }
+    ],
+    "shared_state_api_handoff": {
+      "fixture": "tests/fixtures/syntax_backend/shared-generated-codec-state-api-handoff-v1.json",
+      "status": "shared_go_csharp_generated_codec_state_api_handoff_ready",
+      "go_source_record_count": 142,
+      "csharp_source_record_count": 5
+    },
+    "product_token_layouts": {
+      "go_vocab_size": 641,
+      "go_pad_token": 640,
+      "csharp_vocab_size": 577,
+      "csharp_pad_token": 576
+    }
+  },
+  "pin_refresh": {
+    "paths": [
+      "tests/fixtures/syntax_structural_model/boundary-manifest-v1.json",
+      "tests/fixtures/syntax_backend/generated-artifact-replay-v1.json"
+    ],
+    "reason": "metadata_sha256 for csharp minimal_class and go minimal_function drifted from on-disk metadata files; structural counts unchanged; cascade-updated compact-JSON boundary_manifest_sha256 and csharp/go target_manifest_sha256 pins",
+    "boundary_manifest_sha256": "815cc872f4998f8cd53ce021d5d922e841561cea233ec43dd04c3d6d6d570aab",
+    "csharp_target_manifest_sha256": "62bfd7f74a7402630ed4e61825fa77276be10985d43059abcbdff0683130014d",
+    "go_target_manifest_sha256": "582e3cff27d75996b05984e9aa4d41b7dc04b9362eb53c490d421e14f2ee5e89"
+  },
+  "validation_commands": [
+    "cargo test --test syntax_structural_model_cross_target_equivalence_test",
+    "cargo test --test syntax_structural_model_conformance_test",
+    "cargo test --test syntax_state_machine_replay_test shared_generated_codec",
+    "cargo test --test syntax_state_machine_replay_test csharp_minimal_class_scratch",
+    "cargo test --test syntax_state_machine_replay_test csharp_state_machine_parity",
+    "cargo test --test syntax_state_machine_replay_test target_neutral_generated",
+    "cargo test --test syntax_state_machine_replay_test matched_go_csharp_presence",
+    "cargo test --test syntax_state_machine_replay_test transition_acceptance_matches",
+    "cargo test --test syntax_state_machine_replay_test token_roles_validation",
+    "./scripts/testing/test-syntax-backend-gates.sh"
+  ],
+  "next_ready": [
+    "I1 Go-only entropy-budget metric contract and pilot",
+    "Go external stress corpus (pinned modules)",
+    "I2 pause-token protocol freeze (design/fixtures only)"
+  ]
+}

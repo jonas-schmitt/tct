@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AnyOf with bundled dependencies variants",
+  "description": "Reproduces the package.json anyOf ambiguity issue",
+  "type": "object",
+  "properties": {
+    "name": {"type": "string"},
+    "bundledDependencies": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "bundleDependencies": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "anyOf": [
+    {
+      "type": "object",
+      "not": {
+        "required": ["bundledDependencies", "bundleDependencies"]
+      }
+    },
+    {
+      "type": "object",
+      "required": ["bundledDependencies"],
+      "not": {
+        "required": ["bundleDependencies"]
+      }
+    },
+    {
+      "type": "object",
+      "required": ["bundleDependencies"],
+      "not": {
+        "required": ["bundledDependencies"]
+      }
+    }
+  ]
+}

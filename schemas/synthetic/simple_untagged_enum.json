@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Simple Untagged Enum",
+  "description": "Untagged enum with distinguishable variants for lookahead testing",
+  "oneOf": [
+    {
+      "type": "boolean",
+      "description": "Boolean variant: 1 token (0 or 1)"
+    },
+    {
+      "type": "integer",
+      "minimum": 100,
+      "maximum": 200,
+      "description": "Integer variant: values 100-200 -> tokens ~100-200"
+    },
+    {
+      "type": "string",
+      "enum": ["success", "failure", "pending"],
+      "description": "String enum variant: different token range"
+    }
+  ]
+}

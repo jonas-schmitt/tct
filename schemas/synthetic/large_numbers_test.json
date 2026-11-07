@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Large Numbers Test",
+  "description": "Test schema for vocabulary-constrained number encoding with values > MAX_VOCAB",
+  "type": "object",
+  "properties": {
+    "timeout": {
+      "type": "integer",
+      "description": "Timeout in seconds (can be > 255)"
+    },
+    "count": {
+      "type": "integer",
+      "description": "Item count (can be > 255)"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price value (can be > 255)"
+    },
+    "id": {
+      "type": "integer",
+      "description": "Large ID number"
+    }
+  },
+  "required": ["timeout", "count", "price", "id"]
+}

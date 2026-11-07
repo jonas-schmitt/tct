@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "purpose": "Public demonstration BPE tables trained only on independently authored fixtures. Legacy filenames indicate requested budgets, not attained vocabulary sizes.",
+  "datasets": {
+    "package": {
+      "schema": "schemas/popular/package.json",
+      "instances_pattern": "tests/data/instances/package/synthetic/public_*.json",
+      "fixtures": [
+        {
+          "path": "tests/data/instances/package/synthetic/public_cli.json",
+          "sha256": "89dd0c599a10d14b4738d418849348c854046465de49f9956fa86127e20cbd40"
+        },
+        {
+          "path": "tests/data/instances/package/synthetic/public_library.json",
+          "sha256": "699a71d4f3025f63204e5929a97fe9486bb47fb3e22474a89fcf25f3b516d831"
+        }
+      ]
+    },
+    "eslintrc": {
+      "schema": "schemas/popular/eslintrc.json",
+      "instances_pattern": "tests/data/instances/eslintrc/synthetic/public_*.json",
+      "fixtures": [
+        {
+          "path": "tests/data/instances/eslintrc/synthetic/public_minimal.json",
+          "sha256": "7dd2a1bf3b54dc753acd598b310f6191ae4e800141115d4a1576e8b6486643f6"
+        },
+        {
+          "path": "tests/data/instances/eslintrc/synthetic/public_overrides.json",
+          "sha256": "bb57710fa04e79cf86cb8698ad801ad974a459b4be6689f4e4d53fadb5fe406a"
+        },
+        {
+          "path": "tests/data/instances/eslintrc/synthetic/public_rule_options.json",
+          "sha256": "c1ca156964a3ed05d94273336fbfbb8397eed12a6ddfc380ceb10a366548e2e3"
+        }
+      ]
+    },
+    "kubernetes": {
+      "schema": "schemas/popular/kubernetes.json",
+      "instances_pattern": "tests/data/instances/kubernetes/synthetic/public_*.json",
+      "fixtures": [
+        {
+          "path": "tests/data/instances/kubernetes/synthetic/public_apiservice.json",
+          "sha256": "858640418e26e0292d0a692ace561b770507e1a58e199b1385c7c204bcd8ed2c"
+        },
+        {
+          "path": "tests/data/instances/kubernetes/synthetic/public_configmap.json",
+          "sha256": "02fdd43fe9e82fbb9d62a66801d7a6f8ebd4a9bbb1a77becc37f6b52cc14a4eb"
+        },
+        {
+          "path": "tests/data/instances/kubernetes/synthetic/public_deployment.json",
+          "sha256": "1296838662838a1d577cde5ae23d346f6b9f3caee6bf8a4cbeaec8e5af5d9198"
+        },
+        {
+          "path": "tests/data/instances/kubernetes/synthetic/public_service.json",
+          "sha256": "faa3f553740a2c8ac088a2193d567373b31aa6978b7b43cf354b110d32579d2a"
+        }
+      ]
+    },
+    "tsconfig": {
+      "schema": "schemas/popular/tsconfig.json",
+      "instances_pattern": "tests/data/instances/tsconfig/synthetic/public_*.json",
+      "fixtures": [
+        {
+          "path": "tests/data/instances/tsconfig/synthetic/public_strict.json",
+          "sha256": "622ca83371734e7ce99d81f3dc8804fe806461a7d584c0c546a64a6a621e8ea0"
+        }
+      ]
+    },
+    "github-workflow": {
+      "schema": "schemas/popular/github-workflow.json",
+      "instances_pattern": "tests/data/instances/github-workflow/synthetic/public_*.json",
+      "fixtures": [
+        {
+          "path": "tests/data/instances/github-workflow/synthetic/public_checks.json",
+          "sha256": "d3181d3f825c9f3c02e29b386ee9eeaed1869012cd10587077f1461d35174f68"
+        },
+        {
+          "path": "tests/data/instances/github-workflow/synthetic/public_matrix.json",
+          "sha256": "2a3997b3dba7f342ca237b5bfa0dcbf9c6cefe1cf81c3594e820aee4146d1b84"
+        }
+      ]
+    }
+  },
+  "artifacts": [
+    {
+      "dataset": "package",
+      "target_vocab": 500,
+      "optimization": "O3",
+      "output": "schemas/bpe/package-tct-bpe-500.json"
+    },
+    {
+      "dataset": "eslintrc",
+      "target_vocab": 500,
+      "optimization": "O3",
+      "output": "schemas/bpe/eslintrc-tct-bpe-500.json"
+    },
+    {
+      "dataset": "kubernetes",
+      "target_vocab": 500,
+      "optimization": "O3",
+      "output": "schemas/bpe/kubernetes-tct-bpe-500.json"
+    },
+    {
+      "dataset": "tsconfig",
+      "target_vocab": 500,
+      "optimization": "O3",
+      "output": "schemas/bpe/tsconfig-tct-bpe-500.json"
+    },
+    {
+      "dataset": "tsconfig",
+      "target_vocab": 1000,
+      "optimization": "O3",
+      "output": "schemas/bpe/tsconfig-tct-bpe-1k.json"
+    },
+    {
+      "dataset": "github-workflow",
+      "target_vocab": 500,
+      "optimization": "O3",
+      "output": "schemas/bpe/github-workflow-tct-bpe-500.json"
+    }
+  ]
+}

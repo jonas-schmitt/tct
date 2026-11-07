@@ -1,0 +1,10 @@
+{
+  "tags": ["production", "critical"],
+  "config": {
+    "timeout": 0.1,
+    "enabled": false
+  },
+  "count": 3.14159265359,
+  "version": "2.1.0-alpha.1",
+  "name": "precision-test"
+}

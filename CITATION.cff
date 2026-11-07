@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use TCT in research, please cite this software and identify the commit and configuration used."
+type: software
+title: "TCT: Type-Constrained Tokenization"
+authors:
+  - family-names: Schmitt
+    given-names: Jonas
+repository-code: "https://github.com/jonas-schmitt/tct"
+url: "https://github.com/jonas-schmitt/tct"
+license: Apache-2.0
+abstract: >-
+  TCT compiles JSON Schemas into schema-specific tokenizers and generated Rust
+  codecs, with Python wheel packaging and BPE compression over TCT token streams.
+keywords:
+  - tokenization
+  - JSON Schema
+  - code generation
+  - structured generation

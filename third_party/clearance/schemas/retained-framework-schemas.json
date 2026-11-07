@@ -1,0 +1,130 @@
+{
+  "format_version": 1,
+  "review_date": "2026-11-07",
+  "files": [
+    {
+      "local_path": "schemas/popular/babelrc.json",
+      "local_sha256": "e4561c5acb6f5c96c3934840332f2907efe1584f02226cb56fc3bac459d70558",
+      "source_repository": "https://github.com/SchemaStore/schemastore",
+      "source_revision": "8cf3bac4e0240e6cb2eee52768fb79d42f8146ef",
+      "source_path": "src/schemas/json/babelrc.json",
+      "source_sha256": "e4561c5acb6f5c96c3934840332f2907efe1584f02226cb56fc3bac459d70558",
+      "match": "identical",
+      "decision": "source_redistribution_reviewed",
+      "license_scope": [
+        "Apache-2.0",
+        "ISC",
+        "MIT"
+      ],
+      "retained_notices": [
+        "third_party/licenses/schemastore/LICENSE",
+        "third_party/licenses/schemastore/NOTICE",
+        "third_party/licenses/babel-website/LICENSE-ISC",
+        "third_party/licenses/babel-website/LICENSE-MIT"
+      ],
+      "original_documentation": {
+        "repository": "https://github.com/babel/website",
+        "initial_schema_import_commit": "ca5225a8c2d90997618f4df34b84a49d42c1f819",
+        "initial_document_revision": "80de8f3dd93f5b6847ef560a8d27d6aad0d464c2",
+        "document_path": "docs/usage/options.md",
+        "document_sha256": "113799c051e0ae48271bbd0bbe753120f3b5f8322b9fb07abf13f4fde8e43b8d",
+        "package_path": "package.json",
+        "package_sha256": "8a046e8b3b455e95e6675a1f07690bd703014bf21bb5c1117448413050567478",
+        "declared_license_at_import": "ISC",
+        "explicit_isc_notice_revision": "941fe18944d60195f7ca541d4a8211c8d796fee6",
+        "later_document_revision": "b2859293148199ccd586166f9924cfc9c9572754",
+        "later_document_path": "docs/options.md",
+        "later_document_sha256": "06714ac3b2f82fa202f0509a92c9c8f08b9d87ba9976d1160a3086ce23cdcc80",
+        "later_license": "MIT"
+      },
+      "basis": [
+        "The local schema exactly matches the pinned SchemaStore file; the initial SchemaStore commit explicitly records using Babel-site descriptions/defaults.",
+        "The 2015 options document has nine full descriptions identical to the retained schema and the broader option table underlying its adapted descriptions; that exact website package declares ISC.",
+        "The first explicit website ISC license text identifies 2014-2017 Sebastian McKenzie and is retained unchanged, including its notice. This is not an inference from a current MIT declaration.",
+        "Later option-doc changes, including the inputSourceMap explanation, are present in the pinned 2019 MIT website source. Its MIT notice is retained alongside ISC and SchemaStore Apache notices."
+      ],
+      "transformation": "No local modification; any documentation adaptation is in the identified upstream SchemaStore contribution history."
+    },
+    {
+      "local_path": "schemas/popular/cypress.json",
+      "local_sha256": "fa2111b82540a66b257719e2ef08502e2f26500d8d0ea8f25ef3946fc66d4738",
+      "source_repository": "https://github.com/cypress-io/cypress",
+      "source_revision": "6fc1bed844ac851d9c984d40e792a7605da1a2b1",
+      "source_ref": "refs/tags/v9.5.4",
+      "source_path": "cli/schema/cypress.schema.json",
+      "source_sha256": "fa2111b82540a66b257719e2ef08502e2f26500d8d0ea8f25ef3946fc66d4738",
+      "source_url": "https://raw.githubusercontent.com/cypress-io/cypress/6fc1bed844ac851d9c984d40e792a7605da1a2b1/cli/schema/cypress.schema.json",
+      "match": "identical",
+      "transformation": "identity",
+      "decision": "source_redistribution_reviewed",
+      "license_scope": [
+        "MIT"
+      ],
+      "retained_notices": [
+        "third_party/licenses/cypress/LICENSE"
+      ],
+      "basis": [
+        "The local schema is byte-identical to the original Cypress CLI schema at this immutable commit (v9.5.4).",
+        "The root MIT license identifies Copyright (c) 2021 Cypress.io; cli/package.json declares MIT, and no separate cli/LICENSE exists at this source revision.",
+        "The .io redirect and SchemaStore catalog were discovery leads only; the grant is the exact original Cypress source and MIT notice."
+      ]
+    },
+    {
+      "local_path": "schemas/popular/gitlab-ci.json",
+      "local_sha256": "c6c686190209ebe3275ef5cd627a91418a336a16b0517ab680579ee5b246b775",
+      "source_path": "app/assets/javascripts/editor/schema/ci.json",
+      "source_sha256": "c6c686190209ebe3275ef5cd627a91418a336a16b0517ab680579ee5b246b775",
+      "match": "identical",
+      "source_repository": "https://gitlab.com/gitlab-org/gitlab-foss",
+      "source_revision": "aec37596650b69cea8fe58b98f154fd04bdd7466",
+      "source_url": "https://gitlab.com/gitlab-org/gitlab-foss/-/raw/aec37596650b69cea8fe58b98f154fd04bdd7466/app/assets/javascripts/editor/schema/ci.json",
+      "transformation": "identity",
+      "decision": "source_redistribution_reviewed",
+      "license_scope": [
+        "MIT"
+      ],
+      "retained_notices": [
+        "third_party/licenses/gitlab-foss/LICENSE"
+      ],
+      "basis": [
+        "The original GitLab schema at this immutable commit exactly matches every local byte.",
+        "The complete retained root LICENSE explicitly puts content outside doc/, ee/, jh/ and named third-party restrictions under MIT Expat. This original GitLab schema is app/assets/javascripts/editor/schema/ci.json, outside those directory exceptions; no third-party notice or distinct source grant is identified in the file.",
+        "This is a per-path license-scope determination from the exact revision, not a claim that every GitLab directory uses MIT."
+      ]
+    }
+  ],
+  "notice_files": [
+    {
+      "local_path": "third_party/licenses/babel-website/LICENSE-ISC",
+      "sha256": "522f215f75b281ab6cf40af04aa25fac52f7800253f963e0d161334dd4efdd46",
+      "source_repository": "https://github.com/babel/website",
+      "source_revision": "941fe18944d60195f7ca541d4a8211c8d796fee6",
+      "source_path": "LICENSE",
+      "source_url": "https://raw.githubusercontent.com/babel/website/941fe18944d60195f7ca541d4a8211c8d796fee6/LICENSE"
+    },
+    {
+      "local_path": "third_party/licenses/babel-website/LICENSE-MIT",
+      "sha256": "c009627d86f10bf26b1bff5369e2a1958de0b309ef767cce890851822e40150d",
+      "source_repository": "https://github.com/babel/website",
+      "source_revision": "b2859293148199ccd586166f9924cfc9c9572754",
+      "source_path": "LICENSE",
+      "source_url": "https://raw.githubusercontent.com/babel/website/b2859293148199ccd586166f9924cfc9c9572754/LICENSE"
+    },
+    {
+      "local_path": "third_party/licenses/cypress/LICENSE",
+      "sha256": "25dc3b004a0ea9dbe64b1d1ce43409810198d890d4b31a84db3136d8fcca3d60",
+      "source_repository": "https://github.com/cypress-io/cypress",
+      "source_revision": "6fc1bed844ac851d9c984d40e792a7605da1a2b1",
+      "source_path": "LICENSE",
+      "source_url": "https://raw.githubusercontent.com/cypress-io/cypress/6fc1bed844ac851d9c984d40e792a7605da1a2b1/LICENSE"
+    },
+    {
+      "local_path": "third_party/licenses/gitlab-foss/LICENSE",
+      "sha256": "62dfe4bdd76e08992c09cf335b2374b3e6acd4f2b959b4971760727d9b785ab4",
+      "source_repository": "https://gitlab.com/gitlab-org/gitlab-foss",
+      "source_revision": "aec37596650b69cea8fe58b98f154fd04bdd7466",
+      "source_path": "LICENSE",
+      "source_url": "https://gitlab.com/gitlab-org/gitlab-foss/-/raw/aec37596650b69cea8fe58b98f154fd04bdd7466/LICENSE"
+    }
+  ]
+}

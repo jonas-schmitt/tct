@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UnionFieldOrdering",
+  "description": "Tests that field order does not affect variant selection when variants have real distinguishing fields",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "config": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "uses": {"type": "string"},
+            "name": {"type": "string"},
+            "with": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "required": ["uses"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "run": {"type": "string"},
+            "name": {"type": "string"},
+            "with": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "required": ["run"]
+        }
+      ]
+    }
+  },
+  "required": ["name", "config"],
+  "additionalProperties": false
+}

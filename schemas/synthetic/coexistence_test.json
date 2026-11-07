@@ -1,0 +1,14 @@
+{
+  "title": "CoexistenceTest",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "version": { "type": "string" }
+  },
+  "patternProperties": {
+    "^config_": { "type": "string" },
+    "^env_": { "type": "string" }
+  },
+  "additionalProperties": { "type": "number" },
+  "required": ["name"]
+}

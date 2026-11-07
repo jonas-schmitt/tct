@@ -1,0 +1,12 @@
+{
+  "title": "PatternRoundTripTest",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" }
+  },
+  "patternProperties": {
+    "^config_": { "type": "string" },
+    "^setting_": { "type": "integer" }
+  },
+  "required": ["name"]
+}

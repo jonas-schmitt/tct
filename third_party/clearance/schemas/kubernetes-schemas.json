@@ -1,0 +1,98 @@
+{
+  "format_version": 1,
+  "review_date": "2026-11-07",
+  "source_repository": "https://github.com/yannh/kubernetes-json-schema",
+  "source_revision": "f82dcba5de3856cb8b0e1ae87705480528cea81b",
+  "source_path": "v1.30.0/_definitions.json",
+  "source_url": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/f82dcba5de3856cb8b0e1ae87705480528cea81b/v1.30.0/_definitions.json",
+  "source_sha256": "428559f7d50d8624ce29ea144ba079309a025168e8bb7714e954dcb80d50cd9a",
+  "original_kubernetes_api": {
+    "source_repository": "https://github.com/kubernetes/kubernetes",
+    "source_revision": "7c48c2bd72b9bf5c44d21d7338cc7bea77d0ad2a",
+    "source_path": "api/openapi-spec/swagger.json",
+    "sha256": "94ca7544416a4f27d8cb3f8a332630d41325c5edeb2408a5aefe37ba3fd6af6d",
+    "license": "Apache-2.0"
+  },
+  "basis": [
+    "The exact yannh v1.30.0 definitions bytes match the historical TCT input.",
+    "The two retained historical owner-authored scripts reproduced both current release schemas byte-for-byte before adding publication notices.",
+    "The first script retains all definitions, selects 61 resource alternatives and adds apiVersion constants. The second adds string enum constraints and updates schema metadata.",
+    "The yannh schema repository retains Apache-2.0 attribution to Gareth Rushgrove and Yanh Hamon; the underlying Kubernetes v1.30.0 license is also retained."
+  ],
+  "scripts": [
+    {
+      "local_path": "third_party/clearance/schemas/kubernetes/generate_k8s_schema.py",
+      "sha256": "d71b6642f450d4ebe07a50c7260f2d9f44940fb9609d1cf87ac16fafae81f901",
+      "private_research_revision": "5a67831e650170d3a119a8736f72e062ce2b2c50",
+      "private_research_path": "scripts/generate_k8s_schema.py",
+      "ownership_basis": "Historical TCT implementation by project owner; carried under the owner-selected Apache-2.0 license in this release."
+    },
+    {
+      "local_path": "third_party/clearance/schemas/kubernetes/enhance_k8s_schema.py",
+      "sha256": "775b4393401eea0b26fa9ba0b51ef0778abf7224ff30d1bb6a7820be5215f2b8",
+      "private_research_revision": "4f1e11e2cef0a2a64997548c4700efec603ded48",
+      "private_research_path": "scripts/enhance_k8s_schema.py",
+      "ownership_basis": "Historical TCT implementation by project owner; carried under the owner-selected Apache-2.0 license in this release."
+    }
+  ],
+  "notice_files": [
+    {
+      "local_path": "third_party/licenses/kubernetes-json-schema/LICENSE",
+      "sha256": "557176ee78f6a6e9c28ebc0f0037ab9acb887b3b5167e9494195109b05affc14",
+      "source_repository": "https://github.com/yannh/kubernetes-json-schema",
+      "source_revision": "f82dcba5de3856cb8b0e1ae87705480528cea81b",
+      "source_path": "LICENSE",
+      "source_url": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/f82dcba5de3856cb8b0e1ae87705480528cea81b/LICENSE"
+    },
+    {
+      "local_path": "third_party/licenses/kubernetes/LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "source_repository": "https://github.com/kubernetes/kubernetes",
+      "source_revision": "7c48c2bd72b9bf5c44d21d7338cc7bea77d0ad2a",
+      "source_path": "LICENSE",
+      "source_url": "https://raw.githubusercontent.com/kubernetes/kubernetes/7c48c2bd72b9bf5c44d21d7338cc7bea77d0ad2a/LICENSE"
+    }
+  ],
+  "files": [
+    {
+      "local_path": "schemas/popular/kubernetes-original.json",
+      "local_sha256": "2c978e68585dbc2c1b39c9e2c3b8d26f869059bc911c22ea9cd3fb891a1fb7ae",
+      "reproduced_before_publication_notice_sha256": "154f831cc5cc4f0ea75847956c72bff108b28cba59cb4673dba6edebbbf937db",
+      "decision": "source_redistribution_reviewed_with_apache_notices",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "publication_notice": {
+        "previous_comment": null,
+        "added_text": "Modified by TCT: derived from Kubernetes 1.30.0 definitions by selecting stable resource alternatives and adding apiVersion constants. Source revisions, transformations and Apache-2.0 notices: third_party/clearance/schemas/kubernetes-schemas.json. Publication change: added this notice.",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": false,
+          "final_newline": true
+        },
+        "before_sha256": "154f831cc5cc4f0ea75847956c72bff108b28cba59cb4673dba6edebbbf937db",
+        "after_sha256": "2c978e68585dbc2c1b39c9e2c3b8d26f869059bc911c22ea9cd3fb891a1fb7ae"
+      }
+    },
+    {
+      "local_path": "schemas/popular/kubernetes.json",
+      "local_sha256": "eecb6450161820c6ccd9553879de85dfc1be201a91701eb8365ff72e597682e1",
+      "reproduced_before_publication_notice_sha256": "10e5848bdf1078cb1d6e667e0d14df65f2936bac1a40db15e9de0d98c4e83717",
+      "decision": "source_redistribution_reviewed_with_apache_notices",
+      "license_scope": [
+        "Apache-2.0"
+      ],
+      "publication_notice": {
+        "previous_comment": null,
+        "added_text": "Modified by TCT: derived from Kubernetes 1.30.0 definitions by selecting stable resource alternatives and adding apiVersion constants and enum constraints. Source revisions, transformations and Apache-2.0 notices: third_party/clearance/schemas/kubernetes-schemas.json. Publication change: added this notice.",
+        "serialization": {
+          "indent": 2,
+          "ensure_ascii": false,
+          "final_newline": true
+        },
+        "before_sha256": "10e5848bdf1078cb1d6e667e0d14df65f2936bac1a40db15e9de0d98c4e83717",
+        "after_sha256": "eecb6450161820c6ccd9553879de85dfc1be201a91701eb8365ff72e597682e1"
+      }
+    }
+  ]
+}

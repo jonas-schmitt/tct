@@ -1,0 +1,4 @@
+{
+  "strings": ["hello", "world", "test"],
+  "numbers": [1, 2, 3, 4.5]
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FormatOptimizationTest",
+  "description": "Test schema for format-optimized string encoding",
+  "type": "object",
+  "properties": {
+    "int32_value": {
+      "type": "string",
+      "format": "int32",
+      "description": "Should encode as 1 token"
+    },
+    "int64_value": {
+      "type": "string",
+      "format": "int64",
+      "description": "Should encode as 2 tokens"
+    },
+    "byte_value": {
+      "type": "string",
+      "format": "byte",
+      "description": "Base64 encoded bytes"
+    },
+    "datetime_value": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 timestamp, encoded as 2 tokens"
+    },
+    "double_value": {
+      "type": "string",
+      "format": "double",
+      "description": "IEEE 754 double, encoded as 2 tokens"
+    },
+    "normal_string": {
+      "type": "string",
+      "description": "Regular string for comparison"
+    }
+  },
+  "required": ["int32_value", "int64_value", "byte_value", "datetime_value", "double_value", "normal_string"]
+}

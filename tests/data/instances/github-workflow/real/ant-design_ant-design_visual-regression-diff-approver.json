@@ -1,0 +1,41 @@
+{
+  "name": "\ud83e\udd16 Visual Regression Diff Approval",
+  "on": {
+    "issue_comment": {
+      "types": [
+        "created",
+        "edited",
+        "deleted"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "jobs": {
+    "approval": {
+      "permissions": {
+        "pull-requests": "write",
+        "statuses": "write"
+      },
+      "name": "Check Virtual Regression Approval",
+      "if": "github.event.issue.pull_request != ''",
+      "runs-on": "ubuntu-latest",
+      "steps": [
+        {
+          "name": "Statistic Visual Diff Approval",
+          "id": "check_approval",
+          "uses": "actions/github-script@v8",
+          "with": {
+            "github-token": "${{ secrets.GITHUB_TOKEN }}",
+            "script": "const issue_number = context.payload.issue.number;\nconsole.log('PR:', issue_number);\n\nconst prResponse = await github.rest.pulls.get({\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  pull_number: issue_number,\n});\nconst prHeadSha = prResponse.data.head.sha;\nconsole.log('Head SHA:', prHeadSha);\n\nconst { data: comments } = await github.rest.issues.listComments({\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  issue_number: issue_number\n});\n\nconsole.log('Comments:', comments.length);\n\nlet hasDiffSuccess = false;\nlet hasDiffFailed = false;\nlet hasMemberApprove = false;\n\nfor (const comment of comments) {\n  if (comment.body.includes('VISUAL_DIFF_SUCCESS')) {\n    hasDiffSuccess = true;\n  }\n  if (comment.body.includes('VISUAL_DIFF_FAILED')) {\n    hasDiffFailed = true;\n  }\n\n  // https://regex101.com/r/kLjudz/1\n  const RE = /(?<=\\>\\s\\[!IMPORTANT\\].*?- \\[ \\])/s;\n  if (\n    comment.body.includes('- [x] Visual diff is acceptable') &&\n    comment.body.match(RE) == null /** \u68c0\u67e5 IMPORTANT \u662f\u5426\u5b58\u5728\u672a\u52fe\u9009\u7684 */\n  ) {\n    hasMemberApprove = true;\n  }\n}\n\nconsole.log('hasDiffSuccess:', hasDiffSuccess);\nconsole.log('hasDiffFailed:', hasDiffFailed);\nconsole.log('hasMemberApprove:', hasMemberApprove);\n\nconst diffPassed = hasDiffSuccess || (hasDiffFailed && hasMemberApprove);\nconst mergedStatus = diffPassed ? 'success' : hasDiffFailed ? 'failure' : 'pending';\nconsole.log('Status:', mergedStatus);\n\nconst { data: currentStatuses } = await github.rest.repos.listCommitStatusesForRef({\n owner: context.repo.owner,\n repo: context.repo.repo,\n ref: prHeadSha,\n});\n\nconst currentStatus = currentStatuses.find(status => status.context === 'Visual Regression Diff Wait Approve');\nif (currentStatus && currentStatus.state === mergedStatus) {\n  console.log('Status has not changed, no need to update:', currentStatus.state);\n} else {\n  await github.rest.repos.createCommitStatus({\n    owner: context.repo.owner,\n    repo: context.repo.repo,\n    sha: prHeadSha,\n    state: mergedStatus,\n    context: 'Visual Regression Diff Wait Approve',\n    description: diffPassed ? 'Visual diff is acceptable' : 'Visual diff is not pass',\n  });\n}\n\nif (hasDiffSuccess || (hasDiffFailed && hasMemberApprove)) {\n  return 'success';\n} else if (hasDiffFailed) {\n  return 'failed';\n} else {\n  return 'waiting';\n}\n"
+          }
+        },
+        {
+          "name": "Console Status",
+          "run": "echo \"Result -> ${{ steps.check_approval.outputs.result }}\""
+        }
+      ]
+    }
+  }
+}

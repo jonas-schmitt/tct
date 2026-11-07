@@ -1,0 +1,143 @@
+# Documented non-test unwrap()/expect() invariants for the advisory quality gate.
+#
+# Keep this file narrow. Do not add entries for data, schema, token-stream, file,
+# CLI, or generated-runtime behavior that can fail because of user input.
+
+[[allow]]
+path = "src/base256.rs"
+pattern = "variable-base divisor invariant violated"
+category = "documented_invariant"
+reason = "The supported generated base range and width-indicator invariant bound base^(width - 1) to u32."
+
+[[allow]]
+path = "src/generator/additional_properties_analyzer.rs"
+pattern = "types.len() == 1 guarantees one element exists"
+category = "documented_invariant"
+reason = "Immediate len == 1 guard proves exactly one candidate type exists."
+
+[[allow]]
+path = "src/generator/bounded_integer_generator.rs"
+pattern = "base power should fit in u32 for generated width branch"
+category = "documented_invariant"
+reason = "Generator width branch bounds the base power before conversion."
+
+[[allow]]
+path = "src/generator/enum_generator/schema_validation.rs"
+pattern = "Failed to serialize variant schema"
+category = "documented_invariant"
+reason = "Serializing an in-memory serde_json::Value to String is not expected to fail."
+
+[[allow]]
+path = "src/generator/enum_generator/schema_validation.rs"
+pattern = "Failed to parse variant schema"
+category = "documented_invariant"
+reason = "Generated variant schema constants are produced from serialized in-memory serde_json::Value data during code generation."
+
+[[allow]]
+path = "src/generator/profiling_generator.rs"
+pattern = "serde_json::Value samples should serialize"
+category = "documented_invariant"
+reason = "Serializing in-memory serde_json::Value profiling samples is not expected to fail."
+
+[[allow]]
+path = "src/generator/pattern_validator_generator.rs"
+pattern = "pattern validator regex was validated during schema discovery"
+category = "documented_invariant"
+reason = "Generated pattern validators use schema-discovered regex literals; Default cannot return Result and schema discovery validates the regex before code generation."
+
+[[allow]]
+path = "src/generator/schema_walker/struct_discovery/allof.rs"
+pattern = "len checked"
+category = "documented_invariant"
+reason = "The preceding object-size branch requires exactly one condition property."
+
+[[allow]]
+path = "src/generator/schema_walker/type_determination.rs"
+pattern = 'schema.get("minimum").and_then(Value::as_i64).unwrap()'
+category = "documented_invariant"
+reason = "The bounded-integer branch first checks both minimum and maximum are present integer values."
+
+[[allow]]
+path = "src/generator/schema_walker/type_determination.rs"
+pattern = 'schema.get("maximum").and_then(Value::as_i64).unwrap()'
+category = "documented_invariant"
+reason = "The bounded-integer branch first checks both minimum and maximum are present integer values."
+
+[[allow]]
+path = "src/generator/struct_generator.rs"
+pattern = "failed to serialize allOf validation schema"
+category = "documented_invariant"
+reason = "Serializing an in-memory serde_json::Value validation schema is not expected to fail."
+
+[[allow]]
+path = "src/generator/struct_generator/allof_validation/plan.rs"
+pattern = "failed to serialize allOf validation schema"
+category = "documented_invariant"
+reason = "Serializing an in-memory serde_json::Value validation schema is not expected to fail."
+
+[[allow]]
+path = "src/generator/struct_generator.rs"
+pattern = "failed to serialize validation schema"
+category = "documented_invariant"
+reason = "Serializing an in-memory serde_json::Value validation schema is not expected to fail."
+
+[[allow]]
+path = "src/generator/struct_generator/allof_validation/plan.rs"
+pattern = "failed to serialize validation schema"
+category = "documented_invariant"
+reason = "Serializing an in-memory serde_json::Value validation schema is not expected to fail."
+
+[[allow]]
+path = "src/generator/structural_codec.rs"
+pattern = "Power of 2 must have shift"
+category = "documented_invariant"
+reason = "CodecSpec::PowerOf2 is constructed only with shift metadata."
+
+[[allow]]
+path = "src/generator/structural_codec.rs"
+pattern = "Power of 2 must have mask"
+category = "documented_invariant"
+reason = "CodecSpec::PowerOf2 is constructed only with mask metadata."
+
+[[allow]]
+path = "src/generator/type_alias_generator/json_const.rs"
+pattern = "failed to serialize const schema value"
+category = "documented_invariant"
+reason = "Serializing an in-memory serde_json::Value const is not expected to fail."
+
+[[allow]]
+path = "src/generator/type_alias_generator/json_const.rs"
+pattern = "embedded JSON const value must be valid"
+category = "documented_invariant"
+reason = "Generated const value JSON is produced from serialized in-memory serde_json::Value data during code generation."
+
+[[allow]]
+path = "src/grammar/tokenizer.rs"
+pattern = "base power should fit in generated width branch"
+category = "documented_invariant"
+reason = "Generated-width branch bounds the base power before conversion."
+
+[[allow]]
+path = "src/optimization_pass/config.rs"
+pattern = "All built-in pass names should be valid"
+category = "documented_invariant"
+reason = "Built-in pass names are statically defined in the same module."
+
+[[allow]]
+path = "src/pattern_analyzer.rs"
+pattern = "hardcoded regex pattern should be valid"
+category = "documented_invariant"
+reason = "Regex literal is maintained in source and should fail during tests if invalid."
+
+[[allow]]
+path = "src/pattern_analyzer.rs"
+pattern = "pattern length is 1, so first char exists"
+category = "documented_invariant"
+reason = "The branch checks the pattern length before taking the first character."
+
+[[allow]]
+path = "src/pattern_analyzer.rs"
+pattern = "Hardcoded regex should always compile"
+category = "documented_invariant"
+reason = "Regex literal is maintained in source and should fail during tests if invalid."
+

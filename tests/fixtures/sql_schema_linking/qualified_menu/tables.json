@@ -1,0 +1,22 @@
+[
+  {
+    "db_id": "qualified_menu",
+    "table_names_original": ["Alpha", "Beta", "Unused"],
+    "table_names": ["alpha", "beta", "unused"],
+    "column_names_original": [[-1, "*"], [0, "Id"], [0, "Name"], [1, "Id"], [1, "Name"], [2, "Id"], [2, "Name"]],
+    "column_names": [[-1, "*"], [0, "id"], [0, "name"], [1, "id"], [1, "name"], [2, "id"], [2, "name"]],
+    "column_types": ["text", "number", "text", "number", "text", "number", "text"],
+    "primary_keys": [1, 3, 5],
+    "foreign_keys": []
+  },
+  {
+    "db_id": "qualified_menu_permuted",
+    "table_names_original": ["Unused", "Beta", "Alpha"],
+    "table_names": ["unused", "beta", "alpha"],
+    "column_names_original": [[-1, "*"], [0, "Id"], [0, "Name"], [1, "Id"], [1, "Name"], [2, "Id"], [2, "Name"]],
+    "column_names": [[-1, "*"], [0, "id"], [0, "name"], [1, "id"], [1, "name"], [2, "id"], [2, "name"]],
+    "column_types": ["text", "number", "text", "number", "text", "number", "text"],
+    "primary_keys": [1, 3, 5],
+    "foreign_keys": []
+  }
+]

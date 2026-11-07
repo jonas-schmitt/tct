@@ -1,0 +1,42 @@
+{
+  "title": "CIPipeline",
+  "type": "object",
+  "properties": {
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "stage": {"enum": ["build", "test", "deploy", "cleanup"]},
+          "script": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "artifacts": {
+            "type": "object",
+            "properties": {
+              "paths": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "expire_in": {"type": "string"}
+            }
+          },
+          "only": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        },
+        "required": ["name", "stage", "script"]
+      }
+    },
+    "variables": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Z][A-Z0-9_]*$": {"type": "string"}
+      }
+    }
+  },
+  "required": ["stages"]
+}

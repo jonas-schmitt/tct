@@ -1,0 +1,23 @@
+{
+  "service": {
+    "name": "fixture-minimal",
+    "version": "0.0.0",
+    "environment": "development",
+    "port": 8082
+  },
+  "database": {
+    "type": "redis",
+    "host": "cache.example.invalid",
+    "port": 6379,
+    "name": "fixture-cache"
+  },
+  "logging": {
+    "level": "debug",
+    "format": "text",
+    "outputs": [
+      {
+        "type": "console"
+      }
+    ]
+  }
+}

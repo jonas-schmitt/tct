@@ -1,0 +1,61 @@
+{
+  "name": "\ud83d\udc41\ufe0f Visual Regression Persist Start",
+  "on": {
+    "push": {
+      "branches": [
+        "master",
+        "feature",
+        "next"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "jobs": {
+    "test-image": {
+      "name": "test image",
+      "runs-on": "ubuntu-latest",
+      "steps": [
+        {
+          "uses": "actions/checkout@v5"
+        },
+        {
+          "uses": "oven-sh/setup-bun@v2"
+        },
+        {
+          "run": "bun install"
+        },
+        {
+          "name": "generate image snapshots",
+          "run": "node node_modules/puppeteer/install.mjs\nbun run version\nbun run test:image\ntar -czvf imageSnapshots.tar.gz imageSnapshots/*\n",
+          "env": {
+            "NODE_OPTIONS": "--max_old_space_size=4096"
+          }
+        },
+        {
+          "name": "upload report artifact",
+          "uses": "actions/upload-artifact@v4",
+          "with": {
+            "name": "image-snapshots",
+            "path": "imageSnapshots.tar.gz"
+          }
+        },
+        {
+          "name": "Save persist key",
+          "if": "${{ always() }}",
+          "run": "echo ${{ github.sha }} > ./visual-regression-ref.txt"
+        },
+        {
+          "name": "Upload persist key",
+          "if": "${{ always() }}",
+          "uses": "actions/upload-artifact@v4",
+          "with": {
+            "name": "visual-regression-ref",
+            "path": "./visual-regression-ref.txt"
+          }
+        }
+      ]
+    }
+  }
+}

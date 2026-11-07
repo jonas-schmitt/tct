@@ -1,0 +1,312 @@
+{
+  "artifact_kind": "tct_go_syntax_metadata_v0",
+  "version": 0,
+  "source": {
+    "path": "tests/fixtures/go_syntax_corpus/src/local_variadic_ellipsis/main.go",
+    "sha256": "39d1a7fb1503b5e7c69ef08f33743a474a76aa53422e9749427d8ea31fab6031"
+  },
+  "parser": {
+    "tool": "go",
+    "version": "go1.24.3",
+    "package": "go/parser",
+    "package_version": "go1.24.3"
+  },
+  "rules": [
+    {
+      "name": "File",
+      "node_kind": "File",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Decls",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "FuncDecl",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Comments",
+          "required": false,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "CommentGroup",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ident",
+      "node_kind": "Ident",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FuncDecl",
+      "node_kind": "FuncDecl",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Type",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FuncType",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Body",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BlockStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FuncType",
+      "node_kind": "FuncType",
+      "fields": [
+        {
+          "name": "Params",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FieldList",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Results",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FieldList",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FieldList",
+      "node_kind": "FieldList",
+      "fields": [
+        {
+          "name": "List",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Field",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Field",
+      "node_kind": "Field",
+      "fields": [
+        {
+          "name": "Names",
+          "required": false,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Type",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ellipsis",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ellipsis",
+      "node_kind": "Ellipsis",
+      "fields": [
+        {
+          "name": "Elt",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BlockStmt",
+      "node_kind": "BlockStmt",
+      "fields": [
+        {
+          "name": "List",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "ReturnStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ReturnStmt",
+      "node_kind": "ReturnStmt",
+      "fields": [
+        {
+          "name": "Results",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "CallExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CallExpr",
+      "node_kind": "CallExpr",
+      "fields": [
+        {
+          "name": "Fun",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Args",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Ellipsis",
+          "required": false,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "ellipsis_token",
+              "terminal": "string_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CommentGroup",
+      "node_kind": "CommentGroup",
+      "fields": [
+        {
+          "name": "List",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Comment",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Comment",
+      "node_kind": "Comment",
+      "fields": [
+        {
+          "name": "Text",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "comment_text",
+              "terminal": "string_payload"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

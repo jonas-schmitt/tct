@@ -1,0 +1,29 @@
+{
+  "artifact_kind": "tct_go_external_stress_pins_v1",
+  "version": 1,
+  "tool": "go_external_stress_corpus",
+  "expected_go_version": "go1.24.3",
+  "claim_boundary": "Secondary Go generalization / gap probe over version-pinned real modules. Pipeline reuses the M2 gofmt-canonical projection, raw syntax state machine, elided stream, and render/reparse gates. Not folded into the frozen M5 stdlib handoff package; not BPE validity authority; not type correctness; not stable-backend promotion; not a paper totality claim.",
+  "modules": [
+    {
+      "id": "golang.org/x/tools@v0.38.0",
+      "module_path": "golang.org/x/tools",
+      "git_url": "https://github.com/golang/tools.git",
+      "ref": "v0.38.0",
+      "ref_kind": "tag",
+      "role": "go_tooling_ecosystem",
+      "include_prefixes": [],
+      "notes": "Primary external stress pin: full non-testdata/non-vendor walk of x/tools at a fixed tag."
+    },
+    {
+      "id": "github.com/prometheus/client_golang@v1.20.5",
+      "module_path": "github.com/prometheus/client_golang",
+      "git_url": "https://github.com/prometheus/client_golang.git",
+      "ref": "v1.20.5",
+      "ref_kind": "tag",
+      "role": "bounded_production_tree",
+      "include_prefixes": [],
+      "notes": "Bounded production-library second pin; keeps the first external tranche smaller than a full Kubernetes/etcd tree while still leaving stdlib."
+    }
+  ]
+}

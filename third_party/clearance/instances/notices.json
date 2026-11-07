@@ -1,0 +1,575 @@
+{
+  "format_version": 1,
+  "notices": [
+    {
+      "path": "third_party/licenses/instances/Anduin2017__HowToCook/c1d1a13e01e25fcf9143d0e12bfd994b01971a08/LICENSE",
+      "sha256": "6b0382b16279f26ff69014300541967a356a666eb0b91b422f6862f6b7dad17e",
+      "upstream_repository": "Anduin2017/HowToCook",
+      "upstream_revision": "c1d1a13e01e25fcf9143d0e12bfd994b01971a08",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/Anduin2017/HowToCook/c1d1a13e01e25fcf9143d0e12bfd994b01971a08/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/Chalarangelo__30-seconds-of-code/e873db2461627d18bad6c4c2d3cc3408102d7332/LICENSE",
+      "sha256": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94",
+      "upstream_repository": "Chalarangelo/30-seconds-of-code",
+      "upstream_revision": "e873db2461627d18bad6c4c2d3cc3408102d7332",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/Chalarangelo/30-seconds-of-code/e873db2461627d18bad6c4c2d3cc3408102d7332/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/ChatGPTNextWeb__NextChat/c3b8c1587c04fff05f7b42276a43016e87771527/LICENSE",
+      "sha256": "abe83c6910b9437f7342b2184c213678b4adbb191d323e0244336039abbccc01",
+      "upstream_repository": "ChatGPTNextWeb/NextChat",
+      "upstream_revision": "c3b8c1587c04fff05f7b42276a43016e87771527",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/ChatGPTNextWeb/NextChat/c3b8c1587c04fff05f7b42276a43016e87771527/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/EbookFoundation__free-programming-books/ed6d8fc5b95e42c344b63d611f3ec21924618989/LICENSE",
+      "sha256": "f5b745ef98087f531e719ee8ca6a96809444573ecc7173c6fa68eaad39b3cc3f",
+      "upstream_repository": "EbookFoundation/free-programming-books",
+      "upstream_revision": "ed6d8fc5b95e42c344b63d611f3ec21924618989",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/EbookFoundation/free-programming-books/ed6d8fc5b95e42c344b63d611f3ec21924618989/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/Genymobile__scrcpy/9d7a4c88e067dc523bd16565e1592717dcaca360/LICENSE",
+      "sha256": "5e6597827749877cca06765747bf29ed9205ed5021c6aec1ad42373711bcda05",
+      "upstream_repository": "Genymobile/scrcpy",
+      "upstream_revision": "9d7a4c88e067dc523bd16565e1592717dcaca360",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/Genymobile/scrcpy/9d7a4c88e067dc523bd16565e1592717dcaca360/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/Hack-with-Github__Awesome-Hacking/6f416864dd2086f46a322ed8162410bd9a9d7c63/LICENSE",
+      "sha256": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673",
+      "upstream_repository": "Hack-with-Github/Awesome-Hacking",
+      "upstream_revision": "6f416864dd2086f46a322ed8162410bd9a9d7c63",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/Hack-with-Github/Awesome-Hacking/6f416864dd2086f46a322ed8162410bd9a9d7c63/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/Snailclimb__JavaGuide/877a63797ff181128f546974ae81a712384b1257/LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "upstream_repository": "Snailclimb/JavaGuide",
+      "upstream_revision": "877a63797ff181128f546974ae81a712384b1257",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/Snailclimb/JavaGuide/877a63797ff181128f546974ae81a712384b1257/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/TheAlgorithms__Python/7530a417e872040d35338d5e43ec176320dab462/LICENSE.md",
+      "sha256": "4395a1dc4bda1d6054c45b4d1230c709c7398e6d66f1d0aff4b22d95973bea56",
+      "upstream_repository": "TheAlgorithms/Python",
+      "upstream_revision": "7530a417e872040d35338d5e43ec176320dab462",
+      "upstream_path": "LICENSE.md",
+      "upstream_url": "https://raw.githubusercontent.com/TheAlgorithms/Python/7530a417e872040d35338d5e43ec176320dab462/LICENSE.md"
+    },
+    {
+      "path": "third_party/licenses/instances/actions__checkout/ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493/LICENSE",
+      "sha256": "3e855ffa704114a51628ef8f0bf3aeb41728adf9d9070e263bf58aa5640b0eb5",
+      "upstream_repository": "actions/checkout",
+      "upstream_revision": "ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/actions/checkout/ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/airbnb__javascript/371537f393da4862c624bdd90ae823bda0e251ec/LICENSE.md",
+      "sha256": "e18f507209d40c142dd96d5bfd825ae4d9a3cb83e1fb27bbfde20e980149212c",
+      "upstream_repository": "airbnb/javascript",
+      "upstream_revision": "371537f393da4862c624bdd90ae823bda0e251ec",
+      "upstream_path": "LICENSE.md",
+      "upstream_url": "https://raw.githubusercontent.com/airbnb/javascript/371537f393da4862c624bdd90ae823bda0e251ec/LICENSE.md"
+    },
+    {
+      "path": "third_party/licenses/instances/angular__angular/47048639f8d419511a5e666edac9411d7317e2cd/LICENSE",
+      "sha256": "657b51011163a8ddfd24b7e20404b16202db7b9f56ad8d68f7ea3996e9cf2299",
+      "upstream_repository": "angular/angular",
+      "upstream_revision": "47048639f8d419511a5e666edac9411d7317e2cd",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/angular/angular/47048639f8d419511a5e666edac9411d7317e2cd/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/angular__angular/573989033530c7a8200732267ee365b7c8945855/LICENSE",
+      "sha256": "657b51011163a8ddfd24b7e20404b16202db7b9f56ad8d68f7ea3996e9cf2299",
+      "upstream_repository": "angular/angular",
+      "upstream_revision": "573989033530c7a8200732267ee365b7c8945855",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/angular/angular/573989033530c7a8200732267ee365b7c8945855/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/angular__angular/e279f301992a65d2378f10076ca79304b3a774de/LICENSE",
+      "sha256": "657b51011163a8ddfd24b7e20404b16202db7b9f56ad8d68f7ea3996e9cf2299",
+      "upstream_repository": "angular/angular",
+      "upstream_revision": "e279f301992a65d2378f10076ca79304b3a774de",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/angular/angular/e279f301992a65d2378f10076ca79304b3a774de/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/ant-design__ant-design/a099777b17907bb92fe37b75074700af9e2322d2/LICENSE",
+      "sha256": "3c82654bb472ebbcacc4c1ff00f94aa8c60c4b7ee011b16bafcbacecc3703458",
+      "upstream_repository": "ant-design/ant-design",
+      "upstream_revision": "a099777b17907bb92fe37b75074700af9e2322d2",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/ant-design/ant-design/a099777b17907bb92fe37b75074700af9e2322d2/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/ant-design__ant-design/a2c571ff00d4225a67c07454182f72ed5bb5be0b/LICENSE",
+      "sha256": "3c82654bb472ebbcacc4c1ff00f94aa8c60c4b7ee011b16bafcbacecc3703458",
+      "upstream_repository": "ant-design/ant-design",
+      "upstream_revision": "a2c571ff00d4225a67c07454182f72ed5bb5be0b",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/ant-design/ant-design/a2c571ff00d4225a67c07454182f72ed5bb5be0b/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/apollographql__apollo-server/cef701e6c137c462f0ee330bc7125214868b954f/LICENSE",
+      "sha256": "e66675fc9c658d1f928704f4877b4cbb8fa41e25b1227a55613592cb45af96a7",
+      "upstream_repository": "apollographql/apollo-server",
+      "upstream_revision": "cef701e6c137c462f0ee330bc7125214868b954f",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/apollographql/apollo-server/cef701e6c137c462f0ee330bc7125214868b954f/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/avelino__awesome-go/12dc8e9fdecc6e1d4e6de25b56650ff4746882b8/LICENSE",
+      "sha256": "55df7521c33945cd0ab5b4fbaf0046a8a58cc1cf81ee9096614bf33a0e2e0983",
+      "upstream_repository": "avelino/awesome-go",
+      "upstream_revision": "12dc8e9fdecc6e1d4e6de25b56650ff4746882b8",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/avelino/awesome-go/12dc8e9fdecc6e1d4e6de25b56650ff4746882b8/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/avelino__awesome-go/728d16b6d28c8e2c2583565ae952e0651d893828/LICENSE",
+      "sha256": "55df7521c33945cd0ab5b4fbaf0046a8a58cc1cf81ee9096614bf33a0e2e0983",
+      "upstream_repository": "avelino/awesome-go",
+      "upstream_revision": "728d16b6d28c8e2c2583565ae952e0651d893828",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/avelino/awesome-go/728d16b6d28c8e2c2583565ae952e0651d893828/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/avelino__awesome-go/8cb5e86f560c64fdf47946845e0d10c3a8d32c67/LICENSE",
+      "sha256": "55df7521c33945cd0ab5b4fbaf0046a8a58cc1cf81ee9096614bf33a0e2e0983",
+      "upstream_repository": "avelino/awesome-go",
+      "upstream_revision": "8cb5e86f560c64fdf47946845e0d10c3a8d32c67",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/avelino/awesome-go/8cb5e86f560c64fdf47946845e0d10c3a8d32c67/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/axios__axios/6a104de7504267b0804380dfc192078447e4bcd5/LICENSE",
+      "sha256": "82761059eaedacb3356803aea8a170d8298609f91b14fc32ee1bfb40d690183c",
+      "upstream_repository": "axios/axios",
+      "upstream_revision": "6a104de7504267b0804380dfc192078447e4bcd5",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/axios/axios/6a104de7504267b0804380dfc192078447e4bcd5/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/bitcoin__bitcoin/00c253d494176b31dc4aaba24dc7e61aecb20be2/COPYING",
+      "sha256": "7c4a87f43afaf667b4c2187af92ebdd27310a24cec113f973e058e3300a76002",
+      "upstream_repository": "bitcoin/bitcoin",
+      "upstream_revision": "00c253d494176b31dc4aaba24dc7e61aecb20be2",
+      "upstream_path": "COPYING",
+      "upstream_url": "https://raw.githubusercontent.com/bitcoin/bitcoin/00c253d494176b31dc4aaba24dc7e61aecb20be2/COPYING"
+    },
+    {
+      "path": "third_party/licenses/instances/bitcoin__bitcoin/00c253d494176b31dc4aaba24dc7e61aecb20be2/source-header-438511348bd39d7d.txt",
+      "sha256": "246059d140669220c65e917240bcfe3a05fabbd50e078c73f8718df68a78dffb",
+      "upstream_repository": "bitcoin/bitcoin",
+      "upstream_revision": "00c253d494176b31dc4aaba24dc7e61aecb20be2",
+      "upstream_path": ".github/workflows/ci.yml",
+      "upstream_url": "https://raw.githubusercontent.com/bitcoin/bitcoin/00c253d494176b31dc4aaba24dc7e61aecb20be2/.github/workflows/ci.yml",
+      "extraction": "Contiguous source comment blocks containing license/copyright statements"
+    },
+    {
+      "path": "third_party/licenses/instances/d3__d3/66bfe8c6672873293e1f83253e6fbb1508633826/LICENSE",
+      "sha256": "3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4",
+      "upstream_repository": "d3/d3",
+      "upstream_revision": "66bfe8c6672873293e1f83253e6fbb1508633826",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/d3/d3/66bfe8c6672873293e1f83253e6fbb1508633826/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/deepseek-ai__DeepSeek-R1/0cf78561f1d51c84a21b2190626b21116d5c68bb/LICENSE",
+      "sha256": "1c8f573e830ca9b3ebfeb7ace1823146e22b66f99ee223840e7637c9e745e1c7",
+      "upstream_repository": "deepseek-ai/DeepSeek-R1",
+      "upstream_revision": "0cf78561f1d51c84a21b2190626b21116d5c68bb",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/deepseek-ai/DeepSeek-R1/0cf78561f1d51c84a21b2190626b21116d5c68bb/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/deepseek-ai__DeepSeek-V3/9b4e9788e4a3a731f7567338ed15d3ec549ce03b/LICENSE-CODE",
+      "sha256": "1c8f573e830ca9b3ebfeb7ace1823146e22b66f99ee223840e7637c9e745e1c7",
+      "upstream_repository": "deepseek-ai/DeepSeek-V3",
+      "upstream_revision": "9b4e9788e4a3a731f7567338ed15d3ec549ce03b",
+      "upstream_path": "LICENSE-CODE",
+      "upstream_url": "https://raw.githubusercontent.com/deepseek-ai/DeepSeek-V3/9b4e9788e4a3a731f7567338ed15d3ec549ce03b/LICENSE-CODE"
+    },
+    {
+      "path": "third_party/licenses/instances/denoland__deno/567ab7d2af414dfa877beb0c5e0b28545ce90985/LICENSE.md",
+      "sha256": "ee79dd206fb5aa60a7485104ea78ba2a78935d6586cbb83c616db2579543f756",
+      "upstream_repository": "denoland/deno",
+      "upstream_revision": "567ab7d2af414dfa877beb0c5e0b28545ce90985",
+      "upstream_path": "LICENSE.md",
+      "upstream_url": "https://raw.githubusercontent.com/denoland/deno/567ab7d2af414dfa877beb0c5e0b28545ce90985/LICENSE.md"
+    },
+    {
+      "path": "third_party/licenses/instances/django__django/6e3287408e128e03a6ec5d23c17cdc2eee8760c0/LICENSE",
+      "sha256": "b846415d1b514e9c1dff14a22deb906d794bc546ca6129f950a18cd091e2a669",
+      "upstream_repository": "django/django",
+      "upstream_revision": "6e3287408e128e03a6ec5d23c17cdc2eee8760c0",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/django/django/6e3287408e128e03a6ec5d23c17cdc2eee8760c0/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/electron__electron/d6dfd4ed7a8f3664e13da7e60eb39529820b72bd/LICENSE",
+      "sha256": "5154e165bd6c2cc0cfbcd8916498c7abab0497923bafcd5cb07673fe8480087d",
+      "upstream_repository": "electron/electron",
+      "upstream_revision": "d6dfd4ed7a8f3664e13da7e60eb39529820b72bd",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/electron/electron/d6dfd4ed7a8f3664e13da7e60eb39529820b72bd/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/excalidraw__excalidraw/98e0cd9078feab548c0af13f462195c4dbf10135/LICENSE",
+      "sha256": "1352d204fdb90d5e482c13139d848bc2c9300a9a7de358a0a558a23e72d0d8be",
+      "upstream_repository": "excalidraw/excalidraw",
+      "upstream_revision": "98e0cd9078feab548c0af13f462195c4dbf10135",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/excalidraw/excalidraw/98e0cd9078feab548c0af13f462195c4dbf10135/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/expressjs__express/8f21493cc57dc32fe059d47abb4210d5b383cc31/LICENSE",
+      "sha256": "95a5762890e5c1c9808921cef095661fc482c5e1f0bba31446ac85595df6237c",
+      "upstream_repository": "expressjs/express",
+      "upstream_revision": "8f21493cc57dc32fe059d47abb4210d5b383cc31",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/expressjs/express/8f21493cc57dc32fe059d47abb4210d5b383cc31/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/facebook__create-react-app/6254386531d263688ccfa542d0e628fbc0de0b28/LICENSE",
+      "sha256": "f657f99d3fb9647db92628e96007aabb46e5f04f33e49999075aab8e250ca7ce",
+      "upstream_repository": "facebook/create-react-app",
+      "upstream_revision": "6254386531d263688ccfa542d0e628fbc0de0b28",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/facebook/create-react-app/6254386531d263688ccfa542d0e628fbc0de0b28/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/facebook__react-native/8ed0e1eba5227a87dfe140f53c44b02604f3e77a/LICENSE",
+      "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+      "upstream_repository": "facebook/react-native",
+      "upstream_revision": "8ed0e1eba5227a87dfe140f53c44b02604f3e77a",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/facebook/react-native/8ed0e1eba5227a87dfe140f53c44b02604f3e77a/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/facebook__react/b65e6fc58b8c9a35e2c2ea7d1952fc1499cef09b/LICENSE",
+      "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+      "upstream_repository": "facebook/react",
+      "upstream_revision": "b65e6fc58b8c9a35e2c2ea7d1952fc1499cef09b",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/facebook/react/b65e6fc58b8c9a35e2c2ea7d1952fc1499cef09b/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/facebook__react/df10309e2b884868d2032a4d6506714b3953b027/LICENSE",
+      "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+      "upstream_repository": "facebook/react",
+      "upstream_revision": "df10309e2b884868d2032a4d6506714b3953b027",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/facebook/react/df10309e2b884868d2032a4d6506714b3953b027/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/fastapi__fastapi/1cd8717818e886d54a275f78305b5d8b61a46309/LICENSE",
+      "sha256": "4ec89ffc81485b97fec584b2d4a961032eeffe834453894fd9c1274906cc744e",
+      "upstream_repository": "fastapi/fastapi",
+      "upstream_revision": "1cd8717818e886d54a275f78305b5d8b61a46309",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/fastapi/fastapi/1cd8717818e886d54a275f78305b5d8b61a46309/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/fastapi__fastapi/805ab1be5b582783f7e640555692e6f14c585ae0/LICENSE",
+      "sha256": "4ec89ffc81485b97fec584b2d4a961032eeffe834453894fd9c1274906cc744e",
+      "upstream_repository": "fastapi/fastapi",
+      "upstream_revision": "805ab1be5b582783f7e640555692e6f14c585ae0",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/fastapi/fastapi/805ab1be5b582783f7e640555692e6f14c585ae0/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/fatedier__frp/e382676659cc8d5974ea2e3fa3c4fb94eda1fb76/LICENSE",
+      "sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08",
+      "upstream_repository": "fatedier/frp",
+      "upstream_revision": "e382676659cc8d5974ea2e3fa3c4fb94eda1fb76",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/fatedier/frp/e382676659cc8d5974ea2e3fa3c4fb94eda1fb76/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/flutter__flutter/8f9d55e7afcb0c9186d13af219018d50bcc35a63/LICENSE",
+      "sha256": "a598db94b6290ffbe10b5ecf911057b6a943351c727fdda9e5f2891d68700a20",
+      "upstream_repository": "flutter/flutter",
+      "upstream_revision": "8f9d55e7afcb0c9186d13af219018d50bcc35a63",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/flutter/flutter/8f9d55e7afcb0c9186d13af219018d50bcc35a63/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/flutter__flutter/8f9d55e7afcb0c9186d13af219018d50bcc35a63/source-header-eda14225c37c22eb.txt",
+      "sha256": "f597e6dced174432407ba57a960b2757a14bd254b3958ccf5d6d3faef93c445c",
+      "upstream_repository": "flutter/flutter",
+      "upstream_revision": "8f9d55e7afcb0c9186d13af219018d50bcc35a63",
+      "upstream_path": ".github/workflows/content-aware-hash.yml",
+      "upstream_url": "https://raw.githubusercontent.com/flutter/flutter/8f9d55e7afcb0c9186d13af219018d50bcc35a63/.github/workflows/content-aware-hash.yml",
+      "extraction": "Contiguous source comment blocks containing license/copyright statements"
+    },
+    {
+      "path": "third_party/licenses/instances/freeCodeCamp__freeCodeCamp/f002f1b83599fb39a06baa8935cdc5791d93bf61/LICENSE.md",
+      "sha256": "d5de90c9fc94a66313a66cabbc98004d2c07383f2351838d7a9b7d8bd5fe70d1",
+      "upstream_repository": "freeCodeCamp/freeCodeCamp",
+      "upstream_revision": "f002f1b83599fb39a06baa8935cdc5791d93bf61",
+      "upstream_path": "LICENSE.md",
+      "upstream_url": "https://raw.githubusercontent.com/freeCodeCamp/freeCodeCamp/f002f1b83599fb39a06baa8935cdc5791d93bf61/LICENSE.md"
+    },
+    {
+      "path": "third_party/licenses/instances/ggml-org__llama.cpp/3df2244df40c67dfd6ad548b40ccc507a066af2b/LICENSE",
+      "sha256": "e562a2ddfaf8280537795ac5ecd34e3012b6582a147ef69ba6a6a5c08c84757d",
+      "upstream_repository": "ggml-org/llama.cpp",
+      "upstream_revision": "3df2244df40c67dfd6ad548b40ccc507a066af2b",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/3df2244df40c67dfd6ad548b40ccc507a066af2b/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/gin-gonic__gin/4dec17afdff48e8018c83618fbbe69fceeb2b41d/LICENSE",
+      "sha256": "03458b6d5828e1be1127ca2adf122572eb574fc47b56190c3b38203b8b2a98d0",
+      "upstream_repository": "gin-gonic/gin",
+      "upstream_revision": "4dec17afdff48e8018c83618fbbe69fceeb2b41d",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/gin-gonic/gin/4dec17afdff48e8018c83618fbbe69fceeb2b41d/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/github__gitignore/40c5d3211c316f9c4971bc29b90e62427b887962/LICENSE",
+      "sha256": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673",
+      "upstream_repository": "github/gitignore",
+      "upstream_revision": "40c5d3211c316f9c4971bc29b90e62427b887962",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/github/gitignore/40c5d3211c316f9c4971bc29b90e62427b887962/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/godotengine__godot/839e0358b332807e36d967d1908a480e7f7c7a3d/LICENSE.txt",
+      "sha256": "b0435e3b3e4e55238f05f4b306f30524a1b2e20147810d436eaa554fa6855c80",
+      "upstream_repository": "godotengine/godot",
+      "upstream_revision": "839e0358b332807e36d967d1908a480e7f7c7a3d",
+      "upstream_path": "LICENSE.txt",
+      "upstream_url": "https://raw.githubusercontent.com/godotengine/godot/839e0358b332807e36d967d1908a480e7f7c7a3d/LICENSE.txt"
+    },
+    {
+      "path": "third_party/licenses/instances/huggingface__transformers/caa14e7dabb086f167c14b7eecadc2ba9db25eb6/LICENSE",
+      "sha256": "77fd4710def9ec3c0f6225800e0235f15a425abd4a8b03559127fcd782612049",
+      "upstream_repository": "huggingface/transformers",
+      "upstream_revision": "caa14e7dabb086f167c14b7eecadc2ba9db25eb6",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/huggingface/transformers/caa14e7dabb086f167c14b7eecadc2ba9db25eb6/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/iptv-org__iptv/14fa5de562aa670cb66e991bb04b7cc39b96eb5b/LICENSE",
+      "sha256": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c",
+      "upstream_repository": "iptv-org/iptv",
+      "upstream_revision": "14fa5de562aa670cb66e991bb04b7cc39b96eb5b",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/iptv-org/iptv/14fa5de562aa670cb66e991bb04b7cc39b96eb5b/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/jaywcjlove__awesome-mac/84793ed4db6912fd5193da310d08db5e8b7ee711/LICENSE",
+      "sha256": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673",
+      "upstream_repository": "jaywcjlove/awesome-mac",
+      "upstream_revision": "84793ed4db6912fd5193da310d08db5e8b7ee711",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/jaywcjlove/awesome-mac/84793ed4db6912fd5193da310d08db5e8b7ee711/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/jestjs__jest/17196e15ade60e2a2cf92fd2d4278ecc3f6b7db3/LICENSE",
+      "sha256": "9d5211db733ccdd26f9170bec24cdca84093f60415da6b769ee9cdf23d04e19f",
+      "upstream_repository": "jestjs/jest",
+      "upstream_revision": "17196e15ade60e2a2cf92fd2d4278ecc3f6b7db3",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/jestjs/jest/17196e15ade60e2a2cf92fd2d4278ecc3f6b7db3/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/langchain-ai__langchain/20e04fc3dd9c0e5c2371652d79f212b93a891208/LICENSE",
+      "sha256": "4ec67e4ca6e6721dba849b2ca82261597c86a61ee214bbf21416006b7b2d0478",
+      "upstream_repository": "langchain-ai/langchain",
+      "upstream_revision": "20e04fc3dd9c0e5c2371652d79f212b93a891208",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/langchain-ai/langchain/20e04fc3dd9c0e5c2371652d79f212b93a891208/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/langflow-ai__langflow/fa49e78de238dde2780d635b3c044eb99b7326c3/LICENSE",
+      "sha256": "48d4a7496209a9e1f2f549384251b69319360c3a38127cf513473590be383359",
+      "upstream_repository": "langflow-ai/langflow",
+      "upstream_revision": "fa49e78de238dde2780d635b3c044eb99b7326c3",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/langflow-ai/langflow/fa49e78de238dde2780d635b3c044eb99b7326c3/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/microsoft__PowerToys/0d5220561d4b5c575d6c0ce91f7911f2aff76b07/LICENSE",
+      "sha256": "1eb3cbe7f022addbfc6d65cb2e39aca5b24333942ed843aa10c03befd71ee225",
+      "upstream_repository": "microsoft/PowerToys",
+      "upstream_revision": "0d5220561d4b5c575d6c0ce91f7911f2aff76b07",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/microsoft/PowerToys/0d5220561d4b5c575d6c0ce91f7911f2aff76b07/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/microsoft__PowerToys/0d5220561d4b5c575d6c0ce91f7911f2aff76b07/NOTICE.md",
+      "sha256": "97272da3467b56bad2c5ae8167caa23b10dea38d133e75302d225961e220e463",
+      "upstream_repository": "microsoft/PowerToys",
+      "upstream_revision": "0d5220561d4b5c575d6c0ce91f7911f2aff76b07",
+      "upstream_path": "NOTICE.md",
+      "upstream_url": "https://raw.githubusercontent.com/microsoft/PowerToys/0d5220561d4b5c575d6c0ce91f7911f2aff76b07/NOTICE.md"
+    },
+    {
+      "path": "third_party/licenses/instances/microsoft__TypeScript/fe592f16279e23aed618e503077c890d51a891cd/LICENSE.txt",
+      "sha256": "a7d00bfd54525bc694b6e32f64c7ebcf5e6b7ae3657be5cc12767bce74654a47",
+      "upstream_repository": "microsoft/TypeScript",
+      "upstream_revision": "fe592f16279e23aed618e503077c890d51a891cd",
+      "upstream_path": "LICENSE.txt",
+      "upstream_url": "https://raw.githubusercontent.com/microsoft/TypeScript/fe592f16279e23aed618e503077c890d51a891cd/LICENSE.txt"
+    },
+    {
+      "path": "third_party/licenses/instances/microsoft__vscode-eslint/b27a65ecf34df3d5d05642e6da4e91814047332b/License.txt",
+      "sha256": "976f8ed671d885872afac0021bd78b3d84fe8d4783a98b46deb5a7dc4e29dbff",
+      "upstream_repository": "microsoft/vscode-eslint",
+      "upstream_revision": "b27a65ecf34df3d5d05642e6da4e91814047332b",
+      "upstream_path": "License.txt",
+      "upstream_url": "https://raw.githubusercontent.com/microsoft/vscode-eslint/b27a65ecf34df3d5d05642e6da4e91814047332b/License.txt"
+    },
+    {
+      "path": "third_party/licenses/instances/microsoft__vscode-python/4e0633b63952b6d6e11fd79e26739868b97a52b6/LICENSE",
+      "sha256": "ad0cf28f3381ca9bb0bf101d127402d44c17bfa0991e1a00bff7ae6679e9dada",
+      "upstream_repository": "microsoft/vscode-python",
+      "upstream_revision": "4e0633b63952b6d6e11fd79e26739868b97a52b6",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/microsoft/vscode-python/4e0633b63952b6d6e11fd79e26739868b97a52b6/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/microsoft__vscode-python/4e0633b63952b6d6e11fd79e26739868b97a52b6/ThirdPartyNotices-Repository.txt",
+      "sha256": "657cc719a8eb5391c1c00207b85e55c10231b82b57448c207d47fe6f9cc9ed43",
+      "upstream_repository": "microsoft/vscode-python",
+      "upstream_revision": "4e0633b63952b6d6e11fd79e26739868b97a52b6",
+      "upstream_path": "ThirdPartyNotices-Repository.txt",
+      "upstream_url": "https://raw.githubusercontent.com/microsoft/vscode-python/4e0633b63952b6d6e11fd79e26739868b97a52b6/ThirdPartyNotices-Repository.txt"
+    },
+    {
+      "path": "third_party/licenses/instances/microsoft__vscode/9b1b7b3152a87e7800a4976db84edac11e85dff3/LICENSE.txt",
+      "sha256": "9480271317925265e806a9a196aaa33410a962fa9d4d1e248a4a5187bc8c9df9",
+      "upstream_repository": "microsoft/vscode",
+      "upstream_revision": "9b1b7b3152a87e7800a4976db84edac11e85dff3",
+      "upstream_path": "LICENSE.txt",
+      "upstream_url": "https://raw.githubusercontent.com/microsoft/vscode/9b1b7b3152a87e7800a4976db84edac11e85dff3/LICENSE.txt"
+    },
+    {
+      "path": "third_party/licenses/instances/microsoft__vscode/9b1b7b3152a87e7800a4976db84edac11e85dff3/ThirdPartyNotices.txt",
+      "sha256": "e94328ccfaf69ce4ab88a9e5177679f25fdb6a325258f048f3eea9c188f2154d",
+      "upstream_repository": "microsoft/vscode",
+      "upstream_revision": "9b1b7b3152a87e7800a4976db84edac11e85dff3",
+      "upstream_path": "ThirdPartyNotices.txt",
+      "upstream_url": "https://raw.githubusercontent.com/microsoft/vscode/9b1b7b3152a87e7800a4976db84edac11e85dff3/ThirdPartyNotices.txt"
+    },
+    {
+      "path": "third_party/licenses/instances/microsoft__vscode/9b1b7b3152a87e7800a4976db84edac11e85dff3/cglicenses.json",
+      "sha256": "1896d5e65ac2d2911f472e21d16cc7618c1eded962837e17358e85378fcf2c85",
+      "upstream_repository": "microsoft/vscode",
+      "upstream_revision": "9b1b7b3152a87e7800a4976db84edac11e85dff3",
+      "upstream_path": "cglicenses.json",
+      "upstream_url": "https://raw.githubusercontent.com/microsoft/vscode/9b1b7b3152a87e7800a4976db84edac11e85dff3/cglicenses.json"
+    },
+    {
+      "path": "third_party/licenses/instances/nestjs__nest/10fdf16c476564d71acb752414b7ab58caeedc95/LICENSE",
+      "sha256": "4bd93e25a4b75e54a477db8f387013caec2712ee8a3bcbacbf1bb676e7147a62",
+      "upstream_repository": "nestjs/nest",
+      "upstream_revision": "10fdf16c476564d71acb752414b7ab58caeedc95",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/nestjs/nest/10fdf16c476564d71acb752414b7ab58caeedc95/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/prisma__orm/ed15ef8e3ed61423dfa19bd5fe19e7299935a9e4/LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "upstream_repository": "prisma/orm",
+      "upstream_revision": "ed15ef8e3ed61423dfa19bd5fe19e7299935a9e4",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/prisma/orm/ed15ef8e3ed61423dfa19bd5fe19e7299935a9e4/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/python-poetry__poetry/4dba0e1b041366b3f05bec89dca82e902e6386e8/LICENSE",
+      "sha256": "1786f071a510648a24695f295117f02bae0bbf0fb7c6730aafe9c93a3e4bf7ee",
+      "upstream_repository": "python-poetry/poetry",
+      "upstream_revision": "4dba0e1b041366b3f05bec89dca82e902e6386e8",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/python-poetry/poetry/4dba0e1b041366b3f05bec89dca82e902e6386e8/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/serde-rs__serde/00b1b6b2b5e6154eba81e2ad8c6a43b945583ad0/LICENSE-APACHE",
+      "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "upstream_repository": "serde-rs/serde",
+      "upstream_revision": "00b1b6b2b5e6154eba81e2ad8c6a43b945583ad0",
+      "upstream_path": "LICENSE-APACHE",
+      "upstream_url": "https://raw.githubusercontent.com/serde-rs/serde/00b1b6b2b5e6154eba81e2ad8c6a43b945583ad0/LICENSE-APACHE"
+    },
+    {
+      "path": "third_party/licenses/instances/serde-rs__serde/00b1b6b2b5e6154eba81e2ad8c6a43b945583ad0/LICENSE-MIT",
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+      "upstream_repository": "serde-rs/serde",
+      "upstream_revision": "00b1b6b2b5e6154eba81e2ad8c6a43b945583ad0",
+      "upstream_path": "LICENSE-MIT",
+      "upstream_url": "https://raw.githubusercontent.com/serde-rs/serde/00b1b6b2b5e6154eba81e2ad8c6a43b945583ad0/LICENSE-MIT"
+    },
+    {
+      "path": "third_party/licenses/instances/tokio-rs__tokio/3b5a15dfdfc5dc789dcb80cef0986fb2fa5cac0a/LICENSE",
+      "sha256": "253cd04c6714889df2d32f3f64d669179a1c95c76ac43c40882c52eb06bc3552",
+      "upstream_repository": "tokio-rs/tokio",
+      "upstream_revision": "3b5a15dfdfc5dc789dcb80cef0986fb2fa5cac0a",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/tokio-rs/tokio/3b5a15dfdfc5dc789dcb80cef0986fb2fa5cac0a/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/trpc__trpc/71c7ccc4915f8689d4d974d983d1c69ebce74aef/LICENSE",
+      "sha256": "e714dd84c8fa242600844b05d317a31003423723178c1f1603dbfad1bc68d906",
+      "upstream_repository": "trpc/trpc",
+      "upstream_revision": "71c7ccc4915f8689d4d974d983d1c69ebce74aef",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/trpc/trpc/71c7ccc4915f8689d4d974d983d1c69ebce74aef/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/vercel__next.js/99e09714e4f84b961ce3ad95510dced647f12445/license.md",
+      "sha256": "ee765244e2d59f5234d474f62e0766fa0c8b99af967fdd4c0cb8dcb0c76ea224",
+      "upstream_repository": "vercel/next.js",
+      "upstream_revision": "99e09714e4f84b961ce3ad95510dced647f12445",
+      "upstream_path": "license.md",
+      "upstream_url": "https://raw.githubusercontent.com/vercel/next.js/99e09714e4f84b961ce3ad95510dced647f12445/license.md"
+    },
+    {
+      "path": "third_party/licenses/instances/vueComponent__ant-design-vue/a2e50dc43e75ce609c11cf6f5f6cf20deefa32bb/LICENSE",
+      "sha256": "092403b6450d5100dc9746f9cef1c72614118042bf6707ad74b60b4c218050f4",
+      "upstream_repository": "vueComponent/ant-design-vue",
+      "upstream_revision": "a2e50dc43e75ce609c11cf6f5f6cf20deefa32bb",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/vueComponent/ant-design-vue/a2e50dc43e75ce609c11cf6f5f6cf20deefa32bb/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/vuejs__core/4b6cb1f52a0f6c5af2a0114b70000e23028eed15/LICENSE",
+      "sha256": "49190d1f742dd61e47fe816df4963e5186a2a62100d9122f9883a60ea32973ac",
+      "upstream_repository": "vuejs/core",
+      "upstream_revision": "4b6cb1f52a0f6c5af2a0114b70000e23028eed15",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/vuejs/core/4b6cb1f52a0f6c5af2a0114b70000e23028eed15/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/vuejs__core/bfe6b459d3a0ce6168611ee1ac7e6e789709df9d/LICENSE",
+      "sha256": "1bb85cc9b13b81ef41c81c51866172fc345e0503c86726a6755b796590b70175",
+      "upstream_repository": "vuejs/core",
+      "upstream_revision": "bfe6b459d3a0ce6168611ee1ac7e6e789709df9d",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/vuejs/core/bfe6b459d3a0ce6168611ee1ac7e6e789709df9d/LICENSE"
+    },
+    {
+      "path": "third_party/licenses/instances/vuejs__vue/13f4e7dc03e2caed900ac70ff8b8fe58dda45663/LICENSE",
+      "sha256": "17fb24bc303763f3fe1911ee24e5225c7ad59f0e3a5d8123e9b730c100a306a6",
+      "upstream_repository": "vuejs/vue",
+      "upstream_revision": "13f4e7dc03e2caed900ac70ff8b8fe58dda45663",
+      "upstream_path": "LICENSE",
+      "upstream_url": "https://raw.githubusercontent.com/vuejs/vue/13f4e7dc03e2caed900ac70ff8b8fe58dda45663/LICENSE"
+    }
+  ]
+}

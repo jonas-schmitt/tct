@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Properties Reference Test",
+  "description": "Test schema for #/properties/ reference handling",
+  "type": "object",
+  "properties": {
+    "config": {
+      "type": "object",
+      "description": "Configuration object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        }
+      }
+    },
+    "reference": {
+      "$ref": "#/properties/config"
+    }
+  }
+}

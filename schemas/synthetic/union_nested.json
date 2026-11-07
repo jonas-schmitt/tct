@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UnionNested",
+  "description": "Tests nested union handling: union inside union",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "config": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "oneOf": [
+                {"type": "string"},
+                {"type": "number"},
+                {
+                  "type": "object",
+                  "properties": {
+                    "nested": {"type": "string"}
+                  }
+                }
+              ]
+            }
+          },
+          "required": ["value"]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": ["name"],
+  "additionalProperties": false
+}

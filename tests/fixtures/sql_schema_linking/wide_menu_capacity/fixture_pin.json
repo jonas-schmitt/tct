@@ -1,0 +1,12 @@
+{
+  "artifact_type": "sql_schema_linking_fixture_pin_v0",
+  "db_id": "tct_fixture_wide_menu",
+  "paths": {
+    "tables_json": "tests/fixtures/sql_schema_linking/wide_menu_capacity/tables.json",
+    "gold_queries_json": "tests/fixtures/sql_schema_linking/wide_menu_capacity/gold_queries.json"
+  },
+  "tables_json_sha256": "e7507d205f8b36b36f36d9a043f54eea0346bb3b65d0338bf4f841cac3fb72bc",
+  "gold_queries_json_sha256": "401351ce7d096bf1c57986a334ebf083a511fe6bd11fd43d8c78cff1d0298092",
+  "note": "T-D wide synthetic catalog for menu capacity (300 tables x 10 columns = 3000 columns). Unique db_id; NOT loaded by load_fixture_bundle() so T11/T12 report hashes stay unchanged.",
+  "version": 1
+}

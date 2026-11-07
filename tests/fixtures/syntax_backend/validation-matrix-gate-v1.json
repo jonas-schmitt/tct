@@ -1,0 +1,306 @@
+{
+  "artifact_kind": "tct_syntax_backend_validation_matrix_gate",
+  "version": 1,
+  "tool": "syntax_backend_validation_matrix_gate",
+  "status": "experimental_route_validation_matrix",
+  "source_production_route": {
+    "artifact_kind": "tct_syntax_backend_production_route_implementation_gate",
+    "version": 1,
+    "module_path": "src/syntax_production_route.rs",
+    "fixture_path": "tests/fixtures/syntax_backend/production-route-implementation-gate-v1.json",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "generated_codec_gate_test": "tests/syntax_generated_codec_gate_test.rs",
+    "route_entrypoint": "compile_checked_syntax_compiler_route",
+    "route_metadata_field": "target_agnostic_compiler_route",
+    "completed_promotion_class": "syntax backend production route implementation gate",
+    "current_next_missing_stable_promotion_class": "Build Go Source-Record Raw-Token Generator Core"
+  },
+  "compiler_boundary": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "preserves_json_schema_backend_contract": true,
+    "production_grammar_compiler_path_changed": false,
+    "sidecar_only": false,
+    "tct_compiler_route_allowed": true
+  },
+  "matrix_contract": {
+    "matrix_id": "syntax-json-backend-grade-validation-matrix-v1",
+    "route_entrypoint": "compile_checked_syntax_compiler_route",
+    "route_metadata_field": "target_agnostic_compiler_route",
+    "route_owned_evidence": [
+      "csharp_minimal_class_syntax_v0",
+      "csharp_local_string_return_literal_syntax_v0",
+      "go_minimal_function_syntax_v0",
+      "go_local_declaration_syntax_v0",
+      "generated_go_minimal_function_real_source_strings_compare_demo"
+    ],
+    "categories": [
+      {
+        "category_id": "input_validation",
+        "route_metadata_field": "target_agnostic_compiler_route",
+        "route_metadata_key": "accepted_input",
+        "route_owned_evidence": [
+          "csharp_minimal_class_syntax_v0",
+          "csharp_local_string_return_literal_syntax_v0",
+          "go_minimal_function_syntax_v0",
+          "go_local_declaration_syntax_v0",
+          "generated_go_minimal_function_real_source_strings_compare_demo"
+        ],
+        "sidecar_control_gate": {
+          "kind": "fixture",
+          "module_path": "src/syntax_input_diagnostics.rs",
+          "fixture_or_doc_path": "tests/fixtures/syntax_backend/input-validation-negative-fixtures-v1.json",
+          "control_only": true,
+          "arena_ir_not_proof": true
+        },
+        "validation_command": "cargo test --test syntax_backend_boundary_test",
+        "stable_promotion_required": true
+      },
+      {
+        "category_id": "generated_code_compilation",
+        "route_metadata_field": "target_agnostic_compiler_route",
+        "route_metadata_key": "generated_code_gate_representatives",
+        "route_owned_evidence": [
+          "csharp_minimal_class_syntax_v0",
+          "csharp_local_string_return_literal_syntax_v0",
+          "go_minimal_function_syntax_v0",
+          "go_local_declaration_syntax_v0",
+          "generated_go_minimal_function_real_source_strings_compare_demo"
+        ],
+        "sidecar_control_gate": {
+          "kind": "test",
+          "module_path": "src/syntax_generated_codec.rs",
+          "fixture_or_doc_path": "tests/syntax_generated_codec_gate_test.rs",
+          "control_only": true,
+          "arena_ir_not_proof": true
+        },
+        "validation_command": "cargo test --test syntax_generated_codec_gate_test",
+        "stable_promotion_required": true
+      },
+      {
+        "category_id": "semantic_round_trips",
+        "route_metadata_field": "target_agnostic_compiler_route",
+        "route_metadata_key": "generated_code_gate_representatives",
+        "route_owned_evidence": [
+          "csharp_minimal_class_syntax_v0",
+          "csharp_local_string_return_literal_syntax_v0",
+          "go_minimal_function_syntax_v0",
+          "go_local_declaration_syntax_v0",
+          "generated_go_minimal_function_real_source_strings_compare_demo"
+        ],
+        "sidecar_control_gate": {
+          "kind": "test",
+          "module_path": "src/syntax_generated_codec.rs",
+          "fixture_or_doc_path": "tests/syntax_generated_codec_gate_test.rs",
+          "control_only": true,
+          "arena_ir_not_proof": true
+        },
+        "validation_command": "cargo test --test syntax_generated_codec_gate_test",
+        "stable_promotion_required": true
+      },
+      {
+        "category_id": "strict_recovery_decode",
+        "route_metadata_field": "target_agnostic_compiler_route",
+        "route_metadata_key": "strict_recovery_decode_route_evidence",
+        "route_owned_evidence": [
+          "csharp_minimal_class_syntax_v0",
+          "csharp_local_string_return_literal_syntax_v0",
+          "go_minimal_function_syntax_v0",
+          "go_local_declaration_syntax_v0",
+          "generated_go_minimal_function_real_source_strings_compare_demo"
+        ],
+        "sidecar_control_gate": {
+          "kind": "fixture",
+          "module_path": "src/syntax_strict_recovery_decode_routing.rs",
+          "fixture_or_doc_path": "tests/fixtures/syntax_backend/strict-recovery-decode-routing-gate-v1.json",
+          "control_only": true,
+          "arena_ir_not_proof": true
+        },
+        "validation_command": "cargo test --test syntax_generated_codec_gate_test",
+        "stable_promotion_required": true
+      },
+      {
+        "category_id": "consumed_token_accounting",
+        "route_metadata_field": "target_agnostic_compiler_route",
+        "route_metadata_key": "consumed_token_accounting_route_evidence",
+        "route_owned_evidence": [
+          "csharp_minimal_class_syntax_v0",
+          "csharp_local_string_return_literal_syntax_v0",
+          "go_minimal_function_syntax_v0",
+          "go_local_declaration_syntax_v0",
+          "generated_go_minimal_function_real_source_strings_compare_demo"
+        ],
+        "sidecar_control_gate": {
+          "kind": "fixture",
+          "module_path": "src/syntax_consumed_token_accounting_routing.rs",
+          "fixture_or_doc_path": "tests/fixtures/syntax_backend/consumed-token-accounting-routing-gate-v1.json",
+          "control_only": true,
+          "arena_ir_not_proof": true
+        },
+        "validation_command": "cargo test --test syntax_generated_codec_gate_test",
+        "stable_promotion_required": true
+      },
+      {
+        "category_id": "token_vocabulary_bpe",
+        "route_metadata_field": "target_agnostic_compiler_route",
+        "route_metadata_key": "token_vocabulary_bpe_route_evidence",
+        "route_owned_evidence": [
+          "csharp_minimal_class_syntax_v0",
+          "csharp_local_string_return_literal_syntax_v0",
+          "go_minimal_function_syntax_v0",
+          "go_local_declaration_syntax_v0",
+          "generated_go_minimal_function_real_source_strings_compare_demo"
+        ],
+        "sidecar_control_gate": {
+          "kind": "fixture",
+          "module_path": "src/syntax_token_vocabulary_bpe_routing.rs",
+          "fixture_or_doc_path": "tests/fixtures/syntax_backend/token-vocabulary-bpe-routing-gate-v1.json",
+          "control_only": true,
+          "arena_ir_not_proof": true
+        },
+        "validation_command": "cargo test --test syntax_generated_codec_gate_test",
+        "stable_promotion_required": true
+      },
+      {
+        "category_id": "generated_artifact_reproducibility",
+        "route_metadata_field": "target_agnostic_compiler_route",
+        "route_metadata_key": "parser_backed_reproducibility_evidence",
+        "route_owned_evidence": [
+          "csharp_minimal_class_syntax_v0",
+          "csharp_local_string_return_literal_syntax_v0",
+          "go_minimal_function_syntax_v0",
+          "go_local_declaration_syntax_v0",
+          "generated_go_minimal_function_real_source_strings_compare_demo"
+        ],
+        "sidecar_control_gate": {
+          "kind": "fixture",
+          "module_path": "src/syntax_reproducibility_routing.rs",
+          "fixture_or_doc_path": "tests/fixtures/syntax_backend/reproducibility-routing-gate-v1.json",
+          "control_only": true,
+          "arena_ir_not_proof": true
+        },
+        "validation_command": "cargo test --test syntax_generated_codec_gate_test",
+        "stable_promotion_required": true
+      },
+      {
+        "category_id": "maintained_documentation",
+        "route_metadata_field": "target_agnostic_compiler_route",
+        "route_metadata_key": "validation_matrix_categories",
+        "route_owned_evidence": [
+          "csharp_minimal_class_syntax_v0",
+          "csharp_local_string_return_literal_syntax_v0",
+          "go_minimal_function_syntax_v0",
+          "go_local_declaration_syntax_v0",
+          "generated_go_minimal_function_real_source_strings_compare_demo"
+        ],
+        "sidecar_control_gate": {
+          "kind": "doc",
+          "module_path": "docs/syntax-backend-gate-strategy.md",
+          "fixture_or_doc_path": "docs/syntax-backend-gate-strategy.md",
+          "control_only": true,
+          "arena_ir_not_proof": true
+        },
+        "validation_command": "python3 scripts/testing/test-quality-audit.py --fail-on-gaps",
+        "stable_promotion_required": true
+      },
+      {
+        "category_id": "audit_coverage",
+        "route_metadata_field": "target_agnostic_compiler_route",
+        "route_metadata_key": "validation_matrix_categories",
+        "route_owned_evidence": [
+          "csharp_minimal_class_syntax_v0",
+          "csharp_local_string_return_literal_syntax_v0",
+          "go_minimal_function_syntax_v0",
+          "go_local_declaration_syntax_v0",
+          "generated_go_minimal_function_real_source_strings_compare_demo"
+        ],
+        "sidecar_control_gate": {
+          "kind": "fixture",
+          "module_path": "src/syntax_audit_coverage_routing.rs",
+          "fixture_or_doc_path": "tests/fixtures/syntax_backend/audit-coverage-routing-gate-v1.json",
+          "control_only": true,
+          "arena_ir_not_proof": true
+        },
+        "validation_command": "python3 scripts/testing/test-quality-audit.py --fail-on-gaps",
+        "stable_promotion_required": true
+      },
+      {
+        "category_id": "json_backend_parity",
+        "route_metadata_field": "target_agnostic_compiler_route",
+        "route_metadata_key": "generated_json_schema_output_changed",
+        "route_owned_evidence": [
+          "csharp_minimal_class_syntax_v0",
+          "csharp_local_string_return_literal_syntax_v0",
+          "go_minimal_function_syntax_v0",
+          "go_local_declaration_syntax_v0",
+          "generated_go_minimal_function_real_source_strings_compare_demo"
+        ],
+        "sidecar_control_gate": {
+          "kind": "fixture",
+          "module_path": "src/syntax_json_backend_parity.rs",
+          "fixture_or_doc_path": "tests/fixtures/syntax_backend/json-backend-parity-routing-gate-v1.json",
+          "control_only": true,
+          "arena_ir_not_proof": true
+        },
+        "validation_command": "./scripts/testing/quality-check.sh",
+        "stable_promotion_required": true
+      }
+    ],
+    "required_sidecar_control_gates": [
+      "tests/fixtures/syntax_backend/input-validation-negative-fixtures-v1.json",
+      "tests/syntax_generated_codec_gate_test.rs",
+      "tests/fixtures/syntax_backend/strict-recovery-decode-routing-gate-v1.json",
+      "tests/fixtures/syntax_backend/consumed-token-accounting-routing-gate-v1.json",
+      "tests/fixtures/syntax_backend/token-vocabulary-bpe-routing-gate-v1.json",
+      "tests/fixtures/syntax_backend/reproducibility-routing-gate-v1.json",
+      "docs/syntax-backend-gate-strategy.md",
+      "tests/fixtures/syntax_backend/audit-coverage-routing-gate-v1.json",
+      "tests/fixtures/syntax_backend/json-backend-parity-routing-gate-v1.json"
+    ],
+    "required_validation_commands": [
+      "./scripts/testing/quality-check.sh",
+      "cargo test --test syntax_generated_codec_gate_test",
+      "cargo test --test syntax_backend_boundary_test",
+      "./scripts/testing/test-syntax-backend-gates.sh",
+      "python3 scripts/testing/test-quality-audit.py --fail-on-gaps",
+      "git diff --check"
+    ],
+    "stable_metadata_claims": [
+      "feature_limited_parser_backed_syntax_backend",
+      "stable_route_metadata_promoted",
+      "no_arena_ir_promotion",
+      "no_generated_json_schema_output_change",
+      "no_core_compiler_path_change",
+      "no_json_schema_compiler_pass_change"
+    ]
+  },
+  "stable_promotion_blocker": {
+    "stable_backend_promoted": true,
+    "stable_backend_scope": "feature_limited_parser_backed_syntax_backend",
+    "completed_stable_metadata_promotion_class": "syntax backend stable metadata promotion implementation gate",
+    "blocker": "Build Go Source-Record Raw-Token Generator Core",
+    "requires_matrix_execution": false,
+    "requires_matrix_preservation": true,
+    "json_schema_backend_unchanged": true
+  },
+  "execution_report_policy": {
+    "runner_script": "scripts/testing/run-syntax-validation-matrix.py",
+    "report_artifact_kind": "tct_syntax_backend_validation_matrix_execution_report",
+    "report_tool": "syntax_backend_validation_matrix_runner",
+    "report_status": "release_depth_execution_report",
+    "generated_report_path": "target/tct-syntax-validation-matrix/execution-report-v1.json",
+    "logs_dir": "target/tct-syntax-validation-matrix/logs",
+    "checked_fixture_path": "tests/fixtures/syntax_backend/validation-matrix-gate-v1.json",
+    "source_report_producer_command": "python3 scripts/testing/run-syntax-validation-matrix.py --output target/tct-syntax-validation-matrix/execution-report-v1.json",
+    "source_report_validator_command": "python3 scripts/testing/run-syntax-validation-matrix.py --validate-report target/tct-syntax-validation-matrix/execution-report-v1.json",
+    "report_generated_under_target": true,
+    "report_checked_in": false,
+    "executes_required_commands": true,
+    "records_per_category_results": true,
+    "arena_ir_proof_used": false,
+    "json_schema_backend_unchanged": true,
+    "completed_promotion_class": "syntax backend validation matrix execution report helper gate"
+  },
+  "completed_promotion_class": "syntax backend JSON-backend-grade validation matrix route ownership gate",
+  "next_missing_stable_promotion_class": "syntax backend validation matrix execution evidence preservation gate"
+}

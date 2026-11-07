@@ -1,0 +1,11 @@
+# tct-go-syntax-route-corpus-v1
+crypto/internal/sysrand/rand_windows.go
+crypto/subtle/xor.go
+internal/coverage/uleb128/uleb128.go
+path/match.go
+sort/example_interface_test.go
+sort/example_search_test.go
+strings/compare.go
+strings/clone.go
+strings/search.go
+os/signal/signal.go

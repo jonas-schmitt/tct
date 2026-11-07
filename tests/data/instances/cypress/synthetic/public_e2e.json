@@ -1,0 +1,15 @@
+{
+  "baseUrl": "http://service.example.invalid:8080",
+  "viewportWidth": 960,
+  "viewportHeight": 640,
+  "video": false,
+  "e2e": {
+    "testFiles": [
+      "test/end-to-end/*.spec.js"
+    ],
+    "retries": {
+      "runMode": 2,
+      "openMode": 0
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "int32_value": "42",
+  "int64_value": "9007199254740991",
+  "byte_value": "aGVsbG8=",
+  "datetime_value": "2026-05-09T00:00:00Z",
+  "double_value": "3.141592653589793",
+  "normal_string": "format optimization fixture"
+}

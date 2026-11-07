@@ -1,0 +1,47 @@
+{
+  "name": "notify",
+  "on": {
+    "workflow_dispatch": {
+      "inputs": {
+        "tag": {
+          "required": false
+        }
+      }
+    }
+  },
+  "jobs": {
+    "notify": {
+      "runs-on": "ubuntu-latest",
+      "steps": [
+        {
+          "uses": "actions/checkout@v4",
+          "with": {
+            "fetch-depth": 0
+          }
+        },
+        {
+          "name": "git config",
+          "run": "git config user.name \"${GITHUB_ACTOR}\"\ngit config user.email \"${GITHUB_ACTOR}@users.noreply.github.com\"\n"
+        },
+        {
+          "name": "Setup node",
+          "uses": "actions/setup-node@v4",
+          "with": {
+            "node-version": 18,
+            "cache": "npm"
+          }
+        },
+        {
+          "run": "npm ci"
+        },
+        {
+          "name": "Notify published PRs",
+          "env": {
+            "GITHUB_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
+          },
+          "run": "node ./bin/actions/notify_published.js --tag ${{ github.event.inputs.tag || github.event.release.tag_name }}"
+        }
+      ]
+    }
+  }
+}

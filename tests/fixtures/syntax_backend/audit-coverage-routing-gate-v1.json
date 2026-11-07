@@ -1,0 +1,92 @@
+{
+  "artifact_kind": "tct_syntax_backend_audit_coverage_routing_gate",
+  "version": 1,
+  "tool": "syntax_backend_audit_coverage_routing_gate",
+  "status": "sidecar_contract_only",
+  "source_reproducibility_routing_gate": {
+    "artifact_kind": "tct_syntax_backend_reproducibility_routing_gate",
+    "version": 1,
+    "module_path": "src/syntax_reproducibility_routing.rs",
+    "fixture_path": "tests/fixtures/syntax_backend/reproducibility-routing-gate-v1.json",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh",
+    "completed_promotion_class": "syntax backend reproducibility routing gate"
+  },
+  "compiler_boundary": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "preserves_json_schema_backend_contract": true,
+    "production_grammar_compiler_path_changed": false,
+    "sidecar_only": true,
+    "tct_compiler_route_allowed": false
+  },
+  "route_state": {
+    "route_registered": false,
+    "route_enabled": false,
+    "public_api_changed": false,
+    "uses_json_schema_compiler": false,
+    "uses_syntax_renderer_api": false
+  },
+  "audit_contract": {
+    "required_documents": [
+      "docs/syntax-backend-gate-strategy.md",
+      "docs/syntax-structural-model-stable-gate-plan.md",
+      "docs/structural-model-boundary-selection.md",
+      "reports/m6-cross-target-contract-closure-2026-07-21.md",
+      "TODO.md"
+    ],
+    "required_helpers": [
+      "scripts/testing/test-quality-audit.py",
+      "scripts/testing/test-syntax-backend-gates.sh",
+      "tests/syntax_backend_boundary_test.rs"
+    ],
+    "required_route_modules": [
+      "src/syntax_tct_compiler_routing.rs",
+      "src/syntax_json_backend_parity.rs",
+      "src/syntax_target_agnostic_routing_boundary.rs",
+      "src/syntax_strict_recovery_decode_routing.rs",
+      "src/syntax_consumed_token_accounting_routing.rs",
+      "src/syntax_token_vocabulary_bpe_routing.rs",
+      "src/syntax_reproducibility_routing.rs"
+    ],
+    "required_route_fixtures": [
+      "tests/fixtures/syntax_backend/tct-compiler-routing-gate-v1.json",
+      "tests/fixtures/syntax_backend/json-backend-parity-routing-gate-v1.json",
+      "tests/fixtures/syntax_backend/target-agnostic-routing-boundary-gate-v1.json",
+      "tests/fixtures/syntax_backend/strict-recovery-decode-routing-gate-v1.json",
+      "tests/fixtures/syntax_backend/consumed-token-accounting-routing-gate-v1.json",
+      "tests/fixtures/syntax_backend/token-vocabulary-bpe-routing-gate-v1.json",
+      "tests/fixtures/syntax_backend/reproducibility-routing-gate-v1.json"
+    ],
+    "required_audit_fields": [
+      "strategy_doc",
+      "stable_gate_plan_doc",
+      "promotion_readiness_report",
+      "current_missing_stable_promotion_classes",
+      "validation_gaps",
+      "generated_codec_gate_command",
+      "tct_compiler_routing_module",
+      "json_backend_parity_module",
+      "target_agnostic_routing_boundary_module",
+      "strict_recovery_decode_routing_module",
+      "consumed_token_accounting_routing_module",
+      "token_vocabulary_bpe_routing_module",
+      "reproducibility_routing_module"
+    ],
+    "no_route_claims": [
+      "no_stable_tct_compiler_route",
+      "no_generated_json_schema_output_change",
+      "no_core_compiler_path_change",
+      "no_generated_source_substring_dependency"
+    ],
+    "current_missing_stable_promotion_class": "syntax backend audit coverage routing gate",
+    "fail_on_gaps_required": true,
+    "route_inventory_is_report_only": true,
+    "does_not_depend_on_generated_source_substrings": true
+  },
+  "blockers": [
+    "stable promotion review"
+  ],
+  "completed_promotion_class": "syntax backend audit coverage routing gate",
+  "next_missing_stable_promotion_class": "syntax backend stable promotion review gate"
+}

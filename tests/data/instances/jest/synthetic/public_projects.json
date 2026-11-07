@@ -1,0 +1,19 @@
+{
+  "displayName": {
+    "name": "fixture-projects",
+    "color": "blue"
+  },
+  "projects": [
+    "<rootDir>/unit",
+    "<rootDir>/integration"
+  ],
+  "maxWorkers": "50%",
+  "moduleNameMapper": {
+    "^@fixture/(.*)$": "<rootDir>/src/$1"
+  },
+  "coverageReporters": [
+    "json",
+    "text"
+  ],
+  "watchman": false
+}

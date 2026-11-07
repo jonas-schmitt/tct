@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Minimal OneOf Test",
+  "description": "Simplest possible oneOf that might cause issues",
+  "oneOf": [
+    {"type": "string"},
+    {"type": "number"}
+  ]
+}

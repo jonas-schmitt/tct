@@ -1,0 +1,17 @@
+{
+  "name": "Require \u201cAllow Edits\u201d",
+  "on": [
+    "pull_request_target"
+  ],
+  "jobs": {
+    "_": {
+      "name": "Require \u201cAllow Edits\u201d",
+      "runs-on": "ubuntu-latest",
+      "steps": [
+        {
+          "uses": "ljharb/require-allow-edits@main"
+        }
+      ]
+    }
+  }
+}

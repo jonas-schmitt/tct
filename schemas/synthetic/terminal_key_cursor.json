@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TerminalKeyCursor",
+  "description": "Synthetic multi-call schema for decoder-cursor terminal object-property key introspection. Models optional nested argument fields and multi-call arrays without hard-coding real tool names.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["calls"],
+  "properties": {
+    "calls": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "arguments"],
+            "properties": {
+              "name": { "const": "tool_alpha" },
+              "arguments": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "count_only": { "type": "boolean" },
+                  "query": { "type": "string" }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "arguments"],
+            "properties": {
+              "name": { "const": "tool_beta" },
+              "arguments": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "id": { "type": "string" },
+                  "limit": { "type": "integer" },
+                  "skip": { "type": "integer" },
+                  "title": { "type": "string" }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "arguments"],
+            "properties": {
+              "name": { "const": "tool_gamma" },
+              "arguments": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "nested": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "depth": { "type": "integer" },
+                      "label": { "type": "string" }
+                    }
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

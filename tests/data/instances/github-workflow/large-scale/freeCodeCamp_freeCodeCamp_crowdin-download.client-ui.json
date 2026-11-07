@@ -1,0 +1,248 @@
+{
+  "name": "i18n - Download Client UI",
+  "on": {
+    "workflow_dispatch": null,
+    "schedule": [
+      {
+        "cron": "15 12 * * 1,3"
+      }
+    ]
+  },
+  "env": {
+    "GITHUB_TOKEN": "${{ secrets.CROWDIN_CAMPERBOT_PAT }}",
+    "CROWDIN_PERSONAL_TOKEN": "${{ secrets.CROWDIN_CAMPERBOT_SERVICE_TOKEN }}",
+    "CROWDIN_API_URL": "https://freecodecamp.crowdin.com/api/v2/",
+    "CROWDIN_PROJECT_ID": "${{ secrets.CROWDIN_PROJECT_ID_CLIENT }}"
+  },
+  "jobs": {
+    "i18n-download-client-ui-translations": {
+      "name": "Client",
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "name": "Checkout Source Files",
+          "uses": "actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11",
+          "with": {
+            "token": "${{ secrets.CROWDIN_CAMPERBOT_PAT }}"
+          }
+        },
+        {
+          "name": "Generate Crowdin Config",
+          "uses": "freecodecamp/crowdin-action@main",
+          "env": {
+            "PLUGIN": "generate-config",
+            "PROJECT_NAME": "client"
+          }
+        },
+        {
+          "name": "Crowdin Download Chinese Translations",
+          "uses": "crowdin/github-action@master",
+          "with": {
+            "upload_sources": false,
+            "upload_translations": false,
+            "auto_approve_imported": false,
+            "import_eq_suggestions": false,
+            "download_translations": true,
+            "download_language": "zh-CN",
+            "skip_untranslated_files": false,
+            "export_only_approved": true,
+            "push_translations": false,
+            "create_pull_request": false,
+            "config": "./crowdin-config.yml",
+            "base_url": "${{ secrets.CROWDIN_BASE_URL_FCC }}"
+          }
+        },
+        {
+          "name": "Convert Chinese",
+          "uses": "freecodecamp/crowdin-action@main",
+          "env": {
+            "PLUGIN": "convert-chinese",
+            "FILE_PATHS": "[\"client/i18n/locales/chinese\"]"
+          }
+        },
+        {
+          "name": "Crowdin Download Espanol Translations",
+          "uses": "crowdin/github-action@master",
+          "with": {
+            "upload_sources": false,
+            "upload_translations": false,
+            "auto_approve_imported": false,
+            "import_eq_suggestions": false,
+            "download_translations": true,
+            "download_language": "es-EM",
+            "skip_untranslated_files": false,
+            "export_only_approved": true,
+            "push_translations": false,
+            "create_pull_request": false,
+            "config": "./crowdin-config.yml",
+            "base_url": "${{ secrets.CROWDIN_BASE_URL_FCC }}"
+          }
+        },
+        {
+          "name": "Crowdin Download Italian Translations",
+          "uses": "crowdin/github-action@master",
+          "with": {
+            "upload_sources": false,
+            "upload_translations": false,
+            "auto_approve_imported": false,
+            "import_eq_suggestions": false,
+            "download_translations": true,
+            "download_language": "it",
+            "skip_untranslated_files": false,
+            "export_only_approved": true,
+            "push_translations": false,
+            "create_pull_request": false,
+            "config": "./crowdin-config.yml",
+            "base_url": "${{ secrets.CROWDIN_BASE_URL_FCC }}"
+          }
+        },
+        {
+          "name": "Crowdin Download Portuguese (Brazilian) Translations",
+          "uses": "crowdin/github-action@master",
+          "with": {
+            "upload_sources": false,
+            "upload_translations": false,
+            "auto_approve_imported": false,
+            "import_eq_suggestions": false,
+            "download_translations": true,
+            "download_language": "pt-BR",
+            "skip_untranslated_files": false,
+            "export_only_approved": true,
+            "push_translations": false,
+            "create_pull_request": false,
+            "config": "./crowdin-config.yml",
+            "base_url": "${{ secrets.CROWDIN_BASE_URL_FCC }}"
+          }
+        },
+        {
+          "name": "Crowdin Download Ukrainian Translations",
+          "uses": "crowdin/github-action@master",
+          "with": {
+            "upload_sources": false,
+            "upload_translations": false,
+            "auto_approve_imported": false,
+            "import_eq_suggestions": false,
+            "download_translations": true,
+            "download_language": "uk",
+            "skip_untranslated_files": false,
+            "export_only_approved": true,
+            "push_translations": false,
+            "create_pull_request": false,
+            "config": "./crowdin-config.yml",
+            "base_url": "${{ secrets.CROWDIN_BASE_URL_FCC }}"
+          }
+        },
+        {
+          "name": "Crowdin Download Japanese Translations",
+          "uses": "crowdin/github-action@master",
+          "with": {
+            "upload_sources": false,
+            "upload_translations": false,
+            "auto_approve_imported": false,
+            "import_eq_suggestions": false,
+            "download_translations": true,
+            "download_language": "ja",
+            "skip_untranslated_files": false,
+            "export_only_approved": true,
+            "push_translations": false,
+            "create_pull_request": false,
+            "config": "./crowdin-config.yml",
+            "base_url": "${{ secrets.CROWDIN_BASE_URL_FCC }}"
+          }
+        },
+        {
+          "name": "Crowdin Download German Translations",
+          "uses": "crowdin/github-action@master",
+          "with": {
+            "upload_sources": false,
+            "upload_translations": false,
+            "auto_approve_imported": false,
+            "import_eq_suggestions": false,
+            "download_translations": true,
+            "download_language": "de",
+            "skip_untranslated_files": false,
+            "export_only_approved": true,
+            "push_translations": false,
+            "create_pull_request": false,
+            "config": "./crowdin-config.yml",
+            "base_url": "${{ secrets.CROWDIN_BASE_URL_FCC }}"
+          }
+        },
+        {
+          "name": "Crowdin Download Swahili Translations",
+          "uses": "crowdin/github-action@master",
+          "with": {
+            "upload_sources": false,
+            "upload_translations": false,
+            "auto_approve_imported": false,
+            "import_eq_suggestions": false,
+            "download_translations": true,
+            "download_language": "sw",
+            "skip_untranslated_files": false,
+            "export_only_approved": true,
+            "push_translations": false,
+            "create_pull_request": false,
+            "config": "./crowdin-config.yml",
+            "base_url": "${{ secrets.CROWDIN_BASE_URL_FCC }}"
+          }
+        },
+        {
+          "name": "Crowdin Download Korean Translations",
+          "uses": "crowdin/github-action@master",
+          "with": {
+            "upload_sources": false,
+            "upload_translations": false,
+            "auto_approve_imported": false,
+            "import_eq_suggestions": false,
+            "download_translations": true,
+            "download_language": "ko",
+            "skip_untranslated_files": false,
+            "export_only_approved": true,
+            "push_translations": false,
+            "create_pull_request": false,
+            "config": "./crowdin-config.yml",
+            "base_url": "${{ secrets.CROWDIN_BASE_URL_FCC }}"
+          }
+        },
+        {
+          "name": "Format JSON",
+          "run": "sudo chown -R $(whoami): client/i18n/locales\nnpx --yes prettier --write client/i18n/locales/**/*.json\n"
+        },
+        {
+          "name": "Lowercase Directories",
+          "uses": "freecodecamp/crowdin-action@main",
+          "env": {
+            "PLUGIN": "lowercase-directories",
+            "FILE_PATH": "client/i18n/locales"
+          }
+        },
+        {
+          "name": "Commit Changes",
+          "uses": "freecodecamp/crowdin-action@main",
+          "env": {
+            "PLUGIN": "commit-changes",
+            "GH_USERNAME": "camperbot",
+            "GH_EMAIL": "${{ secrets.ACTIONS_CAMPERBOT_EMAIL }}",
+            "GH_BRANCH": "i18n-sync-client",
+            "GH_MESSAGE": "chore(i18n,client): processed translations"
+          }
+        },
+        {
+          "name": "Create PR",
+          "uses": "freecodecamp/crowdin-action@main",
+          "env": {
+            "PLUGIN": "pull-request",
+            "GH_TOKEN": "${{ secrets.CROWDIN_CAMPERBOT_PAT }}",
+            "BRANCH": "i18n-sync-client",
+            "REPOSITORY": "freecodecamp/freecodecamp",
+            "BASE": "main",
+            "TITLE": "chore(i18n,client): processed translations",
+            "BODY": "This PR was opened auto-magically by Crowdin.",
+            "LABELS": "crowdin-sync",
+            "TEAM_REVIEWERS": "i18n"
+          }
+        }
+      ]
+    }
+  }
+}

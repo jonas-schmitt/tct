@@ -1,0 +1,121 @@
+{
+  "command": [
+    "/home/jonas/git/tct/target/publication-clearance/public-bpe-20261107/cargo-target/debug/tct-train-bpe",
+    "--schema",
+    "schemas/popular/kubernetes.json",
+    "--instances",
+    "tests/data/instances/kubernetes/synthetic/public_*.json",
+    "--target-vocab",
+    "500",
+    "--output",
+    "schemas/bpe/kubernetes-tct-bpe-500.json",
+    "--name",
+    "kubernetes",
+    "--optimization",
+    "O3"
+  ],
+  "schema_name": "kubernetes",
+  "instances_pattern": "tests/data/instances/kubernetes/synthetic/public_*.json",
+  "encoded_input": null,
+  "cache_path": null,
+  "schema_file": {
+    "path": "schemas/popular/kubernetes.json",
+    "bytes": 1154503,
+    "sha256": "eecb6450161820c6ccd9553879de85dfc1be201a91701eb8365ff72e597682e1"
+  },
+  "encoded_input_file": null,
+  "prepare_data_metadata_file": null,
+  "cache_file": null,
+  "input_files": [
+    {
+      "path": "schemas/popular/kubernetes.json",
+      "bytes": 1154503,
+      "sha256": "eecb6450161820c6ccd9553879de85dfc1be201a91701eb8365ff72e597682e1"
+    },
+    {
+      "path": "tests/data/instances/kubernetes/synthetic/public_apiservice.json",
+      "bytes": 483,
+      "sha256": "858640418e26e0292d0a692ace561b770507e1a58e199b1385c7c204bcd8ed2c"
+    },
+    {
+      "path": "tests/data/instances/kubernetes/synthetic/public_configmap.json",
+      "bytes": 516,
+      "sha256": "02fdd43fe9e82fbb9d62a66801d7a6f8ebd4a9bbb1a77becc37f6b52cc14a4eb"
+    },
+    {
+      "path": "tests/data/instances/kubernetes/synthetic/public_deployment.json",
+      "bytes": 1349,
+      "sha256": "1296838662838a1d577cde5ae23d346f6b9f3caee6bf8a4cbeaec8e5af5d9198"
+    },
+    {
+      "path": "tests/data/instances/kubernetes/synthetic/public_service.json",
+      "bytes": 570,
+      "sha256": "faa3f553740a2c8ac088a2193d567373b31aa6978b7b43cf354b110d32579d2a"
+    }
+  ],
+  "input_corpus_fingerprint": "a874b8a87bbe85957adf89529d26cbe3e926d8cc5edfcbddacb85faa8948225b",
+  "token_corpus": {
+    "source": "instance_encoding",
+    "sequence_count": 4,
+    "sequence_fingerprint": "b4be1bcf910aea6218ad03561acd790f57d8a208548b348ec5bb10de0529e9fb",
+    "sample_size": null,
+    "sample_seed": null,
+    "cache_path": null,
+    "cache_hit": false,
+    "cache_written": false,
+    "parallel_early_stop": false,
+    "truncated_to_sample_size": false,
+    "selected_instance_files": [],
+    "accepted_instance_files": [
+      {
+        "path": "tests/data/instances/kubernetes/synthetic/public_apiservice.json",
+        "bytes": 483,
+        "sha256": "858640418e26e0292d0a692ace561b770507e1a58e199b1385c7c204bcd8ed2c"
+      },
+      {
+        "path": "tests/data/instances/kubernetes/synthetic/public_configmap.json",
+        "bytes": 516,
+        "sha256": "02fdd43fe9e82fbb9d62a66801d7a6f8ebd4a9bbb1a77becc37f6b52cc14a4eb"
+      },
+      {
+        "path": "tests/data/instances/kubernetes/synthetic/public_deployment.json",
+        "bytes": 1349,
+        "sha256": "1296838662838a1d577cde5ae23d346f6b9f3caee6bf8a4cbeaec8e5af5d9198"
+      },
+      {
+        "path": "tests/data/instances/kubernetes/synthetic/public_service.json",
+        "bytes": 570,
+        "sha256": "faa3f553740a2c8ac088a2193d567373b31aa6978b7b43cf354b110d32579d2a"
+      }
+    ],
+    "rejected_instance_files": []
+  },
+  "output_files": [
+    {
+      "path": "schemas/bpe/kubernetes-tct-bpe-500.json",
+      "bytes": 25975,
+      "sha256": "27a9c96c0edcc7e11f2e541dde614756848fc2f3432add103fe52db13706f70f"
+    }
+  ],
+  "base_vocab_size": 257,
+  "base_vocab_source": "schema",
+  "optimization_level": "O3",
+  "target_vocab": 500,
+  "target_avg_length": null,
+  "schema_ids": [],
+  "reserved_special_tokens": 2,
+  "max_merges_deprecated": null,
+  "checkpoints": null,
+  "sample_size": null,
+  "trained_on_instances": 4,
+  "generated_merges": 240,
+  "timings": {
+    "training_wall_time_ns": 5083954,
+    "provenance_hashing_ns": 17598801
+  },
+  "provenance_path": "schemas/bpe/kubernetes-tct-bpe-500.provenance.json",
+  "created_at": "2026-11-07T11:11:58.643897666+00:00",
+  "tct_version": "0.1.0",
+  "repo_commit": "cd962f24e751cdb7a0f9225e519659058839e250",
+  "repo_dirty": false
+}

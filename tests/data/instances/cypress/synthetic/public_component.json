@@ -1,0 +1,14 @@
+{
+  "component": {
+    "viewportWidth": 600,
+    "viewportHeight": 480,
+    "testFiles": "**/*.component.js",
+    "video": false
+  },
+  "env": {
+    "fixtureMode": "component",
+    "attempts": 2
+  },
+  "screenshotOnRunFailure": true,
+  "defaultCommandTimeout": 2500
+}

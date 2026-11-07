@@ -1,0 +1,8 @@
+{
+  "name": "nested-test-object",
+  "config": {
+    "value": {
+      "nested": "complex-value"
+    }
+  }
+}

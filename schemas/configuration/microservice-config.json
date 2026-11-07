@@ -1,0 +1,100 @@
+{
+  "title": "MicroserviceConfig",
+  "type": "object",
+  "properties": {
+    "service": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string", "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$"},
+        "version": {"type": "string"},
+        "environment": {"enum": ["development", "staging", "production"]},
+        "port": {"type": "integer", "minimum": 1024, "maximum": 65535},
+        "health_check": {
+          "type": "object",
+          "properties": {
+            "path": {"type": "string"},
+            "interval": {"type": "integer", "minimum": 1},
+            "timeout": {"type": "integer", "minimum": 1},
+            "retries": {"type": "integer", "minimum": 0, "maximum": 10}
+          },
+          "required": ["path", "interval", "timeout"]
+        }
+      },
+      "required": ["name", "version", "environment", "port"]
+    },
+    "database": {
+      "type": "object",
+      "properties": {
+        "type": {"enum": ["postgresql", "mysql", "mongodb", "redis"]},
+        "host": {"type": "string"},
+        "port": {"type": "integer"},
+        "name": {"type": "string"},
+        "ssl": {"type": "boolean"},
+        "pool": {
+          "type": "object",
+          "properties": {
+            "min": {"type": "integer", "minimum": 0},
+            "max": {"type": "integer", "minimum": 1},
+            "idle_timeout": {"type": "integer", "minimum": 0}
+          },
+          "required": ["min", "max"]
+        }
+      },
+      "required": ["type", "host", "port", "name"]
+    },
+    "logging": {
+      "type": "object",
+      "properties": {
+        "level": {"enum": ["trace", "debug", "info", "warn", "error", "fatal"]},
+        "format": {"enum": ["json", "text", "structured"]},
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {"enum": ["console", "file", "syslog", "http"]},
+              "config": {
+                "type": "object",
+                "patternProperties": {
+                  ".*": {
+                    "oneOf": [
+                      {"type": "string"},
+                      {"type": "integer"},
+                      {"type": "boolean"}
+                    ]
+                  }
+                }
+              }
+            },
+            "required": ["type"]
+          }
+        }
+      },
+      "required": ["level", "format", "outputs"]
+    },
+    "features": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z][a-z0-9_]*[a-z0-9]$": {
+          "type": "object",
+          "properties": {
+            "enabled": {"type": "boolean"},
+            "config": {"type": "object"},
+            "rollout": {
+              "type": "object",
+              "properties": {
+                "percentage": {"type": "number", "minimum": 0, "maximum": 100},
+                "audiences": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                }
+              }
+            }
+          },
+          "required": ["enabled"]
+        }
+      }
+    }
+  },
+  "required": ["service", "database", "logging"]
+}

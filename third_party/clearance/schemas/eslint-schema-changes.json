@@ -1,0 +1,121 @@
+{
+  "format_version": 1,
+  "from_revision": "648bbeb51fdb459c193acdc7756d5f79e1b3865a",
+  "to_schemastore_revision": "4c41ffc223df321b410f504099351dc7d1613f8a",
+  "scope": "JSON-value changes made in SchemaStore after the extractor base. TCT subsequently reserialized without semantic changes. Object key order and whitespace are not part of this JSON-value diff.",
+  "operations": [
+    {
+      "op": "remove",
+      "path": "/properties/@typescript-eslint~1consistent-type-definitions/oneOf/2/items/1/additionalProperties"
+    },
+    {
+      "op": "add",
+      "path": "/properties/@typescript-eslint~1consistent-type-definitions/oneOf/2/items/1/description",
+      "value": "This rule accepts the following options: \"interface\" (default): enforce using interfaces for object type definitions. \"type\": enforce using types for object type definitions."
+    },
+    {
+      "op": "add",
+      "path": "/properties/@typescript-eslint~1consistent-type-definitions/oneOf/2/items/1/enum",
+      "value": [
+        "interface",
+        "type"
+      ]
+    },
+    {
+      "op": "remove",
+      "path": "/properties/@typescript-eslint~1consistent-type-definitions/oneOf/2/items/1/properties"
+    },
+    {
+      "op": "replace",
+      "path": "/properties/@typescript-eslint~1consistent-type-definitions/oneOf/2/items/1/type",
+      "value": "string"
+    },
+    {
+      "op": "replace",
+      "path": "/properties/@typescript-eslint~1quotes/oneOf/2/items",
+      "value": [
+        {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ruleNumber"
+            },
+            {
+              "$ref": "#/definitions/ruleString"
+            }
+          ]
+        },
+        {
+          "description": "String option: \"double\" (default) requires the use of double quotes wherever possible; \"single\" requires the use of single quotes wherever possible; \"backtick\" requires the use of backticks wherever possible",
+          "type": "string",
+          "enum": [
+            "double",
+            "single",
+            "backtick"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "avoidEscape": {
+              "description": "allows strings to use single-quotes or double-quotes so long as the string contains a quote that would have to be escaped otherwise",
+              "type": "boolean"
+            },
+            "allowTemplateLiterals": {
+              "description": "allows strings to use backticks",
+              "type": "boolean"
+            },
+            "avoid-escape": {
+              "description": "Deprecated: The object property avoid-escape is deprecated; please use the object property avoidEscape instead.",
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/properties/@typescript-eslint~1quotes/oneOf/2/maxItems",
+      "value": 3
+    },
+    {
+      "op": "remove",
+      "path": "/properties/@typescript-eslint~1return-await/oneOf/2/items/1/additionalProperties"
+    },
+    {
+      "op": "add",
+      "path": "/properties/@typescript-eslint~1return-await/oneOf/2/items/1/oneOf",
+      "value": [
+        {
+          "const": "never",
+          "description": "Disallows awaiting any returned promises.",
+          "deprecated": true
+        },
+        {
+          "const": "error-handling-correctness-only",
+          "description": "In error-handling contexts, the rule enforces that returned promises must be awaited. In ordinary contexts, the rule does not enforce any particular behavior around whether returned promises are awaited."
+        },
+        {
+          "const": "in-try-catch",
+          "description": "In error-handling contexts, the rule enforces that returned promises must be awaited. In ordinary contexts, the rule enforces that returned promises must not be awaited."
+        },
+        {
+          "const": "always",
+          "description": "Requires that all returned promises be awaited."
+        }
+      ]
+    },
+    {
+      "op": "remove",
+      "path": "/properties/@typescript-eslint~1return-await/oneOf/2/items/1/properties"
+    },
+    {
+      "op": "remove",
+      "path": "/properties/@typescript-eslint~1return-await/oneOf/2/items/1/type"
+    },
+    {
+      "op": "remove",
+      "path": "/properties/eslint-plugin-vue~1max-lines-per-block/oneOf/2/items/1/properties/skipBlankLines/minimum"
+    }
+  ]
+}

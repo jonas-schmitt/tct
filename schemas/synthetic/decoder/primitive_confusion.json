@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Primitive Type Confusion Test",
+  "description": "Tests schema-aware decoding when primitives (bool/number/string) can be confused in token interpretation",
+  "type": "object",
+  "properties": {
+    "value": {
+      "oneOf": [
+        {
+          "type": "boolean",
+          "description": "Boolean value"
+        },
+        {
+          "type": "number",
+          "description": "Numeric value"
+        },
+        {
+          "type": "string",
+          "description": "String value"
+        }
+      ]
+    }
+  },
+  "required": ["value"],
+  "additionalProperties": false
+}

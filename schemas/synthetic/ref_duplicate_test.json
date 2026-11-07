@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Reference Duplicate Test",
+  "description": "Schema with $ref that might cause duplicate type generation",
+  "type": "object",
+  "definitions": {
+    "stringOrArray": {
+      "oneOf": [
+        {"type": "string"},
+        {"type": "array", "items": {"type": "string"}}
+      ]
+    },
+    "config": {
+      "type": "object",
+      "properties": {
+        "extends": {"$ref": "#/definitions/stringOrArray"},
+        "plugins": {"$ref": "#/definitions/stringOrArray"}
+      }
+    }
+  },
+  "properties": {
+    "field1": {"$ref": "#/definitions/stringOrArray"},
+    "field2": {"$ref": "#/definitions/stringOrArray"},
+    "config": {"$ref": "#/definitions/config"}
+  }
+}

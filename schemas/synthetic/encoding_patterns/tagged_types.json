@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tagged Types Test",
+  "description": "Types that use type tags for discrimination (Option, serde_json::Value)",
+  "type": "object",
+  "properties": {
+    "optional_string": {
+      "oneOf": [
+        {"type": "string"},
+        {"type": "null"}
+      ],
+      "description": "Option<String> - 1 token presence flag + value if present"
+    },
+    "optional_number": {
+      "oneOf": [
+        {"type": "number"},
+        {"type": "null"}
+      ],
+      "description": "Option<f64> - 1 token presence flag + 2 tokens if present"
+    },
+    "dynamic_value": {
+      "description": "serde_json::Value - type tag + value encoding"
+    }
+  },
+  "required": ["optional_string", "optional_number", "dynamic_value"]
+}

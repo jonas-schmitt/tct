@@ -1,0 +1,5 @@
+{
+  "optional_string": "present",
+  "optional_number": 42.5,
+  "dynamic_value": {"key": "value"}
+}

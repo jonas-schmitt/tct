@@ -1,0 +1,93 @@
+{
+  "name": "\ud83d\udc41\ufe0f Visual Regression Persist Finish",
+  "on": {
+    "workflow_run": {
+      "workflows": [
+        "\ud83d\udc41\ufe0f Visual Regression Persist Start"
+      ],
+      "types": [
+        "completed"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "jobs": {
+    "upstream-workflow-summary": {
+      "name": "upstream workflow summary",
+      "runs-on": "ubuntu-latest",
+      "outputs": {
+        "jobs": "${{ steps.persist_start_job_status.outputs.result }}",
+        "build-success": "${{ steps.persist_start_job_status.outputs.build-success }}",
+        "build-failure": "${{ steps.persist_start_job_status.outputs.build-failure }}"
+      },
+      "steps": [
+        {
+          "name": "summary jobs status",
+          "uses": "actions/github-script@v8",
+          "id": "persist_start_job_status",
+          "with": {
+            "script": "const response = await github.rest.actions.listJobsForWorkflowRun({\n  owner: context.repo.owner,\n  repo: context.repo.repo,\n  run_id: ${{ github.event.workflow_run.id }},\n});\n\n// { [name]: [conclusion] }, e.g. { 'test image': 'success' }\nconst jobs = (response.data?.jobs ?? []).reduce((acc, job) => {\n  if(job?.status === 'completed' && 'name' in job && 'conclusion' in job) {\n    acc[job.name] = job.conclusion;\n  }\n  return acc;\n}, {});\n\nconst total = Object.keys(jobs).length;\nif(total === 0) core.setFailed('no jobs found');\n\n// the name here must be the same as `jobs.xxx.{name}`\nconsole.log('visual-diff report job status: %s', jobs['test image']);\n\n// set output\ncore.setOutput('build-success', jobs['test image'] === 'success');\ncore.setOutput('build-failure', jobs['test image'] === 'failure');\nreturn jobs;\n"
+          }
+        }
+      ]
+    },
+    "persist-image-snapshots": {
+      "name": "persist image-snapshots",
+      "permissions": {
+        "actions": "read"
+      },
+      "runs-on": "ubuntu-latest",
+      "needs": [
+        "upstream-workflow-summary"
+      ],
+      "steps": [
+        {
+          "name": "checkout",
+          "uses": "actions/checkout@v5",
+          "with": {
+            "ref": "${{ github.event.workflow_run.head_sha || github.event.workflow_run.head_branch}}"
+          }
+        },
+        {
+          "name": "Download Visual Regression Ref",
+          "uses": "dawidd6/action-download-artifact@v11",
+          "with": {
+            "workflow": "${{ github.event.workflow_run.workflow_id }}",
+            "run_id": "${{ github.event.workflow_run.id }}",
+            "name": "visual-regression-ref",
+            "path": "./tmp"
+          }
+        },
+        {
+          "name": "Extra Visual Regression Ref",
+          "id": "visual_regression",
+          "run": "echo \"id=$(<tmp/visual-regression-ref.txt)\" >> $GITHUB_OUTPUT"
+        },
+        {
+          "name": "Download Visual-Regression Artifact",
+          "if": "${{ fromJSON(needs.upstream-workflow-summary.outputs.build-success) }}",
+          "uses": "dawidd6/action-download-artifact@v11",
+          "with": {
+            "workflow": "${{ github.event.workflow_run.workflow_id }}",
+            "run_id": "${{ github.event.workflow_run.id }}",
+            "name": "image-snapshots",
+            "path": "./tmp"
+          }
+        },
+        {
+          "name": "Persist Image Snapshot to OSS",
+          "if": "github.repository == 'ant-design/ant-design' && github.event.workflow_run.event == 'push' && (github.event.workflow_run.head_branch == 'master' || github.event.workflow_run.head_branch == 'feature' || github.event.workflow_run.head_branch == 'next')",
+          "env": {
+            "ALI_OSS_AK_ID": "${{ secrets.ALI_OSS_AK_ID }}",
+            "ALI_OSS_AK_SECRET": "${{ secrets.ALI_OSS_AK_SECRET }}",
+            "HEAD_SHA": "${{ github.event.workflow_run.head_sha }}",
+            "HEAD_BRANCH": "${{ github.event.workflow_run.head_branch }}"
+          },
+          "run": "rm package.json\nnpm i ali-oss --no-save\necho \"\u2705 Install `ali-oss` Finished\"\n\necho \"\ud83d\udd0d Preparing\"\nmv ./tmp/imageSnapshots.tar.gz ./imageSnapshots.tar.gz\nmv ./tmp/visual-regression-ref.txt ./visual-regression-ref.txt\n\necho \"\ud83e\udd16 Uploading\"\nnode scripts/visual-regression/upload.js ./imageSnapshots.tar.gz --ref=$HEAD_SHA\nnode scripts/visual-regression/upload.js ./visual-regression-ref.txt --ref=$HEAD_BRANCH\n\necho \"\u2705 Uploaded\"\n"
+        }
+      ]
+    }
+  }
+}

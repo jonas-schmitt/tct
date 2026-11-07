@@ -1,0 +1,27 @@
+{
+  "name": "tct-public-cli-fixture",
+  "version": "0.0.0",
+  "description": "A newly authored command-line package fixture",
+  "private": true,
+  "license": "Apache-2.0",
+  "main": "./dist/main.cjs",
+  "bin": {
+    "fixture-cli": "./bin/main.cjs"
+  },
+  "scripts": {
+    "build": "node tools/build.cjs",
+    "test": "node test/smoke.cjs",
+    "check": "node tools/check.cjs --strict"
+  },
+  "dependencies": {
+    "fixture-output": "file:../fixture-output"
+  },
+  "optionalDependencies": {
+    "fixture-terminal-colors": "0.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "files": ["dist", "bin"],
+  "keywords": ["synthetic", "round-trip"]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NumberTypePreservation",
+  "description": "Test schema for preserving integer vs float in JSON number type",
+  "type": "object",
+  "properties": {
+    "integer_value": {
+      "type": "number",
+      "description": "Should preserve as integer if provided as integer in JSON"
+    },
+    "float_value": {
+      "type": "number",
+      "description": "Should preserve decimal point if provided as float in JSON"
+    },
+    "optional_number": {
+      "type": "number",
+      "description": "Optional number field"
+    }
+  },
+  "required": ["integer_value", "float_value"]
+}

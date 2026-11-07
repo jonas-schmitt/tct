@@ -1,0 +1,25 @@
+{
+  "title": "JsonAllOfKeywordBreadthAnchor",
+  "type": "object",
+  "allOf": [
+    {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": ["name"]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "phone": {
+          "type": "string"
+        }
+      },
+      "required": ["phone"]
+    }
+  ],
+  "additionalProperties": false
+}

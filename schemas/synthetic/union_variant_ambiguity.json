@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UnionVariantAmbiguity",
+  "description": "Reproduces github-workflow variant ambiguity issue: complex object vs simple string",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "trigger": {
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": ["branch_protection_rule", "check_run", "create", "delete"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "push": {
+              "type": "object",
+              "properties": {
+                "branches": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                }
+              }
+            },
+            "pull_request": {
+              "type": "object",
+              "properties": {
+                "branches": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": ["name", "trigger"],
+  "additionalProperties": false
+}

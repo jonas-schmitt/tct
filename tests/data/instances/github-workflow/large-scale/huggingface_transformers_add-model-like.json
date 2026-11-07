@@ -1,0 +1,69 @@
+{
+  "name": "Add model like runner",
+  "on": {
+    "push": {
+      "branches": [
+        "none"
+      ]
+    }
+  },
+  "jobs": {
+    "run_tests_templates_like": {
+      "name": "Add new model like template tests",
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v4"
+        },
+        {
+          "name": "Install dependencies",
+          "run": "sudo apt -y update && sudo apt install -y libsndfile1-dev\n"
+        },
+        {
+          "name": "Load cached virtual environment",
+          "uses": "actions/cache@v4",
+          "id": "cache",
+          "with": {
+            "path": "~/venv/",
+            "key": "v4-tests_model_like-${{ hashFiles('setup.py') }}"
+          }
+        },
+        {
+          "name": "Create virtual environment on cache miss",
+          "if": "steps.cache.outputs.cache-hit != 'true'",
+          "run": "python -m venv ~/venv && . ~/venv/bin/activate\npip install --upgrade pip!=21.3\npip install -e .[dev]\n"
+        },
+        {
+          "name": "Check transformers location",
+          "run": ". ~/venv/bin/activate\npython setup.py develop\ntransformers_install=$(pip list -e | grep transformers)\ntransformers_install_array=($transformers_install)\ntransformers_loc=${transformers_install_array[-1]}\ntransformers_repo_loc=$(pwd .)\nif [ \"$transformers_loc\" != \"$transformers_repo_loc\" ]; then\n    echo \"transformers is from $transformers_loc but it shoud be from $transformers_repo_loc/src.\"\n    echo \"A fix is required. Stop testing.\"\n    exit 1\nfi\n"
+        },
+        {
+          "name": "Create model files",
+          "run": ". ~/venv/bin/activate\ntransformers add-new-model-like --config_file tests/fixtures/add_distilbert_like_config.json --path_to_repo .\nmake style\nmake fix-copies\n"
+        },
+        {
+          "name": "Run all PyTorch modeling test",
+          "run": ". ~/venv/bin/activate\npython -m pytest -n 2 --dist=loadfile -s --make-reports=tests_new_models tests/bert_new/test_modeling_bert_new.py\n"
+        },
+        {
+          "name": "Run style changes",
+          "run": ". ~/venv/bin/activate\nmake style && make quality && make repo-consistency\n"
+        },
+        {
+          "name": "Failure short reports",
+          "if": "${{ always() }}",
+          "run": "cat reports/tests_new_models/failures_short.txt"
+        },
+        {
+          "name": "Test suite reports artifacts",
+          "if": "${{ always() }}",
+          "uses": "actions/upload-artifact@v4",
+          "with": {
+            "name": "run_all_tests_new_models_test_reports",
+            "path": "reports/tests_new_models"
+          }
+        }
+      ]
+    }
+  }
+}

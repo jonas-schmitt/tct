@@ -1,0 +1,18 @@
+# Maintained target schema regression set.
+# Format: schema-name:schema-folder
+package:popular
+eslintrc:popular
+github-workflow:popular
+tsconfig:popular
+cargo:popular
+docker-compose:popular
+appsettings:popular
+commitlintrc:popular
+jest:popular
+ava:popular
+babelrc:popular
+cypress:popular
+codecov:popular
+kubernetes:popular
+api-response:api
+microservice-config:configuration

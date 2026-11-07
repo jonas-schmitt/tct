@@ -1,0 +1,50 @@
+{
+  "title": "APIResponse",
+  "type": "object",
+  "properties": {
+    "success": {"type": "boolean"},
+    "status": {
+      "type": "integer",
+      "minimum": 100,
+      "maximum": 599
+    },
+    "message": {"type": "string"},
+    "data": {
+      "oneOf": [
+        {"type": "object"},
+        {"type": "array"}
+      ]
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {"type": "string"},
+          "field": {"type": "string"},
+          "message": {"type": "string"}
+        },
+        "required": ["code", "message"]
+      }
+    },
+    "pagination": {
+      "type": "object",
+      "properties": {
+        "page": {"type": "integer", "minimum": 1},
+        "limit": {"type": "integer", "minimum": 1, "maximum": 1000},
+        "total": {"type": "integer", "minimum": 0},
+        "has_more": {"type": "boolean"}
+      },
+      "required": ["page", "limit", "total", "has_more"]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "timestamp": {"type": "string", "format": "date-time"},
+        "version": {"type": "string"},
+        "request_id": {"type": "string"}
+      }
+    }
+  },
+  "required": ["success", "status"]
+}

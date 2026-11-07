@@ -1,0 +1,1967 @@
+{
+  "artifact_kind": "tct_go_syntax_source_span_selection_v1",
+  "version": 1,
+  "tool": "go_syntax_source_span_select",
+  "go_version": "go1.24.3",
+  "status": "ready",
+  "source": {
+    "path": "tests/fixtures/go_syntax_corpus/src/os/signal/signal.go",
+    "manifest_path": "os/signal/signal.go",
+    "sha256": "d99f44830137e1bc4da53ef7f0d5ce872d535219168e9f0408eb539c02f993fc",
+    "bytes": 8480,
+    "package": "signal"
+  },
+  "selection_policy": {
+    "max_span_bytes": 2500,
+    "target_constructs": [
+      "channel_type",
+      "comm_clause",
+      "ellipsis",
+      "function_literal",
+      "go_statement",
+      "select_statement",
+      "send_statement",
+      "type_assertion_expression"
+    ],
+    "score_policy": "rank by covered target constructs, then total syntax constructs, then smaller byte span",
+    "selection_note": "Parser-backed Go source-span selection evidence for a bounded generated-codec report-production tranche; generated-codec implementation and corpus packaging remain the next step."
+  },
+  "candidate_count": 21,
+  "selected_candidate": {
+    "span_id": "function_declaration:notifycontext",
+    "decl_kind": "function_declaration",
+    "name": "NotifyContext",
+    "byte_start": 6278,
+    "byte_end": 7645,
+    "line_start": 263,
+    "line_end": 297,
+    "bytes": 1367,
+    "sha256": "25d16848c9cd1076b958404c550a0b1c6eed806e6b1d7f9e31d7dba9bb26870c",
+    "unique_constructs": [
+      "assignment_statement",
+      "basic_lit_integer",
+      "binary_expression",
+      "block_statement",
+      "call_expression",
+      "channel_type",
+      "comm_clause",
+      "composite_literal",
+      "ellipsis",
+      "field",
+      "field_list",
+      "function_declaration",
+      "function_literal",
+      "function_type",
+      "go_statement",
+      "identifier_expression",
+      "if_statement",
+      "key_value_expression",
+      "return_statement",
+      "select_statement",
+      "selector_expression",
+      "short_var_declaration",
+      "unary_expression"
+    ],
+    "constructs": [
+      {
+        "construct": "assignment_statement",
+        "count": 1
+      },
+      {
+        "construct": "basic_lit_integer",
+        "count": 1
+      },
+      {
+        "construct": "binary_expression",
+        "count": 1
+      },
+      {
+        "construct": "block_statement",
+        "count": 4
+      },
+      {
+        "construct": "call_expression",
+        "count": 7
+      },
+      {
+        "construct": "channel_type",
+        "count": 1
+      },
+      {
+        "construct": "comm_clause",
+        "count": 2
+      },
+      {
+        "construct": "composite_literal",
+        "count": 1
+      },
+      {
+        "construct": "ellipsis",
+        "count": 1
+      },
+      {
+        "construct": "field",
+        "count": 4
+      },
+      {
+        "construct": "field_list",
+        "count": 3
+      },
+      {
+        "construct": "function_declaration",
+        "count": 1
+      },
+      {
+        "construct": "function_literal",
+        "count": 1
+      },
+      {
+        "construct": "function_type",
+        "count": 2
+      },
+      {
+        "construct": "go_statement",
+        "count": 1
+      },
+      {
+        "construct": "identifier_expression",
+        "count": 48
+      },
+      {
+        "construct": "if_statement",
+        "count": 1
+      },
+      {
+        "construct": "key_value_expression",
+        "count": 3
+      },
+      {
+        "construct": "return_statement",
+        "count": 1
+      },
+      {
+        "construct": "select_statement",
+        "count": 1
+      },
+      {
+        "construct": "selector_expression",
+        "count": 14
+      },
+      {
+        "construct": "short_var_declaration",
+        "count": 2
+      },
+      {
+        "construct": "unary_expression",
+        "count": 3
+      }
+    ],
+    "target_constructs": [
+      "channel_type",
+      "comm_clause",
+      "ellipsis",
+      "function_literal",
+      "go_statement",
+      "select_statement"
+    ],
+    "selection_score": 61027,
+    "selection_order": 1,
+    "selected": true,
+    "selection_reason": "6 target constructs within 2500 byte source-span budget"
+  },
+  "candidates": [
+    {
+      "span_id": "function_declaration:notifycontext",
+      "decl_kind": "function_declaration",
+      "name": "NotifyContext",
+      "byte_start": 6278,
+      "byte_end": 7645,
+      "line_start": 263,
+      "line_end": 297,
+      "bytes": 1367,
+      "sha256": "25d16848c9cd1076b958404c550a0b1c6eed806e6b1d7f9e31d7dba9bb26870c",
+      "unique_constructs": [
+        "assignment_statement",
+        "basic_lit_integer",
+        "binary_expression",
+        "block_statement",
+        "call_expression",
+        "channel_type",
+        "comm_clause",
+        "composite_literal",
+        "ellipsis",
+        "field",
+        "field_list",
+        "function_declaration",
+        "function_literal",
+        "function_type",
+        "go_statement",
+        "identifier_expression",
+        "if_statement",
+        "key_value_expression",
+        "return_statement",
+        "select_statement",
+        "selector_expression",
+        "short_var_declaration",
+        "unary_expression"
+      ],
+      "constructs": [
+        {
+          "construct": "assignment_statement",
+          "count": 1
+        },
+        {
+          "construct": "basic_lit_integer",
+          "count": 1
+        },
+        {
+          "construct": "binary_expression",
+          "count": 1
+        },
+        {
+          "construct": "block_statement",
+          "count": 4
+        },
+        {
+          "construct": "call_expression",
+          "count": 7
+        },
+        {
+          "construct": "channel_type",
+          "count": 1
+        },
+        {
+          "construct": "comm_clause",
+          "count": 2
+        },
+        {
+          "construct": "composite_literal",
+          "count": 1
+        },
+        {
+          "construct": "ellipsis",
+          "count": 1
+        },
+        {
+          "construct": "field",
+          "count": 4
+        },
+        {
+          "construct": "field_list",
+          "count": 3
+        },
+        {
+          "construct": "function_declaration",
+          "count": 1
+        },
+        {
+          "construct": "function_literal",
+          "count": 1
+        },
+        {
+          "construct": "function_type",
+          "count": 2
+        },
+        {
+          "construct": "go_statement",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 48
+        },
+        {
+          "construct": "if_statement",
+          "count": 1
+        },
+        {
+          "construct": "key_value_expression",
+          "count": 3
+        },
+        {
+          "construct": "return_statement",
+          "count": 1
+        },
+        {
+          "construct": "select_statement",
+          "count": 1
+        },
+        {
+          "construct": "selector_expression",
+          "count": 14
+        },
+        {
+          "construct": "short_var_declaration",
+          "count": 2
+        },
+        {
+          "construct": "unary_expression",
+          "count": 3
+        }
+      ],
+      "target_constructs": [
+        "channel_type",
+        "comm_clause",
+        "ellipsis",
+        "function_literal",
+        "go_statement",
+        "select_statement"
+      ],
+      "selection_score": 61027,
+      "selection_order": 1,
+      "selected": true,
+      "selection_reason": "6 target constructs within 2500 byte source-span budget"
+    },
+    {
+      "span_id": "function_declaration:notify",
+      "decl_kind": "function_declaration",
+      "name": "Notify",
+      "byte_start": 2569,
+      "byte_end": 4184,
+      "line_start": 106,
+      "line_end": 169,
+      "bytes": 1615,
+      "sha256": "7d88e0a0d37a6730849c7f765d11f4539419d18f296bed6928f8278395ca6799",
+      "unique_constructs": [
+        "assignment_statement",
+        "basic_lit_integer",
+        "basic_lit_string",
+        "binary_expression",
+        "block_statement",
+        "call_expression",
+        "channel_type",
+        "defer_statement",
+        "ellipsis",
+        "field",
+        "field_list",
+        "for_statement",
+        "function_declaration",
+        "function_literal",
+        "function_type",
+        "go_statement",
+        "identifier_expression",
+        "if_statement",
+        "index_expression",
+        "map_type",
+        "range_statement",
+        "return_statement",
+        "selector_expression",
+        "short_var_declaration",
+        "star_expression",
+        "unary_expression"
+      ],
+      "constructs": [
+        {
+          "construct": "assignment_statement",
+          "count": 3
+        },
+        {
+          "construct": "basic_lit_integer",
+          "count": 4
+        },
+        {
+          "construct": "basic_lit_string",
+          "count": 1
+        },
+        {
+          "construct": "binary_expression",
+          "count": 8
+        },
+        {
+          "construct": "block_statement",
+          "count": 14
+        },
+        {
+          "construct": "call_expression",
+          "count": 14
+        },
+        {
+          "construct": "channel_type",
+          "count": 2
+        },
+        {
+          "construct": "defer_statement",
+          "count": 1
+        },
+        {
+          "construct": "ellipsis",
+          "count": 1
+        },
+        {
+          "construct": "field",
+          "count": 3
+        },
+        {
+          "construct": "field_list",
+          "count": 3
+        },
+        {
+          "construct": "for_statement",
+          "count": 1
+        },
+        {
+          "construct": "function_declaration",
+          "count": 1
+        },
+        {
+          "construct": "function_literal",
+          "count": 2
+        },
+        {
+          "construct": "function_type",
+          "count": 3
+        },
+        {
+          "construct": "go_statement",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 73
+        },
+        {
+          "construct": "if_statement",
+          "count": 8
+        },
+        {
+          "construct": "index_expression",
+          "count": 4
+        },
+        {
+          "construct": "map_type",
+          "count": 1
+        },
+        {
+          "construct": "range_statement",
+          "count": 1
+        },
+        {
+          "construct": "return_statement",
+          "count": 1
+        },
+        {
+          "construct": "selector_expression",
+          "count": 14
+        },
+        {
+          "construct": "short_var_declaration",
+          "count": 3
+        },
+        {
+          "construct": "star_expression",
+          "count": 1
+        },
+        {
+          "construct": "unary_expression",
+          "count": 1
+        }
+      ],
+      "target_constructs": [
+        "channel_type",
+        "ellipsis",
+        "function_literal",
+        "go_statement"
+      ],
+      "selection_score": 41674,
+      "selection_order": 2,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "function_declaration:process",
+      "decl_kind": "function_declaration",
+      "name": "process",
+      "byte_start": 5868,
+      "byte_end": 6276,
+      "line_start": 233,
+      "line_end": 261,
+      "bytes": 408,
+      "sha256": "7bb93ae5fd1eefa7a097d2ab6b2bf061849c55f3f0bdfa01624cb9d434752fc4",
+      "unique_constructs": [
+        "basic_lit_integer",
+        "binary_expression",
+        "block_statement",
+        "call_expression",
+        "comm_clause",
+        "defer_statement",
+        "field",
+        "field_list",
+        "function_declaration",
+        "function_type",
+        "identifier_expression",
+        "if_statement",
+        "range_statement",
+        "return_statement",
+        "select_statement",
+        "selector_expression",
+        "send_statement",
+        "short_var_declaration"
+      ],
+      "constructs": [
+        {
+          "construct": "basic_lit_integer",
+          "count": 1
+        },
+        {
+          "construct": "binary_expression",
+          "count": 1
+        },
+        {
+          "construct": "block_statement",
+          "count": 8
+        },
+        {
+          "construct": "call_expression",
+          "count": 5
+        },
+        {
+          "construct": "comm_clause",
+          "count": 4
+        },
+        {
+          "construct": "defer_statement",
+          "count": 1
+        },
+        {
+          "construct": "field",
+          "count": 1
+        },
+        {
+          "construct": "field_list",
+          "count": 1
+        },
+        {
+          "construct": "function_declaration",
+          "count": 1
+        },
+        {
+          "construct": "function_type",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 32
+        },
+        {
+          "construct": "if_statement",
+          "count": 3
+        },
+        {
+          "construct": "range_statement",
+          "count": 2
+        },
+        {
+          "construct": "return_statement",
+          "count": 1
+        },
+        {
+          "construct": "select_statement",
+          "count": 2
+        },
+        {
+          "construct": "selector_expression",
+          "count": 9
+        },
+        {
+          "construct": "send_statement",
+          "count": 2
+        },
+        {
+          "construct": "short_var_declaration",
+          "count": 1
+        }
+      ],
+      "target_constructs": [
+        "comm_clause",
+        "select_statement",
+        "send_statement"
+      ],
+      "selection_score": 30756,
+      "selection_order": 3,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "function_declaration:stop",
+      "decl_kind": "function_declaration",
+      "name": "Stop",
+      "byte_start": 4401,
+      "byte_end": 5738,
+      "line_start": 178,
+      "line_end": 227,
+      "bytes": 1337,
+      "sha256": "17779e7e635c7a4300d5ed03181816367424b15d7c7df9ebfb863e29fba514a4",
+      "unique_constructs": [
+        "assignment_statement",
+        "basic_lit_integer",
+        "binary_expression",
+        "block_statement",
+        "call_expression",
+        "channel_type",
+        "composite_literal",
+        "field",
+        "field_list",
+        "for_statement",
+        "function_declaration",
+        "function_type",
+        "identifier_expression",
+        "if_statement",
+        "index_expression",
+        "range_statement",
+        "return_statement",
+        "selector_expression",
+        "short_var_declaration"
+      ],
+      "constructs": [
+        {
+          "construct": "assignment_statement",
+          "count": 2
+        },
+        {
+          "construct": "basic_lit_integer",
+          "count": 3
+        },
+        {
+          "construct": "binary_expression",
+          "count": 5
+        },
+        {
+          "construct": "block_statement",
+          "count": 7
+        },
+        {
+          "construct": "call_expression",
+          "count": 11
+        },
+        {
+          "construct": "channel_type",
+          "count": 1
+        },
+        {
+          "construct": "composite_literal",
+          "count": 1
+        },
+        {
+          "construct": "field",
+          "count": 1
+        },
+        {
+          "construct": "field_list",
+          "count": 1
+        },
+        {
+          "construct": "for_statement",
+          "count": 1
+        },
+        {
+          "construct": "function_declaration",
+          "count": 1
+        },
+        {
+          "construct": "function_type",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 63
+        },
+        {
+          "construct": "if_statement",
+          "count": 4
+        },
+        {
+          "construct": "index_expression",
+          "count": 3
+        },
+        {
+          "construct": "range_statement",
+          "count": 1
+        },
+        {
+          "construct": "return_statement",
+          "count": 1
+        },
+        {
+          "construct": "selector_expression",
+          "count": 18
+        },
+        {
+          "construct": "short_var_declaration",
+          "count": 2
+        }
+      ],
+      "target_constructs": [
+        "channel_type"
+      ],
+      "selection_score": 11257,
+      "selection_order": 4,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "method_declaration:signalctx_string",
+      "decl_kind": "method_declaration",
+      "name": "signalCtx.String",
+      "byte_start": 7867,
+      "byte_end": 8479,
+      "line_start": 316,
+      "line_end": 335,
+      "bytes": 612,
+      "sha256": "1f1c3ed96f2e9adbb165e0c4ee6d2f75db98639415b72b04b4a173c6c05bfc87",
+      "unique_constructs": [
+        "array_type",
+        "assignment_statement",
+        "basic_lit_integer",
+        "basic_lit_string",
+        "binary_expression",
+        "block_statement",
+        "call_expression",
+        "field",
+        "field_list",
+        "function_type",
+        "identifier_expression",
+        "if_statement",
+        "method_declaration",
+        "range_statement",
+        "return_statement",
+        "selector_expression",
+        "short_var_declaration",
+        "slice_expression",
+        "star_expression",
+        "type_assertion_expression",
+        "value_spec",
+        "var_declaration"
+      ],
+      "constructs": [
+        {
+          "construct": "array_type",
+          "count": 1
+        },
+        {
+          "construct": "assignment_statement",
+          "count": 7
+        },
+        {
+          "construct": "basic_lit_integer",
+          "count": 2
+        },
+        {
+          "construct": "basic_lit_string",
+          "count": 6
+        },
+        {
+          "construct": "binary_expression",
+          "count": 5
+        },
+        {
+          "construct": "block_statement",
+          "count": 4
+        },
+        {
+          "construct": "call_expression",
+          "count": 13
+        },
+        {
+          "construct": "field",
+          "count": 2
+        },
+        {
+          "construct": "field_list",
+          "count": 3
+        },
+        {
+          "construct": "function_type",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 50
+        },
+        {
+          "construct": "if_statement",
+          "count": 2
+        },
+        {
+          "construct": "method_declaration",
+          "count": 1
+        },
+        {
+          "construct": "range_statement",
+          "count": 1
+        },
+        {
+          "construct": "return_statement",
+          "count": 1
+        },
+        {
+          "construct": "selector_expression",
+          "count": 6
+        },
+        {
+          "construct": "short_var_declaration",
+          "count": 1
+        },
+        {
+          "construct": "slice_expression",
+          "count": 1
+        },
+        {
+          "construct": "star_expression",
+          "count": 1
+        },
+        {
+          "construct": "type_assertion_expression",
+          "count": 1
+        },
+        {
+          "construct": "value_spec",
+          "count": 1
+        },
+        {
+          "construct": "var_declaration",
+          "count": 1
+        }
+      ],
+      "target_constructs": [
+        "type_assertion_expression"
+      ],
+      "selection_score": 11104,
+      "selection_order": 5,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "function_declaration:cancel",
+      "decl_kind": "function_declaration",
+      "name": "cancel",
+      "byte_start": 1125,
+      "byte_end": 1815,
+      "line_start": 49,
+      "line_end": 81,
+      "bytes": 690,
+      "sha256": "3e23a1cde9b01e76d2bc6254078abc11427f226a7ca2d12013207fd53513e67a",
+      "unique_constructs": [
+        "array_type",
+        "basic_lit_integer",
+        "binary_expression",
+        "block_statement",
+        "call_expression",
+        "defer_statement",
+        "field",
+        "field_list",
+        "for_statement",
+        "function_declaration",
+        "function_literal",
+        "function_type",
+        "identifier_expression",
+        "if_statement",
+        "index_expression",
+        "range_statement",
+        "selector_expression",
+        "short_var_declaration",
+        "value_spec",
+        "var_declaration"
+      ],
+      "constructs": [
+        {
+          "construct": "array_type",
+          "count": 1
+        },
+        {
+          "construct": "basic_lit_integer",
+          "count": 2
+        },
+        {
+          "construct": "binary_expression",
+          "count": 3
+        },
+        {
+          "construct": "block_statement",
+          "count": 9
+        },
+        {
+          "construct": "call_expression",
+          "count": 10
+        },
+        {
+          "construct": "defer_statement",
+          "count": 1
+        },
+        {
+          "construct": "field",
+          "count": 4
+        },
+        {
+          "construct": "field_list",
+          "count": 3
+        },
+        {
+          "construct": "for_statement",
+          "count": 1
+        },
+        {
+          "construct": "function_declaration",
+          "count": 1
+        },
+        {
+          "construct": "function_literal",
+          "count": 1
+        },
+        {
+          "construct": "function_type",
+          "count": 3
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 52
+        },
+        {
+          "construct": "if_statement",
+          "count": 3
+        },
+        {
+          "construct": "index_expression",
+          "count": 1
+        },
+        {
+          "construct": "range_statement",
+          "count": 2
+        },
+        {
+          "construct": "selector_expression",
+          "count": 10
+        },
+        {
+          "construct": "short_var_declaration",
+          "count": 2
+        },
+        {
+          "construct": "value_spec",
+          "count": 1
+        },
+        {
+          "construct": "var_declaration",
+          "count": 1
+        }
+      ],
+      "target_constructs": [
+        "function_literal"
+      ],
+      "selection_score": 11104,
+      "selection_order": 6,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "var_declaration:var_handlers",
+      "decl_kind": "var_declaration",
+      "name": "var handlers",
+      "byte_start": 223,
+      "byte_end": 770,
+      "line_start": 14,
+      "line_end": 26,
+      "bytes": 547,
+      "sha256": "1dbbf66386b6b4bcd131ce3586c4e0b117c97189b6837896bd564f7d4ba5e163",
+      "unique_constructs": [
+        "array_type",
+        "channel_type",
+        "field",
+        "field_list",
+        "identifier_expression",
+        "map_type",
+        "selector_expression",
+        "star_expression",
+        "struct_type",
+        "value_spec",
+        "var_declaration"
+      ],
+      "constructs": [
+        {
+          "construct": "array_type",
+          "count": 2
+        },
+        {
+          "construct": "channel_type",
+          "count": 1
+        },
+        {
+          "construct": "field",
+          "count": 4
+        },
+        {
+          "construct": "field_list",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 12
+        },
+        {
+          "construct": "map_type",
+          "count": 1
+        },
+        {
+          "construct": "selector_expression",
+          "count": 2
+        },
+        {
+          "construct": "star_expression",
+          "count": 1
+        },
+        {
+          "construct": "struct_type",
+          "count": 1
+        },
+        {
+          "construct": "value_spec",
+          "count": 1
+        },
+        {
+          "construct": "var_declaration",
+          "count": 1
+        }
+      ],
+      "target_constructs": [
+        "channel_type"
+      ],
+      "selection_score": 10265,
+      "selection_order": 7,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "type_declaration:type_signalctx",
+      "decl_kind": "type_declaration",
+      "name": "type signalCtx",
+      "byte_start": 7647,
+      "byte_end": 7763,
+      "line_start": 299,
+      "line_end": 305,
+      "bytes": 116,
+      "sha256": "ccfcd14977609b48e34bbcfcf8e617ce75bde5a0ba395c9f0dadcde2418f2fef",
+      "unique_constructs": [
+        "array_type",
+        "channel_type",
+        "field",
+        "field_list",
+        "identifier_expression",
+        "selector_expression",
+        "struct_type",
+        "type_declaration",
+        "type_spec"
+      ],
+      "constructs": [
+        {
+          "construct": "array_type",
+          "count": 1
+        },
+        {
+          "construct": "channel_type",
+          "count": 1
+        },
+        {
+          "construct": "field",
+          "count": 4
+        },
+        {
+          "construct": "field_list",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 12
+        },
+        {
+          "construct": "selector_expression",
+          "count": 4
+        },
+        {
+          "construct": "struct_type",
+          "count": 1
+        },
+        {
+          "construct": "type_declaration",
+          "count": 1
+        },
+        {
+          "construct": "type_spec",
+          "count": 1
+        }
+      ],
+      "target_constructs": [
+        "channel_type"
+      ],
+      "selection_score": 10259,
+      "selection_order": 8,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "type_declaration:type_stopping",
+      "decl_kind": "type_declaration",
+      "name": "type stopping",
+      "byte_start": 772,
+      "byte_end": 828,
+      "line_start": 28,
+      "line_end": 31,
+      "bytes": 56,
+      "sha256": "d1340e143375a46be4b87e93a4b12e49f61accada7b9fc3b90b1952788da9edc",
+      "unique_constructs": [
+        "channel_type",
+        "field",
+        "field_list",
+        "identifier_expression",
+        "selector_expression",
+        "star_expression",
+        "struct_type",
+        "type_declaration",
+        "type_spec"
+      ],
+      "constructs": [
+        {
+          "construct": "channel_type",
+          "count": 1
+        },
+        {
+          "construct": "field",
+          "count": 2
+        },
+        {
+          "construct": "field_list",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 6
+        },
+        {
+          "construct": "selector_expression",
+          "count": 1
+        },
+        {
+          "construct": "star_expression",
+          "count": 1
+        },
+        {
+          "construct": "struct_type",
+          "count": 1
+        },
+        {
+          "construct": "type_declaration",
+          "count": 1
+        },
+        {
+          "construct": "type_spec",
+          "count": 1
+        }
+      ],
+      "target_constructs": [
+        "channel_type"
+      ],
+      "selection_score": 10150,
+      "selection_order": 9,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "function_declaration:reset",
+      "decl_kind": "function_declaration",
+      "name": "Reset",
+      "byte_start": 4186,
+      "byte_end": 4399,
+      "line_start": 171,
+      "line_end": 176,
+      "bytes": 213,
+      "sha256": "8dea0243880cb405f8cb7e798d9012b3e85631e73bfa4a6eefbb227038c30693",
+      "unique_constructs": [
+        "block_statement",
+        "call_expression",
+        "ellipsis",
+        "field",
+        "field_list",
+        "function_declaration",
+        "function_type",
+        "identifier_expression",
+        "selector_expression"
+      ],
+      "constructs": [
+        {
+          "construct": "block_statement",
+          "count": 1
+        },
+        {
+          "construct": "call_expression",
+          "count": 1
+        },
+        {
+          "construct": "ellipsis",
+          "count": 1
+        },
+        {
+          "construct": "field",
+          "count": 1
+        },
+        {
+          "construct": "field_list",
+          "count": 1
+        },
+        {
+          "construct": "function_declaration",
+          "count": 1
+        },
+        {
+          "construct": "function_type",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 7
+        },
+        {
+          "construct": "selector_expression",
+          "count": 1
+        }
+      ],
+      "target_constructs": [
+        "ellipsis"
+      ],
+      "selection_score": 10148,
+      "selection_order": 10,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "function_declaration:ignore",
+      "decl_kind": "function_declaration",
+      "name": "Ignore",
+      "byte_start": 1817,
+      "byte_end": 2145,
+      "line_start": 83,
+      "line_end": 89,
+      "bytes": 328,
+      "sha256": "8a7631367779f08355cbe936606eb3823e775f5444f764bd1887cb547de61213",
+      "unique_constructs": [
+        "block_statement",
+        "call_expression",
+        "ellipsis",
+        "field",
+        "field_list",
+        "function_declaration",
+        "function_type",
+        "identifier_expression",
+        "selector_expression"
+      ],
+      "constructs": [
+        {
+          "construct": "block_statement",
+          "count": 1
+        },
+        {
+          "construct": "call_expression",
+          "count": 1
+        },
+        {
+          "construct": "ellipsis",
+          "count": 1
+        },
+        {
+          "construct": "field",
+          "count": 1
+        },
+        {
+          "construct": "field_list",
+          "count": 1
+        },
+        {
+          "construct": "function_declaration",
+          "count": 1
+        },
+        {
+          "construct": "function_type",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 7
+        },
+        {
+          "construct": "selector_expression",
+          "count": 1
+        }
+      ],
+      "target_constructs": [
+        "ellipsis"
+      ],
+      "selection_score": 10147,
+      "selection_order": 11,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "method_declaration:handler_want",
+      "decl_kind": "method_declaration",
+      "name": "handler.want",
+      "byte_start": 888,
+      "byte_end": 974,
+      "line_start": 37,
+      "line_end": 39,
+      "bytes": 86,
+      "sha256": "cf68627ae09eb645bb070776442468ba01976dc7e061a47daa85a01786e66496",
+      "unique_constructs": [
+        "basic_lit_integer",
+        "binary_expression",
+        "block_statement",
+        "call_expression",
+        "field",
+        "field_list",
+        "function_type",
+        "identifier_expression",
+        "index_expression",
+        "method_declaration",
+        "parenthesized_expression",
+        "return_statement",
+        "selector_expression",
+        "star_expression"
+      ],
+      "constructs": [
+        {
+          "construct": "basic_lit_integer",
+          "count": 4
+        },
+        {
+          "construct": "binary_expression",
+          "count": 5
+        },
+        {
+          "construct": "block_statement",
+          "count": 1
+        },
+        {
+          "construct": "call_expression",
+          "count": 1
+        },
+        {
+          "construct": "field",
+          "count": 3
+        },
+        {
+          "construct": "field_list",
+          "count": 3
+        },
+        {
+          "construct": "function_type",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 11
+        },
+        {
+          "construct": "index_expression",
+          "count": 1
+        },
+        {
+          "construct": "method_declaration",
+          "count": 1
+        },
+        {
+          "construct": "parenthesized_expression",
+          "count": 1
+        },
+        {
+          "construct": "return_statement",
+          "count": 1
+        },
+        {
+          "construct": "selector_expression",
+          "count": 1
+        },
+        {
+          "construct": "star_expression",
+          "count": 1
+        }
+      ],
+      "target_constructs": [],
+      "selection_score": 350,
+      "selection_order": 12,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "method_declaration:handler_set",
+      "decl_kind": "method_declaration",
+      "name": "handler.set",
+      "byte_start": 976,
+      "byte_end": 1047,
+      "line_start": 41,
+      "line_end": 43,
+      "bytes": 71,
+      "sha256": "88852c384b72e6679d8a7cff8a3c0a8caed7e4a828bceb02a3238e1e2b4044b2",
+      "unique_constructs": [
+        "basic_lit_integer",
+        "binary_expression",
+        "block_statement",
+        "call_expression",
+        "compound_assignment_statement",
+        "field",
+        "field_list",
+        "function_type",
+        "identifier_expression",
+        "index_expression",
+        "method_declaration",
+        "selector_expression",
+        "star_expression"
+      ],
+      "constructs": [
+        {
+          "construct": "basic_lit_integer",
+          "count": 3
+        },
+        {
+          "construct": "binary_expression",
+          "count": 3
+        },
+        {
+          "construct": "block_statement",
+          "count": 1
+        },
+        {
+          "construct": "call_expression",
+          "count": 1
+        },
+        {
+          "construct": "compound_assignment_statement",
+          "count": 1
+        },
+        {
+          "construct": "field",
+          "count": 2
+        },
+        {
+          "construct": "field_list",
+          "count": 2
+        },
+        {
+          "construct": "function_type",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 10
+        },
+        {
+          "construct": "index_expression",
+          "count": 1
+        },
+        {
+          "construct": "method_declaration",
+          "count": 1
+        },
+        {
+          "construct": "selector_expression",
+          "count": 1
+        },
+        {
+          "construct": "star_expression",
+          "count": 1
+        }
+      ],
+      "target_constructs": [],
+      "selection_score": 280,
+      "selection_order": 13,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "method_declaration:handler_clear",
+      "decl_kind": "method_declaration",
+      "name": "handler.clear",
+      "byte_start": 1049,
+      "byte_end": 1123,
+      "line_start": 45,
+      "line_end": 47,
+      "bytes": 74,
+      "sha256": "436bf135b3e85c3719f49b599f524d0841e216c5b2f4e75e469ee3bb8b52f350",
+      "unique_constructs": [
+        "basic_lit_integer",
+        "binary_expression",
+        "block_statement",
+        "call_expression",
+        "compound_assignment_statement",
+        "field",
+        "field_list",
+        "function_type",
+        "identifier_expression",
+        "index_expression",
+        "method_declaration",
+        "selector_expression",
+        "star_expression"
+      ],
+      "constructs": [
+        {
+          "construct": "basic_lit_integer",
+          "count": 3
+        },
+        {
+          "construct": "binary_expression",
+          "count": 3
+        },
+        {
+          "construct": "block_statement",
+          "count": 1
+        },
+        {
+          "construct": "call_expression",
+          "count": 1
+        },
+        {
+          "construct": "compound_assignment_statement",
+          "count": 1
+        },
+        {
+          "construct": "field",
+          "count": 2
+        },
+        {
+          "construct": "field_list",
+          "count": 2
+        },
+        {
+          "construct": "function_type",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 10
+        },
+        {
+          "construct": "index_expression",
+          "count": 1
+        },
+        {
+          "construct": "method_declaration",
+          "count": 1
+        },
+        {
+          "construct": "selector_expression",
+          "count": 1
+        },
+        {
+          "construct": "star_expression",
+          "count": 1
+        }
+      ],
+      "target_constructs": [],
+      "selection_score": 280,
+      "selection_order": 14,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "function_declaration:ignored",
+      "decl_kind": "function_declaration",
+      "name": "Ignored",
+      "byte_start": 2147,
+      "byte_end": 2292,
+      "line_start": 91,
+      "line_end": 95,
+      "bytes": 145,
+      "sha256": "ccd68d70268da2ec963eb18dca7271bd2dfb10a7ebddecea801e0a8fd3be72fe",
+      "unique_constructs": [
+        "basic_lit_integer",
+        "binary_expression",
+        "block_statement",
+        "call_expression",
+        "field",
+        "field_list",
+        "function_declaration",
+        "function_type",
+        "identifier_expression",
+        "return_statement",
+        "selector_expression",
+        "short_var_declaration"
+      ],
+      "constructs": [
+        {
+          "construct": "basic_lit_integer",
+          "count": 1
+        },
+        {
+          "construct": "binary_expression",
+          "count": 2
+        },
+        {
+          "construct": "block_statement",
+          "count": 1
+        },
+        {
+          "construct": "call_expression",
+          "count": 2
+        },
+        {
+          "construct": "field",
+          "count": 2
+        },
+        {
+          "construct": "field_list",
+          "count": 2
+        },
+        {
+          "construct": "function_declaration",
+          "count": 1
+        },
+        {
+          "construct": "function_type",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 11
+        },
+        {
+          "construct": "return_statement",
+          "count": 1
+        },
+        {
+          "construct": "selector_expression",
+          "count": 1
+        },
+        {
+          "construct": "short_var_declaration",
+          "count": 1
+        }
+      ],
+      "target_constructs": [],
+      "selection_score": 259,
+      "selection_order": 15,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "method_declaration:signalctx_stop",
+      "decl_kind": "method_declaration",
+      "name": "signalCtx.stop",
+      "byte_start": 7765,
+      "byte_end": 7819,
+      "line_start": 307,
+      "line_end": 310,
+      "bytes": 54,
+      "sha256": "d25390d458d677d1f76244c7eeda5e6b1af2f78076ac7b8d857ca21ddc626d54",
+      "unique_constructs": [
+        "block_statement",
+        "call_expression",
+        "field",
+        "field_list",
+        "function_type",
+        "identifier_expression",
+        "method_declaration",
+        "selector_expression",
+        "star_expression"
+      ],
+      "constructs": [
+        {
+          "construct": "block_statement",
+          "count": 1
+        },
+        {
+          "construct": "call_expression",
+          "count": 2
+        },
+        {
+          "construct": "field",
+          "count": 1
+        },
+        {
+          "construct": "field_list",
+          "count": 2
+        },
+        {
+          "construct": "function_type",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 8
+        },
+        {
+          "construct": "method_declaration",
+          "count": 1
+        },
+        {
+          "construct": "selector_expression",
+          "count": 2
+        },
+        {
+          "construct": "star_expression",
+          "count": 1
+        }
+      ],
+      "target_constructs": [],
+      "selection_score": 190,
+      "selection_order": 16,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "type_declaration:type_handler",
+      "decl_kind": "type_declaration",
+      "name": "type handler",
+      "byte_start": 830,
+      "byte_end": 886,
+      "line_start": 33,
+      "line_end": 35,
+      "bytes": 56,
+      "sha256": "cf671600a180d5af21dc5eb42e7a5122820dcee5bd4fe3361e26940a013ce535",
+      "unique_constructs": [
+        "array_type",
+        "basic_lit_integer",
+        "binary_expression",
+        "field",
+        "field_list",
+        "identifier_expression",
+        "parenthesized_expression",
+        "struct_type",
+        "type_declaration",
+        "type_spec"
+      ],
+      "constructs": [
+        {
+          "construct": "array_type",
+          "count": 1
+        },
+        {
+          "construct": "basic_lit_integer",
+          "count": 2
+        },
+        {
+          "construct": "binary_expression",
+          "count": 2
+        },
+        {
+          "construct": "field",
+          "count": 1
+        },
+        {
+          "construct": "field_list",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 4
+        },
+        {
+          "construct": "parenthesized_expression",
+          "count": 1
+        },
+        {
+          "construct": "struct_type",
+          "count": 1
+        },
+        {
+          "construct": "type_declaration",
+          "count": 1
+        },
+        {
+          "construct": "type_spec",
+          "count": 1
+        }
+      ],
+      "target_constructs": [],
+      "selection_score": 150,
+      "selection_order": 17,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "type_declaration:type_stringer",
+      "decl_kind": "type_declaration",
+      "name": "type stringer",
+      "byte_start": 7821,
+      "byte_end": 7865,
+      "line_start": 312,
+      "line_end": 314,
+      "bytes": 44,
+      "sha256": "9119f922147f04c9b28ea7975f624c8d3e111a1a34b93855fc2a75d56dd0f3e9",
+      "unique_constructs": [
+        "field",
+        "field_list",
+        "function_type",
+        "identifier_expression",
+        "interface_type",
+        "type_declaration",
+        "type_spec"
+      ],
+      "constructs": [
+        {
+          "construct": "field",
+          "count": 2
+        },
+        {
+          "construct": "field_list",
+          "count": 3
+        },
+        {
+          "construct": "function_type",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 3
+        },
+        {
+          "construct": "interface_type",
+          "count": 1
+        },
+        {
+          "construct": "type_declaration",
+          "count": 1
+        },
+        {
+          "construct": "type_spec",
+          "count": 1
+        }
+      ],
+      "target_constructs": [],
+      "selection_score": 120,
+      "selection_order": 18,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "var_declaration:var_watchsignallooponce_watchsignalloop",
+      "decl_kind": "var_declaration",
+      "name": "var watchSignalLoopOnce,watchSignalLoop",
+      "byte_start": 2294,
+      "byte_end": 2567,
+      "line_start": 97,
+      "line_end": 104,
+      "bytes": 273,
+      "sha256": "97f92295644d2e19ab0dfa489046632f91e705212be48bd17f9f617c9de52887",
+      "unique_constructs": [
+        "field_list",
+        "function_type",
+        "identifier_expression",
+        "selector_expression",
+        "value_spec",
+        "var_declaration"
+      ],
+      "constructs": [
+        {
+          "construct": "field_list",
+          "count": 1
+        },
+        {
+          "construct": "function_type",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 4
+        },
+        {
+          "construct": "selector_expression",
+          "count": 1
+        },
+        {
+          "construct": "value_spec",
+          "count": 2
+        },
+        {
+          "construct": "var_declaration",
+          "count": 1
+        }
+      ],
+      "target_constructs": [],
+      "selection_score": 98,
+      "selection_order": 19,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "import_declaration:import",
+      "decl_kind": "import_declaration",
+      "name": "import",
+      "byte_start": 176,
+      "byte_end": 221,
+      "line_start": 7,
+      "line_end": 12,
+      "bytes": 45,
+      "sha256": "b72df62bf1f365f9294cd204d0839240518367458ee4257a50868fd83be37192",
+      "unique_constructs": [
+        "basic_lit_string",
+        "import_declaration"
+      ],
+      "constructs": [
+        {
+          "construct": "basic_lit_string",
+          "count": 4
+        },
+        {
+          "construct": "import_declaration",
+          "count": 1
+        }
+      ],
+      "target_constructs": [],
+      "selection_score": 50,
+      "selection_order": 20,
+      "selected": false,
+      "selection_reason": ""
+    },
+    {
+      "span_id": "function_declaration:signalwaituntilidle",
+      "decl_kind": "function_declaration",
+      "name": "signalWaitUntilIdle",
+      "byte_start": 5740,
+      "byte_end": 5866,
+      "line_start": 229,
+      "line_end": 231,
+      "bytes": 126,
+      "sha256": "a7d9310a3b6d65129e40b7a90c3648ce435f059b0d9feafa0f31a94d8d9de484",
+      "unique_constructs": [
+        "field_list",
+        "function_declaration",
+        "function_type",
+        "identifier_expression"
+      ],
+      "constructs": [
+        {
+          "construct": "field_list",
+          "count": 1
+        },
+        {
+          "construct": "function_declaration",
+          "count": 1
+        },
+        {
+          "construct": "function_type",
+          "count": 1
+        },
+        {
+          "construct": "identifier_expression",
+          "count": 1
+        }
+      ],
+      "target_constructs": [],
+      "selection_score": 39,
+      "selection_order": 21,
+      "selected": false,
+      "selection_reason": ""
+    }
+  ],
+  "claim_boundaries": {
+    "boundary": "parser-backed metadata -\u003e GrammarIR -\u003e StructuralModel -\u003e token layout -\u003e generated codec",
+    "no_stable_claim": "parser-backed source-span selection evidence only; no generated-codec route, source-validity, arena IR, or stable backend promotion",
+    "blocked_claims": [
+      "no_broad_corpus_claim",
+      "no_source_validity_by_construction_claim",
+      "no_type_correctness_claim",
+      "no_model_quality_claim",
+      "no_paper_facing_claim",
+      "no_generated_hot_path_claim",
+      "no_stable_backend_claim",
+      "no_arena_ir_promotion"
+    ],
+    "arena_ir_promotion_allowed": false,
+    "generated_codec_changed": false
+  }
+}

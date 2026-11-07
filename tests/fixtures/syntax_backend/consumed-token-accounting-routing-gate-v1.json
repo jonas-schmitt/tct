@@ -1,0 +1,113 @@
+{
+  "artifact_kind": "tct_syntax_backend_consumed_token_accounting_routing_gate",
+  "version": 1,
+  "tool": "syntax_backend_consumed_token_accounting_routing_gate",
+  "status": "sidecar_contract_only",
+  "source_strict_recovery_decode_routing_gate": {
+    "artifact_kind": "tct_syntax_backend_strict_recovery_decode_routing_gate",
+    "version": 1,
+    "module_path": "src/syntax_strict_recovery_decode_routing.rs",
+    "fixture_path": "tests/fixtures/syntax_backend/strict-recovery-decode-routing-gate-v1.json",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh",
+    "completed_promotion_class": "syntax backend strict/recovery decode routing gate"
+  },
+  "source_generated_artifact_envelope": {
+    "artifact_kind": "tct_syntax_backend_generated_artifact_envelope",
+    "version": 1,
+    "module_path": "src/syntax_artifact_envelope.rs",
+    "fixture_path": "tests/fixtures/syntax_backend/generated-artifact-envelope-v1.json",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh",
+    "decode_policy_source": "generated artifact envelope decode_policy"
+  },
+  "compiler_boundary": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "preserves_json_schema_backend_contract": true,
+    "production_grammar_compiler_path_changed": false,
+    "sidecar_only": true,
+    "tct_compiler_route_allowed": false
+  },
+  "route_state": {
+    "route_registered": false,
+    "route_enabled": false,
+    "public_api_changed": false,
+    "uses_json_schema_compiler": false,
+    "uses_syntax_renderer_api": false
+  },
+  "accounting_contract": {
+    "accounting_cases": [
+      "complete_stream",
+      "trailing_pad_recovery",
+      "eof",
+      "non_pad_surplus",
+      "malformed_structural_tokens",
+      "malformed_payload_tokens",
+      "invalid_parser_backed_payloads",
+      "partial_prefix_failures"
+    ],
+    "result_fields": [
+      "consumed",
+      "ignored_trailing_tokens",
+      "partial_fields",
+      "partial_statements"
+    ],
+    "strict_success_consumes_entire_stream": true,
+    "recovery_trailing_pad_reports_ignored_tokens": true,
+    "hard_errors_report_failure_position": true,
+    "partial_prefix_errors_report_partial_count": true,
+    "does_not_default_partial_prefixes": true,
+    "does_not_promote_prefix_completion": true
+  },
+  "generated_codec_evidence": {
+    "test_path": "tests/syntax_generated_codec_gate_test.rs",
+    "renderer_api_module": "src/syntax_generated_codec.rs",
+    "target_ids": [
+      "toy",
+      "csharp",
+      "go"
+    ],
+    "parser_backed_target_ids": [
+      "csharp",
+      "go"
+    ],
+    "target_agnostic_compiler_route_metadata_field": "target_agnostic_compiler_route",
+    "target_agnostic_compiler_route_evidence": [
+      "csharp_minimal_class_syntax_v0",
+      "csharp_local_string_return_literal_syntax_v0",
+      "go_minimal_function_syntax_v0",
+      "go_local_declaration_syntax_v0",
+      "generated_go_minimal_function_real_source_strings_compare_demo"
+    ],
+    "required_test_markers": [
+      "strict_decode_accepts_complete_assignment",
+      "strict_decode_reports_consumed_prefix_for_partial_result_errors",
+      "recovery_policy_accepts_strict_success",
+      "recovery_policy_normalizes_trailing_padding",
+      "recovery_policy_rejects_non_padding_surplus",
+      "recovery_policy_keeps_eof_and_malformed_payloads_hard_errors",
+      "recovery_policy_rejects_partial_prefix_errors_without_result",
+      "generated_csharp_minimal_class_round_trips",
+      "generated_csharp_strict_decode_rejects_eof_with_accounting",
+      "generated_csharp_strict_decode_rejects_trailing_tokens",
+      "generated_csharp_recovery_normalizes_trailing_pad_only",
+      "generated_csharp_recovery_keeps_partial_prefix_hard",
+      "generated_go_minimal_function_round_trips",
+      "generated_go_strict_decode_rejects_eof_with_accounting",
+      "generated_go_strict_decode_rejects_trailing_tokens",
+      "generated_go_decode_rejects_invalid_identifier_payloads_with_accounting",
+      "generated_go_recovery_normalizes_trailing_pad_only",
+      "generated_go_recovery_keeps_partial_prefix_hard"
+    ],
+    "strict_recovery_gate_fixture_confirmed": true,
+    "generated_artifact_envelope_decode_policy_confirmed": true
+  },
+  "blockers": [
+    "token/vocabulary/BPE invariants",
+    "reproducibility",
+    "audit coverage"
+  ],
+  "completed_promotion_class": "syntax backend consumed-token accounting routing gate",
+  "next_missing_stable_promotion_class": "syntax backend token/vocabulary/BPE routing gate"
+}

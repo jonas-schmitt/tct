@@ -1,0 +1,135 @@
+{
+  "scope": "Approved 2026-11-07: add prominent in-file change notices in the fresh public candidate; original private research/schema bytes are preserved.",
+  "files": [
+    {
+      "path": "schemas/api/gRPC_API_Gateway__OpenAPI_Config.json",
+      "before_sha256": "944a79d28b237caef060772e66d5ac13069f0baffe3fa34c9963ea10039cc807",
+      "after_sha256": "4d49c7afb8d6dc4c231151a10f657a054c992ec107428357faaa588fe6ef6914"
+    },
+    {
+      "path": "schemas/cloud/AWS_AppConfig_Feature_Flags-v1.json",
+      "before_sha256": "5bbd4e5d1551e7f41e65b72e2ed110c6b19e8559efc8b646d343930cb4f3a628",
+      "after_sha256": "19a0b9425d5eddc03808d050242311775c1ee3449cfd06cc075e75e08f61bfd7"
+    },
+    {
+      "path": "schemas/cloud/Azure_Container_App_template_for_defining_an_immutable_revision.json",
+      "before_sha256": "25eb3c912250c399e01e35a5cc6d478054bbe32e062069024a8ef38384bba95c",
+      "after_sha256": "250a785f19c2c660da558375d9f790133e54c815357026b88bc63ded5c8fa919"
+    },
+    {
+      "path": "schemas/configuration/.agripparc.json.json",
+      "before_sha256": "0851ca2d2050ca15b582ea075d2b0cacab2a667b9d954397d42b8ef5d5470d18",
+      "after_sha256": "136acefc524b4260961cd60564fea6c1604a4c2a5373e61a36379becbe1fbfbc"
+    },
+    {
+      "path": "schemas/configuration/AIConfig.json",
+      "before_sha256": "7eb4095e3418a0bfa13c4026424557310e99b36029ab7d09aa7532a54cf0304e",
+      "after_sha256": "157ca46eed03d49df81aea5629fbaabf235b9d4bebdeda2f4e60ac223c4ceaec"
+    },
+    {
+      "path": "schemas/configuration/AnyWork_Automation_Configuration.json",
+      "before_sha256": "08b3c84fb9a08d3e3ffe6bbbfcb8c7395f3da25b28688e668912e0367552b969",
+      "after_sha256": "86d15ab5905b26a1470e98a6d02f0606eb322e95fa662b96fc05e08c8cc29653"
+    },
+    {
+      "path": "schemas/configuration/App_config_Spotify_Backstage.json",
+      "before_sha256": "27e8dd1533c95167ac0cc30a3f1d81784abd8cf6d24b456114c72047e9818d7c",
+      "after_sha256": "b5bbfdde0a11da518f28c9b1c596925459b4fc7e57dad19dfe0d54d34567f2ef"
+    },
+    {
+      "path": "schemas/configuration/appsettings.json.json",
+      "before_sha256": "24615d93af14828d7e3bc7c1898feeb8525779e04ce2268c7bb10f666c4650d0",
+      "after_sha256": "ee2e24ef31f103689bc45ab6c3a8611f1f1002b64c0f9009c5ab92f9cd9dc4d3"
+    },
+    {
+      "path": "schemas/external/jscpd.json",
+      "before_sha256": "0d8c5901c0787fd0b6a99c1094d6d66fc78cb390dd4763152898f7f53b17b040",
+      "after_sha256": "775731d82f867ec46ebea2e8a7c94d4d07fb8aa34afd3f37601aee399d187f47"
+    },
+    {
+      "path": "schemas/external/partial-eslint-plugins.json",
+      "before_sha256": "710695547cdd01d06940993e7d85d93405cabe8326fd20e84db078ccdd9ff4d9",
+      "after_sha256": "5621db3de6aac3874dd0a902ea872a283a9171a48e359d6b935599bec1e39b64"
+    },
+    {
+      "path": "schemas/other/.NET_Aspire_8.0_Manifest.json",
+      "before_sha256": "28cde04127bd7395b02446b38a38bd22f5b2449d11d72ff97f5bed2aee928861",
+      "after_sha256": "dd2ea12203d046ed63de29983d9b8fd5de9f2716bc9d7a8382b5e6d861c3cead"
+    },
+    {
+      "path": "schemas/other/.aiproj.json.json",
+      "before_sha256": "66e80909c56d00d629a6c50c582af2a34a39cc29a684091c02102219259833ee",
+      "after_sha256": "45bef433dfcd2ed2d4f09d64f3602bf23742ad526b3e57e29fe8dc93df07a934"
+    },
+    {
+      "path": "schemas/other/ABCInventoryModuleData.json",
+      "before_sha256": "13f908fd8e16bb3f629649348eb86768eeb515c6ae0772b4cd29b998c3c19f82",
+      "after_sha256": "d6ee3f34719a30fa45489a10778ee19745b6a880bff37f66ca41fdd601a97e59"
+    },
+    {
+      "path": "schemas/other/ABCSupplyPlan.json",
+      "before_sha256": "50ff486b980c14ec2d5b72e32cbabdb757ec12b7c014d2b9dcb16891c5966926",
+      "after_sha256": "ffa23469cf6a8bb661708cd742f2ef0dbc51e9a0204f2a84889409f34c83bb8d"
+    },
+    {
+      "path": "schemas/other/Airlock_Microgateway.json",
+      "before_sha256": "b616a4e32242440893549513b4f353989157c2a39f5374181ccc2f9b9f2052a6",
+      "after_sha256": "e0fe77a6260c1fc6eb79cff5da820095a2945861d53255315b8a53a66909d7f8"
+    },
+    {
+      "path": "schemas/other/Application_Accelerator.json",
+      "before_sha256": "bb6b1c1166094f85c1b2f6a791d9422499bbc99abb163e014e4c9210ca0c14cf",
+      "after_sha256": "b8c3e6544b0021c546bce6114165aa7dd5b2d64945c30fdb34ff0231781a428e"
+    },
+    {
+      "path": "schemas/other/AssemblyScript.json",
+      "before_sha256": "41f76eaba9c3f42615ba27c51f497c2979581fb52476e0b7d26cc67edb762741",
+      "after_sha256": "c320ea306f8d05ce27d6ba033e2ca1640493c2bcb852aea5ca20cf42cfdbde6e"
+    },
+    {
+      "path": "schemas/other/Aurora_Agile_Meta-Framework.json",
+      "before_sha256": "c1f9e37bc741fc627d7090beaef72c7056b8346b3d2132fae7638320d8f5b1f9",
+      "after_sha256": "a37e38a372c478fcf1dd8a85bc7d3aa379cf0e43b854e06cc06903c125b209f4"
+    },
+    {
+      "path": "schemas/other/Avro_Avsc.json",
+      "before_sha256": "d145c23e076dbc5fbed8546b3ab769bfd57971a96aabd56321bd227a2f8357dc",
+      "after_sha256": "09de1dd677eec1e88e02bb0d46719b2cb6faa91c6423e4bd20e3d19312a5a355"
+    },
+    {
+      "path": "schemas/other/apple-app-site-association.json",
+      "before_sha256": "6f0ba55dd673377e8677a9a191623cdcf97f3df4e956e1721689de961b128333",
+      "after_sha256": "a86c875027bdedbaf72c2b6223deca97fc09a7bb875667055e97faca355849a8"
+    },
+    {
+      "path": "schemas/other/appsscript.json.json",
+      "before_sha256": "6566831d0ab035d24fe98f2e2d07638d9e03dd251a4f1f2afa50ab4e4ab97795",
+      "after_sha256": "78ff80e4fd5a87fafbcd11acd548fcbb030d2d7fa553b24898497064d875dbad"
+    },
+    {
+      "path": "schemas/other/appveyor.yml.json",
+      "before_sha256": "91911e3f5b179adc9033da58462578ed993fe8f3566164d5aa37d6dadbc1609f",
+      "after_sha256": "da6c0ec4e3f013d0a080375171ae950f57829715979210b3c7cf493c40cb7789"
+    },
+    {
+      "path": "schemas/other/artifacthub-repo.yml.json",
+      "before_sha256": "d18d326fcaeae3754f54eb5d20e43e0e38039547c92b2aee09eb75c31fee8d83",
+      "after_sha256": "4576f42235a5e31d2739bc96e2fdb46efda0950b1281d6ed989d6a64f00e3dee"
+    },
+    {
+      "path": "schemas/other/factorialdrupal-breakpoints-css.json",
+      "before_sha256": "7a202fa0cf2cfaf81ff20ea4138faf99aa158a9c0c72e6c3c4d4280376a1a892",
+      "after_sha256": "f7f3c7553ca0baaf5ead2629e84b702b761013ef03981f9e0417689bbff6c7c4"
+    },
+    {
+      "path": "schemas/popular/kubernetes-original.json",
+      "before_sha256": "154f831cc5cc4f0ea75847956c72bff108b28cba59cb4673dba6edebbbf937db",
+      "after_sha256": "2c978e68585dbc2c1b39c9e2c3b8d26f869059bc911c22ea9cd3fb891a1fb7ae"
+    },
+    {
+      "path": "schemas/popular/kubernetes.json",
+      "before_sha256": "10e5848bdf1078cb1d6e667e0d14df65f2936bac1a40db15e9de0d98c4e83717",
+      "after_sha256": "eecb6450161820c6ccd9553879de85dfc1be201a91701eb8365ff72e597682e1"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "config": {
+    "HOST": "localhost",
+    "PORT": 8080,
+    "DEBUG": true,
+    "OPTIONAL": null
+  }
+}

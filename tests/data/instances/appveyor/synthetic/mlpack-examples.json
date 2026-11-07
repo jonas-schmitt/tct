@@ -1,0 +1,37 @@
+{
+    "clone_depth": 10,
+    "environment": {
+        "matrix": [
+            {
+                "APPVEYOR_BUILD_WORKER_IMAGE": "Visual Studio 2017",
+                "VSVER": "Visual Studio 15 2017 Win64",
+                "VCPREFIX": "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community",
+                "VCVARS": "VC/Auxiliary/Build/vcvars64.bat"
+            }
+        ]
+    },
+    "configuration": "Release",
+    "os": "Visual Studio 2015",
+    "install": [
+        "- ps: $env:VCVARSALL = \"\\\"$env:VCPREFIX/$env:VCVARS\\\" $Architecture\"",
+        "- call %VCVARSALL%",
+        "- vcpkg install armadillo:x64-windows",
+        "- vcpkg integrate install"
+    ],
+    "build_script": [
+        "- cd %APPVEYOR_BUILD_FOLDER%",
+        "- git clone https://github.com/mlpack/mlpack.git --depth 1",
+        "- cd mlpack",
+        "- mkdir build && cd build",
+        "- cmake configuration steps...",
+        "- cmake build steps..."
+    ],
+    "notifications": {
+        "provider": "Email",
+        "to": ["mlpack-git@lists.mlpack.org"],
+        "on_build_success": false,
+        "on_build_failure": false,
+        "on_build_status_changed": true
+    },
+    "cache": ["c:\\tools\\vcpkg\\installed\\"]
+}

@@ -1,0 +1,9 @@
+{
+  "description": "Test instances for array types",
+  "instances": [
+    {
+      "file": "test1.json",
+      "description": "Mixed arrays with strings and numbers"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "percentage": 75,
+  "rating": 4,
+  "short_string": "hello",
+  "fixed_array": [true, false, true]
+}

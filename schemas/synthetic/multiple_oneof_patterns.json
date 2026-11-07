@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Multiple OneOf Patterns",
+  "description": "Test multiple oneOf patterns like commitlintrc (array/string + string/object)",
+  "type": "object",
+  "properties": {
+    "extends": {
+      "description": "Array of strings or single string",
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "parserPreset": {
+      "description": "String or object with properties",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "parserOpts": {}
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,162 @@
+--- a/github-workflow.json
++++ b/github-workflow.json
+@@ -19,7 +19,14 @@
+         "group": {
+           "$comment": "https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#example-using-concurrency-to-cancel-any-in-progress-job-or-run-1",
+           "description": "When a concurrent job or workflow is queued, if another job or workflow using the same concurrency group in the repository is in progress, the queued job or workflow will be pending. Any previously pending job or workflow in the concurrency group will be canceled.",
+-          "type": "string"
++          "oneOf": [
++            {
++              "type": "string"
++            },
++            {
++              "type": "number"
++            }
++          ]
+         },
+         "cancel-in-progress": {
+           "$comment": "https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#example-using-concurrency-to-cancel-any-in-progress-job-or-run-1",
+@@ -227,12 +234,18 @@
+               },
+               {
+                 "type": "boolean"
++              },
++              {
++                "type": "null"
+               }
+             ]
+           }
+         },
+         {
+           "$ref": "#/definitions/stringContainingExpressionSyntax"
++        },
++        {
++          "type": "null"
+         }
+       ]
+     },
+@@ -317,12 +330,20 @@
+       "pattern": "^.*\\$\\{\\{(.|[\r\n])*\\}\\}.*$"
+     },
+     "globs": {
+-      "type": "array",
+-      "items": {
+-        "type": "string",
+-        "minLength": 1
+-      },
+-      "minItems": 1
++      "oneOf": [
++        {
++          "type": "string",
++          "minLength": 1
++        },
++        {
++          "type": "array",
++          "items": {
++            "type": "string",
++            "minLength": 1
++          },
++          "minItems": 1
++        }
++      ]
+     },
+     "machine": {
+       "type": "string",
+@@ -387,16 +408,7 @@
+     "shell": {
+       "$comment": "https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsshell",
+       "description": "You can override the default shell settings in the runner's operating system using the shell keyword. You can use built-in shell keywords, or you can define a custom set of shell options.",
+-      "anyOf": [
+-        {
+-          "type": "string"
+-        },
+-        {
+-          "$comment": "https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#custom-shell",
+-          "type": "string",
+-          "enum": ["bash", "pwsh", "python", "sh", "cmd", "powershell"]
+-        }
+-      ]
++      "type": "string"
+     },
+     "step": {
+       "type": "object",
+@@ -437,7 +449,14 @@
+         "run": {
+           "$comment": "https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsrun",
+           "description": "Runs command-line programs using the operating system's shell. If you do not provide a name, the step name will default to the text specified in the run command.\nCommands run using non-login shells by default. You can choose a different shell and customize the shell used to run commands. For more information, see https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#using-a-specific-shell.\nEach run keyword represents a new process and shell in the virtual environment. When you provide multi-line commands, each line runs in the same shell.",
+-          "type": "string"
++          "oneOf": [
++            {
++              "type": "string"
++            },
++            {
++              "type": "boolean"
++            }
++          ]
+         },
+         "working-directory": {
+           "$ref": "#/definitions/working-directory"
+@@ -638,7 +657,6 @@
+               "type": ["number", "string"]
+             }
+           },
+-          "required": ["matrix"],
+           "additionalProperties": false
+         },
+         "concurrency": {
+@@ -806,7 +824,6 @@
+               "type": ["number", "string"]
+             }
+           },
+-          "required": ["matrix"],
+           "additionalProperties": false
+         },
+         "continue-on-error": {
+@@ -979,7 +996,22 @@
+           }
+         }
+       ],
+-      "required": ["description"],
++      "additionalProperties": false
++    },
++    "workflowDispatchSecret": {
++      "$comment": "https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_dispatchsecrets",
++      "description": "A secret parameter for workflow_dispatch events. Each secret has a unique identifier and optional description and required fields.",
++      "type": "object",
++      "properties": {
++        "description": {
++          "description": "A string description of the secret parameter.",
++          "type": "string"
++        },
++        "required": {
++          "description": "A boolean to indicate whether the secret must be supplied. Set to true when the parameter is required.",
++          "type": "boolean"
++        }
++      },
+       "additionalProperties": false
+     }
+   },
+@@ -1627,12 +1659,17 @@
+                   "$comment": "https://help.github.com/en/github/automating-your-workflow-with-github-actions/metadata-syntax-for-github-actions#inputs",
+                   "description": "Input parameters allow you to specify data that the action expects to use during runtime. GitHub stores input parameters as environment variables. Input ids with uppercase letters are converted to lowercase during runtime. We recommended using lowercase input ids.",
+                   "type": "object",
+-                  "patternProperties": {
+-                    "^[_a-zA-Z][a-zA-Z0-9_-]*$": {
+-                      "$ref": "#/definitions/workflowDispatchInput"
+-                    }
+-                  },
+-                  "additionalProperties": false
++                  "additionalProperties": {
++                    "$ref": "#/definitions/workflowDispatchInput"
++                  }
++                },
++                "secrets": {
++                  "$comment": "https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_dispatchsecrets",
++                  "description": "Secrets that can be passed to the manually triggered workflow.",
++                  "type": "object",
++                  "additionalProperties": {
++                    "$ref": "#/definitions/workflowDispatchSecret"
++                  }
+                 }
+               },
+               "additionalProperties": false

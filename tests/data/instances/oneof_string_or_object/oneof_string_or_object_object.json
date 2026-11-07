@@ -1,0 +1,7 @@
+{
+  "name": "test-package",
+  "author": {
+    "name": "Jane Smith",
+    "email": "jane@example.com"
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "artifact_type": "sql_schema_linking_fixture_queries_v0",
+  "db_id": "tct_fixture_join",
+  "notes": "Minimal in-repo gold queries for encode/decode and scope-menu tests. Not a Spider corpus pin. Host census data is optional external evidence only. T8 adds WHERE/GROUP/HAVING/ORDER/LIMIT coverage.",
+  "queries": [
+    {
+      "id": "select_one_table",
+      "sql": "SELECT name, city FROM customers",
+      "scope_tables_after_from": [
+        "customers"
+      ]
+    },
+    {
+      "id": "join_two_tables",
+      "sql": "SELECT customers.name, orders.amount FROM customers JOIN orders ON customers.customer_id = orders.customer_id",
+      "scope_tables_after_from": [
+        "customers",
+        "orders"
+      ],
+      "column_menu_must_exclude_tables": [
+        "products"
+      ]
+    },
+    {
+      "id": "star_structural",
+      "sql": "SELECT * FROM products",
+      "scope_tables_after_from": [
+        "products"
+      ],
+      "notes": "Star is structural, not a menu-indexable column name."
+    },
+    {
+      "id": "three_table_join",
+      "sql": "SELECT customers.name, products.title, orders.amount FROM customers JOIN orders ON customers.customer_id = orders.customer_id JOIN products ON products.product_id = orders.product_id",
+      "scope_tables_after_from": [
+        "customers",
+        "orders",
+        "products"
+      ]
+    },
+    {
+      "id": "where_eq_string",
+      "sql": "SELECT name FROM customers WHERE city = 'Springfield'",
+      "scope_tables_after_from": [
+        "customers"
+      ],
+      "notes": "T8 M2: WHERE equality with string literal."
+    },
+    {
+      "id": "where_cmp_and_or",
+      "sql": "SELECT name, city FROM customers WHERE customer_id > 0 AND city = 'Springfield' OR city = 'Shelbyville'",
+      "scope_tables_after_from": [
+        "customers"
+      ],
+      "notes": "T8 M2: comparisons, AND/OR, integer and string literals. Canonical OR-lowest binding."
+    },
+    {
+      "id": "join_with_where",
+      "sql": "SELECT customers.name, orders.amount FROM customers JOIN orders ON customers.customer_id = orders.customer_id WHERE orders.amount >= 100",
+      "scope_tables_after_from": [
+        "customers",
+        "orders"
+      ],
+      "notes": "T8 M2: JOIN + WHERE comparison on scope column."
+    },
+    {
+      "id": "group_order_limit",
+      "sql": "SELECT city FROM customers GROUP BY city ORDER BY city ASC LIMIT 5",
+      "scope_tables_after_from": [
+        "customers"
+      ],
+      "notes": "T8 M3: GROUP BY / ORDER BY / LIMIT (u8 band)."
+    },
+    {
+      "id": "where_group_having_order_limit",
+      "sql": "SELECT city FROM customers WHERE customer_id > 0 GROUP BY city HAVING city = 'Springfield' ORDER BY city DESC LIMIT 10",
+      "scope_tables_after_from": [
+        "customers"
+      ],
+      "notes": "T8 M3: full optional-clause ladder without aggregation (agg is T9)."
+    },
+    {
+      "id": "count_star",
+      "sql": "SELECT COUNT(*) FROM customers",
+      "scope_tables_after_from": [
+        "customers"
+      ],
+      "notes": "T9 M4: COUNT(*) is structural — zero column menu tokens."
+    },
+    {
+      "id": "sum_aggregate",
+      "sql": "SELECT SUM(amount) FROM orders",
+      "scope_tables_after_from": [
+        "orders"
+      ],
+      "notes": "T9 M4: SUM(column) emits one column menu token."
+    },
+    {
+      "id": "select_distinct",
+      "sql": "SELECT DISTINCT city FROM customers",
+      "scope_tables_after_from": [
+        "customers"
+      ],
+      "notes": "T9 M4: DISTINCT marker is structural."
+    },
+    {
+      "id": "scalar_subquery",
+      "sql": "SELECT name FROM customers WHERE customer_id = (SELECT customer_id FROM orders LIMIT 1)",
+      "scope_tables_after_from": [
+        "customers"
+      ],
+      "notes": "T9 M5: uncorrelated scalar subquery opens inner scope root."
+    }
+  ]
+}

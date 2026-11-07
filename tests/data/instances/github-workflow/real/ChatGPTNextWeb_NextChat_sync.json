@@ -1,0 +1,44 @@
+{
+  "name": "Upstream Sync",
+  "permissions": {
+    "contents": "write"
+  },
+  "on": {
+    "schedule": [
+      {
+        "cron": "0 0 * * *"
+      }
+    ],
+    "workflow_dispatch": null
+  },
+  "jobs": {
+    "sync_latest_from_upstream": {
+      "name": "Sync latest commits from upstream repo",
+      "runs-on": "ubuntu-latest",
+      "if": "${{ github.event.repository.fork }}",
+      "steps": [
+        {
+          "name": "Checkout target repo",
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "name": "Sync upstream changes",
+          "id": "sync",
+          "uses": "aormsby/Fork-Sync-With-Upstream-action@v3.4",
+          "with": {
+            "upstream_sync_repo": "ChatGPTNextWeb/ChatGPT-Next-Web",
+            "upstream_sync_branch": "main",
+            "target_sync_branch": "main",
+            "target_repo_token": "${{ secrets.GITHUB_TOKEN }}",
+            "test_mode": false
+          }
+        },
+        {
+          "name": "Sync check",
+          "if": "failure()",
+          "run": "echo \"[Error] \u7531\u4e8e\u4e0a\u6e38\u4ed3\u5e93\u7684 workflow \u6587\u4ef6\u53d8\u66f4\uff0c\u5bfc\u81f4 GitHub \u81ea\u52a8\u6682\u505c\u4e86\u672c\u6b21\u81ea\u52a8\u66f4\u65b0\uff0c\u4f60\u9700\u8981\u624b\u52a8 Sync Fork \u4e00\u6b21\uff0c\u8be6\u7ec6\u6559\u7a0b\u8bf7\u67e5\u770b\uff1ahttps://github.com/Yidadaa/ChatGPT-Next-Web/blob/main/README_CN.md#%E6%89%93%E5%BC%80%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0\"\necho \"[Error] Due to a change in the workflow file of the upstream repository, GitHub has automatically suspended the scheduled automatic update. You need to manually sync your fork. Please refer to the detailed tutorial for instructions: https://github.com/Yidadaa/ChatGPT-Next-Web#enable-automatic-updates\"\nexit 1\n"
+        }
+      ]
+    }
+  }
+}

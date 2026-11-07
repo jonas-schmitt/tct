@@ -1,0 +1,27 @@
+{
+  "name": "Issue Inactivity Reminder",
+  "on": {
+    "schedule": [
+      {
+        "cron": "0 0 * * *"
+      }
+    ]
+  },
+  "permissions": {
+    "issues": "write"
+  },
+  "jobs": {
+    "reminder_job": {
+      "runs-on": "ubuntu-latest",
+      "steps": [
+        {
+          "name": "Send reminders for inactive issues",
+          "uses": "actions/github-script@v8",
+          "with": {
+            "script": "const daysBeforeReminder = 14;\nlet page = 1;\nconst perPage = 100;\n\nconst reminderSignature = \"This issue has been inactive for more than 14 days\";\n\nwhile (true) {\n  try {\n    const { data: issues } = await github.rest.issues.listForRepo({\n      owner: context.repo.owner,\n      repo: context.repo.repo,\n      state: 'open',\n      assignee: '*',\n      per_page: perPage,\n      page: page,\n    });\n\n    if (issues.length === 0) {\n      break;\n    }\n\n    const now = new Date();\n\n    for (const issue of issues) {\n      if (issue.pull_request) continue;\n\n      const updatedAt = new Date(issue.updated_at);\n      const daysInactive = (now - updatedAt) / (1000 * 60 * 60 * 24);\n\n      const { data: timeline } = await github.rest.issues.listEventsForTimeline({\n        owner: context.repo.owner,\n        repo: context.repo.repo,\n        issue_number: issue.number,\n      });\n\n      const hasLinkedPR = timeline.some(event =>\n        event.event === 'connected' || // PR connected via keywords\n        event.event === 'referenced' && event.commit_id // Connected via commit\n      );\n\n      if (daysInactive >= daysBeforeReminder && !hasLinkedPR) {\n        // get issue comments\n        const { data: comments } = await github.rest.issues.listComments({\n          owner: context.repo.owner,\n          repo: context.repo.repo,\n          issue_number: issue.number,\n        });\n\n        // check if reminder has been sent\n        const hasReminder = comments.some(comment =>\n          comment.body.includes(reminderSignature)\n        );\n\n        if (!hasReminder) {\n          const assigneesMentions = issue.assignees\n            .map(user => `@${user.login}`)\n            .join(' ');\n\n          await github.rest.issues.createComment({\n            owner: context.repo.owner,\n            repo: context.repo.repo,\n            issue_number: issue.number,\n            body: `${assigneesMentions} \u8fd9\u4e2a issue \u5df2\u7ecf\u8d85\u8fc7 14 \u5929\u6ca1\u6709\u66f4\u65b0\u6216\u5173\u8054 PR\u3002\u5982\u679c\u60a8\u4ecd\u5728\u5904\u7406\u8fd9\u4e2a issue\uff0c\u8bf7\u66f4\u65b0\u8fdb\u5ea6\uff1b\u5982\u679c\u60a8\u65e0\u6cd5\u7ee7\u7eed\u5904\u7406\uff0c\u8bf7\u8054\u7cfb\u7ef4\u62a4\u8005\u91cd\u65b0\u5206\u914d\u3002\\n\\nThis issue has been inactive for more than 14 days without any updates or linked PR. If you are still working on this issue, please provide a progress update. If you are unable to continue, please contact the maintainers for reassignment.`,\n          });\n        }\n      }\n    }\n\n    page += 1;\n  } catch (error) {\n    console.error(`Error processing page ${page}:`, error);\n    break;\n  }\n}\n"
+          }
+        }
+      ]
+    }
+  }
+}

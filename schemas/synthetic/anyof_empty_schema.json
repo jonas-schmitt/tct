@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AnyOfEmptySchema",
+  "description": "Test schema for anyOf with empty schema variant - empty schema should accept any value",
+  "type": "object",
+  "properties": {
+    "flexible_field": {
+      "description": "Field with anyOf containing empty schema (catch-all) and specific enum",
+      "anyOf": [
+        {},
+        {
+          "type": "string",
+          "enum": ["option1", "option2", "option3"]
+        }
+      ]
+    },
+    "required_field": {
+      "type": "string"
+    }
+  },
+  "required": ["required_field"]
+}

@@ -1,0 +1,5 @@
+{
+  "name": "test-package",
+  "x-custom": "custom-value",
+  "x-another": "another-value"
+}

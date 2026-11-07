@@ -1,0 +1,6 @@
+{
+  "required_field": "has null field",
+  "optional1": "present",
+  "optional3": true,
+  "nullable_optional": null
+}

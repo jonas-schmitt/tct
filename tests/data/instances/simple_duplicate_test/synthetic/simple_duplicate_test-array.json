@@ -1,0 +1,6 @@
+{
+  "name": "test-project-array",
+  "config": {
+    "extends": ["standard", "prettier", "typescript"]
+  }
+}

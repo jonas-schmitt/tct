@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RefWithNullVariant",
+  "description": "Synthetic schema to test $ref to type with null variant (github-workflow pattern)",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "event": {
+      "description": "Field with $ref to type that has oneOf with null - null should be enum variant, not OptionalField",
+      "$ref": "#/definitions/EventRef"
+    }
+  },
+  "required": ["name"],
+  "definitions": {
+    "EventRef": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "branches": {
+              "type": "array",
+              "items": {"type": "string"}
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}

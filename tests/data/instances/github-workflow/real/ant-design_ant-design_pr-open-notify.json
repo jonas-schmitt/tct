@@ -1,0 +1,31 @@
+{
+  "name": "PR Open Notify",
+  "on": {
+    "pull_request_target": {
+      "types": [
+        "opened"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "jobs": {
+    "send-to-dingtalk": {
+      "runs-on": "ubuntu-latest",
+      "steps": [
+        {
+          "name": "send to dingtalk",
+          "uses": "visiky/dingtalk-release-notify@main",
+          "with": {
+            "DING_TALK_TOKEN": "${{ secrets.DINGDING_BOT_TOKEN }}\n${{ secrets.DINGDING_BOT_COLLABORATOR_TOKEN }}\n",
+            "notify_title": "\ud83d\udd25 @${{ github.event.pull_request.user.login }} \u521b\u5efa\u4e86 PR\uff1a${{ github.event.pull_request.title }} ${{ github.event.pull_request.html_url }}",
+            "notify_body": "### \ud83d\udd25 [@${{ github.event.pull_request.user.login }}](https://github.com/${{ github.event.pull_request.user.login }}) \u521b\u5efa\u4e86 PR\uff1a\n[${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})\n<hr />\n",
+            "notify_footer": "> \ud83e\udef5\ud83c\udffb \u5feb\u53bb Review \u5427\uff0c\u793e\u533a\u9700\u8981\u4f60\u7684\u5e2e\u52a9\uff01",
+            "at_all": false
+          }
+        }
+      ]
+    }
+  }
+}

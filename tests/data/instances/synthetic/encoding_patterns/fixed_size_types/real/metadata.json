@@ -1,0 +1,27 @@
+{
+  "description": "Test instances for fixed-size types with predictable token counts",
+  "instances": [
+    {
+      "file": "test1.json",
+      "description": "Standard values",
+      "expected_tokens": {
+        "enabled": 1,
+        "count": 2,
+        "score": 2,
+        "status": 1,
+        "total": 6
+      }
+    },
+    {
+      "file": "test2.json",
+      "description": "Edge case values (false, negative, zero)",
+      "expected_tokens": {
+        "enabled": 1,
+        "count": 2,
+        "score": 2,
+        "status": 1,
+        "total": 6
+      }
+    }
+  ]
+}

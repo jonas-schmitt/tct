@@ -1,0 +1,312 @@
+{
+  "artifact_kind": "tct_go_syntax_metadata_v0",
+  "version": 0,
+  "source": {
+    "path": "tests/fixtures/go_syntax_sources/minimal/main.go",
+    "sha256": "f0a87ff5993e610218e870cf01576c90d2779efd4278c56db68678ef30a63b78"
+  },
+  "parser": {
+    "tool": "go",
+    "version": "go1.24.3",
+    "package": "go/parser",
+    "package_version": "go1.24.3"
+  },
+  "rules": [
+    {
+      "name": "File",
+      "node_kind": "File",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "package_identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "Decls",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "GenDecl",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "FuncDecl",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GenDecl",
+      "node_kind": "GenDecl",
+      "fields": [
+        {
+          "name": "Tok",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "import_keyword",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "Specs",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "ImportSpec",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ImportSpec",
+      "node_kind": "ImportSpec",
+      "fields": [
+        {
+          "name": "Path",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "string_literal",
+              "terminal": "string_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FuncDecl",
+      "node_kind": "FuncDecl",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "Type",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FuncType",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Body",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BlockStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FuncType",
+      "node_kind": "FuncType",
+      "fields": [
+        {
+          "name": "Params",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FieldList",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Results",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FieldList",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FieldList",
+      "node_kind": "FieldList",
+      "fields": [
+        {
+          "name": "List",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Field",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Field",
+      "node_kind": "Field",
+      "fields": [
+        {
+          "name": "Names",
+          "required": false,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Type",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BlockStmt",
+      "node_kind": "BlockStmt",
+      "fields": [
+        {
+          "name": "List",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "ReturnStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ReturnStmt",
+      "node_kind": "ReturnStmt",
+      "fields": [
+        {
+          "name": "Results",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "CallExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CallExpr",
+      "node_kind": "CallExpr",
+      "fields": [
+        {
+          "name": "Fun",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "SelectorExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Args",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SelectorExpr",
+      "node_kind": "SelectorExpr",
+      "fields": [
+        {
+          "name": "X",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Sel",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ident",
+      "node_kind": "Ident",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

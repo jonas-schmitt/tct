@@ -1,0 +1,47 @@
+{
+  "artifact_kind": "tct_csharp_syntax_token_layout_pin",
+  "version": 1,
+  "note": "Absolute pin of csharp_syntax_token_layout ranges, pad, vocab, and fixed role offsets. C# stays on the expanded stream contract (raw-syntax-stream-expanded-v1); Go canonical streams use elided-v1 — do not confuse the two. This is a token-layout pin, not a tree-sitter grammar pin: TODO.md \"No new pin\" forbids new tree-sitter language/grammar pins, not locking the C# structural layout against silent renumber. Alternative node_start IDs remain alphabetical per C# grammar sidecar (no global inventory table like Go). Updating this fixture is a tct-token-diff breaking_change for downstream raw-token corpora and BPE artifacts and must not be done merely to make a refactor pass.",
+  "current": {
+    "token_layout": {
+      "layout_id": "csharp-syntax-token-layout-v1",
+      "layout_version": 1,
+      "stream_contract": "raw-syntax-stream-expanded-v1",
+      "vocab_size": 577,
+      "pad_token": 576,
+      "ranges": [
+        {
+          "id": "csharp.structural_tokens",
+          "role": "structural_decisions",
+          "start": 0,
+          "end_exclusive": 64
+        },
+        {
+          "id": "csharp.utf8_byte_payload",
+          "role": "utf8_byte_payload",
+          "start": 64,
+          "end_exclusive": 320
+        },
+        {
+          "id": "csharp.u8_integer_payload",
+          "role": "u8_integer_payload",
+          "start": 320,
+          "end_exclusive": 576
+        }
+      ],
+      "role_offsets": {
+        "boolean_false": 8,
+        "boolean_true": 9,
+        "field_end": 3,
+        "field_missing": 4,
+        "field_start": 2,
+        "node_end": 1,
+        "node_start": 0,
+        "payload_end": 7,
+        "repeated_empty": 5,
+        "terminal": 6
+      },
+      "alternative_node_start_tokens": {}
+    }
+  }
+}

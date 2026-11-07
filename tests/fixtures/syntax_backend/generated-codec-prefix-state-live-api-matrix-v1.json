@@ -1,0 +1,1567 @@
+{
+  "artifact_kind": "tct_syntax_generated_codec_prefix_state_live_api_matrix_v1",
+  "version": 1,
+  "tool": "syntax_generated_codec_prefix_state_live_api_matrix",
+  "status": "generated_codec_prefix_state_live_api_matrix_ready",
+  "source_route_gate": {
+    "artifact_kind": "tct_syntax_generated_codec_state_api_route_gate_v1",
+    "fixture_path": "tests/fixtures/syntax_backend/generated-codec-state-api-route-gate-v1.json",
+    "completed_promotion_class": "syntax backend generated-codec state API route gate",
+    "next_missing_stable_promotion_class": "Build Go Source-Record Raw-Token Generator Core",
+    "response_evidence_fixture": "tests/fixtures/syntax_backend/generated-codec-state-api-route-gate-v1.json",
+    "response_evidence_record_count": 10,
+    "response_evidence_raw_prefix_response_count": 40
+  },
+  "live_api_contract": {
+    "matrix_id": "route-owned-prefix-state-continuation-live-api-matrix-v1",
+    "target_ids": [
+      "csharp",
+      "go"
+    ],
+    "selected_record_count": 10,
+    "selected_raw_prefix_response_count": 40,
+    "selected_bpe_replay_response_count": 12,
+    "request_fields": [
+      "target",
+      "record_id",
+      "raw_prefix_token_count",
+      "raw_prefix_token_ids_sha256",
+      "prefix_state_case_id"
+    ],
+    "response_fields": [
+      "raw_prefix_token_ids",
+      "consumed_raw_tokens",
+      "prefix_status",
+      "eof_valid",
+      "finite_admissible_raw_token_ids",
+      "payload_token_ranges",
+      "bpe_raw_expansion_first_failure_diagnostic"
+    ],
+    "generated_codec_prefix_state_api_surface": "src/syntax_generated_codec.rs::generated_codec_prefix_state_api_metadata",
+    "target_neutral_state_api_authority": "target-neutral raw transition API",
+    "route_owned_response_evidence_consumed": true,
+    "csharp_generated_codec_live_api_available": true,
+    "go_source_instance_live_api_route_blocked": false,
+    "go_source_instance_live_api_route_blocker": null,
+    "live_generated_codec_api_available_record_count": 10,
+    "live_generated_codec_api_blocked_record_count": 0,
+    "bpe_first_failure_diagnostics_preserved": true,
+    "bpe_ids_used_as_syntax_validity_authority": false,
+    "bpe_layer_defines_validity": false,
+    "source_program_validity_claim_allowed": false,
+    "stable_backend_promotion_allowed": false
+  },
+  "records": [
+    {
+      "target": "go",
+      "record_id": "tests/fixtures/go_syntax_corpus/src/os/dir_unix.go",
+      "generated_codec": "go_os_dir_unix_source_file_syntax_v0",
+      "generated_codec_prefix_state_api_available": true,
+      "generated_codec_prefix_state_api_metadata": {
+        "generated_codec": "go_os_dir_unix_source_file_syntax_v0",
+        "metadata_source": "src/syntax_generated_codec.rs::generated_codec_prefix_state_api_metadata",
+        "api_name": "target_neutral_go_source_instance_prefix_state_continuation_contract",
+        "api_version": 1,
+        "api_scope": "strict_decode_eof_prefix_state_v1",
+        "strict_decode_function": "target_neutral_go_source_instance_strict_decode",
+        "live_prefix_rule_source": "target_neutral_raw_transition_prefix_state_boundary"
+      },
+      "live_api_status": "live_generated_codec_prefix_state_api_available",
+      "route_response_evidence": {
+        "target": "go",
+        "record_id": "tests/fixtures/go_syntax_corpus/src/os/dir_unix.go",
+        "raw_token_count": 9081,
+        "raw_token_ids_sha256": "4c2c704de7c280433b602138aaa24193488b07ffd641d0cde3109d037696ed7d",
+        "request_count": 4,
+        "response_count": 4,
+        "responses": [
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/os/dir_unix.go",
+            "prefix_state_case_id": "empty_prefix",
+            "raw_prefix_token_count": 0,
+            "raw_prefix_token_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "consumed_raw_tokens": 0,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [
+              0
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false,
+            "raw_prefix_token_ids": []
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/os/dir_unix.go",
+            "prefix_state_case_id": "after_file_decls_field_start",
+            "raw_prefix_token_count": 12,
+            "raw_prefix_token_ids_sha256": "1dde08ed89fdf52dbebffbedfbe540d0507d43307d708ddf6a9c41855225b978",
+            "consumed_raw_tokens": 12,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "File",
+            "active_field": "Decls",
+            "finite_admissible_raw_token_ids": [
+              23,
+              25
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false,
+            "raw_prefix_token_ids": [
+              0,
+              2,
+              0,
+              2,
+              6,
+              175,
+              179,
+              7,
+              3,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/os/dir_unix.go",
+            "prefix_state_case_id": "inside_first_terminal_payload_after_one_byte",
+            "raw_prefix_token_count": 6,
+            "raw_prefix_token_ids_sha256": "64df0b4a654375da9330bf6acd2996c4b539d8dd7dc615e22920f5d0179e9201",
+            "consumed_raw_tokens": 6,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "Ident",
+            "active_field": "Name",
+            "finite_admissible_raw_token_ids": [
+              7
+            ],
+            "payload_token_ranges": [
+              {
+                "id": "go.utf8_byte_payload",
+                "role": "utf8_byte_payload",
+                "start": 64,
+                "end_exclusive": 320
+              }
+            ],
+            "payload_end_admissible": true,
+            "raw_prefix_token_ids": [
+              0,
+              2,
+              0,
+              2,
+              6,
+              175
+            ]
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/os/dir_unix.go",
+            "prefix_state_case_id": "complete_stream",
+            "raw_prefix_token_count": 9081,
+            "raw_prefix_token_ids_sha256": "4c2c704de7c280433b602138aaa24193488b07ffd641d0cde3109d037696ed7d",
+            "consumed_raw_tokens": 9081,
+            "prefix_status": "complete",
+            "eof_valid": true,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          }
+        ],
+        "finite_admissible_response_count": 3,
+        "payload_range_response_count": 1,
+        "eof_validity_response_count": 1,
+        "bpe_raw_expansion_responses": [
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/os/dir_unix.go",
+            "case_id": "go_file_decls_two_token_raw_expansion_accepts",
+            "expanded_raw_token_count": 2,
+            "accepted_raw_token_count": 2,
+            "accepted": true,
+            "final_prefix_status": "partial",
+            "final_eof_valid": false,
+            "first_failure_transition_case_id": null,
+            "first_failure_error_kind": null,
+            "bpe_raw_expansion_first_failure_diagnostic": null
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/os/dir_unix.go",
+            "case_id": "go_file_decls_two_token_raw_expansion_reports_first_failure",
+            "expanded_raw_token_count": 2,
+            "accepted_raw_token_count": 1,
+            "accepted": false,
+            "final_prefix_status": "partial",
+            "final_eof_valid": false,
+            "first_failure_transition_case_id": "file_decls_after_actual_alternative_pad_token_is_rejected",
+            "first_failure_error_kind": "pad_token_in_raw_stream",
+            "bpe_raw_expansion_first_failure_diagnostic": "PAD_TOKEN 576 appears at raw offset 13"
+          }
+        ],
+        "bpe_raw_expansion_replay_case_count": 2,
+        "bpe_raw_expansion_accepted_case_count": 1,
+        "bpe_raw_expansion_first_failure_case_count": 1,
+        "bpe_first_failure_diagnostic_count": 1,
+        "validity_authority": "target-neutral raw transition API",
+        "bpe_layer_defines_validity": false,
+        "bpe_ids_used_as_syntax_validity_authority": false
+      },
+      "next_missing_generated_codec_live_api_work": null
+    },
+    {
+      "target": "go",
+      "record_id": "tests/fixtures/go_syntax_corpus/src/net/rpc/client.go",
+      "generated_codec": "go_net_rpc_client_source_file_syntax_v0",
+      "generated_codec_prefix_state_api_available": true,
+      "generated_codec_prefix_state_api_metadata": {
+        "generated_codec": "go_net_rpc_client_source_file_syntax_v0",
+        "metadata_source": "src/syntax_generated_codec.rs::generated_codec_prefix_state_api_metadata",
+        "api_name": "target_neutral_go_source_instance_prefix_state_continuation_contract",
+        "api_version": 1,
+        "api_scope": "strict_decode_eof_prefix_state_v1",
+        "strict_decode_function": "target_neutral_go_source_instance_strict_decode",
+        "live_prefix_rule_source": "target_neutral_raw_transition_prefix_state_boundary"
+      },
+      "live_api_status": "live_generated_codec_prefix_state_api_available",
+      "route_response_evidence": {
+        "target": "go",
+        "record_id": "tests/fixtures/go_syntax_corpus/src/net/rpc/client.go",
+        "raw_token_count": 18750,
+        "raw_token_ids_sha256": "b8663d83b232aea257beeb7cbc200e5e5e5a4bbd2970716ca71908b2473e264a",
+        "request_count": 4,
+        "response_count": 4,
+        "responses": [
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/net/rpc/client.go",
+            "prefix_state_case_id": "empty_prefix",
+            "raw_prefix_token_count": 0,
+            "raw_prefix_token_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "consumed_raw_tokens": 0,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [
+              0
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false,
+            "raw_prefix_token_ids": []
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/net/rpc/client.go",
+            "prefix_state_case_id": "after_file_decls_field_start",
+            "raw_prefix_token_count": 13,
+            "raw_prefix_token_ids_sha256": "90313e58f01e2881ab73eaf4ec02637ab4eac8ce3c3d2f1dcb817c5ee13f4d9a",
+            "consumed_raw_tokens": 13,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "File",
+            "active_field": "Decls",
+            "finite_admissible_raw_token_ids": [
+              23,
+              25
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false,
+            "raw_prefix_token_ids": [
+              0,
+              2,
+              0,
+              2,
+              6,
+              178,
+              176,
+              163,
+              7,
+              3,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/net/rpc/client.go",
+            "prefix_state_case_id": "inside_first_terminal_payload_after_one_byte",
+            "raw_prefix_token_count": 6,
+            "raw_prefix_token_ids_sha256": "e79d7f9f45bfd51d974d6b8fd16174e9aa0303530e92e7579f0dfea9ea5a701f",
+            "consumed_raw_tokens": 6,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "Ident",
+            "active_field": "Name",
+            "finite_admissible_raw_token_ids": [
+              7
+            ],
+            "payload_token_ranges": [
+              {
+                "id": "go.utf8_byte_payload",
+                "role": "utf8_byte_payload",
+                "start": 64,
+                "end_exclusive": 320
+              }
+            ],
+            "payload_end_admissible": true,
+            "raw_prefix_token_ids": [
+              0,
+              2,
+              0,
+              2,
+              6,
+              178
+            ]
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/net/rpc/client.go",
+            "prefix_state_case_id": "complete_stream",
+            "raw_prefix_token_count": 18750,
+            "raw_prefix_token_ids_sha256": "b8663d83b232aea257beeb7cbc200e5e5e5a4bbd2970716ca71908b2473e264a",
+            "consumed_raw_tokens": 18750,
+            "prefix_status": "complete",
+            "eof_valid": true,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          }
+        ],
+        "finite_admissible_response_count": 3,
+        "payload_range_response_count": 1,
+        "eof_validity_response_count": 1,
+        "bpe_raw_expansion_responses": [
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/net/rpc/client.go",
+            "case_id": "go_file_decls_two_token_raw_expansion_accepts",
+            "expanded_raw_token_count": 2,
+            "accepted_raw_token_count": 2,
+            "accepted": true,
+            "final_prefix_status": "partial",
+            "final_eof_valid": false,
+            "first_failure_transition_case_id": null,
+            "first_failure_error_kind": null,
+            "bpe_raw_expansion_first_failure_diagnostic": null
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/net/rpc/client.go",
+            "case_id": "go_file_decls_two_token_raw_expansion_reports_first_failure",
+            "expanded_raw_token_count": 2,
+            "accepted_raw_token_count": 1,
+            "accepted": false,
+            "final_prefix_status": "partial",
+            "final_eof_valid": false,
+            "first_failure_transition_case_id": "file_decls_after_actual_alternative_pad_token_is_rejected",
+            "first_failure_error_kind": "pad_token_in_raw_stream",
+            "bpe_raw_expansion_first_failure_diagnostic": "PAD_TOKEN 576 appears at raw offset 14"
+          }
+        ],
+        "bpe_raw_expansion_replay_case_count": 2,
+        "bpe_raw_expansion_accepted_case_count": 1,
+        "bpe_raw_expansion_first_failure_case_count": 1,
+        "bpe_first_failure_diagnostic_count": 1,
+        "validity_authority": "target-neutral raw transition API",
+        "bpe_layer_defines_validity": false,
+        "bpe_ids_used_as_syntax_validity_authority": false
+      },
+      "next_missing_generated_codec_live_api_work": null
+    },
+    {
+      "target": "go",
+      "record_id": "tests/fixtures/go_syntax_corpus/src/internal/coverage/cfile/testsupport.go",
+      "generated_codec": "go_internal_coverage_cfile_testsupport_source_file_syntax_v0",
+      "generated_codec_prefix_state_api_available": true,
+      "generated_codec_prefix_state_api_metadata": {
+        "generated_codec": "go_internal_coverage_cfile_testsupport_source_file_syntax_v0",
+        "metadata_source": "src/syntax_generated_codec.rs::generated_codec_prefix_state_api_metadata",
+        "api_name": "target_neutral_go_source_instance_prefix_state_continuation_contract",
+        "api_version": 1,
+        "api_scope": "strict_decode_eof_prefix_state_v1",
+        "strict_decode_function": "target_neutral_go_source_instance_strict_decode",
+        "live_prefix_rule_source": "target_neutral_raw_transition_prefix_state_boundary"
+      },
+      "live_api_status": "live_generated_codec_prefix_state_api_available",
+      "route_response_evidence": {
+        "target": "go",
+        "record_id": "tests/fixtures/go_syntax_corpus/src/internal/coverage/cfile/testsupport.go",
+        "raw_token_count": 16493,
+        "raw_token_ids_sha256": "94554fb4e6278b3156489d8e38f26392733a4f69c31666d767630e18ba999b15",
+        "request_count": 4,
+        "response_count": 4,
+        "responses": [
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/internal/coverage/cfile/testsupport.go",
+            "prefix_state_case_id": "empty_prefix",
+            "raw_prefix_token_count": 0,
+            "raw_prefix_token_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "consumed_raw_tokens": 0,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [
+              0
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false,
+            "raw_prefix_token_ids": []
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/internal/coverage/cfile/testsupport.go",
+            "prefix_state_case_id": "after_file_decls_field_start",
+            "raw_prefix_token_count": 15,
+            "raw_prefix_token_ids_sha256": "c37c55632dd5fe9268266f8d0013c0a346b69d53616639dfb8fe5c9c7bc99fe1",
+            "consumed_raw_tokens": 15,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "File",
+            "active_field": "Decls",
+            "finite_admissible_raw_token_ids": [
+              21,
+              23
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false,
+            "raw_prefix_token_ids": [
+              0,
+              2,
+              0,
+              2,
+              6,
+              163,
+              166,
+              169,
+              172,
+              165,
+              7,
+              3,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/internal/coverage/cfile/testsupport.go",
+            "prefix_state_case_id": "inside_first_terminal_payload_after_one_byte",
+            "raw_prefix_token_count": 6,
+            "raw_prefix_token_ids_sha256": "abb5ea1f2ee3be3e62e2852c83a05c473c4ea0ff7754e14748d67663c4d41df0",
+            "consumed_raw_tokens": 6,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "Ident",
+            "active_field": "Name",
+            "finite_admissible_raw_token_ids": [
+              7
+            ],
+            "payload_token_ranges": [
+              {
+                "id": "go.utf8_byte_payload",
+                "role": "utf8_byte_payload",
+                "start": 64,
+                "end_exclusive": 320
+              }
+            ],
+            "payload_end_admissible": true,
+            "raw_prefix_token_ids": [
+              0,
+              2,
+              0,
+              2,
+              6,
+              163
+            ]
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/internal/coverage/cfile/testsupport.go",
+            "prefix_state_case_id": "complete_stream",
+            "raw_prefix_token_count": 16493,
+            "raw_prefix_token_ids_sha256": "94554fb4e6278b3156489d8e38f26392733a4f69c31666d767630e18ba999b15",
+            "consumed_raw_tokens": 16493,
+            "prefix_status": "complete",
+            "eof_valid": true,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          }
+        ],
+        "finite_admissible_response_count": 3,
+        "payload_range_response_count": 1,
+        "eof_validity_response_count": 1,
+        "bpe_raw_expansion_responses": [
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/internal/coverage/cfile/testsupport.go",
+            "case_id": "go_file_decls_two_token_raw_expansion_accepts",
+            "expanded_raw_token_count": 2,
+            "accepted_raw_token_count": 2,
+            "accepted": true,
+            "final_prefix_status": "partial",
+            "final_eof_valid": false,
+            "first_failure_transition_case_id": null,
+            "first_failure_error_kind": null,
+            "bpe_raw_expansion_first_failure_diagnostic": null
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/internal/coverage/cfile/testsupport.go",
+            "case_id": "go_file_decls_two_token_raw_expansion_reports_first_failure",
+            "expanded_raw_token_count": 2,
+            "accepted_raw_token_count": 1,
+            "accepted": false,
+            "final_prefix_status": "partial",
+            "final_eof_valid": false,
+            "first_failure_transition_case_id": "file_decls_after_actual_alternative_pad_token_is_rejected",
+            "first_failure_error_kind": "pad_token_in_raw_stream",
+            "bpe_raw_expansion_first_failure_diagnostic": "PAD_TOKEN 576 appears at raw offset 16"
+          }
+        ],
+        "bpe_raw_expansion_replay_case_count": 2,
+        "bpe_raw_expansion_accepted_case_count": 1,
+        "bpe_raw_expansion_first_failure_case_count": 1,
+        "bpe_first_failure_diagnostic_count": 1,
+        "validity_authority": "target-neutral raw transition API",
+        "bpe_layer_defines_validity": false,
+        "bpe_ids_used_as_syntax_validity_authority": false
+      },
+      "next_missing_generated_codec_live_api_work": null
+    },
+    {
+      "target": "go",
+      "record_id": "tests/fixtures/go_syntax_corpus/src/net/ipsock_plan9.go",
+      "generated_codec": "go_net_ipsock_plan9_source_file_syntax_v0",
+      "generated_codec_prefix_state_api_available": true,
+      "generated_codec_prefix_state_api_metadata": {
+        "generated_codec": "go_net_ipsock_plan9_source_file_syntax_v0",
+        "metadata_source": "src/syntax_generated_codec.rs::generated_codec_prefix_state_api_metadata",
+        "api_name": "target_neutral_go_source_instance_prefix_state_continuation_contract",
+        "api_version": 1,
+        "api_scope": "strict_decode_eof_prefix_state_v1",
+        "strict_decode_function": "target_neutral_go_source_instance_strict_decode",
+        "live_prefix_rule_source": "target_neutral_raw_transition_prefix_state_boundary"
+      },
+      "live_api_status": "live_generated_codec_prefix_state_api_available",
+      "route_response_evidence": {
+        "target": "go",
+        "record_id": "tests/fixtures/go_syntax_corpus/src/net/ipsock_plan9.go",
+        "raw_token_count": 16851,
+        "raw_token_ids_sha256": "5b11845930a909228956535807ba22fcd687a490de679cf2c0c032e94449afdb",
+        "request_count": 4,
+        "response_count": 4,
+        "responses": [
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/net/ipsock_plan9.go",
+            "prefix_state_case_id": "empty_prefix",
+            "raw_prefix_token_count": 0,
+            "raw_prefix_token_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "consumed_raw_tokens": 0,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [
+              0
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false,
+            "raw_prefix_token_ids": []
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/net/ipsock_plan9.go",
+            "prefix_state_case_id": "after_file_decls_field_start",
+            "raw_prefix_token_count": 13,
+            "raw_prefix_token_ids_sha256": "1d02e9a95172f96bf65e24ec36efaa16b58c8ee662837beff079f39c0ab00df1",
+            "consumed_raw_tokens": 13,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "File",
+            "active_field": "Decls",
+            "finite_admissible_raw_token_ids": [
+              24,
+              26
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false,
+            "raw_prefix_token_ids": [
+              0,
+              2,
+              0,
+              2,
+              6,
+              174,
+              165,
+              180,
+              7,
+              3,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/net/ipsock_plan9.go",
+            "prefix_state_case_id": "inside_first_terminal_payload_after_one_byte",
+            "raw_prefix_token_count": 6,
+            "raw_prefix_token_ids_sha256": "2f5e151ab2635ea52271871beb38b4f2929971f0fe51e3099850e204af5f8c5d",
+            "consumed_raw_tokens": 6,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "Ident",
+            "active_field": "Name",
+            "finite_admissible_raw_token_ids": [
+              7
+            ],
+            "payload_token_ranges": [
+              {
+                "id": "go.utf8_byte_payload",
+                "role": "utf8_byte_payload",
+                "start": 64,
+                "end_exclusive": 320
+              }
+            ],
+            "payload_end_admissible": true,
+            "raw_prefix_token_ids": [
+              0,
+              2,
+              0,
+              2,
+              6,
+              174
+            ]
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/net/ipsock_plan9.go",
+            "prefix_state_case_id": "complete_stream",
+            "raw_prefix_token_count": 16851,
+            "raw_prefix_token_ids_sha256": "5b11845930a909228956535807ba22fcd687a490de679cf2c0c032e94449afdb",
+            "consumed_raw_tokens": 16851,
+            "prefix_status": "complete",
+            "eof_valid": true,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          }
+        ],
+        "finite_admissible_response_count": 3,
+        "payload_range_response_count": 1,
+        "eof_validity_response_count": 1,
+        "bpe_raw_expansion_responses": [
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/net/ipsock_plan9.go",
+            "case_id": "go_file_decls_two_token_raw_expansion_accepts",
+            "expanded_raw_token_count": 2,
+            "accepted_raw_token_count": 2,
+            "accepted": true,
+            "final_prefix_status": "partial",
+            "final_eof_valid": false,
+            "first_failure_transition_case_id": null,
+            "first_failure_error_kind": null,
+            "bpe_raw_expansion_first_failure_diagnostic": null
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/net/ipsock_plan9.go",
+            "case_id": "go_file_decls_two_token_raw_expansion_reports_first_failure",
+            "expanded_raw_token_count": 2,
+            "accepted_raw_token_count": 1,
+            "accepted": false,
+            "final_prefix_status": "partial",
+            "final_eof_valid": false,
+            "first_failure_transition_case_id": "file_decls_after_actual_alternative_pad_token_is_rejected",
+            "first_failure_error_kind": "pad_token_in_raw_stream",
+            "bpe_raw_expansion_first_failure_diagnostic": "PAD_TOKEN 576 appears at raw offset 14"
+          }
+        ],
+        "bpe_raw_expansion_replay_case_count": 2,
+        "bpe_raw_expansion_accepted_case_count": 1,
+        "bpe_raw_expansion_first_failure_case_count": 1,
+        "bpe_first_failure_diagnostic_count": 1,
+        "validity_authority": "target-neutral raw transition API",
+        "bpe_layer_defines_validity": false,
+        "bpe_ids_used_as_syntax_validity_authority": false
+      },
+      "next_missing_generated_codec_live_api_work": null
+    },
+    {
+      "target": "go",
+      "record_id": "tests/fixtures/go_syntax_corpus/src/go/ast/commentmap.go",
+      "generated_codec": "go_go_ast_commentmap_source_file_syntax_v0",
+      "generated_codec_prefix_state_api_available": true,
+      "generated_codec_prefix_state_api_metadata": {
+        "generated_codec": "go_go_ast_commentmap_source_file_syntax_v0",
+        "metadata_source": "src/syntax_generated_codec.rs::generated_codec_prefix_state_api_metadata",
+        "api_name": "target_neutral_go_source_instance_prefix_state_continuation_contract",
+        "api_version": 1,
+        "api_scope": "strict_decode_eof_prefix_state_v1",
+        "strict_decode_function": "target_neutral_go_source_instance_strict_decode",
+        "live_prefix_rule_source": "target_neutral_raw_transition_prefix_state_boundary"
+      },
+      "live_api_status": "live_generated_codec_prefix_state_api_available",
+      "route_response_evidence": {
+        "target": "go",
+        "record_id": "tests/fixtures/go_syntax_corpus/src/go/ast/commentmap.go",
+        "raw_token_count": 18370,
+        "raw_token_ids_sha256": "7f036e7742a62512c94fac9086c5274bda393fc91e5e526e7a671c8a1992db6a",
+        "request_count": 4,
+        "response_count": 4,
+        "responses": [
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/go/ast/commentmap.go",
+            "prefix_state_case_id": "empty_prefix",
+            "raw_prefix_token_count": 0,
+            "raw_prefix_token_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "consumed_raw_tokens": 0,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [
+              0
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false,
+            "raw_prefix_token_ids": []
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/go/ast/commentmap.go",
+            "prefix_state_case_id": "after_file_decls_field_start",
+            "raw_prefix_token_count": 13,
+            "raw_prefix_token_ids_sha256": "66d74388bd2a30f4653747cc9ad008d36aaea275df40134c5f4f221a62b9c789",
+            "consumed_raw_tokens": 13,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "File",
+            "active_field": "Decls",
+            "finite_admissible_raw_token_ids": [
+              21,
+              23
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false,
+            "raw_prefix_token_ids": [
+              0,
+              2,
+              0,
+              2,
+              6,
+              161,
+              179,
+              180,
+              7,
+              3,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/go/ast/commentmap.go",
+            "prefix_state_case_id": "inside_first_terminal_payload_after_one_byte",
+            "raw_prefix_token_count": 6,
+            "raw_prefix_token_ids_sha256": "fb09822bcb5b3bda034d7d72584644f7cefe6ef0e3ddcb48d7b209e4b5f68e61",
+            "consumed_raw_tokens": 6,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "Ident",
+            "active_field": "Name",
+            "finite_admissible_raw_token_ids": [
+              7
+            ],
+            "payload_token_ranges": [
+              {
+                "id": "go.utf8_byte_payload",
+                "role": "utf8_byte_payload",
+                "start": 64,
+                "end_exclusive": 320
+              }
+            ],
+            "payload_end_admissible": true,
+            "raw_prefix_token_ids": [
+              0,
+              2,
+              0,
+              2,
+              6,
+              161
+            ]
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/go/ast/commentmap.go",
+            "prefix_state_case_id": "complete_stream",
+            "raw_prefix_token_count": 18370,
+            "raw_prefix_token_ids_sha256": "7f036e7742a62512c94fac9086c5274bda393fc91e5e526e7a671c8a1992db6a",
+            "consumed_raw_tokens": 18370,
+            "prefix_status": "complete",
+            "eof_valid": true,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          }
+        ],
+        "finite_admissible_response_count": 3,
+        "payload_range_response_count": 1,
+        "eof_validity_response_count": 1,
+        "bpe_raw_expansion_responses": [
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/go/ast/commentmap.go",
+            "case_id": "go_file_decls_two_token_raw_expansion_accepts",
+            "expanded_raw_token_count": 2,
+            "accepted_raw_token_count": 2,
+            "accepted": true,
+            "final_prefix_status": "partial",
+            "final_eof_valid": false,
+            "first_failure_transition_case_id": null,
+            "first_failure_error_kind": null,
+            "bpe_raw_expansion_first_failure_diagnostic": null
+          },
+          {
+            "target": "go",
+            "record_id": "tests/fixtures/go_syntax_corpus/src/go/ast/commentmap.go",
+            "case_id": "go_file_decls_two_token_raw_expansion_reports_first_failure",
+            "expanded_raw_token_count": 2,
+            "accepted_raw_token_count": 1,
+            "accepted": false,
+            "final_prefix_status": "partial",
+            "final_eof_valid": false,
+            "first_failure_transition_case_id": "file_decls_after_actual_alternative_pad_token_is_rejected",
+            "first_failure_error_kind": "pad_token_in_raw_stream",
+            "bpe_raw_expansion_first_failure_diagnostic": "PAD_TOKEN 576 appears at raw offset 14"
+          }
+        ],
+        "bpe_raw_expansion_replay_case_count": 2,
+        "bpe_raw_expansion_accepted_case_count": 1,
+        "bpe_raw_expansion_first_failure_case_count": 1,
+        "bpe_first_failure_diagnostic_count": 1,
+        "validity_authority": "target-neutral raw transition API",
+        "bpe_layer_defines_validity": false,
+        "bpe_ids_used_as_syntax_validity_authority": false
+      },
+      "next_missing_generated_codec_live_api_work": null
+    },
+    {
+      "target": "csharp",
+      "record_id": "pattern-matching/Shapes.cs",
+      "generated_codec": "csharp_compilation_unit_source_file_syntax_v0",
+      "generated_codec_prefix_state_api_available": true,
+      "generated_codec_prefix_state_api_metadata": {
+        "generated_codec": "csharp_compilation_unit_source_file_syntax_v0",
+        "metadata_source": "src/syntax_generated_codec.rs::generated_codec_prefix_state_api_metadata",
+        "api_name": "decode_compilation_unit_source_file_prefix_state",
+        "api_version": 1,
+        "api_scope": "strict_decode_eof_prefix_state_v1",
+        "strict_decode_function": "decode_compilation_unit_source_file",
+        "live_prefix_rule_source": "strict_decode_unexpected_eof_at_consumed_prefix_boundary"
+      },
+      "live_api_status": "live_generated_codec_prefix_state_api_available",
+      "route_response_evidence": {
+        "target": "csharp",
+        "record_id": "pattern-matching/Shapes.cs",
+        "raw_token_count": 77,
+        "raw_token_ids_sha256": "cae34d62459a270433b79992ffa9451ecc7819eead9c159e1c628c19598891ab",
+        "request_count": 4,
+        "response_count": 4,
+        "responses": [
+          {
+            "target": "csharp",
+            "record_id": "pattern-matching/Shapes.cs",
+            "prefix_state_case_id": "csharp_pattern_matching_shapes_cs_empty_prefix",
+            "raw_prefix_token_count": 0,
+            "raw_prefix_token_ids": [],
+            "raw_prefix_token_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "consumed_raw_tokens": 0,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [
+              0
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          },
+          {
+            "target": "csharp",
+            "record_id": "pattern-matching/Shapes.cs",
+            "prefix_state_case_id": "csharp_pattern_matching_shapes_cs_after_first_field_start",
+            "raw_prefix_token_count": 2,
+            "raw_prefix_token_ids": [
+              0,
+              2
+            ],
+            "raw_prefix_token_ids_sha256": "45e1c0b7597006d357bb6b74965c9d19ee076dc5bf7ff45406f375e146f187df",
+            "consumed_raw_tokens": 2,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "CompilationUnitSyntax",
+            "active_field": "Usings",
+            "finite_admissible_raw_token_ids": [
+              0
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          },
+          {
+            "target": "csharp",
+            "record_id": "pattern-matching/Shapes.cs",
+            "prefix_state_case_id": "csharp_pattern_matching_shapes_cs_inside_first_terminal_payload_after_one_byte",
+            "raw_prefix_token_count": 10,
+            "raw_prefix_token_ids": [
+              0,
+              2,
+              0,
+              2,
+              14,
+              2,
+              12,
+              2,
+              6,
+              184
+            ],
+            "raw_prefix_token_ids_sha256": "4eb26da8240257efef7f42854b6f8cb78dbc62b8d8d1736f2509bb1605cc5b6c",
+            "consumed_raw_tokens": 10,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "IdentifierNameSyntax",
+            "active_field": "Identifier",
+            "finite_admissible_raw_token_ids": [
+              7
+            ],
+            "payload_token_ranges": [
+              {
+                "id": "csharp.utf8_byte_payload",
+                "role": "utf8_byte_payload",
+                "start": 64,
+                "end_exclusive": 320
+              }
+            ],
+            "payload_end_admissible": true
+          },
+          {
+            "target": "csharp",
+            "record_id": "pattern-matching/Shapes.cs",
+            "prefix_state_case_id": "csharp_pattern_matching_shapes_cs_complete_stream",
+            "raw_prefix_token_count": 77,
+            "raw_prefix_token_ids_sha256": "cae34d62459a270433b79992ffa9451ecc7819eead9c159e1c628c19598891ab",
+            "consumed_raw_tokens": 77,
+            "prefix_status": "complete",
+            "eof_valid": true,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          }
+        ],
+        "finite_admissible_response_count": 3,
+        "payload_range_response_count": 1,
+        "eof_validity_response_count": 1,
+        "bpe_raw_expansion_responses": [],
+        "bpe_raw_expansion_replay_case_count": 0,
+        "bpe_raw_expansion_accepted_case_count": 0,
+        "bpe_raw_expansion_first_failure_case_count": 0,
+        "bpe_first_failure_diagnostic_count": 0,
+        "validity_authority": "target-neutral raw transition API",
+        "bpe_layer_defines_validity": false,
+        "bpe_ids_used_as_syntax_validity_authority": false
+      },
+      "next_missing_generated_codec_live_api_work": null
+    },
+    {
+      "target": "csharp",
+      "record_id": "delegates-and-events/Logger.cs",
+      "generated_codec": "csharp_compilation_unit_source_file_syntax_v0",
+      "generated_codec_prefix_state_api_available": true,
+      "generated_codec_prefix_state_api_metadata": {
+        "generated_codec": "csharp_compilation_unit_source_file_syntax_v0",
+        "metadata_source": "src/syntax_generated_codec.rs::generated_codec_prefix_state_api_metadata",
+        "api_name": "decode_compilation_unit_source_file_prefix_state",
+        "api_version": 1,
+        "api_scope": "strict_decode_eof_prefix_state_v1",
+        "strict_decode_function": "decode_compilation_unit_source_file",
+        "live_prefix_rule_source": "strict_decode_unexpected_eof_at_consumed_prefix_boundary"
+      },
+      "live_api_status": "live_generated_codec_prefix_state_api_available",
+      "route_response_evidence": {
+        "target": "csharp",
+        "record_id": "delegates-and-events/Logger.cs",
+        "raw_token_count": 29,
+        "raw_token_ids_sha256": "279ee493327d6ec182f36ec88406e48bae8b36d0b9655b39b8693e44700ca7d3",
+        "request_count": 4,
+        "response_count": 4,
+        "responses": [
+          {
+            "target": "csharp",
+            "record_id": "delegates-and-events/Logger.cs",
+            "prefix_state_case_id": "csharp_delegates_and_events_logger_cs_empty_prefix",
+            "raw_prefix_token_count": 0,
+            "raw_prefix_token_ids": [],
+            "raw_prefix_token_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "consumed_raw_tokens": 0,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [
+              0
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          },
+          {
+            "target": "csharp",
+            "record_id": "delegates-and-events/Logger.cs",
+            "prefix_state_case_id": "csharp_delegates_and_events_logger_cs_after_first_field_start",
+            "raw_prefix_token_count": 2,
+            "raw_prefix_token_ids": [
+              0,
+              2
+            ],
+            "raw_prefix_token_ids_sha256": "45e1c0b7597006d357bb6b74965c9d19ee076dc5bf7ff45406f375e146f187df",
+            "consumed_raw_tokens": 2,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "CompilationUnitSyntax",
+            "active_field": "Members",
+            "finite_admissible_raw_token_ids": [
+              0
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          },
+          {
+            "target": "csharp",
+            "record_id": "delegates-and-events/Logger.cs",
+            "prefix_state_case_id": "csharp_delegates_and_events_logger_cs_inside_first_terminal_payload_after_one_byte",
+            "raw_prefix_token_count": 6,
+            "raw_prefix_token_ids": [
+              0,
+              2,
+              0,
+              2,
+              6,
+              184
+            ],
+            "raw_prefix_token_ids_sha256": "2cc61abba3fe4fcbb6de4abee070bf37160ef106c84af1227c37d8c89fbf6029",
+            "consumed_raw_tokens": 6,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "FileScopedNamespaceDeclarationSyntax",
+            "active_field": "Name",
+            "finite_admissible_raw_token_ids": [
+              7
+            ],
+            "payload_token_ranges": [
+              {
+                "id": "csharp.utf8_byte_payload",
+                "role": "utf8_byte_payload",
+                "start": 64,
+                "end_exclusive": 320
+              }
+            ],
+            "payload_end_admissible": true
+          },
+          {
+            "target": "csharp",
+            "record_id": "delegates-and-events/Logger.cs",
+            "prefix_state_case_id": "csharp_delegates_and_events_logger_cs_complete_stream",
+            "raw_prefix_token_count": 29,
+            "raw_prefix_token_ids_sha256": "279ee493327d6ec182f36ec88406e48bae8b36d0b9655b39b8693e44700ca7d3",
+            "consumed_raw_tokens": 29,
+            "prefix_status": "complete",
+            "eof_valid": true,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          }
+        ],
+        "finite_admissible_response_count": 3,
+        "payload_range_response_count": 1,
+        "eof_validity_response_count": 1,
+        "bpe_raw_expansion_responses": [],
+        "bpe_raw_expansion_replay_case_count": 0,
+        "bpe_raw_expansion_accepted_case_count": 0,
+        "bpe_raw_expansion_first_failure_case_count": 0,
+        "bpe_first_failure_diagnostic_count": 0,
+        "validity_authority": "target-neutral raw transition API",
+        "bpe_layer_defines_validity": false,
+        "bpe_ids_used_as_syntax_validity_authority": false
+      },
+      "next_missing_generated_codec_live_api_work": null
+    },
+    {
+      "target": "csharp",
+      "record_id": "events/VersionOne.cs",
+      "generated_codec": "csharp_compilation_unit_source_file_syntax_v0",
+      "generated_codec_prefix_state_api_available": true,
+      "generated_codec_prefix_state_api_metadata": {
+        "generated_codec": "csharp_compilation_unit_source_file_syntax_v0",
+        "metadata_source": "src/syntax_generated_codec.rs::generated_codec_prefix_state_api_metadata",
+        "api_name": "decode_compilation_unit_source_file_prefix_state",
+        "api_version": 1,
+        "api_scope": "strict_decode_eof_prefix_state_v1",
+        "strict_decode_function": "decode_compilation_unit_source_file",
+        "live_prefix_rule_source": "strict_decode_unexpected_eof_at_consumed_prefix_boundary"
+      },
+      "live_api_status": "live_generated_codec_prefix_state_api_available",
+      "route_response_evidence": {
+        "target": "csharp",
+        "record_id": "events/VersionOne.cs",
+        "raw_token_count": 54,
+        "raw_token_ids_sha256": "5f5dd8bab0a7152bd7ccdaca94d7a19dff8056eacfc3659a70ab13b7c8efade7",
+        "request_count": 4,
+        "response_count": 4,
+        "responses": [
+          {
+            "target": "csharp",
+            "record_id": "events/VersionOne.cs",
+            "prefix_state_case_id": "csharp_events_versionone_cs_empty_prefix",
+            "raw_prefix_token_count": 0,
+            "raw_prefix_token_ids": [],
+            "raw_prefix_token_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "consumed_raw_tokens": 0,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [
+              0
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          },
+          {
+            "target": "csharp",
+            "record_id": "events/VersionOne.cs",
+            "prefix_state_case_id": "csharp_events_versionone_cs_after_first_field_start",
+            "raw_prefix_token_count": 2,
+            "raw_prefix_token_ids": [
+              0,
+              2
+            ],
+            "raw_prefix_token_ids_sha256": "45e1c0b7597006d357bb6b74965c9d19ee076dc5bf7ff45406f375e146f187df",
+            "consumed_raw_tokens": 2,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "CompilationUnitSyntax",
+            "active_field": "Members",
+            "finite_admissible_raw_token_ids": [
+              0
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          },
+          {
+            "target": "csharp",
+            "record_id": "events/VersionOne.cs",
+            "prefix_state_case_id": "csharp_events_versionone_cs_inside_first_terminal_payload_after_one_byte",
+            "raw_prefix_token_count": 6,
+            "raw_prefix_token_ids": [
+              0,
+              2,
+              0,
+              2,
+              6,
+              184
+            ],
+            "raw_prefix_token_ids_sha256": "2cc61abba3fe4fcbb6de4abee070bf37160ef106c84af1227c37d8c89fbf6029",
+            "consumed_raw_tokens": 6,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "FileScopedNamespaceDeclarationSyntax",
+            "active_field": "Name",
+            "finite_admissible_raw_token_ids": [
+              7
+            ],
+            "payload_token_ranges": [
+              {
+                "id": "csharp.utf8_byte_payload",
+                "role": "utf8_byte_payload",
+                "start": 64,
+                "end_exclusive": 320
+              }
+            ],
+            "payload_end_admissible": true
+          },
+          {
+            "target": "csharp",
+            "record_id": "events/VersionOne.cs",
+            "prefix_state_case_id": "csharp_events_versionone_cs_complete_stream",
+            "raw_prefix_token_count": 54,
+            "raw_prefix_token_ids_sha256": "5f5dd8bab0a7152bd7ccdaca94d7a19dff8056eacfc3659a70ab13b7c8efade7",
+            "consumed_raw_tokens": 54,
+            "prefix_status": "complete",
+            "eof_valid": true,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          }
+        ],
+        "finite_admissible_response_count": 3,
+        "payload_range_response_count": 1,
+        "eof_validity_response_count": 1,
+        "bpe_raw_expansion_responses": [],
+        "bpe_raw_expansion_replay_case_count": 0,
+        "bpe_raw_expansion_accepted_case_count": 0,
+        "bpe_raw_expansion_first_failure_case_count": 0,
+        "bpe_first_failure_diagnostic_count": 0,
+        "validity_authority": "target-neutral raw transition API",
+        "bpe_layer_defines_validity": false,
+        "bpe_ids_used_as_syntax_validity_authority": false
+      },
+      "next_missing_generated_codec_live_api_work": null
+    },
+    {
+      "target": "csharp",
+      "record_id": "iterators/IteratorMethods.cs",
+      "generated_codec": "csharp_compilation_unit_source_file_syntax_v0",
+      "generated_codec_prefix_state_api_available": true,
+      "generated_codec_prefix_state_api_metadata": {
+        "generated_codec": "csharp_compilation_unit_source_file_syntax_v0",
+        "metadata_source": "src/syntax_generated_codec.rs::generated_codec_prefix_state_api_metadata",
+        "api_name": "decode_compilation_unit_source_file_prefix_state",
+        "api_version": 1,
+        "api_scope": "strict_decode_eof_prefix_state_v1",
+        "strict_decode_function": "decode_compilation_unit_source_file",
+        "live_prefix_rule_source": "strict_decode_unexpected_eof_at_consumed_prefix_boundary"
+      },
+      "live_api_status": "live_generated_codec_prefix_state_api_available",
+      "route_response_evidence": {
+        "target": "csharp",
+        "record_id": "iterators/IteratorMethods.cs",
+        "raw_token_count": 121,
+        "raw_token_ids_sha256": "50a67083378bb3529feaba892758cdac0f6e975814a5d51218a430eeafb127e4",
+        "request_count": 4,
+        "response_count": 4,
+        "responses": [
+          {
+            "target": "csharp",
+            "record_id": "iterators/IteratorMethods.cs",
+            "prefix_state_case_id": "csharp_iterators_iteratormethods_cs_empty_prefix",
+            "raw_prefix_token_count": 0,
+            "raw_prefix_token_ids": [],
+            "raw_prefix_token_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "consumed_raw_tokens": 0,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [
+              0
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          },
+          {
+            "target": "csharp",
+            "record_id": "iterators/IteratorMethods.cs",
+            "prefix_state_case_id": "csharp_iterators_iteratormethods_cs_after_first_field_start",
+            "raw_prefix_token_count": 2,
+            "raw_prefix_token_ids": [
+              0,
+              2
+            ],
+            "raw_prefix_token_ids_sha256": "45e1c0b7597006d357bb6b74965c9d19ee076dc5bf7ff45406f375e146f187df",
+            "consumed_raw_tokens": 2,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "CompilationUnitSyntax",
+            "active_field": "Usings",
+            "finite_admissible_raw_token_ids": [
+              0
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          },
+          {
+            "target": "csharp",
+            "record_id": "iterators/IteratorMethods.cs",
+            "prefix_state_case_id": "csharp_iterators_iteratormethods_cs_inside_first_terminal_payload_after_one_byte",
+            "raw_prefix_token_count": 10,
+            "raw_prefix_token_ids": [
+              0,
+              2,
+              0,
+              2,
+              22,
+              2,
+              14,
+              2,
+              6,
+              184
+            ],
+            "raw_prefix_token_ids_sha256": "632e2b6b0cb5fd78ffb028a11f0269f727ddf0bdef2c86c5cdea8bff20617674",
+            "consumed_raw_tokens": 10,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "IdentifierNameSyntax",
+            "active_field": "Identifier",
+            "finite_admissible_raw_token_ids": [
+              7
+            ],
+            "payload_token_ranges": [
+              {
+                "id": "csharp.utf8_byte_payload",
+                "role": "utf8_byte_payload",
+                "start": 64,
+                "end_exclusive": 320
+              }
+            ],
+            "payload_end_admissible": true
+          },
+          {
+            "target": "csharp",
+            "record_id": "iterators/IteratorMethods.cs",
+            "prefix_state_case_id": "csharp_iterators_iteratormethods_cs_complete_stream",
+            "raw_prefix_token_count": 121,
+            "raw_prefix_token_ids_sha256": "50a67083378bb3529feaba892758cdac0f6e975814a5d51218a430eeafb127e4",
+            "consumed_raw_tokens": 121,
+            "prefix_status": "complete",
+            "eof_valid": true,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          }
+        ],
+        "finite_admissible_response_count": 3,
+        "payload_range_response_count": 1,
+        "eof_validity_response_count": 1,
+        "bpe_raw_expansion_responses": [],
+        "bpe_raw_expansion_replay_case_count": 0,
+        "bpe_raw_expansion_accepted_case_count": 0,
+        "bpe_raw_expansion_first_failure_case_count": 0,
+        "bpe_first_failure_diagnostic_count": 0,
+        "validity_authority": "target-neutral raw transition API",
+        "bpe_layer_defines_validity": false,
+        "bpe_ids_used_as_syntax_validity_authority": false
+      },
+      "next_missing_generated_codec_live_api_work": null
+    },
+    {
+      "target": "csharp",
+      "record_id": "serialization/Loan.cs",
+      "generated_codec": "csharp_compilation_unit_source_file_syntax_v0",
+      "generated_codec_prefix_state_api_available": true,
+      "generated_codec_prefix_state_api_metadata": {
+        "generated_codec": "csharp_compilation_unit_source_file_syntax_v0",
+        "metadata_source": "src/syntax_generated_codec.rs::generated_codec_prefix_state_api_metadata",
+        "api_name": "decode_compilation_unit_source_file_prefix_state",
+        "api_version": 1,
+        "api_scope": "strict_decode_eof_prefix_state_v1",
+        "strict_decode_function": "decode_compilation_unit_source_file",
+        "live_prefix_rule_source": "strict_decode_unexpected_eof_at_consumed_prefix_boundary"
+      },
+      "live_api_status": "live_generated_codec_prefix_state_api_available",
+      "route_response_evidence": {
+        "target": "csharp",
+        "record_id": "serialization/Loan.cs",
+        "raw_token_count": 100,
+        "raw_token_ids_sha256": "73b1eba9a5233517fde3f4b48985db226f83358627c33676041a2c2ab11edcbe",
+        "request_count": 4,
+        "response_count": 4,
+        "responses": [
+          {
+            "target": "csharp",
+            "record_id": "serialization/Loan.cs",
+            "prefix_state_case_id": "csharp_serialization_loan_cs_empty_prefix",
+            "raw_prefix_token_count": 0,
+            "raw_prefix_token_ids": [],
+            "raw_prefix_token_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "consumed_raw_tokens": 0,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [
+              0
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          },
+          {
+            "target": "csharp",
+            "record_id": "serialization/Loan.cs",
+            "prefix_state_case_id": "csharp_serialization_loan_cs_after_first_field_start",
+            "raw_prefix_token_count": 2,
+            "raw_prefix_token_ids": [
+              0,
+              2
+            ],
+            "raw_prefix_token_ids_sha256": "45e1c0b7597006d357bb6b74965c9d19ee076dc5bf7ff45406f375e146f187df",
+            "consumed_raw_tokens": 2,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "CompilationUnitSyntax",
+            "active_field": "Usings",
+            "finite_admissible_raw_token_ids": [
+              0
+            ],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          },
+          {
+            "target": "csharp",
+            "record_id": "serialization/Loan.cs",
+            "prefix_state_case_id": "csharp_serialization_loan_cs_inside_first_terminal_payload_after_one_byte",
+            "raw_prefix_token_count": 10,
+            "raw_prefix_token_ids": [
+              0,
+              2,
+              0,
+              2,
+              0,
+              2,
+              16,
+              2,
+              6,
+              184
+            ],
+            "raw_prefix_token_ids_sha256": "a3fb7704f23ff11bb156be930c19566ce76b5d8842627798bc41119b08976c05",
+            "consumed_raw_tokens": 10,
+            "prefix_status": "partial",
+            "eof_valid": false,
+            "active_rule": "IdentifierNameSyntax",
+            "active_field": "Identifier",
+            "finite_admissible_raw_token_ids": [
+              7
+            ],
+            "payload_token_ranges": [
+              {
+                "id": "csharp.utf8_byte_payload",
+                "role": "utf8_byte_payload",
+                "start": 64,
+                "end_exclusive": 320
+              }
+            ],
+            "payload_end_admissible": true
+          },
+          {
+            "target": "csharp",
+            "record_id": "serialization/Loan.cs",
+            "prefix_state_case_id": "csharp_serialization_loan_cs_complete_stream",
+            "raw_prefix_token_count": 100,
+            "raw_prefix_token_ids_sha256": "73b1eba9a5233517fde3f4b48985db226f83358627c33676041a2c2ab11edcbe",
+            "consumed_raw_tokens": 100,
+            "prefix_status": "complete",
+            "eof_valid": true,
+            "active_rule": null,
+            "active_field": null,
+            "finite_admissible_raw_token_ids": [],
+            "payload_token_ranges": [],
+            "payload_end_admissible": false
+          }
+        ],
+        "finite_admissible_response_count": 3,
+        "payload_range_response_count": 1,
+        "eof_validity_response_count": 1,
+        "bpe_raw_expansion_responses": [
+          {
+            "target": "csharp",
+            "record_id": "serialization/Loan.cs",
+            "case_id": "csharp_loan_two_token_raw_expansion_accepts",
+            "expanded_raw_token_count": 2,
+            "accepted_raw_token_count": 2,
+            "accepted": true,
+            "final_prefix_status": "partial",
+            "final_eof_valid": false,
+            "first_failure_transition_case_id": null,
+            "first_failure_error_kind": null,
+            "bpe_raw_expansion_first_failure_diagnostic": null
+          },
+          {
+            "target": "csharp",
+            "record_id": "serialization/Loan.cs",
+            "case_id": "csharp_loan_two_token_raw_expansion_reports_first_failure",
+            "expanded_raw_token_count": 2,
+            "accepted_raw_token_count": 1,
+            "accepted": false,
+            "final_prefix_status": "partial",
+            "final_eof_valid": false,
+            "first_failure_transition_case_id": "csharp_serialization_loan_cs_after_first_segment_pad_token_is_rejected",
+            "first_failure_error_kind": "pad_token_in_raw_stream",
+            "bpe_raw_expansion_first_failure_diagnostic": "PAD_TOKEN 576 appears at raw offset 3"
+          }
+        ],
+        "bpe_raw_expansion_replay_case_count": 2,
+        "bpe_raw_expansion_accepted_case_count": 1,
+        "bpe_raw_expansion_first_failure_case_count": 1,
+        "bpe_first_failure_diagnostic_count": 1,
+        "validity_authority": "target-neutral raw transition API",
+        "bpe_layer_defines_validity": false,
+        "bpe_ids_used_as_syntax_validity_authority": false
+      },
+      "next_missing_generated_codec_live_api_work": null
+    }
+  ],
+  "claim_boundary": {
+    "syntax_level_boundary": "parser-backed metadata -> GrammarIR -> StructuralModel -> token layout -> generated codec",
+    "route_owned_live_api_matrix": true,
+    "checked_response_evidence_consumed": true,
+    "tct_compiler_routing_changed": false,
+    "grammar_ir_or_structural_model_routed_through_json_schema_compiler": false,
+    "source_program_validity_claim_allowed": false,
+    "type_correctness_claim_allowed": false,
+    "generated_hot_path_claim_allowed": false,
+    "paper_facing_claim_allowed": false,
+    "stable_backend_promotion_allowed": false,
+    "arena_ir_proof_used": false,
+    "bpe_layer_validity_claim_allowed": false,
+    "json_schema_backend_changed": false,
+    "no_stable_claims": [
+      "no_arena_ir_claim",
+      "no_bpe_layer_validity_claim",
+      "no_generated_hot_path_claim",
+      "no_paper_facing_claim",
+      "no_source_program_validity_claim",
+      "no_state_api_stable_backend_promotion_claim",
+      "no_type_correctness_claim",
+      "no_whole_source_language_validity_claim"
+    ]
+  },
+  "validation_commands": [
+    "cargo test --test syntax_generated_codec_gate_test generated_codec_state_api_exposes_admissible_raw_tokens_for_checked_go_source_instance -- --exact",
+    "cargo test --test syntax_backend_boundary_test syntax_backend_generated_codec_state_api_route_gate_consumes_integrated_route_metadata -- --exact",
+    "cargo test --test syntax_state_machine_replay_test target_neutral_generated_codec_state_api_integration_consumes_shared_handoff_surface -- --exact",
+    "cargo test --test syntax_generated_codec_gate_test csharp_compilation_unit_source_file_syntax_generated_codec_compiles_through_compiler_route -- --exact",
+    "cargo test --test syntax_generated_codec_gate_test csharp_compilation_unit_iterator_methods_source_file_syntax_generated_codec_compiles_through_compiler_route -- --exact",
+    "cargo test --test syntax_generated_codec_gate_test csharp_compilation_unit_loan_source_file_syntax_generated_codec_compiles_through_compiler_route -- --exact",
+    "git diff --check"
+  ],
+  "completed_promotion_class": "syntax backend generated-codec prefix-state continuation live API matrix gate",
+  "next_missing_stable_promotion_class": "Build Go Source-Record Raw-Token Generator Core"
+}

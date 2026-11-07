@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "External Reference Test",
+  "description": "Test external reference handling with serde_json::Value fallback",
+  "type": "object",
+  "properties": {
+    "name": {"type": "string"},
+    "external": {
+      "$ref": "https://example.com/schema"
+    },
+    "another_external": {
+      "$ref": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/package.json"
+    }
+  },
+  "required": ["name"]
+}

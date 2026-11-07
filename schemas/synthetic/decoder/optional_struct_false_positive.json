@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Optional Struct False Positive Test",
+  "description": "Tests schema-aware decoding when all-optional structs create false positives by matching any input",
+  "type": "object",
+  "properties": {
+    "config": {
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "Simple string configuration"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "option1": {
+              "type": "string"
+            },
+            "option2": {
+              "type": "boolean"
+            },
+            "option3": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false,
+          "description": "All optional fields - can deserialize from any JSON by setting all to None"
+        }
+      ]
+    }
+  },
+  "required": ["config"],
+  "additionalProperties": false
+}

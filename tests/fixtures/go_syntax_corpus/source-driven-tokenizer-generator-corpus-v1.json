@@ -1,0 +1,99 @@
+{
+  "artifact_kind": "tct_go_source_driven_tokenizer_generator_corpus_manifest_v1",
+  "version": 1,
+  "status": "source_driven_go_tokenizer_generator_corpus_smoke_ready",
+  "source_of_truth": "src/syntax_production_route.rs::SYNTAX_CODEC_REGISTRY",
+  "route_manifest": "tests/fixtures/syntax_backend/production-route-manifest-v1.json",
+  "claim_boundary": "source-driven Go tokenizer-generator corpus smoke only; parser-backed metadata lowers through GrammarIR, StructuralModel, token layout, raw syntax tokens, and the raw state machine, while gofmt and go/parser remain sidecar validation. Scratch generation starts from a precompiled Go syntax tokenizer artifact and an empty GoSourceFile token-space prefix, not per-output parser metadata. This is not Arena IR, route-handoff provenance, BPE validity authority, generated hot-path, whole-language, type-correctness, paper, or stable-backend evidence.",
+  "records": [
+    {
+      "manifest_path": "strings/compare.go",
+      "source_path": "tests/fixtures/go_syntax_corpus/src/strings/compare.go",
+      "grammar_id": "go_strings_compare_source_file_syntax_v0"
+    },
+    {
+      "manifest_path": "os/dir_unix.go",
+      "source_path": "tests/fixtures/go_syntax_corpus/src/os/dir_unix.go",
+      "grammar_id": "go_os_dir_unix_source_file_syntax_v0"
+    },
+    {
+      "manifest_path": "local_type_switch/main.go",
+      "source_path": "tests/fixtures/go_syntax_corpus/src/local_type_switch/main.go",
+      "grammar_id": "go_local_type_switch_syntax_v0"
+    },
+    {
+      "manifest_path": "local_switch_init/main.go",
+      "source_path": "tests/fixtures/go_syntax_corpus/src/local_switch_init/main.go",
+      "grammar_id": "go_local_switch_init_syntax_v0"
+    },
+    {
+      "manifest_path": "local_generic_function/main.go",
+      "source_path": "tests/fixtures/go_syntax_corpus/src/local_generic_function/main.go",
+      "grammar_id": "go_local_generic_function_syntax_v0"
+    },
+    {
+      "manifest_path": "local_variadic_ellipsis/main.go",
+      "source_path": "tests/fixtures/go_syntax_corpus/src/local_variadic_ellipsis/main.go",
+      "grammar_id": "go_local_variadic_ellipsis_syntax_v0"
+    },
+    {
+      "manifest_path": "slice_expression_three_index/main.go",
+      "source_path": "tests/fixtures/go_syntax_corpus/src/slice_expression_three_index/main.go",
+      "grammar_id": "go_slice_expression_three_index_syntax_v0"
+    },
+    {
+      "manifest_path": "concurrency_map_interface_type_assertion/main.go",
+      "source_path": "tests/fixtures/go_syntax_corpus/src/concurrency_map_interface_type_assertion/main.go",
+      "grammar_id": "go_concurrency_map_interface_type_assertion_syntax_v0"
+    },
+    {
+      "manifest_path": "import_spec_comment/main.go",
+      "source_path": "tests/fixtures/go_syntax_corpus/src/import_spec_comment/main.go",
+      "grammar_id": "go_import_spec_comment_syntax_v0"
+    },
+    {
+      "manifest_path": "import_spec_name/main.go",
+      "source_path": "tests/fixtures/go_syntax_corpus/src/import_spec_name/main.go",
+      "grammar_id": "go_import_spec_name_syntax_v0"
+    },
+    {
+      "manifest_path": "type_spec_assign/main.go",
+      "source_path": "tests/fixtures/go_syntax_corpus/src/type_spec_assign/main.go",
+      "grammar_id": "go_type_spec_assign_syntax_v0"
+    },
+    {
+      "manifest_path": "type_spec_comment/main.go",
+      "source_path": "tests/fixtures/go_syntax_corpus/src/type_spec_comment/main.go",
+      "grammar_id": "go_type_spec_comment_syntax_v0"
+    },
+    {
+      "manifest_path": "type_spec_doc/main.go",
+      "source_path": "tests/fixtures/go_syntax_corpus/src/type_spec_doc/main.go",
+      "grammar_id": "go_type_spec_doc_syntax_v0"
+    },
+    {
+      "manifest_path": "value_spec_comment/main.go",
+      "source_path": "tests/fixtures/go_syntax_corpus/src/value_spec_comment/main.go",
+      "grammar_id": "go_value_spec_comment_syntax_v0"
+    }
+  ],
+  "validation_commands": [
+    "go run scripts/analysis/go_syntax_corpus_check.go --self-test",
+    "go run scripts/analysis/go_syntax_corpus_check.go --manifest tests/fixtures/go_syntax_corpus/manifest-v1.json --json-output target/tct-analysis/go-syntax-corpus-check/report.json",
+    "PATH=\"$PWD/target/tct-go-bin:$PATH\" cargo test --test maintained_cli_binaries_test generated_go_source_driven_tokenizer_generator_corpus_smoke_validates -- --exact",
+    "cargo test --test syntax_generated_codec_gate_test go_local_generic_function_syntax_generated_codec_compiles_through_production_route -- --exact",
+    "cargo test --test syntax_generated_codec_gate_test go_local_variadic_ellipsis_syntax_generated_codec_compiles_through_production_route -- --exact",
+    "cargo test --test syntax_generated_codec_gate_test go_slice_expression_three_index_syntax_generated_codec_compiles_through_production_route -- --exact",
+    "cargo test --test syntax_generated_codec_gate_test go_local_type_switch_syntax_generated_codec_compiles_through_production_route -- --exact",
+    "cargo test --test syntax_generated_codec_gate_test go_local_switch_init_syntax_generated_codec_compiles_through_production_route -- --exact",
+    "cargo test --test syntax_generated_codec_gate_test go_concurrency_map_interface_type_assertion_syntax_generated_codec_compiles_through_production_route -- --exact",
+    "cargo test --test syntax_generated_codec_gate_test go_import_spec_comment_syntax_generated_codec_compiles_through_production_route -- --exact",
+    "cargo test --test syntax_generated_codec_gate_test go_import_spec_name_syntax_generated_codec_compiles_through_production_route -- --exact",
+    "cargo test --test syntax_generated_codec_gate_test go_type_spec_assign_syntax_generated_codec_compiles_through_production_route -- --exact",
+    "cargo test --test syntax_generated_codec_gate_test go_type_spec_comment_syntax_generated_codec_compiles_through_production_route -- --exact",
+    "cargo test --test syntax_generated_codec_gate_test go_type_spec_doc_syntax_generated_codec_compiles_through_production_route -- --exact",
+    "cargo test --test syntax_generated_codec_gate_test go_value_spec_comment_syntax_generated_codec_compiles_through_production_route -- --exact",
+    "cargo test --test syntax_generated_codec_gate_test parser_backed_syntax_codec_registry_builds_every_registered_entry -- --exact"
+  ],
+  "next_ready_task": "Build Go Source-Record Raw-Token Generator Core"
+}

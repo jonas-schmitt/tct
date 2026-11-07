@@ -1,0 +1,17 @@
+{
+  "compact": "auto",
+  "retainLines": true,
+  "sourceRoot": "./src",
+  "env": {
+    "test": {
+      "plugins": [
+        "./fixture-test-plugin.cjs"
+      ],
+      "sourceMaps": "inline"
+    },
+    "production": {
+      "compact": true,
+      "comments": false
+    }
+  }
+}

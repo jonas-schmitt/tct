@@ -1,0 +1,90 @@
+{
+  "artifact_kind": "tct_csharp_real_source_corpus_selection",
+  "version": 1,
+  "corpus": {
+    "corpus_id": "csharp-dotnet-samples-mini-v1",
+    "source_repository": "https://github.com/dotnet/samples",
+    "source_revision": "c6eb3268ba912447e820ba78e3d35ee2c5d7e0b0",
+    "source": "https://github.com/dotnet/samples/tree/c6eb3268ba912447e820ba78e3d35ee2c5d7e0b0",
+    "license": "MIT",
+    "license_file": "corpora/csharp/dotnet-samples-mini/LICENSE-CODE.MIT.txt",
+    "source_root": "corpora/csharp/dotnet-samples-mini/src",
+    "source_manifest": "corpora/csharp/dotnet-samples-mini/sources.txt",
+    "selection_policy": "Small standalone C# files from dotnet/samples chosen for parser/toolchain route planning; sidecar evidence only."
+  },
+  "source_manifest": {
+    "marker": "tct-csharp-route-corpus-v1",
+    "sha256": "0d8d671a2783f1a7db675174c30f6daa90ba03c0f86644902edfb4cee6bdba21",
+    "entry_count": 5,
+    "entries": [
+      {
+        "manifest_path": "delegates-and-events/Logger.cs",
+        "upstream_path": "csharp/delegates-and-events/Logger.cs",
+        "sha256": "fe3c59d6da3c21872acb23a4d7aae0476a9ef977bbf30b11eda9aa21e1c97a0f",
+        "bytes": 553
+      },
+      {
+        "manifest_path": "events/VersionOne.cs",
+        "upstream_path": "csharp/events/VersionOne.cs",
+        "sha256": "ee5faea8bc7d22031adba420d7662a001386a09af49858fcce81a8aced49ece7",
+        "bytes": 497
+      },
+      {
+        "manifest_path": "iterators/IteratorMethods.cs",
+        "upstream_path": "csharp/iterators/IteratorMethods.cs",
+        "sha256": "2f47b8449ee3d6056fa341da57ac691a8c3b13a2776d7fd0b03e847ea8f4e976",
+        "bytes": 1883
+      },
+      {
+        "manifest_path": "pattern-matching/Shapes.cs",
+        "upstream_path": "csharp/PatternMatching/Shapes.cs",
+        "sha256": "2714e85da9030b88559ce8548a3cce2e6f446681002380213c0bbf3e0d4a454e",
+        "bytes": 1003
+      },
+      {
+        "manifest_path": "serialization/Loan.cs",
+        "upstream_path": "csharp/serialization/Loan.cs",
+        "sha256": "2435ba265f5db79ff296c9514d6c3480d053b348539a80d6bc63e8b2177ed609",
+        "bytes": 1139
+      }
+    ]
+  },
+  "route_source_manifest_report": {
+    "tool": "scripts/analysis/route_source_manifest.py",
+    "target": "csharp",
+    "evidence_role": "route_intended_corpus",
+    "fixture_scope": false,
+    "corpus_fingerprint_kind": "path_sha256_list_v1",
+    "corpus_fingerprint_sha256": "00b57c92a58312071f880dc12bbda16c13d7a9431614ce50a4fb8efeb98f97bd"
+  },
+  "csharp_selection_helper": {
+    "helper": "./scripts/testing/test-csharp-real-source-corpus.sh",
+    "selection_authority": "scripts/analysis/route_source_manifest.py",
+    "expected_source_manifest_role": "route_intended_corpus",
+    "expected_file_count": 5,
+    "note": "Arena frontend evidence helper retired; selection gate no longer runs phase0/toolchain evidence packages."
+  },
+  "route_readiness_boundaries": {
+    "claim": "sidecar C# real-source corpus-selection evidence only",
+    "unsupported_route_readiness_gaps": [
+      "csharp_real_source_parser_backed_metadata_lowering",
+      "csharp_real_source_grammar_ir_structural_model_lowering",
+      "csharp_real_source_token_layout_generated_codec_round_trip",
+      "csharp_real_source_source_program_validity",
+      "csharp_real_source_type_correctness"
+    ],
+    "no_stable_claims": [
+      "no_arena_ir_promotion",
+      "no_source_program_validity_claim",
+      "no_type_correctness_claim",
+      "no_generated_codec_real_source_claim",
+      "no_stable_backend_promotion"
+    ]
+  },
+  "validation": [
+    "python3 scripts/analysis/route_source_manifest.py --self-test",
+    "./scripts/testing/test-csharp-real-source-corpus.sh",
+    "python3 scripts/testing/test-quality-audit.py --changed-from origin/main --fail-on-gaps",
+    "git diff --check"
+  ]
+}

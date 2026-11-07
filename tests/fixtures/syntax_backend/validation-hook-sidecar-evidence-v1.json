@@ -1,0 +1,169 @@
+{
+  "artifact_kind": "tct_syntax_backend_validation_hook_sidecar_evidence",
+  "version": 1,
+  "api_version": "syntax-generator-api-v0",
+  "source_validation_hook_contract": {
+    "artifact_kind": "tct_syntax_backend_validation_hook_contract",
+    "version": 1,
+    "fixture_path": "tests/fixtures/syntax_backend/validation-hook-contract-v1.json",
+    "module_path": "src/syntax_validation_hooks.rs",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh"
+  },
+  "target_ids": [
+    "toy",
+    "csharp",
+    "go"
+  ],
+  "records": [
+    {
+      "target_id": "toy",
+      "source_or_metadata_sha256": "6fd665e09ace25dea7d6de0c2f5ec102a90f890eaf42ef170d8e03789eb8f7cd",
+      "parser_or_grammar_identity": {
+        "kind": "grammar",
+        "grammar_id": "toy_assignment_v1",
+        "grammar_version": 1
+      },
+      "sidecar_command_identity": {
+        "check_kind": "source_parse_render_equivalence",
+        "command": "cargo test --test toy_grammar_frontend_test",
+        "sidecar_evidence": "tests/toy_grammar_frontend_test.rs",
+        "live_toolchain_required": false,
+        "self_test_supported": true
+      },
+      "renderer_metadata_id": "toy_assignment_v1.renderer_metadata.v0",
+      "renderer_formatter_status": {
+        "renderer_metadata_required": true,
+        "formatter_status_sidecar_only": true,
+        "external_formatter_stable_gate_promoted": false,
+        "generated_hot_path_external_checks_allowed": false,
+        "required_external_checks": [
+          "renderer_metadata",
+          "formatter_sidecar_status",
+          "no_external_toolchain_in_generated_hot_path"
+        ]
+      },
+      "validation_hook_ids": [
+        "grammar_ir.required_fields",
+        "toy_grammar_frontend.strict_decode",
+        "grammar_structural_token_ranges"
+      ],
+      "validation_hook_ids_sha256": "05d0326d7dc131820bcd3fbbe83a40070cc96d81987e850db5a943f3d317c114",
+      "external_check_policy_sha256": "c982b93926bd20d945f1f71a8d7ee53eb6e6992aa074f4624e6e88b1133b59fc",
+      "validation_hook_contract_sha256": "48a9a2d52df9bf1f820ea51fc20231a96ed92a56202e664da3beb0c8a101b521",
+      "sidecar_boundary": {
+        "role": "sidecar_evidence_only",
+        "generated_json_schema_output_changed": false,
+        "core_compiler_path_changed": false,
+        "production_grammar_compiler_path_changed": false
+      },
+      "sidecar_boundary_sha256": "dc5cc6969bbdeef0e95c66d366c1304316b098e9cf57c4fc8ff12e27a13a5273"
+    },
+    {
+      "target_id": "csharp",
+      "source_or_metadata_sha256": "baab4d0526ab5d0d9f33472fba4a90f6e3e11b2a719a47a60d94291ff37094f1",
+      "parser_or_grammar_identity": {
+        "kind": "parser",
+        "tool": "dotnet",
+        "version": "10.0.203",
+        "package": "Microsoft.CodeAnalysis.CSharp",
+        "package_version": "5.3.0"
+      },
+      "sidecar_command_identity": {
+        "check_kind": "parser_metadata_reproduction",
+        "command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --self-test",
+        "sidecar_evidence": "scripts/analysis/csharp_syntax_metadata_smoke.py --self-test",
+        "live_toolchain_required": false,
+        "self_test_supported": true
+      },
+      "renderer_metadata_id": "csharp_minimal_class_syntax_v0.renderer_metadata.v0",
+      "renderer_formatter_status": {
+        "renderer_metadata_required": true,
+        "formatter_status_sidecar_only": true,
+        "external_formatter_stable_gate_promoted": false,
+        "generated_hot_path_external_checks_allowed": false,
+        "required_external_checks": [
+          "renderer_metadata",
+          "formatter_sidecar_status",
+          "no_external_toolchain_in_generated_hot_path"
+        ]
+      },
+      "validation_hook_ids": [
+        "grammar_ir.required_fields",
+        "toy_grammar_frontend.strict_decode",
+        "grammar_structural_token_ranges"
+      ],
+      "validation_hook_ids_sha256": "05d0326d7dc131820bcd3fbbe83a40070cc96d81987e850db5a943f3d317c114",
+      "external_check_policy_sha256": "c982b93926bd20d945f1f71a8d7ee53eb6e6992aa074f4624e6e88b1133b59fc",
+      "validation_hook_contract_sha256": "48a9a2d52df9bf1f820ea51fc20231a96ed92a56202e664da3beb0c8a101b521",
+      "sidecar_boundary": {
+        "role": "sidecar_evidence_only",
+        "generated_json_schema_output_changed": false,
+        "core_compiler_path_changed": false,
+        "production_grammar_compiler_path_changed": false
+      },
+      "sidecar_boundary_sha256": "dc5cc6969bbdeef0e95c66d366c1304316b098e9cf57c4fc8ff12e27a13a5273"
+    },
+    {
+      "target_id": "go",
+      "source_or_metadata_sha256": "f0a87ff5993e610218e870cf01576c90d2779efd4278c56db68678ef30a63b78",
+      "parser_or_grammar_identity": {
+        "kind": "parser",
+        "tool": "go",
+        "version": "go1.24.3",
+        "package": "go/parser",
+        "package_version": "go1.24.3"
+      },
+      "sidecar_command_identity": {
+        "check_kind": "parser_metadata_reproduction",
+        "command": "go run scripts/analysis/go_syntax_metadata_smoke.go --self-test",
+        "sidecar_evidence": "go run scripts/analysis/go_syntax_metadata_smoke.go --self-test",
+        "live_toolchain_required": false,
+        "self_test_supported": true
+      },
+      "renderer_metadata_id": "go_minimal_function_syntax_v0.renderer_metadata.v0",
+      "renderer_formatter_status": {
+        "renderer_metadata_required": true,
+        "formatter_status_sidecar_only": true,
+        "external_formatter_stable_gate_promoted": false,
+        "generated_hot_path_external_checks_allowed": false,
+        "required_external_checks": [
+          "renderer_metadata",
+          "formatter_sidecar_status",
+          "no_external_toolchain_in_generated_hot_path"
+        ]
+      },
+      "validation_hook_ids": [
+        "grammar_ir.required_fields",
+        "toy_grammar_frontend.strict_decode",
+        "grammar_structural_token_ranges"
+      ],
+      "validation_hook_ids_sha256": "05d0326d7dc131820bcd3fbbe83a40070cc96d81987e850db5a943f3d317c114",
+      "external_check_policy_sha256": "c982b93926bd20d945f1f71a8d7ee53eb6e6992aa074f4624e6e88b1133b59fc",
+      "validation_hook_contract_sha256": "48a9a2d52df9bf1f820ea51fc20231a96ed92a56202e664da3beb0c8a101b521",
+      "sidecar_boundary": {
+        "role": "sidecar_evidence_only",
+        "generated_json_schema_output_changed": false,
+        "core_compiler_path_changed": false,
+        "production_grammar_compiler_path_changed": false
+      },
+      "sidecar_boundary_sha256": "dc5cc6969bbdeef0e95c66d366c1304316b098e9cf57c4fc8ff12e27a13a5273"
+    }
+  ],
+  "sidecar_status": {
+    "sidecar_only": true,
+    "stable_gate_promoted": false,
+    "live_toolchain_required": false,
+    "generated_hot_path_external_checks_allowed": false
+  },
+  "compiler_boundary": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "preserves_json_schema_backend_contract": true,
+    "production_grammar_compiler_path_changed": false,
+    "sidecar_only": true,
+    "tct_compiler_route_allowed": false
+  },
+  "completed_promotion_class": "syntax backend parser-backed validation hook sidecar evidence gate",
+  "next_missing_stable_promotion_class": "syntax backend JSON-backend parity routing gate"
+}

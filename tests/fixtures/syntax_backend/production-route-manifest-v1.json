@@ -1,0 +1,2241 @@
+{
+  "artifact_kind": "tct_syntax_backend_declarative_route_manifest",
+  "version": 1,
+  "tool": "syntax_backend_declarative_route_manifest",
+  "status": "checked_declarative_route_manifest",
+  "route_setup_source_of_truth": "src/syntax_production_route.rs::SYNTAX_PRODUCTION_ROUTE_CONSTRUCTS",
+  "route_entrypoint": "compile_checked_syntax_production_route",
+  "route_gate": "syntax-production-route-v0",
+  "route_manifest_loader": "src/syntax_route_manifest.rs::checked_syntax_production_route_manifest_constructs",
+  "projector_metadata_setup_source": "src/syntax_production_route.rs::syntax_production_route_projector_metadata_setup",
+  "production_route_fixture_path": "tests/fixtures/syntax_backend/production-route-implementation-gate-v1.json",
+  "source_corpus_evidence_fixture_path": "tests/fixtures/syntax_backend/source-corpus-evidence-v1.json",
+  "construct_identity_fields": [
+    "target_id",
+    "grammar_id",
+    "completed_promotion_class",
+    "metadata_path",
+    "generated_test_markers"
+  ],
+  "projector_metadata_setup_fields": [
+    "projector_command",
+    "checked_metadata_path",
+    "generated_output_path",
+    "route_manifest_projector_backed"
+  ],
+  "constructs": [
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_minimal_class_syntax_v0",
+      "completed_promotion_class": "syntax backend C# architecture-parity route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/minimal_class/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/minimal_class/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/minimal_class/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/minimal_class/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/minimal-class.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_minimal_class_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_using_directive_syntax_v0",
+      "completed_promotion_class": "syntax backend C# using directive route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/using_directive/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/using_directive/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/using_directive/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/using_directive/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/using-directive.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_using_directive_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_qualified_name_syntax_v0",
+      "completed_promotion_class": "syntax backend C# qualified name route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/qualified_name/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/qualified_name/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/qualified_name/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/qualified_name/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/qualified-name.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_qualified_name_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_generic_name_syntax_v0",
+      "completed_promotion_class": "syntax backend C# generic name route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/generic_name/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/generic_name/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/generic_name/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/generic_name/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/generic-name.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_generic_name_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_block_scoped_namespace_syntax_v0",
+      "completed_promotion_class": "syntax backend C# block-scoped namespace route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/block_scoped_namespace/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/block_scoped_namespace/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/block_scoped_namespace/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/block_scoped_namespace/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/block-scoped-namespace.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_block_scoped_namespace_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_struct_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend C# struct declaration route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/struct_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/struct_declaration/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/struct_declaration/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/struct_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/struct-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_struct_declaration_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_enum_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend C# enum declaration route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/enum_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/enum_declaration/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/enum_declaration/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/enum_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/enum-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_enum_declaration_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_event_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend C# event declaration route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/event_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/event_declaration/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/event_declaration/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/event_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/event-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_event_declaration_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_constructor_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend C# constructor declaration route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/constructor_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/constructor_declaration/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/constructor_declaration/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/constructor_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/constructor-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_constructor_declaration_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_while_postfix_loop_syntax_v0",
+      "completed_promotion_class": "syntax backend C# while/postfix loop route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/while_postfix_loop/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/while_postfix_loop/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/while_postfix_loop/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/while_postfix_loop/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/while-postfix-loop.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_while_postfix_loop_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_interpolated_string_syntax_v0",
+      "completed_promotion_class": "syntax backend C# interpolated string route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/interpolated_string/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/interpolated_string/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/interpolated_string/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/interpolated_string/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/interpolated-string.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_interpolated_string_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_member_access_expression_syntax_v0",
+      "completed_promotion_class": "syntax backend C# member access expression route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/member_access_expression/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/member_access_expression/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/member_access_expression/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/member_access_expression/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/member-access-expression.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_member_access_expression_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_field_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend C# field declaration route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/field_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/field_declaration/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/field_declaration/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/field_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/field-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_field_declaration_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_base_list_syntax_v0",
+      "completed_promotion_class": "syntax backend C# base list route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/base_list/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/base_list/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/base_list/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/base_list/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/base-list.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_base_list_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_conditional_access_syntax_v0",
+      "completed_promotion_class": "syntax backend C# conditional access route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/conditional_access/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/conditional_access/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/conditional_access/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/conditional_access/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/conditional-access.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_conditional_access_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_array_rank_object_creation_syntax_v0",
+      "completed_promotion_class": "syntax backend C# array-rank/object-creation route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/array_rank_object_creation/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/array_rank_object_creation/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/array_rank_object_creation/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/array_rank_object_creation/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/array-rank-object-creation.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_array_rank_object_creation_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_this_expression_syntax_v0",
+      "completed_promotion_class": "syntax backend C# this-expression route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/this_expression/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/this_expression/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/this_expression/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/this_expression/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/this-expression.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_this_expression_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_pattern_expression_syntax_v0",
+      "completed_promotion_class": "syntax backend C# pattern-expression route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/pattern_expression/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/pattern_expression/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/pattern_expression/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/pattern_expression/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/pattern-expression.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_pattern_expression_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_attribute_syntax_v0",
+      "completed_promotion_class": "syntax backend C# attribute route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/attribute_syntax/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/attribute_syntax/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/attribute_syntax/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/attribute_syntax/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/attribute-syntax.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_attribute_syntax_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_arrow_expression_clause_syntax_v0",
+      "completed_promotion_class": "syntax backend C# arrow-expression-clause route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/arrow_expression_clause/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/arrow_expression_clause/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/arrow_expression_clause/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/arrow_expression_clause/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/arrow-expression-clause.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_arrow_expression_clause_round_trips",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_string_return_literal_syntax_v0",
+      "completed_promotion_class": "syntax backend C# local string return literal route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_string_return_literal/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_string_return_literal/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_string_return_literal/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_string_return_literal/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-string-return-literal.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_string_return_literal_round_trips",
+        "generated_csharp_local_string_return_literal_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_string_return_literal_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_string_return_literal_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_string_return_literal_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_string_return_literal_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_integer_return_literal_syntax_v0",
+      "completed_promotion_class": "syntax backend C# integer return literal route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_integer_return_literal/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_integer_return_literal/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_integer_return_literal/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_integer_return_literal/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-integer-return-literal.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_integer_return_literal_round_trips",
+        "generated_csharp_local_integer_return_literal_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_integer_return_literal_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_integer_return_literal_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_integer_return_literal_rejects_invalid_integer_payloads",
+        "generated_csharp_local_integer_return_literal_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_integer_return_literal_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_float_return_literal_syntax_v0",
+      "completed_promotion_class": "syntax backend C# float return literal route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_float_return_literal/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_float_return_literal/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_float_return_literal/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_float_return_literal/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-float-return-literal.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_float_return_literal_round_trips",
+        "generated_csharp_local_float_return_literal_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_float_return_literal_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_float_return_literal_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_float_return_literal_rejects_invalid_float_payloads",
+        "generated_csharp_local_float_return_literal_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_float_return_literal_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_boolean_return_literal_syntax_v0",
+      "completed_promotion_class": "syntax backend C# boolean return literal route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_boolean_return_literal/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_boolean_return_literal/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_boolean_return_literal/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_boolean_return_literal/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-boolean-return-literal.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_boolean_return_literal_round_trips",
+        "generated_csharp_local_boolean_return_literal_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_boolean_return_literal_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_boolean_return_literal_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_boolean_return_literal_rejects_invalid_boolean_payloads",
+        "generated_csharp_local_boolean_return_literal_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_boolean_return_literal_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_null_return_literal_syntax_v0",
+      "completed_promotion_class": "syntax backend C# null return literal route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_null_return_literal/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_null_return_literal/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_null_return_literal/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_null_return_literal/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-null-return-literal.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_null_return_literal_round_trips",
+        "generated_csharp_local_null_return_literal_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_null_return_literal_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_null_return_literal_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_null_return_literal_rejects_invalid_null_payloads",
+        "generated_csharp_local_null_return_literal_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_null_return_literal_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_nullable_return_type_syntax_v0",
+      "completed_promotion_class": "syntax backend C# nullable return type route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_nullable_return_type/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_nullable_return_type/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_nullable_return_type/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_nullable_return_type/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-nullable-return-type.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_nullable_return_type_round_trips",
+        "generated_csharp_local_nullable_return_type_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_nullable_return_type_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_nullable_return_type_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_nullable_return_type_rejects_invalid_nullable_marker",
+        "generated_csharp_local_nullable_return_type_rejects_invalid_null_payloads",
+        "generated_csharp_local_nullable_return_type_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_nullable_return_type_recovery_keeps_partial_prefix_hard",
+        "generated_csharp_local_nullable_return_type_prefix_state_accepts_selected_live_continuations"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_nullable_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend C# nullable local declaration route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_nullable_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_nullable_declaration/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_nullable_declaration/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_nullable_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-nullable-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_nullable_declaration_round_trips",
+        "generated_csharp_local_nullable_declaration_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_nullable_declaration_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_nullable_declaration_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_nullable_declaration_rejects_invalid_nullable_marker",
+        "generated_csharp_local_nullable_declaration_rejects_invalid_null_payloads",
+        "generated_csharp_local_nullable_declaration_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_nullable_declaration_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_nullable_property_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend C# nullable property declaration route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/nullable_property_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/nullable_property_declaration/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/nullable_property_declaration/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/nullable_property_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/nullable-property-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_nullable_property_declaration_round_trips",
+        "generated_csharp_nullable_property_declaration_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_nullable_property_declaration_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_nullable_property_declaration_strict_decode_rejects_malformed_payload",
+        "generated_csharp_nullable_property_declaration_rejects_invalid_nullable_marker",
+        "generated_csharp_nullable_property_declaration_rejects_invalid_null_initializer",
+        "generated_csharp_nullable_property_declaration_rejects_invalid_accessors",
+        "generated_csharp_nullable_property_declaration_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_nullable_property_declaration_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_nullable_parameter_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend C# nullable parameter declaration route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/nullable_parameter_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/nullable_parameter_declaration/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/nullable_parameter_declaration/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/nullable_parameter_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/nullable-parameter-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_nullable_parameter_declaration_round_trips",
+        "generated_csharp_nullable_parameter_declaration_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_nullable_parameter_declaration_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_nullable_parameter_declaration_strict_decode_rejects_malformed_payload",
+        "generated_csharp_nullable_parameter_declaration_rejects_invalid_nullable_marker",
+        "generated_csharp_nullable_parameter_declaration_rejects_missing_parameter",
+        "generated_csharp_nullable_parameter_declaration_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_nullable_parameter_declaration_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_unary_integer_return_syntax_v0",
+      "completed_promotion_class": "syntax backend C# prefix unary integer return route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_unary_integer_return/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_unary_integer_return/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_unary_integer_return/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_unary_integer_return/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-unary-integer-return.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_unary_integer_return_round_trips",
+        "generated_csharp_local_unary_integer_return_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_unary_integer_return_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_unary_integer_return_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_unary_integer_return_rejects_invalid_operator",
+        "generated_csharp_local_unary_integer_return_rejects_invalid_integer_payloads",
+        "generated_csharp_local_unary_integer_return_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_unary_integer_return_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_parenthesized_integer_return_syntax_v0",
+      "completed_promotion_class": "syntax backend C# parenthesized integer return route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_parenthesized_integer_return/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_parenthesized_integer_return/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_parenthesized_integer_return/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_parenthesized_integer_return/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-parenthesized-integer-return.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_parenthesized_integer_return_round_trips",
+        "generated_csharp_local_parenthesized_integer_return_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_parenthesized_integer_return_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_parenthesized_integer_return_strict_decode_rejects_missing_parenthesized_expression",
+        "generated_csharp_local_parenthesized_integer_return_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_parenthesized_integer_return_rejects_invalid_integer_payloads",
+        "generated_csharp_local_parenthesized_integer_return_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_parenthesized_integer_return_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_binary_integer_return_syntax_v0",
+      "completed_promotion_class": "syntax backend C# binary integer return route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_binary_integer_return/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_binary_integer_return/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_binary_integer_return/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_binary_integer_return/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-binary-integer-return.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_binary_integer_return_round_trips",
+        "generated_csharp_local_binary_integer_return_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_binary_integer_return_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_binary_integer_return_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_binary_integer_return_rejects_invalid_operator",
+        "generated_csharp_local_binary_integer_return_rejects_invalid_integer_payloads",
+        "generated_csharp_local_binary_integer_return_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_binary_integer_return_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_typed_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend C# local typed declaration route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_typed_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_typed_declaration/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_typed_declaration/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_typed_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-typed-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_typed_declaration_round_trips",
+        "generated_csharp_local_typed_declaration_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_typed_declaration_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_typed_declaration_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_typed_declaration_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_typed_declaration_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_implicit_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend C# implicit local declaration route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_implicit_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_implicit_declaration/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_implicit_declaration/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_implicit_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-implicit-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_implicit_declaration_round_trips",
+        "generated_csharp_local_implicit_declaration_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_implicit_declaration_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_implicit_declaration_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_implicit_declaration_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_implicit_declaration_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_integer_implicit_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend C# integer implicit local declaration route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_integer_implicit_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_integer_implicit_declaration/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_integer_implicit_declaration/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_integer_implicit_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-integer-implicit-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_integer_implicit_declaration_round_trips",
+        "generated_csharp_local_integer_implicit_declaration_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_integer_implicit_declaration_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_integer_implicit_declaration_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_integer_implicit_declaration_rejects_invalid_integer_payloads",
+        "generated_csharp_local_integer_implicit_declaration_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_integer_implicit_declaration_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_assignment_syntax_v0",
+      "completed_promotion_class": "syntax backend C# local assignment route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_assignment/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_assignment/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_assignment/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_assignment/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-assignment.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_assignment_round_trips",
+        "generated_csharp_local_assignment_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_assignment_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_assignment_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_assignment_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_assignment_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_if_else_syntax_v0",
+      "completed_promotion_class": "syntax backend C# local if/else route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_if_else/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_if_else/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_if_else/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_if_else/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-if-else.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_if_else_round_trips",
+        "generated_csharp_local_if_else_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_if_else_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_if_else_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_if_else_rejects_invalid_integer_payloads",
+        "generated_csharp_local_if_else_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_if_else_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_for_condition_syntax_v0",
+      "completed_promotion_class": "syntax backend C# condition-only for route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_for_condition/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_for_condition/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_for_condition/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_for_condition/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-for-condition.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_for_condition_round_trips",
+        "generated_csharp_local_for_condition_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_for_condition_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_for_condition_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_for_condition_rejects_invalid_integer_payloads",
+        "generated_csharp_local_for_condition_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_for_condition_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_switch_syntax_v0",
+      "completed_promotion_class": "syntax backend C# single-case switch route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_switch/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_switch/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_switch/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_switch/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-switch.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_switch_round_trips",
+        "generated_csharp_local_switch_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_switch_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_switch_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_switch_rejects_invalid_integer_payloads",
+        "generated_csharp_local_switch_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_switch_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_foreach_string_syntax_v0",
+      "completed_promotion_class": "syntax backend C# local foreach string route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_foreach_string/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_foreach_string/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_foreach_string/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_foreach_string/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-foreach-string.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_foreach_string_round_trips",
+        "generated_csharp_local_foreach_string_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_foreach_string_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_foreach_string_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_foreach_string_rejects_invalid_integer_payloads",
+        "generated_csharp_local_foreach_string_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_foreach_string_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_two_parameter_method_syntax_v0",
+      "completed_promotion_class": "syntax backend C# two-parameter method route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/two_parameter_method/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/two_parameter_method/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/two_parameter_method/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/two_parameter_method/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/two-parameter-method.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_two_parameter_method_round_trips",
+        "generated_csharp_two_parameter_method_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_two_parameter_method_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_two_parameter_method_strict_decode_rejects_malformed_payload",
+        "generated_csharp_two_parameter_method_rejects_unknown_return_identifier",
+        "generated_csharp_two_parameter_method_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_two_parameter_method_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_property_plus_method_syntax_v0",
+      "completed_promotion_class": "syntax backend C# property plus method route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/property_plus_method/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/property_plus_method/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/property_plus_method/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/property_plus_method/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/property-plus-method.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_property_plus_method_round_trips",
+        "generated_csharp_property_plus_method_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_property_plus_method_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_property_plus_method_strict_decode_rejects_malformed_payload",
+        "generated_csharp_property_plus_method_rejects_unknown_return_identifier",
+        "generated_csharp_property_plus_method_rejects_invalid_member_type",
+        "generated_csharp_property_plus_method_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_property_plus_method_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_method_invocation_return_syntax_v0",
+      "completed_promotion_class": "syntax backend C# method invocation return route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/method_invocation_return/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/method_invocation_return/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/method_invocation_return/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/method_invocation_return/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/method-invocation-return.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_method_invocation_return_round_trips",
+        "generated_csharp_method_invocation_return_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_method_invocation_return_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_method_invocation_return_strict_decode_rejects_malformed_payload",
+        "generated_csharp_method_invocation_return_rejects_unknown_callee_identifier",
+        "generated_csharp_method_invocation_return_rejects_invalid_member_type",
+        "generated_csharp_method_invocation_return_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_method_invocation_return_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_method_invocation_argument_return_syntax_v0",
+      "completed_promotion_class": "syntax backend C# invocation-with-argument return route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/method_invocation_argument_return/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/method_invocation_argument_return/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/method_invocation_argument_return/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/method_invocation_argument_return/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/method-invocation-argument-return.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_method_invocation_argument_return_round_trips",
+        "generated_csharp_method_invocation_argument_return_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_method_invocation_argument_return_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_method_invocation_argument_return_strict_decode_rejects_malformed_payload",
+        "generated_csharp_method_invocation_argument_return_rejects_unknown_callee_identifier",
+        "generated_csharp_method_invocation_argument_return_rejects_argument_parameter_mismatch",
+        "generated_csharp_method_invocation_argument_return_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_method_invocation_argument_return_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_collection_initializer_syntax_v0",
+      "completed_promotion_class": "syntax backend C# collection initializer route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/collection_initializer/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/collection_initializer/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/collection_initializer/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/collection_initializer/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/collection-initializer.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_collection_initializer_round_trips",
+        "generated_csharp_collection_initializer_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_collection_initializer_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_collection_initializer_strict_decode_rejects_malformed_payload",
+        "generated_csharp_collection_initializer_rejects_invalid_member_type",
+        "generated_csharp_collection_initializer_rejects_empty_values",
+        "generated_csharp_collection_initializer_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_collection_initializer_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_element_access_syntax_v0",
+      "completed_promotion_class": "syntax backend C# element access route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/element_access/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/element_access/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/element_access/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/element_access/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/element-access.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_element_access_round_trips",
+        "generated_csharp_element_access_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_element_access_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_element_access_strict_decode_rejects_malformed_payload",
+        "generated_csharp_element_access_rejects_unknown_target_identifier",
+        "generated_csharp_element_access_rejects_unsupported_index_value",
+        "generated_csharp_element_access_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_element_access_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_range_element_access_syntax_v0",
+      "completed_promotion_class": "syntax backend C# range element access route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/range_element_access/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/range_element_access/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/range_element_access/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/range_element_access/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/range-element-access.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_range_element_access_round_trips",
+        "generated_csharp_range_element_access_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_range_element_access_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_range_element_access_strict_decode_rejects_malformed_payload",
+        "generated_csharp_range_element_access_rejects_unknown_target_identifier",
+        "generated_csharp_range_element_access_rejects_unsupported_range_start",
+        "generated_csharp_range_element_access_rejects_unsupported_range_end",
+        "generated_csharp_range_element_access_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_range_element_access_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_local_escaped_assignment_syntax_v0",
+      "completed_promotion_class": "syntax backend C# escaped local assignment route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/local_escaped_assignment/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --source tests/fixtures/csharp_syntax_sources/local_escaped_assignment/source.cs --checked-metadata tests/fixtures/csharp_syntax_metadata/local_escaped_assignment/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/local_escaped_assignment/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/local-escaped-assignment.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_local_escaped_assignment_round_trips",
+        "generated_csharp_local_escaped_assignment_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_local_escaped_assignment_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_local_escaped_assignment_strict_decode_rejects_malformed_payload",
+        "generated_csharp_local_escaped_assignment_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_local_escaped_assignment_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_compilation_unit_source_file_syntax_v0",
+      "completed_promotion_class": "syntax backend C# whole-source compilation-unit generated-codec route tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/compilation_unit_source_file/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --fixture compilation-unit-source-file --write-checked-metadata --checked-metadata tests/fixtures/csharp_syntax_metadata/compilation_unit_source_file/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/compilation_unit_source_file/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/compilation-unit-source-file.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_compilation_unit_source_file_round_trips",
+        "generated_csharp_compilation_unit_source_file_writes_real_source_codec_report",
+        "generated_csharp_compilation_unit_logger_source_file_writes_real_source_codec_report",
+        "generated_csharp_compilation_unit_version_one_source_file_writes_real_source_codec_report",
+        "generated_csharp_compilation_unit_iterator_methods_source_file_writes_real_source_codec_report",
+        "generated_csharp_compilation_unit_loan_source_file_writes_real_source_codec_report",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_compilation_unit_logger_source_file_syntax_v0",
+      "completed_promotion_class": "syntax backend C# Logger whole-source compilation-unit registry coverage tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/compilation_unit_logger_source_file/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --fixture compilation-unit-logger-source-file --write-checked-metadata --checked-metadata tests/fixtures/csharp_syntax_metadata/compilation_unit_logger_source_file/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/compilation_unit_logger_source_file/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/compilation-unit-logger-source-file.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_compilation_unit_source_file_round_trips",
+        "generated_csharp_compilation_unit_logger_source_file_writes_real_source_codec_report",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_compilation_unit_version_one_source_file_syntax_v0",
+      "completed_promotion_class": "syntax backend C# VersionOne whole-source compilation-unit registry coverage tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/compilation_unit_version_one_source_file/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --fixture compilation-unit-version-one-source-file --write-checked-metadata --checked-metadata tests/fixtures/csharp_syntax_metadata/compilation_unit_version_one_source_file/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/compilation_unit_version_one_source_file/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/compilation-unit-version-one-source-file.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_compilation_unit_source_file_round_trips",
+        "generated_csharp_compilation_unit_version_one_source_file_writes_real_source_codec_report",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_compilation_unit_iterator_methods_source_file_syntax_v0",
+      "completed_promotion_class": "syntax backend C# IteratorMethods whole-source compilation-unit registry coverage tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/compilation_unit_iterator_methods_source_file/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --fixture compilation-unit-iterator-methods-source-file --write-checked-metadata --checked-metadata tests/fixtures/csharp_syntax_metadata/compilation_unit_iterator_methods_source_file/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/compilation_unit_iterator_methods_source_file/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/compilation-unit-iterator-methods-source-file.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_compilation_unit_source_file_round_trips",
+        "generated_csharp_compilation_unit_iterator_methods_source_file_writes_real_source_codec_report",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "csharp",
+      "grammar_id": "csharp_compilation_unit_loan_source_file_syntax_v0",
+      "completed_promotion_class": "syntax backend C# Loan whole-source compilation-unit registry coverage tranche",
+      "metadata_path": "tests/fixtures/csharp_syntax_metadata/compilation_unit_loan_source_file/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "python scripts/analysis/csharp_syntax_metadata_smoke.py --fixture compilation-unit-loan-source-file --write-checked-metadata --checked-metadata tests/fixtures/csharp_syntax_metadata/compilation_unit_loan_source_file/syntax-metadata-v0.json --work-dir target/tct-analysis/csharp-syntax-metadata-smoke --self-test",
+        "checked_metadata_path": "tests/fixtures/csharp_syntax_metadata/compilation_unit_loan_source_file/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/csharp-syntax-metadata-smoke/compilation-unit-loan-source-file.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_csharp_compilation_unit_source_file_round_trips",
+        "generated_csharp_compilation_unit_loan_source_file_writes_real_source_codec_report",
+        "generated_csharp_strict_decode_rejects_eof_with_accounting",
+        "generated_csharp_strict_decode_rejects_trailing_tokens",
+        "generated_csharp_strict_decode_rejects_malformed_payload",
+        "generated_csharp_recovery_normalizes_trailing_pad_only",
+        "generated_csharp_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_minimal_function_syntax_v0",
+      "completed_promotion_class": "syntax backend Go minimal function production route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/minimal_function/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture minimal-function --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/minimal-function.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/minimal_function/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/minimal-function.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_minimal_function_round_trips",
+        "generated_go_minimal_function_renders_canonical_source",
+        "generated_go_minimal_function_render_passes_go_parser_sidecar",
+        "generated_go_minimal_function_real_source_strings_compare_demo",
+        "generated_go_strict_decode_rejects_eof_with_accounting",
+        "generated_go_strict_decode_rejects_trailing_tokens",
+        "generated_go_strict_decode_rejects_malformed_payload",
+        "generated_go_recovery_normalizes_trailing_pad_only",
+        "generated_go_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend Go local declaration route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-declaration --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-declaration.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_declaration_round_trips",
+        "generated_go_local_declaration_renders_canonical_source",
+        "generated_go_local_declaration_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_assignment_syntax_v0",
+      "completed_promotion_class": "syntax backend Go local assignment route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_assignment/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-assignment --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-assignment.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_assignment/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-assignment.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_assignment_round_trips",
+        "generated_go_local_assignment_renders_canonical_source",
+        "generated_go_local_assignment_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_escaped_local_assignment_syntax_v0",
+      "completed_promotion_class": "syntax backend Go escaped local assignment route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_escaped_assignment/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-escaped-assignment --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-escaped-assignment.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_escaped_assignment/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-escaped-assignment.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_escaped_local_assignment_round_trips",
+        "generated_go_escaped_local_assignment_renders_canonical_source",
+        "generated_go_escaped_local_assignment_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_short_var_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend Go short variable declaration route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_short_var_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-short-var-declaration --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-short-var-declaration.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_short_var_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-short-var-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_short_var_declaration_round_trips",
+        "generated_go_local_short_var_declaration_renders_canonical_source",
+        "generated_go_local_short_var_declaration_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_integer_short_var_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend Go integer short variable declaration route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_integer_short_var_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-integer-short-var-declaration --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-integer-short-var-declaration.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_integer_short_var_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-integer-short-var-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_integer_short_var_declaration_round_trips",
+        "generated_go_local_integer_short_var_declaration_renders_canonical_source",
+        "generated_go_local_integer_short_var_declaration_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_integer_return_literal_syntax_v0",
+      "completed_promotion_class": "syntax backend Go integer return literal route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_integer_return_literal/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-integer-return-literal --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-integer-return-literal.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_integer_return_literal/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-integer-return-literal.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_integer_return_literal_round_trips",
+        "generated_go_local_integer_return_literal_renders_canonical_source",
+        "generated_go_local_integer_return_literal_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_parenthesized_integer_return_expression_syntax_v0",
+      "completed_promotion_class": "syntax backend Go parenthesized integer return expression route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_parenthesized_integer_return_expression/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-parenthesized-integer-return-expression --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-parenthesized-integer-return-expression.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_parenthesized_integer_return_expression/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-parenthesized-integer-return-expression.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_parenthesized_integer_return_expression_round_trips",
+        "generated_go_local_parenthesized_integer_return_expression_renders_canonical_source",
+        "generated_go_local_parenthesized_integer_return_expression_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_unary_integer_return_expression_syntax_v0",
+      "completed_promotion_class": "syntax backend Go unary integer return expression route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_unary_integer_return_expression/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-unary-integer-return-expression --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-unary-integer-return-expression.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_unary_integer_return_expression/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-unary-integer-return-expression.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_unary_integer_return_expression_round_trips",
+        "generated_go_local_unary_integer_return_expression_renders_canonical_source",
+        "generated_go_local_unary_integer_return_expression_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_binary_integer_return_expression_syntax_v0",
+      "completed_promotion_class": "syntax backend Go binary integer return expression route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_binary_integer_return_expression/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-binary-integer-return-expression --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-binary-integer-return-expression.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_binary_integer_return_expression/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-binary-integer-return-expression.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_binary_integer_return_expression_round_trips",
+        "generated_go_local_binary_integer_return_expression_renders_canonical_source",
+        "generated_go_local_binary_integer_return_expression_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_call_return_expression_syntax_v0",
+      "completed_promotion_class": "syntax backend Go call return expression route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_call_return_expression/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-call-return-expression --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-call-return-expression.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_call_return_expression/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-call-return-expression.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_call_return_expression_round_trips",
+        "generated_go_local_call_return_expression_renders_canonical_source",
+        "generated_go_local_call_return_expression_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_argument_call_return_expression_syntax_v0",
+      "completed_promotion_class": "syntax backend Go argument call return expression route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_argument_call_return_expression/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-argument-call-return-expression --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-argument-call-return-expression.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_argument_call_return_expression/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-argument-call-return-expression.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_argument_call_return_expression_round_trips",
+        "generated_go_local_argument_call_return_expression_renders_canonical_source",
+        "generated_go_local_argument_call_return_expression_render_passes_go_parser_sidecar",
+        "generated_go_local_argument_call_return_expression_strict_decode_rejects_eof_with_accounting",
+        "generated_go_local_argument_call_return_expression_strict_decode_rejects_trailing_tokens",
+        "generated_go_local_argument_call_return_expression_strict_decode_rejects_malformed_payload",
+        "generated_go_local_argument_call_return_expression_rejects_invalid_identifier_payloads",
+        "generated_go_local_argument_call_return_expression_rejects_invalid_argument_literal_payloads",
+        "generated_go_local_argument_call_return_expression_recovery_normalizes_trailing_pad_only",
+        "generated_go_local_argument_call_return_expression_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_string_return_literal_syntax_v0",
+      "completed_promotion_class": "syntax backend Go string return literal route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_string_return_literal/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-string-return-literal --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-string-return-literal.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_string_return_literal/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-string-return-literal.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_string_return_literal_round_trips",
+        "generated_go_local_string_return_literal_renders_canonical_source",
+        "generated_go_local_string_return_literal_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_float_return_literal_syntax_v0",
+      "completed_promotion_class": "syntax backend Go float return literal route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_float_return_literal/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-float-return-literal --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-float-return-literal.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_float_return_literal/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-float-return-literal.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_float_return_literal_round_trips",
+        "generated_go_local_float_return_literal_renders_canonical_source",
+        "generated_go_local_float_return_literal_render_passes_go_parser_sidecar",
+        "generated_go_local_float_return_literal_strict_decode_rejects_eof_with_accounting",
+        "generated_go_local_float_return_literal_strict_decode_rejects_trailing_tokens",
+        "generated_go_local_float_return_literal_strict_decode_rejects_malformed_payload",
+        "generated_go_local_float_return_literal_rejects_invalid_identifier_payloads",
+        "generated_go_local_float_return_literal_rejects_invalid_float_payloads",
+        "generated_go_local_float_return_literal_decode_rejects_malformed_return_payload",
+        "generated_go_local_float_return_literal_recovery_normalizes_trailing_pad_only",
+        "generated_go_local_float_return_literal_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_boolean_return_identifier_syntax_v0",
+      "completed_promotion_class": "syntax backend Go boolean return identifier route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_boolean_return_identifier/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-boolean-return-identifier --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-boolean-return-identifier.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_boolean_return_identifier/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-boolean-return-identifier.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_boolean_return_identifier_round_trips",
+        "generated_go_local_boolean_return_identifier_renders_canonical_source",
+        "generated_go_local_boolean_return_identifier_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_nil_return_identifier_syntax_v0",
+      "completed_promotion_class": "syntax backend Go nil return identifier route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_nil_return_identifier/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-nil-return-identifier --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-nil-return-identifier.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_nil_return_identifier/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-nil-return-identifier.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_nil_return_identifier_round_trips",
+        "generated_go_local_nil_return_identifier_renders_canonical_source",
+        "generated_go_local_nil_return_identifier_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_typed_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend Go typed local declaration route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_typed_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-typed-declaration --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-typed-declaration.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_typed_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-typed-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_typed_declaration_round_trips",
+        "generated_go_local_typed_declaration_renders_canonical_source",
+        "generated_go_local_typed_declaration_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_zero_value_typed_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend Go zero-value typed local declaration route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_zero_value_typed_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-zero-value-typed-declaration --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-zero-value-typed-declaration.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_zero_value_typed_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-zero-value-typed-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_zero_value_typed_declaration_round_trips",
+        "generated_go_local_zero_value_typed_declaration_renders_canonical_source",
+        "generated_go_local_zero_value_typed_declaration_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_integer_typed_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend Go integer typed local declaration route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_integer_typed_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-integer-typed-declaration --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-integer-typed-declaration.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_integer_typed_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-integer-typed-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_integer_typed_declaration_round_trips",
+        "generated_go_local_integer_typed_declaration_renders_canonical_source",
+        "generated_go_local_integer_typed_declaration_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_untyped_integer_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend Go untyped integer local declaration route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_untyped_integer_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-untyped-integer-declaration --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-untyped-integer-declaration.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_untyped_integer_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-untyped-integer-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_untyped_integer_declaration_round_trips",
+        "generated_go_local_untyped_integer_declaration_renders_canonical_source",
+        "generated_go_local_untyped_integer_declaration_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_integer_assignment_syntax_v0",
+      "completed_promotion_class": "syntax backend Go integer local assignment route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_integer_assignment/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-integer-assignment --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-integer-assignment.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_integer_assignment/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-integer-assignment.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_integer_assignment_round_trips",
+        "generated_go_local_integer_assignment_renders_canonical_source",
+        "generated_go_local_integer_assignment_render_passes_go_parser_sidecar"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_compound_assignment_syntax_v0",
+      "completed_promotion_class": "syntax backend Go local compound assignment route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_compound_assignment/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-compound-assignment --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-compound-assignment.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_compound_assignment/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-compound-assignment.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_compound_assignment_round_trips",
+        "generated_go_local_compound_assignment_renders_canonical_source",
+        "generated_go_local_compound_assignment_render_passes_go_parser_sidecar",
+        "generated_go_local_compound_assignment_strict_decode_rejects_eof_with_accounting",
+        "generated_go_local_compound_assignment_strict_decode_rejects_trailing_tokens",
+        "generated_go_local_compound_assignment_strict_decode_rejects_malformed_payload",
+        "generated_go_local_compound_assignment_recovery_normalizes_trailing_pad_only",
+        "generated_go_local_compound_assignment_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_increment_decrement_syntax_v0",
+      "completed_promotion_class": "syntax backend Go local increment/decrement route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_increment_decrement/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-increment-decrement --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-increment-decrement.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_increment_decrement/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-increment-decrement.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_increment_decrement_round_trips",
+        "generated_go_local_increment_decrement_renders_canonical_source",
+        "generated_go_local_increment_decrement_render_passes_go_parser_sidecar",
+        "generated_go_local_increment_decrement_strict_decode_rejects_eof_with_accounting",
+        "generated_go_local_increment_decrement_strict_decode_rejects_trailing_tokens",
+        "generated_go_local_increment_decrement_strict_decode_rejects_malformed_payload",
+        "generated_go_local_increment_decrement_recovery_normalizes_trailing_pad_only",
+        "generated_go_local_increment_decrement_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_branch_statement_syntax_v0",
+      "completed_promotion_class": "syntax backend Go local branch statement route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_branch_statement/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-branch-statement --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-branch-statement.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_branch_statement/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-branch-statement.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_branch_statement_round_trips",
+        "generated_go_local_branch_statement_renders_canonical_source",
+        "generated_go_local_branch_statement_render_passes_go_parser_sidecar",
+        "generated_go_local_branch_statement_strict_decode_rejects_eof_with_accounting",
+        "generated_go_local_branch_statement_strict_decode_rejects_trailing_tokens",
+        "generated_go_local_branch_statement_strict_decode_rejects_malformed_payload",
+        "generated_go_local_branch_statement_rejects_invalid_identifier_payloads",
+        "generated_go_local_branch_statement_rejects_invalid_integer_payloads",
+        "generated_go_local_branch_statement_decode_rejects_malformed_integer_payload",
+        "generated_go_local_branch_statement_recovery_normalizes_trailing_pad_only",
+        "generated_go_local_branch_statement_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_if_else_syntax_v0",
+      "completed_promotion_class": "syntax backend Go if/else route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_if_else/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-if-else --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-if-else.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_if_else/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-if-else.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_if_else_round_trips",
+        "generated_go_local_if_else_renders_canonical_source",
+        "generated_go_local_if_else_render_passes_go_parser_sidecar",
+        "generated_go_local_if_else_strict_decode_rejects_eof_with_accounting",
+        "generated_go_local_if_else_strict_decode_rejects_trailing_tokens",
+        "generated_go_local_if_else_strict_decode_rejects_malformed_payload",
+        "generated_go_local_if_else_recovery_normalizes_trailing_pad_only",
+        "generated_go_local_if_else_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_for_condition_syntax_v0",
+      "completed_promotion_class": "syntax backend Go condition-only for route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_for_condition/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-for-condition --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-for-condition.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_for_condition/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-for-condition.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_for_condition_round_trips",
+        "generated_go_local_for_condition_renders_canonical_source",
+        "generated_go_local_for_condition_render_passes_go_parser_sidecar",
+        "generated_go_local_for_condition_strict_decode_rejects_eof_with_accounting",
+        "generated_go_local_for_condition_strict_decode_rejects_trailing_tokens",
+        "generated_go_local_for_condition_strict_decode_rejects_malformed_payload",
+        "generated_go_local_for_condition_recovery_normalizes_trailing_pad_only",
+        "generated_go_local_for_condition_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_switch_syntax_v0",
+      "completed_promotion_class": "syntax backend Go single-case switch route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_switch/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-switch --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-switch.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_switch/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-switch.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_switch_round_trips",
+        "generated_go_local_switch_renders_canonical_source",
+        "generated_go_local_switch_render_passes_go_parser_sidecar",
+        "generated_go_local_switch_strict_decode_rejects_eof_with_accounting",
+        "generated_go_local_switch_strict_decode_rejects_trailing_tokens",
+        "generated_go_local_switch_strict_decode_rejects_malformed_payload",
+        "generated_go_local_switch_recovery_normalizes_trailing_pad_only",
+        "generated_go_local_switch_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_switch_init_syntax_v0",
+      "completed_promotion_class": "syntax backend Go switch init route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_switch_init/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-switch-init --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-switch-init.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_switch_init/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-switch-init.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_switch_init_round_trips",
+        "generated_go_local_switch_init_renders_canonical_source",
+        "generated_go_local_switch_init_render_passes_go_parser_sidecar",
+        "generated_go_local_switch_init_strict_decode_rejects_eof_with_accounting",
+        "generated_go_local_switch_init_strict_decode_rejects_trailing_tokens",
+        "generated_go_local_switch_init_strict_decode_rejects_malformed_payload",
+        "generated_go_local_switch_init_recovery_normalizes_trailing_pad_only",
+        "generated_go_local_switch_init_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_type_switch_syntax_v0",
+      "completed_promotion_class": "syntax backend Go type-switch route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_type_switch/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-type-switch --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-type-switch.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_type_switch/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-type-switch.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_type_switch_round_trips",
+        "generated_go_local_type_switch_renders_canonical_source",
+        "generated_go_local_type_switch_render_passes_go_parser_sidecar",
+        "generated_go_local_type_switch_strict_decode_rejects_eof_with_accounting",
+        "generated_go_local_type_switch_strict_decode_rejects_trailing_tokens",
+        "generated_go_local_type_switch_strict_decode_rejects_malformed_payload",
+        "generated_go_local_type_switch_recovery_normalizes_trailing_pad_only",
+        "generated_go_local_type_switch_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_range_string_syntax_v0",
+      "completed_promotion_class": "syntax backend Go string range route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_range_string/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-range-string --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-range-string.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_range_string/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-range-string.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_range_string_round_trips",
+        "generated_go_local_range_string_renders_canonical_source",
+        "generated_go_local_range_string_render_passes_go_parser_sidecar",
+        "generated_go_local_range_string_strict_decode_rejects_eof_with_accounting",
+        "generated_go_local_range_string_strict_decode_rejects_trailing_tokens",
+        "generated_go_local_range_string_strict_decode_rejects_malformed_payload",
+        "generated_go_local_range_string_recovery_normalizes_trailing_pad_only",
+        "generated_go_local_range_string_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_package_type_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend Go package type declaration route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/package_type_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture package-type-declaration --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/package-type-declaration.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/package_type_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/package-type-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_package_type_declaration_round_trips",
+        "generated_go_package_type_declaration_renders_canonical_source",
+        "generated_go_package_type_declaration_render_passes_go_parser_sidecar",
+        "generated_go_package_type_declaration_strict_decode_rejects_eof_with_accounting",
+        "generated_go_package_type_declaration_strict_decode_rejects_trailing_tokens",
+        "generated_go_package_type_declaration_strict_decode_rejects_malformed_payload",
+        "generated_go_package_type_declaration_recovery_normalizes_trailing_pad_only",
+        "generated_go_package_type_declaration_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_type_spec_assign_syntax_v0",
+      "completed_promotion_class": "syntax backend Go TypeSpec.Assign route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/type_spec_assign/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture type-spec-assign --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/type-spec-assign.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/type_spec_assign/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/type-spec-assign.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_type_spec_assign_round_trips",
+        "generated_go_type_spec_assign_renders_canonical_source",
+        "generated_go_type_spec_assign_render_passes_go_parser_sidecar",
+        "generated_go_type_spec_assign_strict_decode_rejects_eof_with_accounting",
+        "generated_go_type_spec_assign_strict_decode_rejects_trailing_tokens",
+        "generated_go_type_spec_assign_strict_decode_rejects_malformed_payload",
+        "generated_go_type_spec_assign_preserves_type_spec_assign_tokens",
+        "generated_go_type_spec_assign_preserves_inventory_type_spec_assign_presence",
+        "generated_go_type_spec_assign_recovery_normalizes_trailing_pad_only",
+        "generated_go_type_spec_assign_recovery_keeps_partial_prefix_hard",
+        "generated_go_type_spec_assign_prefix_state_accepts_selected_live_continuations"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_type_spec_comment_syntax_v0",
+      "completed_promotion_class": "syntax backend Go TypeSpec.Comment route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/type_spec_comment/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture type-spec-comment --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/type-spec-comment.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/type_spec_comment/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/type-spec-comment.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_type_spec_comment_round_trips",
+        "generated_go_type_spec_comment_renders_canonical_source",
+        "generated_go_type_spec_comment_render_passes_go_parser_sidecar",
+        "generated_go_type_spec_comment_strict_decode_rejects_eof_with_accounting",
+        "generated_go_type_spec_comment_strict_decode_rejects_trailing_tokens",
+        "generated_go_type_spec_comment_strict_decode_rejects_malformed_payload",
+        "generated_go_type_spec_comment_preserves_type_spec_comment_tokens",
+        "generated_go_type_spec_comment_recovery_normalizes_trailing_pad_only",
+        "generated_go_type_spec_comment_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_type_spec_doc_syntax_v0",
+      "completed_promotion_class": "syntax backend Go TypeSpec.Doc route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/type_spec_doc/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture type-spec-doc --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/type-spec-doc.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/type_spec_doc/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/type-spec-doc.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_type_spec_doc_round_trips",
+        "generated_go_type_spec_doc_renders_canonical_source",
+        "generated_go_type_spec_doc_render_passes_go_parser_sidecar",
+        "generated_go_type_spec_doc_strict_decode_rejects_eof_with_accounting",
+        "generated_go_type_spec_doc_strict_decode_rejects_trailing_tokens",
+        "generated_go_type_spec_doc_strict_decode_rejects_malformed_payload",
+        "generated_go_type_spec_doc_preserves_type_spec_doc_tokens",
+        "generated_go_type_spec_doc_preserves_inventory_gen_decl_group_presence",
+        "generated_go_type_spec_doc_recovery_normalizes_trailing_pad_only",
+        "generated_go_type_spec_doc_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_package_const_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend Go package const declaration route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/package_const_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture package-const-declaration --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/package-const-declaration.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/package_const_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/package-const-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_package_const_declaration_round_trips",
+        "generated_go_package_const_declaration_renders_canonical_source",
+        "generated_go_package_const_declaration_render_passes_go_parser_sidecar",
+        "generated_go_package_const_declaration_strict_decode_rejects_eof_with_accounting",
+        "generated_go_package_const_declaration_strict_decode_rejects_trailing_tokens",
+        "generated_go_package_const_declaration_strict_decode_rejects_malformed_payload",
+        "generated_go_package_const_declaration_rejects_invalid_identifier_payloads",
+        "generated_go_package_const_declaration_rejects_invalid_boolean_payloads",
+        "generated_go_package_const_declaration_rejects_mismatched_return_identifier",
+        "generated_go_package_const_declaration_recovery_normalizes_trailing_pad_only",
+        "generated_go_package_const_declaration_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_method_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend Go method declaration route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/method_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture method-declaration --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/method-declaration.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/method_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/method-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_method_declaration_round_trips",
+        "generated_go_method_declaration_renders_canonical_source",
+        "generated_go_method_declaration_render_passes_go_parser_sidecar",
+        "generated_go_method_declaration_strict_decode_rejects_eof_with_accounting",
+        "generated_go_method_declaration_strict_decode_rejects_trailing_tokens",
+        "generated_go_method_declaration_strict_decode_rejects_malformed_payload",
+        "generated_go_method_declaration_recovery_normalizes_trailing_pad_only",
+        "generated_go_method_declaration_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_struct_type_syntax_v0",
+      "completed_promotion_class": "syntax backend Go struct type route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/struct_type/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture struct-type --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/struct-type.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/struct_type/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/struct-type.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_struct_type_round_trips",
+        "generated_go_struct_type_renders_canonical_source",
+        "generated_go_struct_type_render_passes_go_parser_sidecar",
+        "generated_go_struct_type_strict_decode_rejects_eof_with_accounting",
+        "generated_go_struct_type_strict_decode_rejects_trailing_tokens",
+        "generated_go_struct_type_strict_decode_rejects_malformed_payload",
+        "generated_go_struct_type_recovery_normalizes_trailing_pad_only",
+        "generated_go_struct_type_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_composite_literal_syntax_v0",
+      "completed_promotion_class": "syntax backend Go composite literal route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/composite_literal/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture composite-literal --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/composite-literal.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/composite_literal/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/composite-literal.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_composite_literal_round_trips",
+        "generated_go_composite_literal_renders_canonical_source",
+        "generated_go_composite_literal_render_passes_go_parser_sidecar",
+        "generated_go_composite_literal_strict_decode_rejects_eof_with_accounting",
+        "generated_go_composite_literal_strict_decode_rejects_trailing_tokens",
+        "generated_go_composite_literal_strict_decode_rejects_malformed_payload",
+        "generated_go_composite_literal_recovery_normalizes_trailing_pad_only",
+        "generated_go_composite_literal_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_key_value_composite_literal_syntax_v0",
+      "completed_promotion_class": "syntax backend Go key/value composite literal route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/key_value_composite_literal/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture key-value-composite-literal --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/key-value-composite-literal.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/key_value_composite_literal/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/key-value-composite-literal.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_key_value_composite_literal_round_trips",
+        "generated_go_key_value_composite_literal_renders_canonical_source",
+        "generated_go_key_value_composite_literal_render_passes_go_parser_sidecar",
+        "generated_go_key_value_composite_literal_strict_decode_rejects_eof_with_accounting",
+        "generated_go_key_value_composite_literal_strict_decode_rejects_trailing_tokens",
+        "generated_go_key_value_composite_literal_strict_decode_rejects_malformed_payload",
+        "generated_go_key_value_composite_literal_recovery_normalizes_trailing_pad_only",
+        "generated_go_key_value_composite_literal_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_array_composite_literal_syntax_v0",
+      "completed_promotion_class": "syntax backend Go array composite literal route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/array_composite_literal/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture array-composite-literal --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/array-composite-literal.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/array_composite_literal/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/array-composite-literal.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_array_composite_literal_round_trips",
+        "generated_go_array_composite_literal_renders_canonical_source",
+        "generated_go_array_composite_literal_render_passes_go_parser_sidecar",
+        "generated_go_array_composite_literal_strict_decode_rejects_eof_with_accounting",
+        "generated_go_array_composite_literal_strict_decode_rejects_trailing_tokens",
+        "generated_go_array_composite_literal_strict_decode_rejects_malformed_payload",
+        "generated_go_array_composite_literal_recovery_normalizes_trailing_pad_only",
+        "generated_go_array_composite_literal_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_index_expression_syntax_v0",
+      "completed_promotion_class": "syntax backend Go index expression route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/index_expression/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture index-expression --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/index-expression.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/index_expression/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/index-expression.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_index_expression_round_trips",
+        "generated_go_index_expression_renders_canonical_source",
+        "generated_go_index_expression_render_passes_go_parser_sidecar",
+        "generated_go_index_expression_strict_decode_rejects_eof_with_accounting",
+        "generated_go_index_expression_strict_decode_rejects_trailing_tokens",
+        "generated_go_index_expression_strict_decode_rejects_malformed_payload",
+        "generated_go_index_expression_recovery_normalizes_trailing_pad_only",
+        "generated_go_index_expression_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_slice_expression_syntax_v0",
+      "completed_promotion_class": "syntax backend Go slice expression route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/slice_expression/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture slice-expression --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/slice-expression.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/slice_expression/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/slice-expression.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_slice_expression_round_trips",
+        "generated_go_slice_expression_renders_canonical_source",
+        "generated_go_slice_expression_render_passes_go_parser_sidecar",
+        "generated_go_slice_expression_strict_decode_rejects_eof_with_accounting",
+        "generated_go_slice_expression_strict_decode_rejects_trailing_tokens",
+        "generated_go_slice_expression_strict_decode_rejects_malformed_payload",
+        "generated_go_slice_expression_recovery_normalizes_trailing_pad_only",
+        "generated_go_slice_expression_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_slice_expression_three_index_syntax_v0",
+      "completed_promotion_class": "syntax backend Go three-index slice expression route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/slice_expression_three_index/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture slice-expression-three-index --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/slice-expression-three-index.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/slice_expression_three_index/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/slice-expression-three-index.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_slice_expression_three_index_round_trips",
+        "generated_go_slice_expression_three_index_renders_canonical_source",
+        "generated_go_slice_expression_three_index_render_passes_go_parser_sidecar",
+        "generated_go_slice_expression_three_index_strict_decode_rejects_eof_with_accounting",
+        "generated_go_slice_expression_three_index_strict_decode_rejects_trailing_tokens",
+        "generated_go_slice_expression_three_index_strict_decode_rejects_malformed_payload",
+        "generated_go_slice_expression_three_index_recovery_normalizes_trailing_pad_only",
+        "generated_go_slice_expression_three_index_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_star_expression_syntax_v0",
+      "completed_promotion_class": "syntax backend Go star expression route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/star_expression/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture star-expression --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/star-expression.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/star_expression/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/star-expression.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_star_expression_round_trips",
+        "generated_go_star_expression_renders_canonical_source",
+        "generated_go_star_expression_render_passes_go_parser_sidecar",
+        "generated_go_star_expression_strict_decode_rejects_eof_with_accounting",
+        "generated_go_star_expression_strict_decode_rejects_trailing_tokens",
+        "generated_go_star_expression_strict_decode_rejects_malformed_payload",
+        "generated_go_star_expression_recovery_normalizes_trailing_pad_only",
+        "generated_go_star_expression_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_package_var_declaration_syntax_v0",
+      "completed_promotion_class": "syntax backend Go package var declaration route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/package_var_declaration/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture package-var-declaration --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/package-var-declaration.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/package_var_declaration/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/package-var-declaration.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_package_var_declaration_round_trips",
+        "generated_go_package_var_declaration_renders_canonical_source",
+        "generated_go_package_var_declaration_render_passes_go_parser_sidecar",
+        "generated_go_package_var_declaration_strict_decode_rejects_eof_with_accounting",
+        "generated_go_package_var_declaration_strict_decode_rejects_trailing_tokens",
+        "generated_go_package_var_declaration_strict_decode_rejects_malformed_payload",
+        "generated_go_package_var_declaration_recovery_normalizes_trailing_pad_only",
+        "generated_go_package_var_declaration_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_value_spec_comment_syntax_v0",
+      "completed_promotion_class": "syntax backend Go ValueSpec.Comment route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/value_spec_comment/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture value-spec-comment --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/value-spec-comment.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/value_spec_comment/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/value-spec-comment.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_value_spec_comment_round_trips",
+        "generated_go_value_spec_comment_renders_canonical_source",
+        "generated_go_value_spec_comment_render_passes_go_parser_sidecar",
+        "generated_go_value_spec_comment_preserves_value_spec_comment_tokens"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_import_spec_name_syntax_v0",
+      "completed_promotion_class": "syntax backend Go ImportSpec.Name route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/import_spec_name/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture import-spec-name --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/import-spec-name.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/import_spec_name/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/import-spec-name.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_import_spec_name_round_trips",
+        "generated_go_import_spec_name_renders_canonical_source",
+        "generated_go_import_spec_name_render_passes_go_parser_sidecar",
+        "generated_go_import_spec_name_preserves_import_name_tokens"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_import_spec_comment_syntax_v0",
+      "completed_promotion_class": "syntax backend Go ImportSpec.Comment route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/import_spec_comment/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture import-spec-comment --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/import-spec-comment.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/import_spec_comment/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/import-spec-comment.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_import_spec_comment_round_trips",
+        "generated_go_import_spec_comment_renders_canonical_source",
+        "generated_go_import_spec_comment_render_passes_go_parser_sidecar",
+        "generated_go_import_spec_comment_preserves_import_comment_tokens"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_function_literal_syntax_v0",
+      "completed_promotion_class": "syntax backend Go function literal route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/function_literal/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture function-literal --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/function-literal.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/function_literal/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/function-literal.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_function_literal_round_trips",
+        "generated_go_function_literal_renders_canonical_source",
+        "generated_go_function_literal_render_passes_go_parser_sidecar",
+        "generated_go_function_literal_preserves_inventory_func_type_func_presence",
+        "generated_go_function_literal_strict_decode_rejects_eof_with_accounting",
+        "generated_go_function_literal_strict_decode_rejects_trailing_tokens",
+        "generated_go_function_literal_strict_decode_rejects_malformed_payload",
+        "generated_go_function_literal_recovery_normalizes_trailing_pad_only",
+        "generated_go_function_literal_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_generic_function_syntax_v0",
+      "completed_promotion_class": "syntax backend Go generic function type parameters route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_generic_function/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-generic-function --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-generic-function.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_generic_function/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-generic-function.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_generic_function_round_trips",
+        "generated_go_local_generic_function_renders_canonical_source",
+        "generated_go_local_generic_function_render_passes_go_parser_sidecar",
+        "generated_go_local_generic_function_preserves_type_parameter_tokens"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_concurrency_map_interface_type_assertion_syntax_v0",
+      "completed_promotion_class": "syntax backend Go concurrency/map/interface/type-assertion route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/concurrency_map_interface_type_assertion/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture concurrency-map-interface-type-assertion --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/concurrency-map-interface-type-assertion.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/concurrency_map_interface_type_assertion/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/concurrency-map-interface-type-assertion.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_concurrency_map_interface_type_assertion_round_trips",
+        "generated_go_concurrency_map_interface_type_assertion_renders_canonical_source",
+        "generated_go_concurrency_map_interface_type_assertion_render_passes_go_parser_sidecar",
+        "generated_go_concurrency_map_interface_type_assertion_preserves_concurrency_construct_tokens"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_local_variadic_ellipsis_syntax_v0",
+      "completed_promotion_class": "syntax backend Go variadic ellipsis route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/local_variadic_ellipsis/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture local-variadic-ellipsis --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/local-variadic-ellipsis.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/local_variadic_ellipsis/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/local-variadic-ellipsis.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_local_variadic_ellipsis_round_trips",
+        "generated_go_local_variadic_ellipsis_renders_canonical_source",
+        "generated_go_local_variadic_ellipsis_render_passes_go_parser_sidecar",
+        "generated_go_local_variadic_ellipsis_preserves_ellipsis_construct_tokens",
+        "generated_go_local_variadic_ellipsis_preserves_inventory_call_expr_ellipsis_presence"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_strings_compare_source_file_syntax_v0",
+      "completed_promotion_class": "syntax backend Go strings compare source-file route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/strings_compare_source_file/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture strings-compare-source-file --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/strings-compare-source-file.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/strings_compare_source_file/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/strings-compare-source-file.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_strings_compare_source_file_round_trips",
+        "generated_go_strings_compare_source_file_round_trips_non_fixture_syntax",
+        "generated_go_strings_compare_source_file_renders_canonical_source",
+        "generated_go_strings_compare_source_file_render_passes_go_parser_sidecar",
+        "generated_go_strings_compare_source_file_strict_decode_rejects_eof_with_accounting",
+        "generated_go_strings_compare_source_file_prefix_state_accepts_selected_live_continuations",
+        "generated_go_strings_compare_source_file_strict_decode_rejects_trailing_tokens",
+        "generated_go_strings_compare_source_file_strict_decode_rejects_malformed_payload",
+        "generated_go_strings_compare_source_file_rejects_invalid_identifier_payloads",
+        "generated_go_strings_compare_source_file_rejects_invalid_import_payloads",
+        "generated_go_strings_compare_source_file_rejects_invalid_comment_payloads",
+        "generated_go_strings_compare_source_file_fixture_equality_is_sidecar_provenance",
+        "generated_go_strings_compare_source_file_preserves_parser_backed_comments",
+        "generated_go_strings_compare_source_file_recovery_normalizes_trailing_pad_only",
+        "generated_go_strings_compare_source_file_recovery_keeps_partial_prefix_hard"
+      ]
+    },
+    {
+      "target_id": "go",
+      "grammar_id": "go_os_dir_unix_source_file_syntax_v0",
+      "completed_promotion_class": "syntax backend Go os dir_unix source-driven tokenizer generator route tranche",
+      "metadata_path": "tests/fixtures/go_syntax_metadata/os_dir_unix_source_file/syntax-metadata-v0.json",
+      "projector_metadata_setup": {
+        "projector_command": "go run scripts/analysis/go_syntax_metadata_smoke.go --fixture os-dir-unix-source-file --write-checked-metadata --generated-output target/tct-analysis/go-syntax-metadata-smoke/os-dir-unix-source-file.syntax-metadata-v0.json --self-test",
+        "checked_metadata_path": "tests/fixtures/go_syntax_metadata/os_dir_unix_source_file/syntax-metadata-v0.json",
+        "generated_output_path": "target/tct-analysis/go-syntax-metadata-smoke/os-dir-unix-source-file.syntax-metadata-v0.json",
+        "route_manifest_projector_backed": true
+      },
+      "generated_test_markers": [
+        "generated_go_source_driven_tokenizer_generator_corpus_smoke_validates"
+      ]
+    }
+  ],
+  "no_stable_claims": [
+    "no_generated_json_schema_output_change",
+    "no_core_compiler_path_change",
+    "no_json_schema_compiler_pass_change",
+    "no_generated_source_substring_dependency",
+    "no_build_script_route_generation"
+  ],
+  "completed_promotion_class": "syntax backend declarative route manifest tranche",
+  "loader_completed_promotion_class": "syntax backend route manifest loader tranche",
+  "next_missing_stable_promotion_class": "Build Go Source-Record Raw-Token Generator Core",
+  "projector_metadata_setup_completed_promotion_class": "syntax backend projector-driven metadata route setup tranche"
+}

@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "test": "jest",
+    "build": "tsc && webpack",
+    "start": "node dist/index.js",
+    "preinstall": "node check-version.js",
+    "postinstall": "node setup.js",
+    "custom-script": "echo 'custom'"
+  },
+  "config": {
+    "port": 3000,
+    "env": "development",
+    "features": {
+      "auth": true,
+      "logging": true
+    }
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0",
+    "yarn": "^1.22.0"
+  },
+  "os": ["darwin", "linux"],
+  "cpu": ["x64", "arm64"]
+}

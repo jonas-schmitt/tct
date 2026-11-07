@@ -1,0 +1,29 @@
+{
+  "name": "tct-public-library-fixture",
+  "version": "0.0.0",
+  "description": "A newly authored library package fixture",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "test": "node --test test/library.test.js",
+    "prepare": "node tools/prepare.js"
+  },
+  "devDependencies": {
+    "fixture-type-checker": "file:../fixture-type-checker"
+  },
+  "peerDependencies": {
+    "fixture-runtime": ">=1 <2"
+  },
+  "peerDependenciesMeta": {
+    "fixture-runtime": {
+      "optional": true
+    }
+  },
+  "optionalDependencies": {
+    "fixture-accelerator": "0.0.0"
+  },
+  "files": ["dist/*.js", "dist/*.d.ts"]
+}

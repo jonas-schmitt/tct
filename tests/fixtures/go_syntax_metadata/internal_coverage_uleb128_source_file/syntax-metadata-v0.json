@@ -1,0 +1,509 @@
+{
+  "artifact_kind": "tct_go_syntax_metadata_v0",
+  "version": 0,
+  "source": {
+    "path": "tests/fixtures/go_syntax_corpus/src/internal/coverage/uleb128/uleb128.go",
+    "sha256": "608b9ea1f3cf69e6dd9886c91fafb412bac6aaf48fe211266a5505644934b422"
+  },
+  "parser": {
+    "tool": "go",
+    "version": "go1.24.3",
+    "package": "go/parser",
+    "package_version": "go1.24.3"
+  },
+  "rules": [
+    {
+      "name": "File",
+      "node_kind": "File",
+      "fields": [
+        {
+          "name": "HeaderComments",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "CommentGroup",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "package_identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "FunctionDecl",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FuncDecl",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FuncDecl",
+      "node_kind": "FuncDecl",
+      "fields": [
+        {
+          "name": "Doc",
+          "required": false,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "CommentGroup",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        },
+        {
+          "name": "Type",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FuncType",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Body",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BlockStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FuncType",
+      "node_kind": "FuncType",
+      "fields": [
+        {
+          "name": "Params",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FieldList",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Results",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "FieldList",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FieldList",
+      "node_kind": "FieldList",
+      "fields": [
+        {
+          "name": "List",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Field",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Field",
+      "node_kind": "Field",
+      "fields": [
+        {
+          "name": "Names",
+          "required": false,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Type",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "ArrayType",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ArrayType",
+      "node_kind": "ArrayType",
+      "fields": [
+        {
+          "name": "Elt",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BlockStmt",
+      "node_kind": "BlockStmt",
+      "fields": [
+        {
+          "name": "List",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "AssignStmt",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "BranchStmt",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "ForStmt",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "IfStmt",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "ReturnStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ForStmt",
+      "node_kind": "ForStmt",
+      "fields": [
+        {
+          "name": "Body",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BlockStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "IfStmt",
+      "node_kind": "IfStmt",
+      "fields": [
+        {
+          "name": "Cond",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BinaryExpr",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Body",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BlockStmt",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AssignStmt",
+      "node_kind": "AssignStmt",
+      "fields": [
+        {
+          "name": "Lhs",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Tok",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "assignment_operator",
+              "terminal": "string_payload"
+            }
+          ]
+        },
+        {
+          "name": "Rhs",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "BasicLit",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "BinaryExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "CallExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BranchStmt",
+      "node_kind": "BranchStmt",
+      "fields": [
+        {
+          "name": "Tok",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "branch_keyword",
+              "terminal": "string_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ReturnStmt",
+      "node_kind": "ReturnStmt",
+      "fields": [
+        {
+          "name": "Results",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CallExpr",
+      "node_kind": "CallExpr",
+      "fields": [
+        {
+          "name": "Fun",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Args",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "BinaryExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BinaryExpr",
+      "node_kind": "BinaryExpr",
+      "fields": [
+        {
+          "name": "Op",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "binary_operator",
+              "terminal": "string_payload"
+            }
+          ]
+        },
+        {
+          "name": "X",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BinaryExpr",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        },
+        {
+          "name": "Y",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "BasicLit",
+              "terminal": "nonterminal"
+            },
+            {
+              "node_kind": "Ident",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BasicLit",
+      "node_kind": "BasicLit",
+      "fields": [
+        {
+          "name": "Value",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "integer_literal",
+              "terminal": "integer_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ident",
+      "node_kind": "Ident",
+      "fields": [
+        {
+          "name": "Name",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "identifier",
+              "terminal": "identifier_payload"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CommentGroup",
+      "node_kind": "CommentGroup",
+      "fields": [
+        {
+          "name": "List",
+          "required": true,
+          "multiple": true,
+          "alternatives": [
+            {
+              "node_kind": "Comment",
+              "terminal": "nonterminal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Comment",
+      "node_kind": "Comment",
+      "fields": [
+        {
+          "name": "Text",
+          "required": true,
+          "multiple": false,
+          "alternatives": [
+            {
+              "node_kind": "comment_text",
+              "terminal": "string_payload"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

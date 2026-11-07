@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UnionOptionalFields",
+  "description": "Tests union with variants differing by optional fields",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "step": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "uses": {"type": "string"}
+          },
+          "required": ["uses"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "run": {"type": "string"},
+            "shell": {"type": "string"}
+          },
+          "required": ["run"],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": ["name", "step"],
+  "additionalProperties": false
+}

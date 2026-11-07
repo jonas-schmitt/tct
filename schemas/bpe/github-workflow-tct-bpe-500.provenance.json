@@ -1,0 +1,101 @@
+{
+  "command": [
+    "/home/jonas/git/tct/target/publication-clearance/public-bpe-20261107/cargo-target/debug/tct-train-bpe",
+    "--schema",
+    "schemas/popular/github-workflow.json",
+    "--instances",
+    "tests/data/instances/github-workflow/synthetic/public_*.json",
+    "--target-vocab",
+    "500",
+    "--output",
+    "schemas/bpe/github-workflow-tct-bpe-500.json",
+    "--name",
+    "github-workflow",
+    "--optimization",
+    "O3"
+  ],
+  "schema_name": "github-workflow",
+  "instances_pattern": "tests/data/instances/github-workflow/synthetic/public_*.json",
+  "encoded_input": null,
+  "cache_path": null,
+  "schema_file": {
+    "path": "schemas/popular/github-workflow.json",
+    "bytes": 99353,
+    "sha256": "c1a5cc4654785203aeb613814b5150e8da275cfedb6d8777b0af741a39224315"
+  },
+  "encoded_input_file": null,
+  "prepare_data_metadata_file": null,
+  "cache_file": null,
+  "input_files": [
+    {
+      "path": "schemas/popular/github-workflow.json",
+      "bytes": 99353,
+      "sha256": "c1a5cc4654785203aeb613814b5150e8da275cfedb6d8777b0af741a39224315"
+    },
+    {
+      "path": "tests/data/instances/github-workflow/synthetic/public_checks.json",
+      "bytes": 580,
+      "sha256": "d3181d3f825c9f3c02e29b386ee9eeaed1869012cd10587077f1461d35174f68"
+    },
+    {
+      "path": "tests/data/instances/github-workflow/synthetic/public_matrix.json",
+      "bytes": 763,
+      "sha256": "2a3997b3dba7f342ca237b5bfa0dcbf9c6cefe1cf81c3594e820aee4146d1b84"
+    }
+  ],
+  "input_corpus_fingerprint": "b4edc5f3a757fc123ab7c03d08482f3e5313c61bbdbdd85ed6f7495744977dd1",
+  "token_corpus": {
+    "source": "instance_encoding",
+    "sequence_count": 2,
+    "sequence_fingerprint": "7792303e6468eb0055bcddabca1076e59145ce5bf83a2bd201d046141b6ee46f",
+    "sample_size": null,
+    "sample_seed": null,
+    "cache_path": null,
+    "cache_hit": false,
+    "cache_written": false,
+    "parallel_early_stop": false,
+    "truncated_to_sample_size": false,
+    "selected_instance_files": [],
+    "accepted_instance_files": [
+      {
+        "path": "tests/data/instances/github-workflow/synthetic/public_checks.json",
+        "bytes": 580,
+        "sha256": "d3181d3f825c9f3c02e29b386ee9eeaed1869012cd10587077f1461d35174f68"
+      },
+      {
+        "path": "tests/data/instances/github-workflow/synthetic/public_matrix.json",
+        "bytes": 763,
+        "sha256": "2a3997b3dba7f342ca237b5bfa0dcbf9c6cefe1cf81c3594e820aee4146d1b84"
+      }
+    ],
+    "rejected_instance_files": []
+  },
+  "output_files": [
+    {
+      "path": "schemas/bpe/github-workflow-tct-bpe-500.json",
+      "bytes": 25988,
+      "sha256": "8891678e0ca4c086c58f07b0641fc8e36e86eac82a863d4995024a66bdbe2894"
+    }
+  ],
+  "base_vocab_size": 257,
+  "base_vocab_source": "schema",
+  "optimization_level": "O3",
+  "target_vocab": 500,
+  "target_avg_length": null,
+  "schema_ids": [],
+  "reserved_special_tokens": 2,
+  "max_merges_deprecated": null,
+  "checkpoints": null,
+  "sample_size": null,
+  "trained_on_instances": 2,
+  "generated_merges": 240,
+  "timings": {
+    "training_wall_time_ns": 4116581,
+    "provenance_hashing_ns": 1838635
+  },
+  "provenance_path": "schemas/bpe/github-workflow-tct-bpe-500.provenance.json",
+  "created_at": "2026-11-07T11:12:59.643436915+00:00",
+  "tct_version": "0.1.0",
+  "repo_commit": "cd962f24e751cdb7a0f9225e519659058839e250",
+  "repo_dirty": false
+}

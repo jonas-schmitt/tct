@@ -1,0 +1,349 @@
+{
+  "format_version": 1,
+  "scope": "Uncleared paths must not be treated as covered by another file license. This list does not authorize removal from the private research archive.",
+  "files": [
+    {
+      "local_path": "schemas/api/AsyncAPI.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "AsyncAPI",
+          "url": "https://www.asyncapi.com/schema-store/all.schema-store.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/api/AsyncAPI_Tool_File.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "AsyncAPI Tool File",
+          "url": "https://raw.githubusercontent.com/asyncapi/website/master/scripts/tools/tools-schema.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/bpe/eslintrc-tct-bpe-500.json",
+      "reason": "Derived BPE artifact rights and proposed public-training inputs are under separate review.",
+      "origin_leads": []
+    },
+    {
+      "local_path": "schemas/bpe/eslintrc-tct-bpe-500.provenance.json",
+      "reason": "Derived BPE artifact rights and proposed public-training inputs are under separate review.",
+      "origin_leads": []
+    },
+    {
+      "local_path": "schemas/bpe/github-workflow-tct-bpe-500.json",
+      "reason": "Derived BPE artifact rights and proposed public-training inputs are under separate review.",
+      "origin_leads": []
+    },
+    {
+      "local_path": "schemas/bpe/github-workflow-tct-bpe-500.provenance.json",
+      "reason": "Derived BPE artifact rights and proposed public-training inputs are under separate review.",
+      "origin_leads": []
+    },
+    {
+      "local_path": "schemas/bpe/kubernetes-tct-bpe-500.json",
+      "reason": "Derived BPE artifact rights and proposed public-training inputs are under separate review.",
+      "origin_leads": []
+    },
+    {
+      "local_path": "schemas/bpe/kubernetes-tct-bpe-500.provenance.json",
+      "reason": "Derived BPE artifact rights and proposed public-training inputs are under separate review.",
+      "origin_leads": []
+    },
+    {
+      "local_path": "schemas/bpe/package-tct-bpe-500.json",
+      "reason": "Derived BPE artifact rights and proposed public-training inputs are under separate review.",
+      "origin_leads": []
+    },
+    {
+      "local_path": "schemas/bpe/package-tct-bpe-500.provenance.json",
+      "reason": "Derived BPE artifact rights and proposed public-training inputs are under separate review.",
+      "origin_leads": []
+    },
+    {
+      "local_path": "schemas/bpe/tsconfig-tct-bpe-1k.json",
+      "reason": "Derived BPE artifact rights and proposed public-training inputs are under separate review.",
+      "origin_leads": []
+    },
+    {
+      "local_path": "schemas/bpe/tsconfig-tct-bpe-1k.provenance.json",
+      "reason": "Derived BPE artifact rights and proposed public-training inputs are under separate review.",
+      "origin_leads": []
+    },
+    {
+      "local_path": "schemas/bpe/tsconfig-tct-bpe-500.json",
+      "reason": "Derived BPE artifact rights and proposed public-training inputs are under separate review.",
+      "origin_leads": []
+    },
+    {
+      "local_path": "schemas/bpe/tsconfig-tct-bpe-500.provenance.json",
+      "reason": "Derived BPE artifact rights and proposed public-training inputs are under separate review.",
+      "origin_leads": []
+    },
+    {
+      "local_path": "schemas/configuration/.adonisrc.json.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": ".adonisrc.json",
+          "url": "https://raw.githubusercontent.com/adonisjs/application/master/adonisrc.schema.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/configuration/.appsemblerc.yaml.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": ".appsemblerc.yaml",
+          "url": "https://gitlab.com/appsemble/appsemble/-/raw/HEAD/packages/cli/assets/appsemblerc.schema.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/configuration/1Password_SSH_Agent_Config.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "1Password SSH Agent Config",
+          "url": "https://developer.1password.com/schema/ssh-agent-config.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/configuration/Upsun_config.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "Upsun config",
+          "url": "https://raw.githubusercontent.com/platformsh/platformify/refs/heads/main/validator/schema/upsun.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/configuration/appsettings.StormPetrel.json.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "appsettings.StormPetrel.json",
+          "url": "https://raw.githubusercontent.com/Scandltd/storm-petrel/main/generator/assets/appsettings.StormPetrel.Schema.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/configuration/arc.json.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "arc.json",
+          "url": "https://raw.githubusercontent.com/architect/parser/v2.3.0/arc-schema.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/configuration/architect.yml.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "architect.yml",
+          "url": "https://raw.githubusercontent.com/architect-team/architect-cli/main/src/dependency-manager/schema/architect.schema.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/lottie/lottie.schema.json",
+      "reason": "The file is a 14-byte invalid-JSON download-error response, not a schema.",
+      "origin_leads": []
+    },
+    {
+      "local_path": "schemas/other/.angular-cli.json.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": ".angular-cli.json",
+          "url": "https://raw.githubusercontent.com/angular/angular-cli/v10.1.6/packages/angular/cli/lib/config/schema.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/other/Aerleon_Network__Service_Definitions.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "Aerleon Network & Service Definitions",
+          "url": "https://raw.githubusercontent.com/aerleon/aerleon/main/schemas/aerleon-definitions.schema.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/other/Aerleon_Policy.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "Aerleon Policy",
+          "url": "https://raw.githubusercontent.com/aerleon/aerleon/main/schemas/aerleon-policies.schema.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/other/Air.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "Air",
+          "url": "https://github.com/posit-dev/air/releases/latest/download/air.schema.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/other/Argo_Events.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "Argo Events",
+          "url": "https://raw.githubusercontent.com/argoproj/argo-events/master/api/jsonschema/schema.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/other/Argo_Workflows.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "Argo Workflows",
+          "url": "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/other/Atmos_Manifests.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "Atmos Manifests",
+          "url": "https://atmos.tools/schemas/atmos/atmos-manifest/1.0/atmos-manifest.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/other/Platform.sh_application.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "Platform.sh application",
+          "url": "https://raw.githubusercontent.com/platformsh/platformify/refs/heads/main/validator/schema/platformsh.application.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/other/Platform.sh_routes.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "Platform.sh routes",
+          "url": "https://raw.githubusercontent.com/platformsh/platformify/refs/heads/main/validator/schema/platformsh.routes.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/other/Platform.sh_services.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "Platform.sh services",
+          "url": "https://raw.githubusercontent.com/platformsh/platformify/refs/heads/main/validator/schema/platformsh.services.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/other/aerleon.yml.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "aerleon.yml",
+          "url": "https://raw.githubusercontent.com/aerleon/aerleon/main/schemas/aerleon-config.schema.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/other/angular.json.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "angular.json",
+          "url": "https://raw.githubusercontent.com/angular/angular-cli/master/packages/angular/cli/lib/config/workspace-schema.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/other/aqua-generate-registry.yaml.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "aqua-generate-registry.yaml",
+          "url": "https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/aqua-generate-registry.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/other/aqua-policy.yaml.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "aqua-policy.yaml",
+          "url": "https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/policy.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/other/aqua.yaml.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "aqua.yaml",
+          "url": "https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/aqua-yaml.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/other/arb.json.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "arb.json",
+          "url": "https://raw.githubusercontent.com/google/app-resource-bundle/main/schema/arb.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/other/asm-lsp.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "asm-lsp",
+          "url": "https://raw.githubusercontent.com/bergercookie/asm-lsp/master/asm-lsp_config_schema.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/other/registry.yaml.json",
+      "reason": "Original external source revision, content transformation and license scope not yet recovered.",
+      "origin_leads": [
+        {
+          "name": "registry.yaml",
+          "url": "https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json"
+        }
+      ]
+    },
+    {
+      "local_path": "schemas/specialized/sarif-2.1.0-rtm.6.json",
+      "reason": "Original OASIS terms and permission scope need review; SchemaStore matching bytes do not establish an Apache grant over the OASIS schema.",
+      "origin_leads": [
+        "https://github.com/oasis-tcs/sarif-spec/issues/583",
+        "https://github.com/oasis-tcs/sarif-spec/blob/main/LICENSE.md"
+      ]
+    }
+  ]
+}

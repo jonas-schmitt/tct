@@ -1,0 +1,11 @@
+{
+  "name": "exact-reproduction",
+  "on": {
+    "push": {
+      "branches": ["master", "main"]
+    },
+    "pull_request": {
+      "branches": ["master"]
+    }
+  }
+}

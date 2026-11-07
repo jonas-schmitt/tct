@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Nested Objects Test",
+  "description": "Test nested object generation",
+  "type": "object",
+  "properties": {
+    "level1": {
+      "type": "object",
+      "properties": {
+        "level2": {
+          "type": "object",
+          "properties": {
+            "level3": {
+              "type": "object",
+              "properties": {
+                "value": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

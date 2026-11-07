@@ -1,0 +1,91 @@
+{
+  "command": [
+    "/home/jonas/git/tct/target/publication-clearance/public-bpe-20261107/cargo-target/debug/tct-train-bpe",
+    "--schema",
+    "schemas/popular/tsconfig.json",
+    "--instances",
+    "tests/data/instances/tsconfig/synthetic/public_*.json",
+    "--target-vocab",
+    "500",
+    "--output",
+    "schemas/bpe/tsconfig-tct-bpe-500.json",
+    "--name",
+    "tsconfig",
+    "--optimization",
+    "O3"
+  ],
+  "schema_name": "tsconfig",
+  "instances_pattern": "tests/data/instances/tsconfig/synthetic/public_*.json",
+  "encoded_input": null,
+  "cache_path": null,
+  "schema_file": {
+    "path": "schemas/popular/tsconfig.json",
+    "bytes": 78730,
+    "sha256": "ec2a56b0dbf552c8a3cb007344dab64785f584ff83a2e634a57506ce29dc9bee"
+  },
+  "encoded_input_file": null,
+  "prepare_data_metadata_file": null,
+  "cache_file": null,
+  "input_files": [
+    {
+      "path": "schemas/popular/tsconfig.json",
+      "bytes": 78730,
+      "sha256": "ec2a56b0dbf552c8a3cb007344dab64785f584ff83a2e634a57506ce29dc9bee"
+    },
+    {
+      "path": "tests/data/instances/tsconfig/synthetic/public_strict.json",
+      "bytes": 431,
+      "sha256": "622ca83371734e7ce99d81f3dc8804fe806461a7d584c0c546a64a6a621e8ea0"
+    }
+  ],
+  "input_corpus_fingerprint": "56afa67ff1f8d027aeac5ba45ba96549c1d2df5eb2708924aa557d0d4e4f3a98",
+  "token_corpus": {
+    "source": "instance_encoding",
+    "sequence_count": 1,
+    "sequence_fingerprint": "662479ef1018a220cf0171fd33ad979c16e72afb30ffa9c181642ae207b3dc11",
+    "sample_size": null,
+    "sample_seed": null,
+    "cache_path": null,
+    "cache_hit": false,
+    "cache_written": false,
+    "parallel_early_stop": false,
+    "truncated_to_sample_size": false,
+    "selected_instance_files": [],
+    "accepted_instance_files": [
+      {
+        "path": "tests/data/instances/tsconfig/synthetic/public_strict.json",
+        "bytes": 431,
+        "sha256": "622ca83371734e7ce99d81f3dc8804fe806461a7d584c0c546a64a6a621e8ea0"
+      }
+    ],
+    "rejected_instance_files": []
+  },
+  "output_files": [
+    {
+      "path": "schemas/bpe/tsconfig-tct-bpe-500.json",
+      "bytes": 22577,
+      "sha256": "c152e6ac0a0d703a25b2735cd47e7e76c1a1345ec732235f0f04259ed6f7c55e"
+    }
+  ],
+  "base_vocab_size": 257,
+  "base_vocab_source": "schema",
+  "optimization_level": "O3",
+  "target_vocab": 500,
+  "target_avg_length": null,
+  "schema_ids": [],
+  "reserved_special_tokens": 2,
+  "max_merges_deprecated": null,
+  "checkpoints": null,
+  "sample_size": null,
+  "trained_on_instances": 1,
+  "generated_merges": 208,
+  "timings": {
+    "training_wall_time_ns": 2742664,
+    "provenance_hashing_ns": 1435580
+  },
+  "provenance_path": "schemas/bpe/tsconfig-tct-bpe-500.provenance.json",
+  "created_at": "2026-11-07T11:12:17.623775994+00:00",
+  "tct_version": "0.1.0",
+  "repo_commit": "cd962f24e751cdb7a0f9225e519659058839e250",
+  "repo_dirty": false
+}

@@ -1,0 +1,129 @@
+{
+  "artifact_kind": "tct_syntax_backend_token_vocabulary_bpe_routing_gate",
+  "version": 1,
+  "tool": "syntax_backend_token_vocabulary_bpe_routing_gate",
+  "status": "sidecar_contract_only",
+  "source_consumed_token_accounting_routing_gate": {
+    "artifact_kind": "tct_syntax_backend_consumed_token_accounting_routing_gate",
+    "version": 1,
+    "module_path": "src/syntax_consumed_token_accounting_routing.rs",
+    "fixture_path": "tests/fixtures/syntax_backend/consumed-token-accounting-routing-gate-v1.json",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh",
+    "completed_promotion_class": "syntax backend consumed-token accounting routing gate"
+  },
+  "source_generated_artifact_envelope": {
+    "artifact_kind": "tct_syntax_backend_generated_artifact_envelope",
+    "version": 1,
+    "module_path": "src/syntax_artifact_envelope.rs",
+    "fixture_path": "tests/fixtures/syntax_backend/generated-artifact-envelope-v1.json",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh",
+    "token_layout_metadata_source": "generated artifact envelope token_layout_metadata"
+  },
+  "compiler_boundary": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "preserves_json_schema_backend_contract": true,
+    "production_grammar_compiler_path_changed": false,
+    "sidecar_only": true,
+    "tct_compiler_route_allowed": false
+  },
+  "route_state": {
+    "route_registered": false,
+    "route_enabled": false,
+    "public_api_changed": false,
+    "uses_json_schema_compiler": false,
+    "uses_syntax_renderer_api": false
+  },
+  "token_layout_contract": {
+    "target_ids": [
+      "toy",
+      "csharp",
+      "go"
+    ],
+    "token_layout_fields": [
+      "PAD_TOKEN",
+      "VOCAB_SIZE",
+      "raw_base_vocab_size",
+      "structural_ranges",
+      "payload_ranges",
+      "optional_bpe_ranges"
+    ],
+    "collision_checks": [
+      "pad_token_below_vocab_size",
+      "pad_token_outside_raw_base_ranges",
+      "structural_ranges_do_not_overlap_payload_ranges",
+      "bpe_range_starts_at_raw_base_vocab_size",
+      "bpe_range_below_vocab_size_or_relocates_pad",
+      "bpe_ids_do_not_collide_with_pad_token",
+      "emitted_tokens_below_vocab_size",
+      "emitted_tokens_exclude_pad_token"
+    ],
+    "route_owns_token_layout_before_renderer": true,
+    "emitted_token_upper_bound_required": true,
+    "does_not_allocate_json_schema_tokens": true
+  },
+  "bpe_boundary_contract": {
+    "bpe_boundary_fields": [
+      "bpe_start",
+      "bpe_end_exclusive",
+      "bpe_merges",
+      "current_layout_hosts_bpe",
+      "merge_table_sha256"
+    ],
+    "optional_bpe_range_supported": true,
+    "bpe_absence_is_explicit": true,
+    "bpe_artifact_identity_required_when_present": true,
+    "no_bpe_claim_without_merge_artifact": true
+  },
+  "generated_codec_evidence": {
+    "test_path": "tests/syntax_generated_codec_gate_test.rs",
+    "renderer_api_module": "src/syntax_generated_codec.rs",
+    "token_layout_source_module": "src/grammar_ir_structural_model.rs",
+    "target_ids": [
+      "toy",
+      "csharp",
+      "go"
+    ],
+    "parser_backed_target_ids": [
+      "csharp",
+      "go"
+    ],
+    "required_test_markers": [
+      "toy_syntax_generated_codec_token_layout_reserves_bpe_boundary",
+      "toy_syntax_bpe_merge_artifact_round_trips_token_corpus",
+      "toy_syntax_generated_codec_artifact_metadata_is_reproducible",
+      "parser_backed_syntax_generated_codec_artifact_metadata_is_reproducible",
+      "raw_base_vocab_size",
+      "structural_ranges",
+      "payload_ranges",
+      "bpe_boundary",
+      "bpe_ids_fit_reserved_boundary",
+      "tokens_below_vocab_size",
+      "*token != boundary.pad_token && *token < boundary.vocab_size"
+    ],
+    "required_renderer_api_markers": [
+      "GrammarStructuralTokenLayout",
+      "reserve_bpe_boundary",
+      "token_layout_envelope_metadata",
+      "csharp_syntax_token_layout",
+      "go_syntax_token_layout"
+    ],
+    "target_agnostic_compiler_route_metadata_field": "target_agnostic_compiler_route",
+    "target_agnostic_compiler_route_evidence": [
+      "csharp_minimal_class_syntax_v0",
+      "csharp_local_string_return_literal_syntax_v0",
+      "go_minimal_function_syntax_v0",
+      "go_local_declaration_syntax_v0",
+      "generated_go_minimal_function_real_source_strings_compare_demo"
+    ],
+    "generated_artifact_envelope_token_layout_confirmed": true
+  },
+  "blockers": [
+    "reproducibility",
+    "audit coverage"
+  ],
+  "completed_promotion_class": "syntax backend token/vocabulary/BPE routing gate",
+  "next_missing_stable_promotion_class": "syntax backend reproducibility routing gate"
+}

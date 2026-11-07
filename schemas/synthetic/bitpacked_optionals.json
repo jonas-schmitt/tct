@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BitPackedOptionalsTest",
+  "description": "Test schema for O3 bit-packed optional field presence optimization. Tests structs with many optional fields to verify bit-packing efficiency.",
+  "type": "object",
+  "properties": {
+    "required_field": {
+      "type": "string",
+      "description": "Always present - establishes baseline"
+    },
+    "optional1": {
+      "type": "string",
+      "description": "Optional field 1 - will be bit-packed"
+    },
+    "optional2": {
+      "type": "integer",
+      "description": "Optional field 2 - will be bit-packed"
+    },
+    "optional3": {
+      "type": "boolean",
+      "description": "Optional field 3 - will be bit-packed"
+    },
+    "optional4": {
+      "type": "number",
+      "description": "Optional field 4 - will be bit-packed (threshold reached)"
+    },
+    "optional5": {
+      "type": "string",
+      "description": "Optional field 5 - will be bit-packed"
+    },
+    "optional6": {
+      "type": "integer",
+      "description": "Optional field 6 - will be bit-packed"
+    },
+    "optional7": {
+      "type": "boolean",
+      "description": "Optional field 7 - will be bit-packed"
+    },
+    "optional8": {
+      "type": "number",
+      "description": "Optional field 8 - will be bit-packed"
+    },
+    "optional9": {
+      "type": "string",
+      "description": "Optional field 9 - will be bit-packed"
+    },
+    "optional10": {
+      "type": "integer",
+      "description": "Optional field 10 - will be bit-packed"
+    },
+    "nullable_optional": {
+      "type": ["string", "null"],
+      "description": "3-state nullable field - should NOT be bit-packed (uses OptionalField)"
+    }
+  },
+  "required": ["required_field"],
+  "additionalProperties": false
+}

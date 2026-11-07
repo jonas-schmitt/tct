@@ -1,0 +1,181 @@
+{
+  "artifact_kind": "tct_syntax_backend_generated_artifact_reproducibility_replay",
+  "version": 1,
+  "tool": "syntax_backend_generated_artifact_reproducibility_replay_fixture",
+  "api_version": "syntax-generator-api-v0",
+  "source_generated_artifact_envelope": {
+    "artifact_kind": "tct_syntax_backend_generated_artifact_envelope",
+    "version": 1,
+    "fixture_path": "tests/fixtures/syntax_backend/generated-artifact-envelope-v1.json",
+    "module_path": "src/syntax_artifact_envelope.rs",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh"
+  },
+  "source_validation_hook_sidecar_evidence": {
+    "artifact_kind": "tct_syntax_backend_validation_hook_sidecar_evidence",
+    "version": 1,
+    "fixture_path": "tests/fixtures/syntax_backend/validation-hook-sidecar-evidence-v1.json",
+    "module_path": "src/syntax_validation_hooks.rs",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh"
+  },
+  "source_input_diagnostics_contract": {
+    "artifact_kind": "tct_syntax_backend_input_validation_diagnostics_contract",
+    "version": 1,
+    "fixture_path": "tests/fixtures/syntax_backend/input-validation-diagnostics-v1.json",
+    "module_path": "src/syntax_input_diagnostics.rs",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh"
+  },
+  "source_input_diagnostics_negative_fixture": {
+    "artifact_kind": "tct_syntax_backend_input_validation_negative_fixtures",
+    "version": 1,
+    "fixture_path": "tests/fixtures/syntax_backend/input-validation-negative-fixtures-v1.json",
+    "module_path": "src/syntax_input_diagnostics.rs",
+    "test_path": "tests/syntax_backend_boundary_test.rs",
+    "gate_helper": "./scripts/testing/test-syntax-backend-gates.sh"
+  },
+  "target_ids": [
+    "toy",
+    "csharp",
+    "go"
+  ],
+  "volatile_report_policy": {
+    "checked_in_reports": false,
+    "volatile_report_dir": "target/tct-syntax-generated-codec-reproducibility",
+    "toy_report_path": "target/tct-syntax-generated-codec-reproducibility/toy-syntax-generated-codec.json",
+    "parser_backed_report_path": "target/tct-syntax-generated-codec-reproducibility/parser-backed-syntax-generated-codecs.json",
+    "report_artifact_kinds": [
+      "tct_syntax_generated_codec_reproducibility_report",
+      "tct_parser_backed_syntax_generated_codec_reproducibility_report"
+    ]
+  },
+  "deterministic_hash_fields": [
+    "rendered_source_sha256",
+    "source_or_metadata_sha256",
+    "grammar_input_sha256",
+    "source_metadata_provenance_sha256",
+    "structural_model_sha256",
+    "token_layout_sha256",
+    "generated_crate_identity_sha256",
+    "generation_options_sha256",
+    "generated_artifact_envelope_sha256",
+    "validation_hook_sidecar_evidence_sha256",
+    "input_diagnostics_contract_sha256",
+    "input_diagnostics_negative_fixture_sha256",
+    "boundary_manifest_sha256",
+    "target_manifest_sha256"
+  ],
+  "records": [
+    {
+      "target_id": "toy",
+      "source_kind": "toy_grammar",
+      "report_path": "target/tct-syntax-generated-codec-reproducibility/toy-syntax-generated-codec.json",
+      "report_artifact_kind": "tct_syntax_generated_codec_reproducibility_report",
+      "rendered_source_sha256": "753cbf8754a485554d3aea247b5d1948d1a5322d10959206a7d68d06d55df0ff",
+      "source_or_metadata_sha256": "6fd665e09ace25dea7d6de0c2f5ec102a90f890eaf42ef170d8e03789eb8f7cd",
+      "parser_or_grammar_identity": {
+        "kind": "grammar",
+        "grammar_id": "toy_assignment_v1",
+        "grammar_version": 1
+      },
+      "grammar_input_sha256": "86930eff2982e4176c7380418df3e228fe9d2ab2f5313b567a3aa4a0d41ba2b2",
+      "source_metadata_provenance_sha256": "62a757b89dc9493f798c71793d329369fba0a926ef8e615300385ffd86e8c5d9",
+      "structural_model_sha256": "a40265c2f073bd1138173389d25bebf0664bf4bed3b1aeca8d8593b87be34128",
+      "token_layout_sha256": "08fa3da2ff9b6511cd310f906672fa289c381b29665a87bdeb9a611d1f788007",
+      "generated_crate_identity_sha256": "11b9db7895f776114945b5cc34cfdf7d98b5b983155da46c483ab893923255c0",
+      "generation_options_sha256": "a870012bba2b99e374ff27b9c103f0e6daccd12afbefbc2269cf6d799760e14d",
+      "generated_artifact_envelope_sha256": "83925781e66a78b99f7d73a8b9be30ce61f6e620d22c40396eb5177d89edcc99",
+      "validation_hook_sidecar_evidence_sha256": "1091eea082928cedfcb80fec2d751d0987898c3530a631277308d870daa9c78d",
+      "input_diagnostics_contract_sha256": "bff53d31ac4525f47a76238174e7b7727e57acd275d1643b4527039c68c4cec3",
+      "input_diagnostics_negative_fixture_sha256": "ee9d7c5845eb991872d15af3e27a96b04da92e6bb26a989aecfc12b2d7634962",
+      "boundary_manifest_sha256": "815cc872f4998f8cd53ce021d5d922e841561cea233ec43dd04c3d6d6d570aab",
+      "target_manifest_sha256": "9a69499902b0fda29f0c46fc515963d19be15ffad97022962476a87e8b9ff2df",
+      "compiler_boundary_status": {
+        "syntax_frontend_only": true,
+        "uses_json_schema_compiler": false,
+        "uses_tct_codegen": false,
+        "stable_tct_backend_route": false,
+        "sidecar_artifact_only": true
+      }
+    },
+    {
+      "target_id": "csharp",
+      "source_kind": "tree_sitter",
+      "report_path": "target/tct-syntax-generated-codec-reproducibility/parser-backed-syntax-generated-codecs.json",
+      "report_artifact_kind": "tct_parser_backed_syntax_generated_codec_reproducibility_report",
+      "rendered_source_sha256": "95e14dfb59d56529594f0baef4a0fa0321502ef95d2403545dfaa839cfbae30a",
+      "source_or_metadata_sha256": "baab4d0526ab5d0d9f33472fba4a90f6e3e11b2a719a47a60d94291ff37094f1",
+      "parser_or_grammar_identity": {
+        "kind": "parser",
+        "tool": "dotnet",
+        "version": "10.0.203",
+        "package": "Microsoft.CodeAnalysis.CSharp",
+        "package_version": "5.3.0"
+      },
+      "grammar_input_sha256": "69bad8654268488e2bcdf0baa0e5a7f1cde5817b1aa702dbceb6eba96f317e84",
+      "source_metadata_provenance_sha256": "a95cdaf1c6780a99ada56cad92f62eaaa5a23cb8635286178ca806ac7ac1f5d0",
+      "structural_model_sha256": "8136357da93fcbc4e0c74b47517748e3e2a9eb00c16c205b1925031fbc72604d",
+      "token_layout_sha256": "217fc5b49bb553477ec238abdbcd3d8f1f7a33f2fb14553bb07cbc2ff3774577",
+      "generated_crate_identity_sha256": "f38e88ecd73e7a002b9a3349549ea43424b0a7afb3b9085165782e556fb482ed",
+      "generation_options_sha256": "60836306e1032dc4184750c407d35fc5ffc6347e8a13a0ce0cb745f8116ff147",
+      "generated_artifact_envelope_sha256": "83925781e66a78b99f7d73a8b9be30ce61f6e620d22c40396eb5177d89edcc99",
+      "validation_hook_sidecar_evidence_sha256": "1091eea082928cedfcb80fec2d751d0987898c3530a631277308d870daa9c78d",
+      "input_diagnostics_contract_sha256": "bff53d31ac4525f47a76238174e7b7727e57acd275d1643b4527039c68c4cec3",
+      "input_diagnostics_negative_fixture_sha256": "ee9d7c5845eb991872d15af3e27a96b04da92e6bb26a989aecfc12b2d7634962",
+      "boundary_manifest_sha256": "815cc872f4998f8cd53ce021d5d922e841561cea233ec43dd04c3d6d6d570aab",
+      "target_manifest_sha256": "62bfd7f74a7402630ed4e61825fa77276be10985d43059abcbdff0683130014d",
+      "compiler_boundary_status": {
+        "syntax_frontend_only": true,
+        "uses_json_schema_compiler": false,
+        "uses_tct_codegen": false,
+        "stable_tct_backend_route": false,
+        "sidecar_artifact_only": true
+      }
+    },
+    {
+      "target_id": "go",
+      "source_kind": "tree_sitter",
+      "report_path": "target/tct-syntax-generated-codec-reproducibility/parser-backed-syntax-generated-codecs.json",
+      "report_artifact_kind": "tct_parser_backed_syntax_generated_codec_reproducibility_report",
+      "rendered_source_sha256": "3132279dbcbad16a75c391049f0c8b7f63cf171e02d82ba077f7f163f62394b2",
+      "source_or_metadata_sha256": "f0a87ff5993e610218e870cf01576c90d2779efd4278c56db68678ef30a63b78",
+      "parser_or_grammar_identity": {
+        "kind": "parser",
+        "tool": "go",
+        "version": "go1.24.3",
+        "package": "go/parser",
+        "package_version": "go1.24.3"
+      },
+      "grammar_input_sha256": "4c3037cd7fab759ebed126199ee14dee4da30d5698a2a4358aa911ccc8a6ea6a",
+      "source_metadata_provenance_sha256": "2efa2aeebe63d1bba89f93ce13418abc5245395d03719e4f3292c97e489f4bad",
+      "structural_model_sha256": "e6155da69fcfca112382055c8f1a10d4db488716bcb355e38254d078359ad1f5",
+      "token_layout_sha256": "f51008408dcde06ef783705a0da8a89941704d934a6d8d22b075c9e7cf73a326",
+      "generated_crate_identity_sha256": "430c929da538670ad7bfdac6737f4fa346c169a3f432fb9f7143531a172082bc",
+      "generation_options_sha256": "cd7b6d2657d3e3a07ed0b796f9c46ec4f068f8930ef10222aa56c4afe9f93184",
+      "generated_artifact_envelope_sha256": "83925781e66a78b99f7d73a8b9be30ce61f6e620d22c40396eb5177d89edcc99",
+      "validation_hook_sidecar_evidence_sha256": "1091eea082928cedfcb80fec2d751d0987898c3530a631277308d870daa9c78d",
+      "input_diagnostics_contract_sha256": "bff53d31ac4525f47a76238174e7b7727e57acd275d1643b4527039c68c4cec3",
+      "input_diagnostics_negative_fixture_sha256": "ee9d7c5845eb991872d15af3e27a96b04da92e6bb26a989aecfc12b2d7634962",
+      "boundary_manifest_sha256": "815cc872f4998f8cd53ce021d5d922e841561cea233ec43dd04c3d6d6d570aab",
+      "target_manifest_sha256": "582e3cff27d75996b05984e9aa4d41b7dc04b9362eb53c490d421e14f2ee5e89",
+      "compiler_boundary_status": {
+        "syntax_frontend_only": true,
+        "uses_json_schema_compiler": false,
+        "uses_tct_codegen": false,
+        "stable_tct_backend_route": false,
+        "sidecar_artifact_only": true
+      }
+    }
+  ],
+  "compiler_boundary": {
+    "core_compiler_path_changed": false,
+    "generated_json_schema_output_changed": false,
+    "preserves_json_schema_backend_contract": true,
+    "production_grammar_compiler_path_changed": false,
+    "sidecar_only": true,
+    "tct_compiler_route_allowed": false
+  },
+  "completed_promotion_class": "syntax backend generated artifact reproducibility replay gate",
+  "next_missing_stable_promotion_class": "syntax backend JSON-backend parity routing gate"
+}

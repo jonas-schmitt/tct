@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Test schema with dot property",
+  "type": "object",
+  "properties": {
+    ".": {
+      "type": "string",
+      "description": "Property named with a single dot"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

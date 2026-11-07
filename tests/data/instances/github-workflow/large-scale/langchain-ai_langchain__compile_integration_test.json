@@ -1,0 +1,66 @@
+{
+  "name": "\ud83d\udd17 Compile Integration Tests",
+  "on": {
+    "workflow_call": {
+      "inputs": {
+        "working-directory": {
+          "required": true,
+          "type": "string",
+          "description": "From which folder this pipeline executes"
+        },
+        "python-version": {
+          "required": true,
+          "type": "string",
+          "description": "Python version to use"
+        }
+      }
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "env": {
+    "UV_FROZEN": "true"
+  },
+  "jobs": {
+    "build": {
+      "defaults": {
+        "run": {
+          "working-directory": "${{ inputs.working-directory }}"
+        }
+      },
+      "runs-on": "ubuntu-latest",
+      "timeout-minutes": 20,
+      "name": "Python ${{ inputs.python-version }}",
+      "steps": [
+        {
+          "uses": "actions/checkout@v5"
+        },
+        {
+          "name": "\ud83d\udc0d Set up Python ${{ inputs.python-version }} + UV",
+          "uses": "./.github/actions/uv_setup",
+          "with": {
+            "python-version": "${{ inputs.python-version }}",
+            "cache-suffix": "compile-integration-tests-${{ inputs.working-directory }}",
+            "working-directory": "${{ inputs.working-directory }}"
+          }
+        },
+        {
+          "name": "\ud83d\udce6 Install Integration Dependencies",
+          "shell": "bash",
+          "run": "uv sync --group test --group test_integration"
+        },
+        {
+          "name": "\ud83d\udd17 Check Integration Tests Compile",
+          "shell": "bash",
+          "run": "uv run pytest -m compile tests/integration_tests"
+        },
+        {
+          "name": "\ud83e\uddf9 Verify Clean Working Directory",
+          "shell": "bash",
+          "run": "set -eu\n\nSTATUS=\"$(git status)\"\necho \"$STATUS\"\n\n# grep will exit non-zero if the target message isn't found,\n# and `set -e` above will cause the step to fail.\necho \"$STATUS\" | grep 'nothing to commit, working tree clean'\n"
+        }
+      ]
+    }
+  }
+}

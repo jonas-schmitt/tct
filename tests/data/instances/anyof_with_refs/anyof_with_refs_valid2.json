@@ -1,0 +1,8 @@
+{
+  "name": "legacy-package",
+  "author": {
+    "name": "Jane Smith",
+    "email": "jane@example.com"
+  },
+  "legacy": true
+}

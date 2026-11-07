@@ -1,0 +1,11 @@
+{
+  "parent": {
+    "name": "parent_test"
+  },
+  "nested": {
+    "value": 42,
+    "grandchild": {
+      "id": "gc_1"
+    }
+  }
+}
