@@ -395,5 +395,16 @@ lists the sources of the test instances.
 
 ## Citation
 
-For research use, cite this software with [CITATION.cff](CITATION.cff) and record
-the source commit, schema, compiler configuration, and any BPE artifact used.
+If you use TCT in research or build on it in your own work, please cite this
+repository as software:
+
+```bibtex
+@software{schmitt_tct,
+  author = {Schmitt, Jonas},
+  title = {{TCT: Type-Constrained Tokenization}},
+  url = {https://github.com/jonas-schmitt/tct}
+}
+```
+
+Citation metadata is available in [CITATION.cff](CITATION.cff). For reproducibility,
+record the source commit, schema, compiler configuration, and any BPE artifact used.

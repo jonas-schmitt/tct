@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use TCT in research, please cite this software and identify the commit and configuration used."
+message: "If you use TCT in research or build on it in your own work, please cite this repository as software and identify the commit and configuration used."
 type: software
 title: "TCT: Type-Constrained Tokenization"
 authors:
