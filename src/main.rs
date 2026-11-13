@@ -297,9 +297,9 @@ fn main() -> Result<(), Box<dyn Error>> {
                      (one byte token per ASCII character, END_STRING_MARKER terminated)\n\
                      instead of fixed-width bit splits. Floats use plain decimal text\n\
                      for zero and 1e-6 <= |x| < 1e21 and exponent form outside that\n\
-                     range (1e21, 5e-324), with the shortest round-trip digits; decode\n\
-                     accepts both forms. Opt-in: the token stream layout\n\
-                     is INCOMPATIBLE with the default encoding. Bounded integers keep\n\
+                     range (1e21, 5e-324), with the shortest round-trip digits;\n\
+                     decode accepts both forms. Opt-in: the token stream layout is\n\
+                     INCOMPATIBLE with the default encoding. Bounded integers keep\n\
                      their dedicated compact path.",
                 )
                 .action(ArgAction::SetTrue),
