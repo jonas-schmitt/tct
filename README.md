@@ -98,7 +98,7 @@ compiler's wheel builder pins in `src/generated_crate.rs`:
 ```toml
 [dependencies]
 serde = { version = "1.0.228", features = ["derive"] }
-serde_json = "1.0.149"
+serde_json = { version = "1.0.149", features = ["float_roundtrip"] }
 rustc-hash = "2.1.2"
 regex = "1.12.3"
 lazy_static = "1.5.0"
@@ -106,6 +106,11 @@ jsonschema = { version = "0.46.2", default-features = false }
 chrono = { version = "0.4.44", features = ["serde"] }
 base64 = "0.22.1"
 ```
+
+The `float_roundtrip` feature makes serde_json parse JSON floats correctly
+rounded. Without it, serde_json's faster parser can turn a decimal into a
+neighbouring double (`1.23e25` becomes `1.2299999999999998e25`), and that wrong
+value is what gets encoded.
 
 `jsonschema` is used to pick the matching branch of `anyOf`/`oneOf` values when
 JSON is deserialized. Generated code never fetches schemas: external `$ref`s

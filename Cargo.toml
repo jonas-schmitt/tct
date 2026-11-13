@@ -234,7 +234,9 @@ required-features = ["experimental"]
 serde = { version = "1.0.228", features = ["derive"] }
 # unbounded_depth: deeply nested instances and schemas can exceed serde_json's
 # default recursion limit of 128; the compiler validates depth itself.
-serde_json = { version = "1.0.149", features = ["preserve_order", "unbounded_depth"] }
+# float_roundtrip: parse JSON floats correctly rounded (the default parser can
+# be one unit in the last place off); generated crates enable it as well.
+serde_json = { version = "1.0.149", features = ["preserve_order", "unbounded_depth", "float_roundtrip"] }
 quote = "1.0.45"
 proc-macro2 = "1.0.106"
 stringcase = "0.4.0"

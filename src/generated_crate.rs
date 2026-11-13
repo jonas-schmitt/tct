@@ -236,17 +236,7 @@ impl GeneratedCargoToml {
             "serde = {{ version = {serde_version}, features = [\"derive\"] }}\n",
             serde_version = toml_quote(SERDE_VERSION)
         ));
-        if self.preserve_order {
-            out.push_str(&format!(
-                "serde_json = {{ version = {serde_json_version}, features = [\"preserve_order\"] }}\n",
-                serde_json_version = toml_quote(SERDE_JSON_VERSION)
-            ));
-        } else {
-            out.push_str(&format!(
-                "serde_json = {serde_json_version}\n",
-                serde_json_version = toml_quote(SERDE_JSON_VERSION)
-            ));
-        }
+        push_serde_json_dependency(&mut out, self.preserve_order);
         if self.pyo3_extension {
             out.push_str(&format!(
                 "pyo3 = {{ version = {pyo3_version}, features = [\"extension-module\"] }}\n",
@@ -292,10 +282,7 @@ impl GeneratedCargoToml {
 
         if let Some(path) = &self.build_tct_path {
             out.push_str("\n[build-dependencies]\n");
-            out.push_str(&format!(
-                "serde_json = {serde_json_version}\n",
-                serde_json_version = toml_quote(SERDE_JSON_VERSION)
-            ));
+            push_serde_json_dependency(&mut out, false);
             out.push_str(&format!("tct = {{ path = {} }}\n", toml_quote(path)));
         }
 
@@ -332,6 +319,21 @@ impl GeneratedCargoToml {
 
         out
     }
+}
+
+/// Every generated serde_json dependency enables `float_roundtrip`: without it
+/// serde_json's float parser may round a decimal to a neighbouring f64, so the
+/// value would already differ from the JSON text before it is encoded.
+fn push_serde_json_dependency(out: &mut String, preserve_order: bool) {
+    let features = if preserve_order {
+        "\"preserve_order\", \"float_roundtrip\""
+    } else {
+        "\"float_roundtrip\""
+    };
+    out.push_str(&format!(
+        "serde_json = {{ version = {}, features = [{features}] }}\n",
+        toml_quote(SERDE_JSON_VERSION)
+    ));
 }
 
 fn push_dependency(out: &mut String, name: &str, version: &str) {
@@ -385,11 +387,9 @@ mod tests {
         assert!(cargo_toml.contains("license = \"Apache-2.0\""));
         assert!(cargo_toml.contains("repository = \"https://github.com/jonas-schmitt/tct\""));
         assert!(cargo_toml.contains("serde = { version = \"=1.0.228\", features = [\"derive\"] }"));
-        assert!(
-            cargo_toml.contains(
-                "serde_json = { version = \"=1.0.149\", features = [\"preserve_order\"] }"
-            )
-        );
+        assert!(cargo_toml.contains(
+            "serde_json = { version = \"=1.0.149\", features = [\"preserve_order\", \"float_roundtrip\"] }"
+        ));
         assert!(cargo_toml.contains("rustc-hash = \"=2.1.2\""));
         assert!(cargo_toml.contains("regex = \"=1.12.3\""));
         assert!(cargo_toml.contains("lazy_static = \"=1.5.0\""));
@@ -432,6 +432,38 @@ mod tests {
             cargo_toml.contains("[lib]\nname = \"generated_wheel\"\ncrate-type = [\"cdylib\"]")
         );
         assert!(cargo_toml.contains("[profile.release]\nlto = true\ncodegen-units = 1"));
+        assert!(
+            cargo_toml.contains(
+                "serde_json = { version = \"=1.0.149\", features = [\"float_roundtrip\"] }"
+            )
+        );
+    }
+
+    #[test]
+    fn every_generated_serde_json_dependency_enables_float_roundtrip() {
+        let variants = [
+            GeneratedCargoToml::new("plain").render(),
+            GeneratedCargoToml::new("ordered")
+                .with_preserve_order()
+                .render(),
+            GeneratedCargoToml::new("build")
+                .with_build_tct_path("/repo/tct")
+                .render(),
+            GeneratedCargoToml::new("wheel")
+                .with_cdylib("wheel")
+                .with_pyo3_extension()
+                .render(),
+        ];
+        for cargo_toml in variants {
+            let serde_json_lines: Vec<&str> = cargo_toml
+                .lines()
+                .filter(|line| line.starts_with("serde_json"))
+                .collect();
+            assert!(!serde_json_lines.is_empty(), "{cargo_toml}");
+            for line in serde_json_lines {
+                assert!(line.contains("\"float_roundtrip\""), "{line}");
+            }
+        }
     }
 
     #[test]
@@ -441,7 +473,9 @@ mod tests {
             .render();
 
         assert!(cargo_toml.contains("[build-dependencies]"));
-        assert!(cargo_toml.contains("serde_json = \"=1.0.149\""));
+        assert!(cargo_toml.contains(
+            "[build-dependencies]\nserde_json = { version = \"=1.0.149\", features = [\"float_roundtrip\"] }"
+        ));
         assert!(cargo_toml.contains("tct = { path = \"/repo/tct\" }"));
     }
 

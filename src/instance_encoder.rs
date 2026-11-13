@@ -360,7 +360,11 @@ pub mod tokenizer {
 
         assert!(cargo_toml.contains("rust-version = \"1.95\""));
         assert!(cargo_toml.contains("serde = { version = \"=1.0.228\", features = [\"derive\"] }"));
-        assert!(cargo_toml.contains("serde_json = \"=1.0.149\""));
+        assert!(
+            cargo_toml.contains(
+                "serde_json = { version = \"=1.0.149\", features = [\"float_roundtrip\"] }"
+            )
+        );
         assert!(cargo_toml.contains("rustc-hash = \"=2.1.2\""));
         assert!(cargo_toml.contains("regex = \"=1.12.3\""));
         assert!(

@@ -1380,7 +1380,11 @@ mod tests {
         assert!(cargo_toml.contains("edition = \"2024\""));
         assert!(cargo_toml.contains("rust-version = \"1.95\""));
         assert!(cargo_toml.contains("serde = { version = \"=1.0.228\", features = [\"derive\"] }"));
-        assert!(cargo_toml.contains("serde_json = \"=1.0.149\""));
+        assert!(
+            cargo_toml.contains(
+                "serde_json = { version = \"=1.0.149\", features = [\"float_roundtrip\"] }"
+            )
+        );
         assert!(
             cargo_toml
                 .contains("pyo3 = { version = \"=0.29.3\", features = [\"extension-module\"] }")

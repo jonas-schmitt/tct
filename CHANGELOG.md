@@ -72,3 +72,17 @@ Apache-2.0.
   decimal-mode streams from earlier builds saw the old form of those values.
   `tct-token-diff` does not model `--decimal-numbers` and does not report
   this change.
+
+### Fixed
+
+- JSON floats are parsed correctly rounded. Generated crates and wheels, and
+  the `tct` crate itself, now enable serde_json's `float_roundtrip` feature.
+  Before, serde_json's default float parser could round a decimal to a
+  neighbouring double (for example `1.23e25` was parsed as
+  `1.2299999999999998e25`), so JSON -> tokens -> JSON changed the value even
+  though the encoder is lossless. Decimal inputs that were parsed wrongly now
+  encode to a different, correct value, in the default 8-byte encoding and in
+  `--decimal-numbers` text; all other values and all token IDs are unchanged,
+  and existing streams decode as before. Crates that compile generated code
+  themselves should add the feature to their `serde_json` dependency (see the
+  README).
