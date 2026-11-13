@@ -105,9 +105,8 @@ Apache-2.0.
   the default: a `number` is one type-marker token plus 8 little-endian byte
   tokens, an `integer` without both bounds is one signed/unsigned marker plus
   8 bytes, bounded integers use the offset encoding at `-O2`, `-O3`, `-Os`,
-  and `-OVocab`, and
-  `--decimal-numbers` replaces the 8 bytes with decimal text plus
-  `END_STRING_MARKER`. The Hugging Face contract, `ARCHITECTURE.md`,
+  and `-OVocab`, and `--decimal-numbers` replaces the 8 bytes with decimal
+  text plus `END_STRING_MARKER`. The Hugging Face contract, `ARCHITECTURE.md`,
   `DEVELOPMENT.md`, and the rustdoc of `SequenceGenerationMask` state that the
   bundle and direct-profile generation mask is stateless and admits EOS at
   every step, so a decoder that needs complete outputs must admit EOS only

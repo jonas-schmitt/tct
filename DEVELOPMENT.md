@@ -165,8 +165,10 @@ Flags worth knowing:
 - `--streaming`: also generate `decode_prefix()` (truncation-tolerant decoding).
   The token format is identical to non-streaming output.
 - `--decimal-numbers`: encode unbounded integers and floats as digit-aligned
-  decimal text. Floats are written as plain decimal text for zero and for
-  `1e-6 <= |x| < 1e21` (`1000`, `0.001`, `123.456`) and in exponent form
+  decimal text. Bounded integers that use the 8-byte encoding (at `-O0`, or
+  with a range wider than 32 bits) are written as decimal text too; bounded
+  offsets and codecs do not change. Floats are written as plain decimal text
+  for zero and for `1e-6 <= |x| < 1e21` (`1000`, `0.001`, `123.456`) and in exponent form
   outside that range (`1e21`, `1e-7`, `5e-324`, `1.7976931348623157e308`),
   always with the shortest digits that parse back to the same value, so a
   float takes at most 25 characters plus the end marker. Decode accepts
@@ -277,11 +279,13 @@ rules.
   bounded finite choices: booleans, enum and union discriminators,
   optional-field states, and BPE IDs are normalized with modulo arithmetic so a
   model-generated stream still decodes. It still errors on EOF, invalid string
-  byte tokens, invalid UTF-8, schema validation failures, and decoded collection
-  lengths above the configured cap. `decode_full()` applies the same semantics
-  and then rejects unconsumed trailing tokens.
+  byte tokens, invalid UTF-8, schema validation failures, decoded collection
+  lengths above the configured cap, and a catch-all key equal to a declared
+  property name. A repeated map key keeps the last entry. `decode_full()`
+  applies the same semantics and then rejects unconsumed trailing tokens.
 - **Strict decode.** `decode_strict()` and `decode_strict_full()` reject
-  out-of-range finite choices instead of normalizing them. They are additive;
+  out-of-range finite choices instead of normalizing them, and reject a key
+  repeated in one map. They are additive;
   the recovery APIs keep their behavior for generation workflows.
 - **Prefix decode.** `decode_prefix()` (generated only with streaming enabled,
   `--streaming` on the CLI or `TctCompiler::with_streaming_encode()`) accepts a

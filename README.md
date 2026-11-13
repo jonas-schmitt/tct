@@ -230,7 +230,7 @@ Strings use end-marker encoding: a byte sequence terminated by
 
 ## Number Encoding
 
-By default, numbers are written as fixed-width bytes, not as decimal text:
+By default, numbers are written as byte tokens, not as decimal text:
 
 - A `number` value is one type-marker token (0 for an integer that fits in
   `i64`, 1 for a float, 2 for a larger unsigned integer) followed by 8
