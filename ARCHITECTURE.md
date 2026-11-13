@@ -71,6 +71,10 @@ schema-path context rather than compiling an approximate tokenizer.
 Supported merge behavior:
 
 - Object subschema properties are merged into the containing generated type.
+  A subschema whose `type` is `"object"` or the nullable object
+  `["object", "null"]` is an object subschema: its object case is merged
+  exactly, and whether the member accepts null is decided by the containing
+  schema. Any other `type` in a merged subschema is rejected.
 - Duplicate properties are merged only when their validation-relevant schemas
   are structurally identical; conflicting duplicates are rejected.
 - `required` names are unioned across the containing object, mergeable
@@ -1010,6 +1014,26 @@ Generated code uses `OptionalField<T>` when a field can be absent, explicitly
 absent/null/present, followed by the encoded value only for the present case.
 This keeps explicit JSON nulls distinct from omitted fields during semantic
 round trips.
+
+### Type Arrays
+
+A `type` array (`"type": ["integer", "null"]`) compiles to a generated enum
+with one variant per listed type, whether it appears on a definition, a
+property, array items, or map values. Discovery builds each variant from the
+parent schema with that single type, so `properties`, `items`, bounds, and
+`format` apply to the variant of their type. A non-empty `enum` keeps, per
+variant, the values of that variant's type, and a listed type without such a
+value gets no variant: `["string", "null"]` with `"enum": ["a", null]` is a
+string enum of `a` plus a null variant. `null` is a unit variant. A required
+member is the enum itself, so it accepts null and rejects absence; an optional
+member is `OptionalField<Enum>` when `null` is listed (encode writes null as
+the optional-field null state; a present value that selects the enum's null
+variant also decodes to null) and `Option<Enum>` otherwise. A one-element
+array on a member is the plain type. Unknown type names, a member `type` array
+without any type name, and an `enum` without a value of any listed type are
+compile errors; non-string entries are skipped. A schema whose `$ref`,
+`const`, string-only `enum`, `allOf`, `oneOf`, or `anyOf` decides the member
+type keeps that representation.
 
 ## String Encoding
 

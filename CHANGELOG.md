@@ -72,6 +72,54 @@ Apache-2.0.
   decimal-mode streams from earlier builds saw the old form of those values.
   `tct-token-diff` does not model `--decimal-numbers` and does not report
   this change.
+- Members whose `type` is an array of JSON types (`["string", "null"]`,
+  `["object", "null"]`, `["integer", "null"]`, `["string", "boolean"]`, ...)
+  compile to a generated enum with one variant per listed type, the
+  representation a definition with a `type` array already had. This applies
+  to properties, array items, and map values. Before, such a member became an
+  untyped `serde_json::Value`: its declared properties, item schemas, enum
+  values, formats, and integer bounds were ignored, its content was encoded
+  generically (object keys and enum values spelled as string bytes), and
+  values of the wrong type were accepted. Each variant applies the keywords
+  of its type, and `null` is a unit variant, so a required
+  `["integer", "null"]` member still accepts null and an optional one keeps
+  the absent, null, and present states. A non-empty `enum` keeps, per
+  variant, the values of that variant's type (`["string", "null"]` with
+  `"enum": ["a", null]` is a string enum of `a` plus a null variant). This
+  also applies to definitions with a `type` array and an `enum`: before, a
+  mixed enum was ignored (the string variant accepted any string) and an
+  all-string enum was copied into every variant. A one-element `type` array
+  is the plain type. Instances whose value in such a member has a type the
+  array does not list, a string outside its `enum`, or an object that breaks
+  the declared properties are now rejected when deserializing. Integers with
+  both `minimum` and `maximum` use the bounded-integer encoding; as for other
+  bounded integers, an out-of-range value is not rejected when deserializing.
+  A `type` array with an unknown type name or without any type name, and one
+  whose non-empty `enum` holds no value of a listed type, is a compile error
+  with a schema path; non-string entries are skipped as before. The stream of
+  every instance that uses such a member changes, and streams from earlier
+  builds are not valid streams for those members. Among the shipped target
+  schemas the generated tokenizer changes for tsconfig, package,
+  github-workflow, jest, babelrc, cypress, codecov, and appsettings, with
+  unchanged token ranges and `VOCAB_SIZE`; treat each as a `breaking_change`
+  for downstream artifacts. (`tct-token-diff` compiles both sides with one
+  compiler. Applying its rules to the layouts of the previous and the current
+  compiler gives `breaking_change` for tsconfig, jest, babelrc, and cypress,
+  and `layout_only_unchanged` for package, github-workflow, codecov, and
+  appsettings, whose changed members are outside the root-level structural
+  token map: nested, or at an opaque root.) The other eight target schemas
+  generate identical code. The merge tables
+  `schemas/bpe/package-tct-bpe-500.json`,
+  `schemas/bpe/github-workflow-tct-bpe-500.json`,
+  `schemas/bpe/tsconfig-tct-bpe-500.json`, and
+  `schemas/bpe/tsconfig-tct-bpe-1k.json` were trained on the old streams and
+  must be retrained.
+- An `allOf` subschema whose `type` is `["object", "null"]` merges like an
+  object subschema; before, it was rejected as an unsupported `allOf` shape.
+  The object case is merged exactly, and whether the member accepts null is
+  decided by the containing schema, as for other `allOf` members. tsconfig
+  needs this once its `ts-node` options are typed: `ts-node.compilerOptions`
+  reuses the nullable `compilerOptions` object through `allOf`.
 
 ### Fixed
 

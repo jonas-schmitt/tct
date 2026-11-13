@@ -2,10 +2,10 @@
 //!
 //! This module owns the cases where a member schema becomes a named discovered
 //! type instead of an inline Rust primitive: string enums, JSON const wrappers,
-//! bounded integers, and format-constrained strings, including their schema
-//! locations and discovery statistics.
+//! `type` arrays, bounded integers, and format-constrained strings, including
+//! their schema locations and discovery statistics.
 
-use super::primitive_type_for_const_value;
+use super::{primitive_type_for_const_value, type_array_type_names};
 use crate::TctResult;
 use crate::generator::schema_discovery::{MemberType, SchemaLocation, TypeDiscovery, TypeKind};
 use crate::generator::schema_walker::SchemaWalker;
@@ -142,6 +142,80 @@ impl SchemaWalker {
         crate::log_debug!("   ✅ Inline JSON const '{}' extracted", inline_const_name);
 
         Ok(MemberType::TypeReference(inline_const_name))
+    }
+
+    /// A member whose `type` is an array of JSON types.
+    ///
+    /// A one-element array is the plain type. A longer array becomes a
+    /// generated enum with one variant per listed type, discovered the same way
+    /// as a definition with a `type` array: each variant applies the keywords
+    /// of its type (properties, items, bounds, format, and the `enum` values of
+    /// that type), and `null` is a unit variant. Nullability is part of the
+    /// enum, so a required `["integer", "null"]` member still accepts null.
+    pub(super) fn extract_type_array_member_type(
+        &mut self,
+        schema: &Map<String, Value>,
+        type_array: &[Value],
+        parent_type: &str,
+        property_name: Option<&str>,
+    ) -> TctResult<MemberType> {
+        let json_path = self.build_json_path(Some(parent_type), property_name);
+        let type_names = type_array_type_names(type_array, &json_path)?;
+
+        if let [single_type] = type_names.as_slice() {
+            let mut single_type_schema = schema.clone();
+            single_type_schema.insert("type".to_string(), Value::String(single_type.to_string()));
+            return self.determine_member_type(&single_type_schema, parent_type, property_name);
+        }
+
+        let base_name = match property_name {
+            Some(prop_name) => format!(
+                "{}Enum",
+                self.create_nested_type_name(parent_type, Some(prop_name))
+            ),
+            None => format!("{}TypeArrayEnum", parent_type),
+        };
+        let enum_name = self.unused_or_same_schema_type_name(base_name, schema);
+
+        crate::log_debug!(
+            "🔍 Type array {:?} for property '{}' in '{}' → Enum '{}'",
+            type_names,
+            property_name.unwrap_or("unnamed"),
+            parent_type,
+            enum_name
+        );
+
+        self.discover_schema_as_type(
+            schema,
+            &enum_name,
+            Some(parent_type.to_string()),
+            property_name.map(String::from),
+        )?;
+        Ok(MemberType::TypeReference(enum_name))
+    }
+
+    /// `base_name`, or `base_name` with a numeric suffix when a type with a
+    /// different schema was already discovered under that name. Member types
+    /// without a property name (array items, map values) share their parent's
+    /// name, so two of them in one parent need distinct names; discovering the
+    /// same schema again keeps its name.
+    fn unused_or_same_schema_type_name(
+        &self,
+        base_name: String,
+        schema: &Map<String, Value>,
+    ) -> String {
+        let mut candidate = base_name.clone();
+        let mut suffix = 2usize;
+        while self
+            .discovery
+            .discovered_types
+            .get(&candidate)
+            .is_some_and(|existing| existing.schema_object != *schema)
+        {
+            candidate = format!("{base_name}{suffix}");
+            suffix += 1;
+        }
+        candidate
     }
 
     pub(super) fn try_extract_bounded_integer_type(

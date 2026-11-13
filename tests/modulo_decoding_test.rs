@@ -851,13 +851,17 @@ fn test_generated_nullable_optional_field_uses_modulo_recovery() {
         "nullable-optional-field-recovery-contracts",
         &generated_code,
         r#"
+// The member is the generated enum for `["integer", "null"]`; 42 is its
+// integer variant.
+let payload: NullableOptionalRecoveryValueEnum = serde_json::from_value(serde_json::json!(42))
+    .map_err(|error| format!("42 did not deserialize as the nullable integer: {error}"))?;
 let mut present_tokens = vec![5u32];
-serde_json::json!(42).encode(&mut present_tokens);
+payload.encode(&mut present_tokens);
 present_tokens.push(9001u32);
 let mut iter = present_tokens.into_iter();
 let decoded = NullableOptionalRecovery::decode(&mut iter).map_err(|error| error.to_string())?;
 match decoded.value {
-    crate::tokenizer::OptionalField::Present(value) if value == serde_json::json!(42) => {}
+    crate::tokenizer::OptionalField::Present(value) if value == payload => {}
     other => return Err(format!("generated nullable field did not recover 5 % 3 as Present(42): {other:?}")),
 }
 if iter.next() != Some(9001u32) {
@@ -865,11 +869,11 @@ if iter.next() != Some(9001u32) {
 }
 
 let mut present_full_tokens = vec![5u32];
-serde_json::json!(42).encode(&mut present_full_tokens);
+payload.encode(&mut present_full_tokens);
 let decoded = NullableOptionalRecovery::decode_full(present_full_tokens)
     .map_err(|error| format!("generated nullable field decode_full rejected recovered Present payload: {error}"))?;
 match decoded.value {
-    crate::tokenizer::OptionalField::Present(value) if value == serde_json::json!(42) => {}
+    crate::tokenizer::OptionalField::Present(value) if value == payload => {}
     other => return Err(format!("generated nullable field decode_full did not recover 5 % 3 as Present(42): {other:?}")),
 }
 
@@ -917,15 +921,19 @@ fn test_generated_nullable_optional_field_strict_rejects_recovered_state() {
         "nullable-optional-field-strict-contracts",
         &generated_code,
         r#"
+// The member is the generated enum for `["integer", "null"]`; 42 is its
+// integer variant.
+let payload: NullableOptionalStrictValueEnum = serde_json::from_value(serde_json::json!(42))
+    .map_err(|error| format!("42 did not deserialize as the nullable integer: {error}"))?;
 let mut recovered_state_tokens = vec![5u32];
-serde_json::json!(42).encode(&mut recovered_state_tokens);
+payload.encode(&mut recovered_state_tokens);
 recovered_state_tokens.push(9001u32);
 
 let mut recovery_iter = recovered_state_tokens.clone().into_iter();
 let recovered = NullableOptionalStrict::decode(&mut recovery_iter)
     .map_err(|error| format!("generated nullable field recovery rejected malformed state: {error}"))?;
 match recovered.value {
-    crate::tokenizer::OptionalField::Present(value) if value == serde_json::json!(42) => {}
+    crate::tokenizer::OptionalField::Present(value) if value == payload => {}
     other => return Err(format!("generated nullable field recovery did not normalize 5 % 3 as Present(42): {other:?}")),
 }
 if recovery_iter.next() != Some(9001u32) {
@@ -933,7 +941,7 @@ if recovery_iter.next() != Some(9001u32) {
 }
 
 let mut strict_error_tokens = vec![5u32];
-serde_json::json!(42).encode(&mut strict_error_tokens);
+payload.encode(&mut strict_error_tokens);
 match NullableOptionalStrict::decode_strict_full(strict_error_tokens) {
     Ok(value) => {
         return Err(format!("strict nullable field decode accepted recovered state as {value:?}"));
@@ -953,7 +961,7 @@ match NullableOptionalStrict::decode_strict_full(strict_error_tokens) {
 }
 
 let mut strict_present_with_surplus = vec![2u32];
-serde_json::json!(42).encode(&mut strict_present_with_surplus);
+payload.encode(&mut strict_present_with_surplus);
 strict_present_with_surplus.push(9001u32);
 let strict_full_error = match NullableOptionalStrict::decode_strict_full(strict_present_with_surplus) {
     Ok(value) => {

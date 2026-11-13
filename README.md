@@ -332,6 +332,11 @@ documented in `docs/huggingface-compatible-tokenizer-contract.md`.
 **Supported**: object, string, integer, number, boolean, array, null,
 enum/const, oneOf, anyOf, allOf object intersections, local and vendored refs,
 definitions, recursive schemas, additionalProperties, and patternProperties.
+A `type` array such as `["string", "null"]` or `["object", "null"]` compiles to
+a generated enum with one variant per listed type; each variant keeps the
+keywords of its type (properties, items, bounds, format, and the `enum` values
+of that type), and `null` is a unit variant, so a required nullable member
+accepts null and an optional one keeps absent, null, and present apart.
 
 **Limitations**: allOf support is exact for the documented object-merge and
 validation-only subset; unsupported composition shapes fail at compile time.

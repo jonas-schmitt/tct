@@ -38,6 +38,70 @@ fn rust_type_for_integer_schema(schema: &Map<String, Value>) -> String {
     }
 }
 
+const JSON_TYPE_NAMES: &[&str] = &[
+    "string", "integer", "number", "boolean", "null", "array", "object",
+];
+
+/// The type names of a `type` array, in order.
+///
+/// Entries that are not strings are skipped, as type-array discovery always
+/// did. A string that is not one of the seven JSON Schema type names, or an
+/// array without any type name, is an error naming `json_path`.
+pub(super) fn type_array_type_names<'a>(
+    type_array: &'a [Value],
+    json_path: &str,
+) -> TctResult<Vec<&'a str>> {
+    let mut type_names = Vec::with_capacity(type_array.len());
+    for entry in type_array {
+        match entry.as_str() {
+            Some(name) if JSON_TYPE_NAMES.contains(&name) => type_names.push(name),
+            Some(name) => {
+                return Err(TctError::schema_validation(
+                    format!("Unsupported type '{name}' in `type` array"),
+                    json_path,
+                    "Each name in a `type` array must be one of string, integer, number, boolean, null, array, object",
+                ));
+            }
+            None => {
+                crate::log_debug!(
+                    "   ⚠️ Skipping non-string `type` array entry {} at {}",
+                    entry,
+                    json_path
+                );
+            }
+        }
+    }
+    if type_names.is_empty() {
+        return Err(TctError::schema_validation(
+            "`type` array lists no JSON type name",
+            json_path,
+            "List at least one JSON type, for example \"type\": [\"string\", \"null\"]",
+        ));
+    }
+    Ok(type_names)
+}
+
+/// Whether a JSON value is an instance of a JSON Schema type name (`integer`
+/// includes numbers with a zero fractional part, as in JSON Schema).
+pub(super) fn json_value_has_type(value: &Value, type_name: &str) -> bool {
+    match type_name {
+        "null" => value.is_null(),
+        "boolean" => value.is_boolean(),
+        "string" => value.is_string(),
+        "number" => value.is_number(),
+        "integer" => {
+            value.is_i64()
+                || value.is_u64()
+                || value
+                    .as_f64()
+                    .is_some_and(|number| number.is_finite() && number.fract() == 0.0)
+        }
+        "array" => value.is_array(),
+        "object" => value.is_object(),
+        _ => false,
+    }
+}
+
 fn local_ref_type_target(ref_str: &str) -> Option<String> {
     let segments = local_ref_segments(ref_str)?;
     if segments.is_empty() {
@@ -563,6 +627,18 @@ impl super::SchemaWalker {
                 None,
             )?;
             return Ok(MemberType::TypeReference(enum_type_name));
+        }
+
+        // A `type` array lists the JSON types a value may have. It becomes a
+        // generated enum with one variant per listed type, the type that a
+        // definition with a `type` array already gets, instead of an untyped value.
+        if let Some(type_array) = schema.get("type").and_then(Value::as_array) {
+            return self.extract_type_array_member_type(
+                schema,
+                type_array,
+                parent_type,
+                property_name,
+            );
         }
 
         // Default to serde_json::Value for unknown types

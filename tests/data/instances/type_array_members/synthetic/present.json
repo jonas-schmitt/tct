@@ -1,0 +1,13 @@
+{
+  "required_count": 3,
+  "optional_count": 7,
+  "options": {"strict": true, "target": "es2015"},
+  "flag_or_name": "main",
+  "level": "low",
+  "source_maps": "inline",
+  "libs": ["dom", "es2020"],
+  "single": "only",
+  "tags": ["a", null, "b"],
+  "scores": [0, null, 100],
+  "env": {"DEBUG": true, "HOME": "/home/app", "PORT": 8080, "RATIO": 0.5}
+}

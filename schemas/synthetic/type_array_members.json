@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TypeArrayMembers",
+  "description": "Synthetic schema for members whose type is an array of JSON types. Each such member compiles to a generated enum with one variant per listed type; the keywords of each type (properties, bounds, items, enum values) apply to its variant.",
+  "type": "object",
+  "properties": {
+    "required_count": {
+      "description": "Required nullable bounded integer: null is a value, absence is an error",
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "maximum": 7
+    },
+    "optional_count": {
+      "description": "Optional nullable bounded integer: absent, null, or a value",
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "maximum": 7
+    },
+    "options": {
+      "description": "Nullable object with declared properties",
+      "type": ["object", "null"],
+      "properties": {
+        "strict": {"type": "boolean"},
+        "target": {"enum": ["es5", "es2015", "esnext"]}
+      },
+      "additionalProperties": false
+    },
+    "flag_or_name": {
+      "description": "Two non-null types",
+      "type": ["string", "boolean"]
+    },
+    "level": {
+      "description": "Enum that contains null: a string enum plus a null variant",
+      "type": ["string", "null"],
+      "enum": ["low", "high", null]
+    },
+    "source_maps": {
+      "description": "Enum with strings and booleans: each type keeps its own enum values",
+      "type": ["string", "boolean"],
+      "enum": ["inline", "both", true, false]
+    },
+    "libs": {
+      "description": "Nullable array whose items are a string enum",
+      "type": ["array", "null"],
+      "items": {"enum": ["dom", "es2020"]}
+    },
+    "single": {
+      "description": "A one-element type array is the same as the plain type",
+      "type": ["string"]
+    },
+    "tags": {
+      "description": "Array items with a type array",
+      "type": "array",
+      "items": {"type": ["string", "null"]}
+    },
+    "scores": {
+      "description": "A second array in the same object whose items have a different type array",
+      "type": "array",
+      "items": {"type": ["integer", "null"], "minimum": 0, "maximum": 100}
+    },
+    "env": {
+      "description": "Map values with a type array",
+      "type": "object",
+      "additionalProperties": {"type": ["string", "number", "boolean"]}
+    }
+  },
+  "required": ["required_count"],
+  "additionalProperties": false
+}

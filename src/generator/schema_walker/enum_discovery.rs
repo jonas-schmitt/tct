@@ -5,6 +5,8 @@
 //! - Complex enums (oneOf/anyOf)
 //! - Type arrays (type: ["string", "number"])
 
+mod type_array;
+
 use crate::TctResult;
 use crate::generator::schema_discovery::{MemberInfo, MemberType, TypeDiscovery};
 use serde_json::{Map, Value};
@@ -235,66 +237,6 @@ impl super::SchemaWalker {
                     "     ❌ Enum value {} is not a string: {:?}",
                     index,
                     enum_value
-                );
-            }
-        }
-        Ok(())
-    }
-
-    /// Discover type array variants: {"type": ["object", "string"]}
-    /// Per JSON Schema spec, type can be an array of type strings
-    fn discover_type_array_variants(
-        &mut self,
-        type_array: &[Value],
-        schema: &Map<String, Value>,
-        type_discovery: &mut TypeDiscovery,
-    ) -> TctResult<()> {
-        crate::log_debug!(
-            "   🔍 Processing type array with {} types for '{}'",
-            type_array.len(),
-            type_discovery.type_name
-        );
-
-        for (index, type_value) in type_array.iter().enumerate() {
-            if let Some(type_str) = type_value.as_str() {
-                crate::log_debug!("     • Type array element {}: '{}'", index, type_str);
-
-                // Create a schema for this specific type
-                // Inherit all properties from parent schema except "type"
-                let mut variant_schema = schema.clone();
-                variant_schema.insert("type".to_string(), Value::String(type_str.to_string()));
-
-                let variant_name = format!("Variant{}", index);
-
-                // Use variant-specific parent name to generate unique nested types
-                // This prevents different variants from overwriting each other
-                let variant_parent_name = format!("{}{}", type_discovery.type_name, variant_name);
-
-                // Use determine_member_type to properly discover nested types
-                // This handles objects, arrays, and all other types consistently
-                let member_type =
-                    self.determine_member_type(&variant_schema, &variant_parent_name, None)?;
-                crate::log_debug!("     ✅ Variant {} member type: {:?}", index, member_type);
-
-                let member_info = MemberInfo {
-                    name: variant_name.clone(),
-                    member_type,
-                    required: true,
-                    is_nullable: false, // Enum variants are never nullable
-                    schema: variant_schema,
-                };
-
-                type_discovery.add_member(member_info);
-                self.discovery.stats.total_enum_variants += 1;
-                crate::log_debug!(
-                    "     ✅ Type array variant '{}' added successfully",
-                    variant_name
-                );
-            } else {
-                crate::log_debug!(
-                    "       ❌ Type array element {} is not a string: {:?}",
-                    index,
-                    type_value
                 );
             }
         }

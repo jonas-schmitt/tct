@@ -1,0 +1,12 @@
+{
+  "required_count": 7,
+  "optional_count": 0,
+  "options": {},
+  "flag_or_name": true,
+  "level": "high",
+  "source_maps": false,
+  "libs": [],
+  "tags": [],
+  "scores": [50],
+  "env": {}
+}

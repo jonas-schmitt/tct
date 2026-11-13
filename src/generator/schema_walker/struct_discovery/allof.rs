@@ -335,13 +335,32 @@ impl SchemaWalker {
     }
 }
 
+/// The `type` of a mergeable allOf subschema: `"object"`, or a type array of
+/// `"object"` and `"null"` (a nullable object). The merged struct represents
+/// the object case exactly; whether the member accepts null is decided by the
+/// containing schema, which must admit an object for the merge to apply.
+fn allof_subschema_type_is_object(type_value: &Value) -> bool {
+    match type_value {
+        Value::String(type_name) => type_name == "object",
+        Value::Array(type_names) => {
+            type_names
+                .iter()
+                .any(|name| name.as_str() == Some("object"))
+                && type_names
+                    .iter()
+                    .all(|name| matches!(name.as_str(), Some("object" | "null")))
+        }
+        _ => false,
+    }
+}
+
 fn validate_supported_allof_subschema(
     subschema: &Map<String, Value>,
     schema_path: &str,
     allow_implicit_object: bool,
 ) -> TctResult<()> {
     if let Some(type_value) = subschema.get("type") {
-        if type_value.as_str() != Some("object") {
+        if !allof_subschema_type_is_object(type_value) {
             return Err(unsupported_allof_shape(
                 format!("{}/type", schema_path),
                 "type",

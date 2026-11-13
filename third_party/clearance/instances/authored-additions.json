@@ -342,6 +342,222 @@
       "authorship_date": "2026-11-07",
       "replaces_family": "unresolved-configuration",
       "validation_receipt_sha256": "e29017401ef7bab52efe28e57150cf0d8b7729132ef54f304d1d9050ced228d7"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/synthetic/absent.json",
+      "sha256": "3878021c6571868a1739f56f160c0281189e9b4a389f471cb8b324b365066eb7",
+      "size_bytes": 26,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; validates against that schema (JSON Schema draft 7)",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/synthetic/nulls.json",
+      "sha256": "376006cefe57b56be5958bf037cc265ed23775f45c3589b89faf681d65c22f36",
+      "size_bytes": 193,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; validates against that schema (JSON Schema draft 7)",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/synthetic/other_variants.json",
+      "sha256": "a51ba562d7d94dceafb2a10654c14caf80ee32554444058c293b86a906a5e499",
+      "size_bytes": 192,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; validates against that schema (JSON Schema draft 7)",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/synthetic/present.json",
+      "sha256": "d72602af30fc886aa752f41a64c60eaf7ee6e872a435f549e43c2ad434f666c7",
+      "size_bytes": 351,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; validates against that schema (JSON Schema draft 7)",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/env_array_value.json",
+      "sha256": "7de38bb4be35b7ed32ca80372119b1a6397b8a7f53fe04be7fcfafca760454a0",
+      "size_bytes": 41,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/env_null_value.json",
+      "sha256": "a9ec7a22d0487ef114fe4e8ccf9fe86faeb84a214acf67feb760caf8ee10d1cb",
+      "size_bytes": 42,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/flag_or_name_null.json",
+      "sha256": "a9d1551f07e1e0cb9df3d6db5aeabd2bf71d4596943beedf915d1bd339164a0e",
+      "size_bytes": 44,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/flag_or_name_number.json",
+      "sha256": "9457981cb317401ebd1176ff09af6cd85ba59b4336dff0c1726f563069c07769",
+      "size_bytes": 41,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/level_boolean.json",
+      "sha256": "a51eb3d06faf0e80909631acf38927c7cb3fb135914a7362aa90e24352d00d0d",
+      "size_bytes": 37,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/level_not_in_enum.json",
+      "sha256": "e7536aa5a47270c82d83c46eb04eebeefc43191e4db4b6b0c14838ef3d37a135",
+      "size_bytes": 41,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/libs_item_not_in_enum.json",
+      "sha256": "d89430fad316349e7a14b95d90da3d8e1d7c3e12fa6e56b30d5fa30317cf8c77",
+      "size_bytes": 39,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/libs_not_array.json",
+      "sha256": "15715888a2702c222c1bf92e0c507a83c95a13b2e41cb78b72b5ce6cd07c5b99",
+      "size_bytes": 37,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/missing_required_count.json",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "size_bytes": 3,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/optional_count_boolean.json",
+      "sha256": "8bf362b3b8198ed9ebd1d2b004aa5ea6a71708e80613f3010398484a4361c8cb",
+      "size_bytes": 46,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/options_not_object.json",
+      "sha256": "bb67ce4bfd57c9c132c93019b8c162984f32fdb9d6810b971e918062d565f419",
+      "size_bytes": 43,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/options_strict_not_boolean.json",
+      "sha256": "f8141302499a5c7a0f41dcc306e703f7b2e02bda22a85adc86a9e536f9e22c7e",
+      "size_bytes": 52,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/options_target_not_in_enum.json",
+      "sha256": "63569cfb9b7390f78e332786c1485370d6a464469881ea61210ee565e4168f7e",
+      "size_bytes": 52,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/options_unknown_property.json",
+      "sha256": "b01f33bd5d4baf71f96bf74c7f6be254919ab784989c4d20ad810eea8b7631c2",
+      "size_bytes": 65,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/required_count_float.json",
+      "sha256": "6079139038cf2cbd18bf8ba2f0a6869b188bcec694dfd29be4c8e9294cb75371",
+      "size_bytes": 24,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/required_count_string.json",
+      "sha256": "8107a4ae51b4c7779cf0f3cf9284e0e905ee2991396ed08e343ba80050084da6",
+      "size_bytes": 24,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/scores_string_item.json",
+      "sha256": "f1dfa71484cac665fda23ffb7a29bfa0da25cdd8b5800e7850d947e9384b29c9",
+      "size_bytes": 40,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/single_number.json",
+      "sha256": "0ef3846ba0a88bf322af0bf53948c9b562afd9b437c84ef40445c29d9afddb8b",
+      "size_bytes": 35,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/source_maps_not_in_enum.json",
+      "sha256": "cbb0c4a9cbb5ef9f28933232b239d819ed61c9fdbc0389b9d9f5dbefaaec2047",
+      "size_bytes": 49,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
+    },
+    {
+      "path": "tests/data/instances/type_array_members/invalid/tags_number_item.json",
+      "sha256": "a65bf1a6a21c23938ea9e37b8b516633d1c06eded7e500ca1f9ca32cc2f009ec",
+      "size_bytes": 35,
+      "decision": "retain_repository_authored_fixture",
+      "license_expression": "Apache-2.0",
+      "basis": "Newly authored synthetic fixture for schemas/synthetic/type_array_members.json; intentionally violates that schema (JSON Schema draft 7) to test rejection",
+      "authorship_date": "2026-11-13"
     }
   ]
 }

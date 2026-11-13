@@ -114,6 +114,16 @@ fn test_commitlint_rule_tuple_oneof_round_trip() {
     );
 }
 
+/// Members whose `type` is an array of JSON types (present, null, and absent
+/// instances). Schema-invalid instances are checked by
+/// `tests/null_type_support.rs`.
+#[test]
+#[ignore]
+fn test_type_array_members_round_trip() {
+    test_synthetic_schema_with_optimization_level("type_array_members", OptimizationLevel::O0);
+    test_synthetic_schema_with_optimization_level("type_array_members", OptimizationLevel::O3);
+}
+
 fn test_synthetic_schema(schema_name: &str) {
     println!("\n🧪 Testing synthetic schema: {}", schema_name);
 

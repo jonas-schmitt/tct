@@ -16,6 +16,10 @@ exercise synthetic schemas under `schemas/synthetic/`.
 - `<schema>/large-scale/` - larger corpora used only by full round-trip runs
   (`ROUND_TRIP_FULL=1`). Only `github-workflow/large-scale/` exists, as a small
   sample; see [PROVENANCE.md](PROVENANCE.md) for how to rebuild the full corpus.
+- `<schema>/invalid/` - hand-written instances that violate the schema on
+  purpose; a test checks that the generated tokenizer rejects them, and the
+  round-trip loader does not read them. Only `type_array_members/invalid/`
+  exists, used by `tests/null_type_support.rs`.
 - Directories with files directly inside them are small instance sets.
 
 ## How the tests use them

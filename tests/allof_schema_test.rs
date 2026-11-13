@@ -438,6 +438,106 @@ fn test_allof_schema_rejects_non_object_subschema_type() {
     );
 }
 
+/// A nullable-object subschema (`"type": ["object", "null"]`) merges like an
+/// object subschema. The shape appears in tsconfig, where `ts-node` reuses the
+/// nullable `compilerOptions` object through `allOf`; it became reachable once
+/// members with a `type` array were typed instead of untyped values.
+#[test]
+fn test_allof_schema_merges_nullable_object_subschema() {
+    let schema = json!({
+        "title": "NullableObjectAllOf",
+        "type": "object",
+        "properties": {
+            "options": {
+                "type": ["object", "null"],
+                "allOf": [{"$ref": "#/definitions/options"}]
+            }
+        },
+        "additionalProperties": false,
+        "definitions": {
+            "options": {
+                "type": ["object", "null"],
+                "properties": {
+                    "strict": {"type": "boolean"},
+                    "target": {"enum": ["es5", "esnext"]}
+                }
+            }
+        }
+    });
+
+    let grammar = TctCompiler::new(schema, "NullableObjectAllOf")
+        .unwrap()
+        .compile()
+        .expect("allOf with a nullable-object subschema should compile");
+    let generated_code = grammar
+        .generate_code()
+        .expect("allOf with a nullable-object subschema should generate code");
+    let file = parse_generated_file(&generated_code);
+    assert!(
+        generated_file_has_struct(&file, "NullableObjectAllOfOptions"),
+        "the allOf member should be a generated struct"
+    );
+
+    run_generated_allof_contract_crate(
+        "allof-nullable-object-subschema",
+        &generated_code,
+        r#"
+for valid in [
+    serde_json::json!({"options": {"strict": true, "target": "esnext"}}),
+    serde_json::json!({"options": null}),
+    serde_json::json!({}),
+] {
+    let value: NullableObjectAllOf = serde_json::from_value(valid.clone()).map_err(|error| format!("{valid}: {error}"))?;
+    let mut tokens = Vec::new();
+    value.encode(&mut tokens);
+    let decoded = NullableObjectAllOf::decode_strict_full(tokens).map_err(|error| error.to_string())?;
+    let decoded_json = serde_json::to_value(decoded).map_err(|error| error.to_string())?;
+    if decoded_json != valid {
+        return Err(format!("round trip mismatch: expected {valid}, got {decoded_json}"));
+    }
+}
+
+for invalid in [
+    serde_json::json!({"options": {"strict": "yes"}}),
+    serde_json::json!({"options": {"target": "es3"}}),
+    serde_json::json!({"options": "strict"}),
+] {
+    if serde_json::from_value::<NullableObjectAllOf>(invalid.clone()).is_ok() {
+        return Err(format!("nullable-object allOf member accepted {invalid}"));
+    }
+}
+
+Ok(())
+"#,
+    );
+}
+
+#[test]
+fn test_allof_schema_rejects_object_or_string_subschema_type() {
+    let schema = json!({
+        "title": "ObjectOrStringAllOf",
+        "type": "object",
+        "allOf": [
+            {"type": ["object", "string"], "properties": {"name": {"type": "string"}}}
+        ]
+    });
+
+    let error = match TctCompiler::new(schema, "ObjectOrStringAllOf")
+        .unwrap()
+        .compile()
+    {
+        Ok(_) => panic!("an allOf subschema that also admits strings should fail"),
+        Err(error) => error,
+    };
+    let error_text = error.to_string();
+    assert!(
+        error_text.contains("Unsupported allOf subschema shape")
+            && error_text.contains("#/allOf/0/type"),
+        "expected allOf type error with path, got: {}",
+        error_text
+    );
+}
+
 #[test]
 fn test_allof_schema_rejects_invalid_additional_properties_value() {
     let schema = json!({
