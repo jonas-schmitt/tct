@@ -3,6 +3,8 @@
 use proc_macro2::TokenStream;
 use quote::quote;
 
+use crate::generator::code_generator::render_decimal_f64_text;
+
 pub(super) fn render_collections_and_numbers(
     has_vocab_constraint: bool,
     max_collection_length: usize,
@@ -244,19 +246,27 @@ fn render_default_number_impls() -> TokenStream {
 
 /// Decimal digit-aligned encoders for unbounded i64/u64/f64 (opt-in).
 ///
-/// Values are rendered with Rust's `Display` (shortest text that round-trips
-/// exactly for f64) and emitted one byte token per ASCII character, terminated
-/// by the same end marker string payloads use. Token streams are incompatible
-/// with the default bit-split encoding, hence opt-in.
+/// i64/u64 are rendered with Rust's `Display`. f64 uses the shared
+/// `render_decimal_f64_text` rule: plain decimal text for zero and
+/// `1e-6 <= |x| < 1e21`, exponent form (`1e21`, `5e-324`) otherwise, both
+/// with the shortest digits that round-trip exactly. The text is emitted one
+/// byte token per ASCII character, terminated by the same end marker string
+/// payloads use. Token streams are incompatible with the default bit-split
+/// encoding, hence opt-in.
 fn render_decimal_number_impls(end_string_marker: u32) -> TokenStream {
+    let f64_text = render_decimal_f64_text();
     quote! {
         /// Shared helpers for decimal digit-aligned number encoding.
         pub mod decimal_number_codec {
             use super::{DecodeError, EOFContext};
 
             const END_STRING_MARKER: u32 = #end_string_marker;
-            /// Longest accepted decimal text; f64 Display never exceeds this.
+            /// Longest accepted decimal text. Encode writes at most 25 bytes;
+            /// the limit also admits the long plain form of very large or
+            /// very small f64 values that earlier builds wrote.
             const MAX_DECIMAL_TEXT_LEN: usize = 512;
+
+            #f64_text
 
             pub fn encode_text(text: &str, tokens: &mut Vec<u32>) {
                 for &byte in text.as_bytes() {
@@ -389,13 +399,15 @@ fn render_decimal_number_impls(end_string_marker: u32) -> TokenStream {
 
         /// Decimal digit-aligned f64 encoder.
         ///
-        /// Rust's `Display` for f64 emits the shortest decimal text that
-        /// parses back to the identical bits, so encode+parse is an exact
-        /// round trip for every finite value. NaN/Inf are not valid JSON
+        /// `decimal_number_codec::f64_text` writes plain decimal text for
+        /// zero and `1e-6 <= |x| < 1e21` and exponent form otherwise, in both
+        /// cases with the shortest digits that parse back to the identical
+        /// bits, so encode+parse is an exact round trip for every finite
+        /// value. Decode accepts either form. NaN/Inf are not valid JSON
         /// numbers and are rejected on decode.
         impl JsonTokenEncoder for f64 {
             fn encode(&self, tokens: &mut Vec<u32>) {
-                decimal_number_codec::encode_text(&self.to_string(), tokens);
+                decimal_number_codec::encode_text(&decimal_number_codec::f64_text(*self), tokens);
             }
 
             fn decode(tokens: &mut impl Iterator<Item = u32>) -> Result<Self, DecodeError> {
@@ -425,7 +437,7 @@ fn render_decimal_number_impls(end_string_marker: u32) -> TokenStream {
             }
 
             fn token_count(&self) -> usize {
-                self.to_string().len() + 1
+                decimal_number_codec::f64_text(*self).len() + 1
             }
         }
     }

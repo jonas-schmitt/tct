@@ -935,6 +935,21 @@ mod tests {
             codec_slice.contains("mark_value"),
             "decimal codec does not mark digit bytes"
         );
+        // f64 text comes from the shared rule (plain text inside
+        // 1e-6 <= |x| < 1e21, exponent form outside), used by both encode
+        // and token_count.
+        let compact: String = codec_slice.chars().filter(|c| !c.is_whitespace()).collect();
+        assert!(
+            compact.contains("pubfnf64_text(value:f64)->String"),
+            "decimal codec does not define the shared f64 text rule"
+        );
+        assert_eq!(
+            compact
+                .matches("decimal_number_codec::f64_text(*self)")
+                .count(),
+            2,
+            "f64 encode and token_count must both use decimal_number_codec::f64_text"
+        );
     }
 
     #[test]

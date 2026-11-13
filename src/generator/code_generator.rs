@@ -29,6 +29,9 @@ use runtime_support::{
     generate_partial_encoding_types as render_partial_encoding_types,
 };
 
+/// Decimal-mode f64 text rule, shared with `grammar::tokenizer::collections`.
+pub(crate) use runtime_support::render_decimal_f64_text;
+
 /// Pure code generator - NO analysis, ONLY code generation
 pub struct CodeGenerator {
     /// Schema discovery input
@@ -1237,6 +1240,21 @@ mod tests {
         assert!(token_str.contains("decimal_number_codec"));
         assert!(token_str.contains("zigzag"));
         assert!(!token_str.contains("to_bits"));
+
+        // f64 encode and token_count both go through the shared text rule.
+        use quote::ToTokens;
+        assert!(token_str.contains(&render_decimal_f64_text().to_string()));
+        let f64_impl = trait_impl_for_self_type_segment(&generated_file, "JsonTokenEncoder", "f64")
+            .expect("expected generated f64 encoder impl")
+            .to_token_stream()
+            .to_string();
+        assert_eq!(
+            f64_impl
+                .matches("decimal_number_codec :: f64_text (* self)")
+                .count(),
+            2,
+            "f64 encode and token_count must both use decimal_number_codec::f64_text"
+        );
     }
 
     // ========================================================================================

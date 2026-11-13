@@ -586,9 +586,12 @@ impl TctCompiler {
 
     /// Enable digit-aligned decimal text encoding for unbounded i64/u64/f64.
     ///
-    /// Numbers are emitted as their shortest round-trip decimal text (one
-    /// byte token per ASCII character, END_STRING_MARKER terminated) instead
-    /// of fixed-width bit splits. Opt-in because the token stream layout is
+    /// Numbers are emitted as round-trip decimal text (one byte token per
+    /// ASCII character, END_STRING_MARKER terminated) instead of fixed-width
+    /// bit splits. Floats use plain decimal text for zero and
+    /// `1e-6 <= |x| < 1e21` and exponent form (`1e21`, `5e-324`) outside that
+    /// range, with the shortest digits that parse back to the same value;
+    /// decode accepts both forms. Opt-in because the token stream layout is
     /// incompatible with the default encoding. Bounded integers keep their
     /// dedicated compact path.
     pub fn with_decimal_number_encoding(mut self) -> Self {

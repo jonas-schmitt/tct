@@ -165,7 +165,12 @@ Flags worth knowing:
 - `--streaming`: also generate `decode_prefix()` (truncation-tolerant decoding).
   The token format is identical to non-streaming output.
 - `--decimal-numbers`: encode unbounded integers and floats as digit-aligned
-  decimal text. The same setting must be used for BPE training, measurement,
+  decimal text. Floats are written as plain decimal text for zero and for
+  `1e-6 <= |x| < 1e21` (`1000`, `0.001`, `123.456`) and in exponent form
+  outside that range (`1e21`, `1e-7`, `5e-324`, `1.7976931348623157e308`),
+  always with the shortest digits that parse back to the same value, so a
+  float takes at most 25 characters plus the end marker. Decode accepts
+  both forms. The same setting must be used for BPE training, measurement,
   and any wheel that consumes those merges.
 - `--metrics`, `--benchmark`, `-q/--quiet`. Without `-o`, the
   generated Rust goes to stdout and informational lines go to stderr, so

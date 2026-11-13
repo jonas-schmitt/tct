@@ -53,3 +53,14 @@ Apache-2.0.
   change, and decode still accepts entries in any order, so existing streams
   still decode to the same values. Merge tables or models trained on streams
   from earlier builds saw the old entry order.
+- With `--decimal-numbers` (Python: `decimal_numbers=True`), floats with
+  `|x| >= 1e21` or `0 < |x| < 1e-6` are written in exponent form (`1e21`,
+  `1e-7`, `5e-324`, `1.7976931348623157e308`) instead of plain decimal text.
+  Before, such values were written as long runs of zeros (up to 327
+  characters for `5e-324`), and `token_count()` matched that length. Floats
+  that are zero or in `1e-6 <= |x| < 1e21` keep their previous text, and
+  integers are unchanged. Streams change only for floats outside that range;
+  decode accepts both forms, so streams from earlier builds still decode to
+  the same values. Merge tables or models trained on decimal-mode streams
+  from earlier builds saw the old form of those values. `tct-token-diff`
+  does not model `--decimal-numbers` and does not report this change.
