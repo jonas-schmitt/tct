@@ -695,6 +695,14 @@ Core rules:
   `encode(decode(t)) == t` for canonical `t`. Decode accepts entries in any
   order, so streams written with another entry order still decode to the same
   value.
+- Encode emits each map key once. A stream that repeats a key in one map or
+  untyped object is rejected by strict decode (`duplicate map key "k" at entry
+  2 of 2`); recovery decode keeps the last entry, as it normalizes other
+  non-canonical input. A catch-all map never holds a declared property of its
+  object, because JSON input routes declared properties to their own fields.
+  Both decode paths reject a catch-all key equal to a declared property name,
+  as they reject a `patternProperties` key that does not match its pattern:
+  the decoded value would serialize with that property twice.
 - `decode()` is recovery-oriented for token values where the schema has a finite
   choice, such as booleans, enum discriminators, optional-field states, and BPE
   recovery. It still errors on malformed strings, EOF, collection caps, schema
@@ -738,8 +746,10 @@ Strict token-value decoding must reject, rather than normalize, invalid finite
 choices: boolean tokens outside `0..=1`, enum or union discriminators outside
 their variant range, optional-field state tokens outside the generated state
 range, bounded-integer codec digits outside the generated base, and BPE tokens
-that are neither base tokens nor known merge IDs. String byte ranges, EOF,
-collection caps, UTF-8 validation, schema validation, and generated
+that are neither base tokens nor known merge IDs. It also rejects a key that
+appears twice in one map or untyped object, where recovery keeps the last
+entry. String byte ranges, EOF, collection caps, UTF-8 validation, schema
+validation, catch-all keys equal to a declared property, and generated
 `additionalProperties`/`allOf` validators keep the same rejection behavior as
 the recovery API. Keep strict coverage incremental and tested with
 generated-crate contracts whenever a new generated path is made strict.

@@ -45,7 +45,7 @@ Deserializes into the generated types and can therefore be encoded. A schema-val
 _Avoid_: valid instance
 
 **Catch-all map**:
-The generated member that holds an object's additional properties when the schema allows them. A closed object (`additionalProperties: false`) has none and rejects undeclared keys. Like every map, it is encoded as its entry count followed by its entries in ascending key order (UTF-8 byte order).
+The generated member that holds an object's additional properties when the schema allows them. A closed object (`additionalProperties: false`) has none and rejects undeclared keys. Like every map, it is encoded as its entry count followed by its entries in ascending key order (UTF-8 byte order). It never holds a declared property of its object; both decode modes reject a catch-all key equal to a declared property name.
 
 **Value constraint**:
 A keyword that restricts values rather than types or structure: string patterns, length and item-count bounds, uniqueness, multiples, and numeric bounds on floats or one-sided integers. Schemas may use them, but no encode or decode mode enforces them.
@@ -98,13 +98,13 @@ The structural token recording which of three states a nullable optional member 
 ### Decoding
 
 **Canonical token sequence**:
-The one token sequence encoding emits for a value, with no normalization and only in-vocabulary IDs. Entries of maps and untyped objects appear in ascending key order (UTF-8 byte order), so the key order of the input does not change it.
+The one token sequence encoding emits for a value, with no normalization and only in-vocabulary IDs. Entries of maps and untyped objects appear in ascending key order (UTF-8 byte order), each key once, so the key order of the input does not change it.
 
 **Recovery decode**:
-The default decode behavior: out-of-range finite choices and BPE IDs are normalized into range with modulo arithmetic so model-generated streams still decode, while truncation, malformed strings, and over-cap lengths still fail. Bounded-integer offsets are not normalized and can decode outside the declared bounds.
+The default decode behavior: out-of-range finite choices and BPE IDs are normalized into range with modulo arithmetic and a key repeated in one map keeps its last entry, so model-generated streams still decode, while truncation, malformed strings, and over-cap lengths still fail. Bounded-integer offsets are not normalized and can decode outside the declared bounds.
 
 **Strict decode**:
-The additive decode entry points that reject out-of-range finite choices, bounded-integer digits, and unknown BPE IDs instead of normalizing them. It is not a schema validator: value constraints stay unenforced.
+The additive decode entry points that reject out-of-range finite choices, bounded-integer digits, unknown BPE IDs, and keys repeated in one map instead of normalizing them. It is not a schema validator: value constraints stay unenforced.
 _Avoid_: validating decode
 
 **Whole-stream decode**:

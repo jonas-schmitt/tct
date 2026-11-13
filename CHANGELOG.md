@@ -86,3 +86,17 @@ Apache-2.0.
   and existing streams decode as before. Crates that compile generated code
   themselves should add the feature to their `serde_json` dependency (see the
   README).
+- Strict decode rejects map content that encode never emits. A key repeated
+  in one map (typed `additionalProperties` maps, `patternProperties` maps,
+  catch-all maps, and objects inside untyped `serde_json::Value` members) now
+  fails `decode_strict()` with `InvalidData` naming the key and entry, for
+  example `duplicate map key "k" at entry 2 of 2`. Before, the later entry
+  silently replaced the earlier one, so the decoded map had fewer entries than
+  the stream declared. Recovery decode still keeps the last entry. A catch-all
+  key equal to a declared property name (for example `id` when `id` is a
+  declared property) is now rejected by both `decode()` and `decode_strict()`;
+  before, the value decoded and then serialized with that property twice.
+  Encoded streams do not change, and every stream that encode produces still
+  decodes. The library impl `JsonTokenEncoder for FxHashMap<K, V>` now also
+  requires `K: Debug`; generated tokenizers use `String` keys and are not
+  affected.

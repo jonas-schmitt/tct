@@ -17,15 +17,20 @@ use proc_macro2::{Ident, Span, TokenStream};
 use quote::{format_ident, quote};
 use rustc_hash::FxHashMap;
 
+/// Whether a member is `patternProperties` storage (`pattern_0`, `pattern_1`, ...).
+fn is_pattern_field_name(name: &str) -> bool {
+    name.starts_with("pattern_") && name.chars().skip(8).all(|c| c.is_ascii_digit())
+}
+
 impl<'a> StructGenerator<'a> {
     /// Check if a struct has pattern validators
     ///
     /// Pattern validators are special fields that validate properties based on regex patterns
     pub(super) fn has_pattern_validators(&self, type_discovery: &TypeDiscovery) -> bool {
-        type_discovery.members.iter().any(|member| {
-            member.name.starts_with("pattern_")
-                && member.name.chars().skip(8).all(|c| c.is_ascii_digit())
-        })
+        type_discovery
+            .members
+            .iter()
+            .any(|member| is_pattern_field_name(&member.name))
     }
 
     /// Generate JsonTokenEncoder implementation for a struct
@@ -254,6 +259,8 @@ impl<'a> StructGenerator<'a> {
             })
             .collect::<Vec<_>>();
         let post_decode_validation = Self::post_decode_validation(type_name, post_decode_validate);
+        let catch_all_shadow_validation =
+            Self::catch_all_shadow_validation(type_name, members, field_name_map);
 
         // Generate token count calculation for each field
         let token_count_fields = members
@@ -302,6 +309,7 @@ impl<'a> StructGenerator<'a> {
                     let decoded = Self {
                         #( #field_assignments ),*
                     };
+                    #catch_all_shadow_validation
                     #post_decode_validation
                     Ok(decoded)
                 }
@@ -311,6 +319,7 @@ impl<'a> StructGenerator<'a> {
                     let decoded = Self {
                         #( #field_assignments ),*
                     };
+                    #catch_all_shadow_validation
                     #post_decode_validation
                     Ok(decoded)
                 }
@@ -376,6 +385,57 @@ impl<'a> StructGenerator<'a> {
                 .to_string(),
             phase: crate::error::GenerationPhase::TypeGeneration,
         })
+    }
+
+    /// Reject a catch-all key equal to a declared property name.
+    ///
+    /// JSON input routes a declared property to its own field, so encode never
+    /// puts such a key into the catch-all map, and a decoded value holding one
+    /// would serialize with the property twice. Both decode paths reject it,
+    /// like a `patternProperties` key that does not match its pattern. Emits
+    /// nothing for structs without a catch-all map or without declared
+    /// properties; the declared names are compile-time string literals.
+    pub(super) fn catch_all_shadow_validation(
+        type_name: &str,
+        members: &[MemberInfo],
+        field_name_map: &FxHashMap<String, String>,
+    ) -> TokenStream {
+        let Some(catch_all) = members
+            .iter()
+            .find(|member| member.name == "additional_properties")
+        else {
+            return quote! {};
+        };
+        let declared_names = members
+            .iter()
+            .filter(|member| {
+                member.name != "additional_properties" && !is_pattern_field_name(&member.name)
+            })
+            .map(|member| member.name.as_str())
+            .collect::<Vec<_>>();
+        if declared_names.is_empty() {
+            return quote! {};
+        }
+        let catch_all_field = format_ident!(
+            "{}",
+            field_name_map
+                .get(&catch_all.name)
+                .unwrap_or(&catch_all.name)
+        );
+
+        quote! {
+            if let Some(tct_shadowing_key) = decoded
+                .#catch_all_field
+                .keys()
+                .find(|key| matches!(key.as_str(), #( #declared_names )|*))
+            {
+                return Err(crate::tokenizer::DecodeError::InvalidData(format!(
+                    "{}: catch-all key {:?} is a declared property; it is encoded in its own field",
+                    #type_name,
+                    tct_shadowing_key
+                )));
+            }
+        }
     }
 
     pub(super) fn post_decode_validation(type_name: &str, enabled: bool) -> TokenStream {

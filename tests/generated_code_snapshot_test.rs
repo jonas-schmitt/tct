@@ -359,6 +359,20 @@ fn unconstrained_additional_properties_generated_output_snapshot() {
                     name,
                     additional_properties,
                 };
+                if let Some(tct_shadowing_key) = decoded
+                    .additional_properties
+                    .keys()
+                    .find(|key| matches!(key.as_str(), "name"))
+                {
+                    return Err(
+                        crate::tokenizer::DecodeError::InvalidData(
+                            format!(
+                                "{}: catch-all key {:?} is a declared property; it is encoded in its own field",
+                                "SnapshotOpenObject", tct_shadowing_key
+                            ),
+                        ),
+                    );
+                }
                 Ok(decoded)
             }
             fn decode_strict(
@@ -414,6 +428,20 @@ fn unconstrained_additional_properties_generated_output_snapshot() {
                     name,
                     additional_properties,
                 };
+                if let Some(tct_shadowing_key) = decoded
+                    .additional_properties
+                    .keys()
+                    .find(|key| matches!(key.as_str(), "name"))
+                {
+                    return Err(
+                        crate::tokenizer::DecodeError::InvalidData(
+                            format!(
+                                "{}: catch-all key {:?} is a declared property; it is encoded in its own field",
+                                "SnapshotOpenObject", tct_shadowing_key
+                            ),
+                        ),
+                    );
+                }
                 Ok(decoded)
             }
             fn token_count(&self) -> usize {

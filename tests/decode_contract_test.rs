@@ -700,6 +700,259 @@ match StrictPatternMap::decode_strict_full(tokens) {
     );
 }
 
+/// Helpers for crafted-stream tests: `key` encodes a map key, and
+/// `replace_once` swaps the single occurrence of one token run for another so a
+/// canonical stream can be turned into one that encode never emits.
+const CRAFTED_STREAM_HELPERS: &str = r#"
+fn key(text: &str) -> Vec<u32> {
+    let mut tokens = Vec::new();
+    text.to_string().encode(&mut tokens);
+    tokens
+}
+
+fn replace_once(tokens: &[u32], from: &[u32], to: &[u32]) -> Result<Vec<u32>, String> {
+    let positions: Vec<usize> = (0..tokens.len())
+        .filter(|&index| tokens[index..].starts_with(from))
+        .collect();
+    if positions.len() != 1 {
+        return Err(format!(
+            "expected exactly one occurrence of {from:?} in {tokens:?}, found {}",
+            positions.len()
+        ));
+    }
+    let start = positions[0];
+    let mut replaced = tokens[..start].to_vec();
+    replaced.extend_from_slice(to);
+    replaced.extend_from_slice(&tokens[start + from.len()..]);
+    Ok(replaced)
+}
+"#;
+
+fn run_crafted_stream_contract_crate(crate_name: &str, generated_code: &str, body: &str) {
+    run_generated_decode_contract_crate(
+        crate_name,
+        generated_code,
+        &format!("{CRAFTED_STREAM_HELPERS}\n{body}"),
+    );
+}
+
+#[test]
+fn test_generated_strict_decode_rejects_duplicate_map_keys() {
+    let schema = json!({
+        "title": "DuplicateKeys",
+        "type": "object",
+        "properties": {
+            "name": { "type": "string" }
+        },
+        "required": ["name"],
+        "additionalProperties": true
+    });
+
+    let grammar = TctCompiler::new(schema, "DuplicateKeys")
+        .unwrap()
+        .compile()
+        .unwrap();
+    let generated_code = grammar.generate_code().unwrap();
+    run_crafted_stream_contract_crate(
+        "generated-strict-duplicate-map-keys",
+        &generated_code,
+        r#"
+let value: DuplicateKeys = serde_json::from_value(serde_json::json!({
+    "name": "n",
+    "dupa": true,
+    "dupb": false,
+    "nested": { "nesta": 1, "nestb": 2 }
+}))
+.map_err(|error| format!("instance rejected: {error}"))?;
+let mut canonical = Vec::new();
+value.encode(&mut canonical);
+let decoded = DuplicateKeys::decode_strict_full(canonical.clone())
+    .map_err(|error| format!("strict decode rejected the canonical stream: {error}"))?;
+if decoded.additional_properties != value.additional_properties {
+    return Err(format!("canonical stream decoded to {:?}", decoded.additional_properties));
+}
+
+// Catch-all map entry repeated under one key.
+let duplicate = replace_once(&canonical, &key("dupb"), &key("dupa"))?;
+let recovered = DuplicateKeys::decode_full(duplicate.clone())
+    .map_err(|error| format!("recovery decode rejected a duplicate catch-all key: {error}"))?;
+if recovered.additional_properties.len() != 2
+    || recovered.additional_properties.get("dupa") != Some(&serde_json::json!(false))
+{
+    return Err(format!("expected recovery to keep the last dupa entry, got {:?}", recovered.additional_properties));
+}
+match DuplicateKeys::decode_strict_full(duplicate) {
+    Ok(value) => return Err(format!("strict decode accepted a duplicate catch-all key as {:?}", value)),
+    Err(crate::tokenizer::DecodeError::InvalidData(message)) => {
+        if message != "DuplicateKeys.additional_properties: duplicate map key \"dupa\" at entry 2 of 3" {
+            return Err(format!("unexpected duplicate catch-all key error: {message}"));
+        }
+    }
+    Err(error) => return Err(format!("expected InvalidData for a duplicate catch-all key, got {error:?}")),
+}
+
+// Object inside an untyped serde_json::Value with a repeated key.
+let nested_duplicate = replace_once(&canonical, &key("nestb"), &key("nesta"))?;
+let recovered = DuplicateKeys::decode_full(nested_duplicate.clone())
+    .map_err(|error| format!("recovery decode rejected a duplicate untyped-object key: {error}"))?;
+if recovered.additional_properties.get("nested") != Some(&serde_json::json!({ "nesta": 2 })) {
+    return Err(format!("expected recovery to keep the last nesta entry, got {:?}", recovered.additional_properties));
+}
+match DuplicateKeys::decode_strict_full(nested_duplicate) {
+    Ok(value) => Err(format!("strict decode accepted a duplicate untyped-object key as {:?}", value)),
+    Err(crate::tokenizer::DecodeError::InvalidData(message)) => {
+        if message != "DuplicateKeys.additional_properties: duplicate map key \"nesta\" at entry 2 of 2" {
+            return Err(format!("unexpected duplicate untyped-object key error: {message}"));
+        }
+        Ok(())
+    }
+    Err(error) => Err(format!("expected InvalidData for a duplicate untyped-object key, got {error:?}")),
+}
+"#,
+    );
+}
+
+#[test]
+fn test_generated_strict_decode_rejects_duplicate_pattern_property_keys() {
+    let schema = json!({
+        "title": "DuplicatePatternKeys",
+        "type": "object",
+        "additionalProperties": false,
+        "patternProperties": {
+            "^p[0-9]+$": { "type": "boolean" }
+        }
+    });
+
+    let grammar = TctCompiler::new(schema, "DuplicatePatternKeys")
+        .unwrap()
+        .compile()
+        .unwrap();
+    let generated_code = grammar.generate_code().unwrap();
+    run_crafted_stream_contract_crate(
+        "generated-strict-duplicate-pattern-keys",
+        &generated_code,
+        r#"
+let value: DuplicatePatternKeys = serde_json::from_value(serde_json::json!({ "p1": true, "p2": false }))
+    .map_err(|error| format!("instance rejected: {error}"))?;
+let mut canonical = Vec::new();
+value.encode(&mut canonical);
+DuplicatePatternKeys::decode_strict_full(canonical.clone())
+    .map_err(|error| format!("strict decode rejected the canonical stream: {error}"))?;
+
+let duplicate = replace_once(&canonical, &key("p2"), &key("p1"))?;
+let recovered = DuplicatePatternKeys::decode_full(duplicate.clone())
+    .map_err(|error| format!("recovery decode rejected a duplicate pattern key: {error}"))?;
+if recovered.pattern_0.len() != 1 || recovered.pattern_0.get("p1") != Some(&false) {
+    return Err(format!("expected recovery to keep the last p1 entry, got {:?}", recovered.pattern_0));
+}
+match DuplicatePatternKeys::decode_strict_full(duplicate) {
+    Ok(value) => Err(format!("strict decode accepted a duplicate pattern key as {:?}", value)),
+    Err(crate::tokenizer::DecodeError::InvalidData(message)) => {
+        if message != "DuplicatePatternKeys.pattern_0: duplicate map key \"p1\" at entry 2 of 2" {
+            return Err(format!("unexpected duplicate pattern key error: {message}"));
+        }
+        Ok(())
+    }
+    Err(error) => Err(format!("expected InvalidData for a duplicate pattern key, got {error:?}")),
+}
+"#,
+    );
+}
+
+/// A catch-all key equal to a declared property name has no JSON form: the
+/// value would serialize with the property twice. Both decode paths reject it,
+/// for bit-packed structs (`ShadowKeys`, four optional flags at the default
+/// `O3`) and standard structs (`Open`).
+#[test]
+fn test_generated_decode_rejects_catch_all_key_shadowing_declared_property() {
+    let schema = json!({
+        "title": "ShadowKeys",
+        "type": "object",
+        "properties": {
+            "id": { "type": "integer", "minimum": 0, "maximum": 9 },
+            "flag_a": { "type": "boolean" },
+            "flag_b": { "type": "boolean" },
+            "flag_c": { "type": "boolean" },
+            "flag_d": { "type": "boolean" },
+            "open": { "$ref": "#/definitions/Open" }
+        },
+        "required": ["id", "open"],
+        "additionalProperties": { "type": "boolean" },
+        "definitions": {
+            "Open": {
+                "type": "object",
+                "properties": {
+                    "name": { "type": "string" }
+                },
+                "required": ["name"]
+            }
+        }
+    });
+
+    let grammar = TctCompiler::new(schema, "ShadowKeys")
+        .unwrap()
+        .compile()
+        .unwrap();
+    let generated_code = grammar.generate_code().unwrap();
+    assert!(
+        generated_code.contains("shadowkeys_presence_mask_codec"),
+        "ShadowKeys must use the bit-packed struct encoding for this test"
+    );
+    run_crafted_stream_contract_crate(
+        "generated-catch-all-shadowing-key",
+        &generated_code,
+        r#"
+let value: ShadowKeys = serde_json::from_value(serde_json::json!({
+    "id": 3,
+    "flag_a": true,
+    "ie": true,
+    "open": { "name": "n", "namf": 1 }
+}))
+.map_err(|error| format!("instance rejected: {error}"))?;
+let mut canonical = Vec::new();
+value.encode(&mut canonical);
+ShadowKeys::decode_full(canonical.clone())
+    .map_err(|error| format!("recovery decode rejected the canonical stream: {error}"))?;
+ShadowKeys::decode_strict_full(canonical.clone())
+    .map_err(|error| format!("strict decode rejected the canonical stream: {error}"))?;
+
+let cases = [
+    (
+        "bit-packed struct",
+        replace_once(&canonical, &key("ie"), &key("id"))?,
+        "ShadowKeys: catch-all key \"id\" is a declared property; it is encoded in its own field",
+    ),
+    (
+        "standard struct",
+        replace_once(&canonical, &key("namf"), &key("name"))?,
+        "ShadowKeys.open: Open: catch-all key \"name\" is a declared property; it is encoded in its own field",
+    ),
+];
+for (label, tokens, expected) in cases {
+    for (mode, result) in [
+        ("recovery", ShadowKeys::decode_full(tokens.clone())),
+        ("strict", ShadowKeys::decode_strict_full(tokens.clone())),
+    ] {
+        match result {
+            Ok(value) => {
+                return Err(format!("{mode} decode accepted a shadowing catch-all key in the {label} as {value:?}"));
+            }
+            Err(crate::tokenizer::DecodeError::InvalidData(message)) => {
+                if message != expected {
+                    return Err(format!("{mode} decode of the {label}: expected {expected:?}, got {message:?}"));
+                }
+            }
+            Err(error) => {
+                return Err(format!("{mode} decode of the {label}: expected InvalidData, got {error:?}"));
+            }
+        }
+    }
+}
+Ok(())
+"#,
+    );
+}
+
 #[test]
 fn test_generated_strict_root_integer_wrapper_rejects_recovered_marker() {
     let schema = json!({

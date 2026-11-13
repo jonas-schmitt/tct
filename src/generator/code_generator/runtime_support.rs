@@ -358,7 +358,7 @@ pub(super) fn generate_collection_encoders(max_collection_length: usize) -> Toke
         /// Vocabulary-constrained HashMap encoder
         impl<K, V> crate::tokenizer::JsonTokenEncoder for rustc_hash::FxHashMap<K, V>
         where
-            K: crate::tokenizer::JsonTokenEncoder + std::hash::Hash + Ord,
+            K: crate::tokenizer::JsonTokenEncoder + std::hash::Hash + Ord + std::fmt::Debug,
             V: crate::tokenizer::JsonTokenEncoder,
         {
             fn encode(&self, tokens: &mut Vec<u32>) {
@@ -389,6 +389,38 @@ pub(super) fn generate_collection_encoders(max_collection_length: usize) -> Toke
                     let key = K::decode(tokens)?;
                     let value = V::decode(tokens)?;
                     map.insert(key, value);
+                }
+                Ok(map)
+            }
+
+            fn decode_strict(
+                tokens: &mut impl Iterator<Item = u32>
+            ) -> Result<Self, crate::tokenizer::DecodeError> {
+                // The constrained length codec has no strict variant yet; keys,
+                // values, and key uniqueness are checked strictly.
+                let len = decode_length_constrained(tokens)?;
+                if len > #max_collection_length {
+                    return Err(crate::tokenizer::DecodeError::InvalidData(
+                        format!("HashMap length {} exceeds maximum {}", len, #max_collection_length)
+                    ));
+                }
+                let mut map = rustc_hash::FxHashMap::default();
+                for index in 0..len {
+                    let key = K::decode_strict(tokens)?;
+                    let value = V::decode_strict(tokens)?;
+                    match map.entry(key) {
+                        std::collections::hash_map::Entry::Occupied(entry) => {
+                            return Err(crate::tokenizer::DecodeError::InvalidData(format!(
+                                "duplicate map key {:?} at entry {} of {}",
+                                entry.key(),
+                                index + 1,
+                                len
+                            )));
+                        }
+                        std::collections::hash_map::Entry::Vacant(entry) => {
+                            entry.insert(value);
+                        }
+                    }
                 }
                 Ok(map)
             }

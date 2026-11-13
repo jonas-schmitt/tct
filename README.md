@@ -243,7 +243,9 @@ then rejects unconsumed trailing tokens.
 
 `decode_strict()` and `decode_strict_full()` reject out-of-range finite choices
 and out-of-range bounded-integer offsets instead of normalizing or accepting
-them.
+them. They also reject a key repeated in one map or untyped object, where
+recovery decode keeps the last entry. Both modes reject a catch-all
+(`additionalProperties`) key equal to a declared property name.
 
 ### What the Tokenizer Does Not Enforce
 

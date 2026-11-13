@@ -373,6 +373,8 @@ impl<'a> StructGenerator<'a> {
             })
             .collect();
         let post_decode_validation = Self::post_decode_validation(type_name, post_decode_validate);
+        let catch_all_shadow_validation =
+            Self::catch_all_shadow_validation(type_name, members, field_name_map);
 
         // Combine decode logic
         Ok(quote! {
@@ -393,6 +395,7 @@ impl<'a> StructGenerator<'a> {
                 let decoded = Self {
                     #(#construct_fields),*
                 };
+                #catch_all_shadow_validation
                 #post_decode_validation
                 Ok(decoded)
             }
@@ -414,6 +417,7 @@ impl<'a> StructGenerator<'a> {
                 let decoded = Self {
                     #(#construct_fields),*
                 };
+                #catch_all_shadow_validation
                 #post_decode_validation
                 Ok(decoded)
             }

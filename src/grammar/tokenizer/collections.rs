@@ -70,7 +70,7 @@ pub(super) fn render_collections_and_numbers(
 
         impl<K, V> JsonTokenEncoder for rustc_hash::FxHashMap<K, V>
         where
-            K: JsonTokenEncoder + std::cmp::Ord + std::hash::Hash,
+            K: JsonTokenEncoder + std::cmp::Ord + std::hash::Hash + std::fmt::Debug,
             V: JsonTokenEncoder,
         {
             fn encode(&self, tokens: &mut Vec<u32>) {
@@ -109,10 +109,23 @@ pub(super) fn render_collections_and_numbers(
                     ));
                 }
                 let mut map = rustc_hash::FxHashMap::default();
-                for _ in 0..len {
+                for index in 0..len {
                     let key = K::decode_strict(tokens)?;
                     let value = V::decode_strict(tokens)?;
-                    map.insert(key, value);
+                    // Encode never repeats a key; recovery decode keeps the last entry.
+                    match map.entry(key) {
+                        std::collections::hash_map::Entry::Occupied(entry) => {
+                            return Err(DecodeError::InvalidData(format!(
+                                "duplicate map key {:?} at entry {} of {}",
+                                entry.key(),
+                                index + 1,
+                                len
+                            )));
+                        }
+                        std::collections::hash_map::Entry::Vacant(entry) => {
+                            entry.insert(value);
+                        }
+                    }
                 }
                 Ok(map)
             }

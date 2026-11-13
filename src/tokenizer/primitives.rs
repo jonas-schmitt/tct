@@ -811,7 +811,7 @@ impl<T: JsonTokenEncoder> JsonTokenEncoder for Vec<T> {
 // HashMap implementation for JsonTokenEncoder
 impl<K, V> JsonTokenEncoder for FxHashMap<K, V>
 where
-    K: JsonTokenEncoder + std::cmp::Ord + std::hash::Hash,
+    K: JsonTokenEncoder + std::cmp::Ord + std::hash::Hash + std::fmt::Debug,
     V: JsonTokenEncoder,
 {
     fn encode(&self, tokens: &mut Vec<u32>) {
@@ -871,10 +871,23 @@ where
         }
 
         let mut map = FxHashMap::default();
-        for _ in 0..len {
+        for index in 0..len {
             let key = K::decode_strict(tokens)?;
             let value = V::decode_strict(tokens)?;
-            map.insert(key, value);
+            // Encode never repeats a key; recovery decode keeps the last entry.
+            match map.entry(key) {
+                std::collections::hash_map::Entry::Occupied(entry) => {
+                    return Err(DecodeError::InvalidData(format!(
+                        "duplicate map key {:?} at entry {} of {}",
+                        entry.key(),
+                        index + 1,
+                        len
+                    )));
+                }
+                std::collections::hash_map::Entry::Vacant(entry) => {
+                    entry.insert(value);
+                }
+            }
         }
 
         Ok(map)
@@ -1020,6 +1033,68 @@ mod tests {
     fn test_hashmap_empty() {
         let data: FxHashMap<String, i32> = FxHashMap::default();
         encode_decode_test(data);
+    }
+
+    /// Map stream with two entries under the same key: `{"k": true, "k": false}`.
+    fn duplicate_key_map_tokens() -> Vec<u32> {
+        let mut tokens = Vec::new();
+        crate::base256::encode_u32(2, &mut tokens, crate::base256::DEFAULT_BASE);
+        "k".to_string().encode(&mut tokens);
+        true.encode(&mut tokens);
+        "k".to_string().encode(&mut tokens);
+        false.encode(&mut tokens);
+        tokens
+    }
+
+    #[test]
+    fn test_hashmap_strict_decode_rejects_duplicate_keys() {
+        let tokens = duplicate_key_map_tokens();
+
+        // Recovery decode keeps the last entry for a repeated key.
+        let recovered = FxHashMap::<String, bool>::decode_full(tokens.clone()).unwrap();
+        assert_eq!(recovered.len(), 1);
+        assert_eq!(recovered.get("k"), Some(&false));
+
+        let error = FxHashMap::<String, bool>::decode_strict_full(tokens).unwrap_err();
+        assert_eq!(
+            error,
+            DecodeError::InvalidData("duplicate map key \"k\" at entry 2 of 2".to_string())
+        );
+    }
+
+    #[test]
+    fn test_hashmap_strict_decode_accepts_distinct_keys_in_any_order() {
+        let mut tokens = Vec::new();
+        crate::base256::encode_u32(2, &mut tokens, crate::base256::DEFAULT_BASE);
+        "b".to_string().encode(&mut tokens);
+        true.encode(&mut tokens);
+        "a".to_string().encode(&mut tokens);
+        false.encode(&mut tokens);
+
+        let decoded = FxHashMap::<String, bool>::decode_strict_full(tokens).unwrap();
+        assert_eq!(decoded.len(), 2);
+        assert_eq!(decoded.get("a"), Some(&false));
+        assert_eq!(decoded.get("b"), Some(&true));
+    }
+
+    #[test]
+    fn test_json_object_strict_decode_rejects_duplicate_keys() {
+        let mut tokens = vec![5u32];
+        crate::base256::encode_u32(2, &mut tokens, crate::base256::DEFAULT_BASE);
+        "k".to_string().encode(&mut tokens);
+        serde_json::Value::Bool(true).encode(&mut tokens);
+        "k".to_string().encode(&mut tokens);
+        serde_json::Value::Null.encode(&mut tokens);
+
+        // Recovery decode keeps the last entry for a repeated key.
+        let recovered = serde_json::Value::decode_full(tokens.clone()).unwrap();
+        assert_eq!(recovered, serde_json::json!({"k": null}));
+
+        let error = serde_json::Value::decode_strict_full(tokens).unwrap_err();
+        assert_eq!(
+            error,
+            DecodeError::InvalidData("duplicate map key \"k\" at entry 2 of 2".to_string())
+        );
     }
 
     #[test]
