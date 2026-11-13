@@ -100,3 +100,21 @@ Apache-2.0.
   decodes. The library impl `JsonTokenEncoder for FxHashMap<K, V>` now also
   requires `K: Debug`; generated tokenizers use `String` keys and are not
   affected.
+- Documentation corrections; no behaviour, token, or stream changes. The
+  README has a "Number Encoding" section (with a glossary entry) that states
+  the default: a `number` is one type-marker token plus 8 little-endian byte
+  tokens, an `integer` without both bounds is one signed/unsigned marker plus
+  8 bytes, bounded integers use the offset encoding at `-O2`, `-O3`, `-Os`,
+  and `-OVocab`, and
+  `--decimal-numbers` replaces the 8 bytes with decimal text plus
+  `END_STRING_MARKER`. The Hugging Face contract, `ARCHITECTURE.md`,
+  `DEVELOPMENT.md`, and the rustdoc of `SequenceGenerationMask` state that the
+  bundle and direct-profile generation mask is stateless and admits EOS at
+  every step, so a decoder that needs complete outputs must admit EOS only
+  once `strict_prefix_roles` reports the payload complete. The github-workflow
+  example no longer says that field names are never strings (keys of
+  free-form maps are spelled as string bytes), and its tiktoken comparison
+  reports fewer or more tokens instead of "better" or "worse". The SQL
+  frontend contract describes the menu-index stream as shorter, makes no
+  model-accuracy claim, and lists `UNION`, `INTERSECT`, and `EXCEPT` as out
+  of scope for v0.

@@ -145,6 +145,22 @@ The wrapper-level policy is:
 - After schema selection, generation logits are restricted to the selected
   schema's global payload range plus EOS.
 
+The generation mask (`selected_schema_payload_plus_eos`, also used by the
+direct profile) is stateless. It admits every payload ID of the selected schema
+and EOS (`<|tct_end|>` in the direct profile) at every step, whatever has been
+generated so far, so it does not stop a model from ending the response before
+the payload is a complete value. The wrapper layer does not catch this either:
+`unwrap_payload()` checks BOS, the schema token, EOS, padding, and payload
+ranges, but not whether the payload is complete; only the raw decode rejects a
+truncated payload, with an end-of-stream error. A decoder that needs complete
+outputs must admit EOS only once the payload generated so far is complete. For
+strict use, the completion signal is the `complete` flag returned by the
+selected schema wheel's `strict_prefix_roles(tokens)` on the schema-local
+payload IDs (the IDs that `unwrap_payload()` returns for a bundle sequence); it
+raises on prefixes that strict decode rejects. `DecodeState` (wheels built with
+`--streaming`) also reports `"complete"`, but it replays recovery decode, so it
+can call a stream complete that strict decode rejects.
+
 This policy intentionally differs from older downstream baseline
 checkpoints that reuse PAD as BOS and do not learn a model-emitted EOS.
 

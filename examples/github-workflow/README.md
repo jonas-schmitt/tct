@@ -71,7 +71,10 @@ python3 example_vs_tiktoken.py        # Compare with Tiktoken
 TCT uses BPE on top of schema-aware base encoding:
 
 1. **Schema-aware base encoding**
-   - Encodes structure, not field names as strings
+   - Encodes fixed property names (such as `runs-on` and `steps`) as
+     structure; keys of free-form maps (`additionalProperties` and
+     `patternProperties`, such as job ids under `jobs` or variable names
+     under `env`) are still spelled as string bytes
 
 2. **BPE compression**
    - Merges trained on plain TCT token sequences
@@ -80,7 +83,7 @@ TCT uses BPE on top of schema-aware base encoding:
 
 ## Performance
 
-Schema-aware base encoding removes structural redundancy (field names,
+Schema-aware base encoding removes structural redundancy (fixed property names,
 punctuation, enum spellings), and BPE merges can compress repeated value-byte
 sequences while preserving a lossless round trip. Token counts depend on the
 schema, corpus, and trained merges. Measure your corpus with

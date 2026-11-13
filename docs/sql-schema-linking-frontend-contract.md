@@ -23,9 +23,14 @@ capability, authorization) — **not** CUDA availability or the old M7 replay.
 
 ## Why this frontend exists
 
-Compiler elision and XGrammar jump-forward remove the same forced tokens. A
-compiler-derived stream wins where it replaces an **open-vocabulary span with a
-bounded menu index**. The models-side census measured:
+Compiler elision and XGrammar jump-forward remove the same forced tokens. Beyond
+that, a compiler-derived stream is shorter where it replaces an
+**open-vocabulary span with a bounded menu index**: with the default flat
+column addressing, one menu-index token per schema reference (for menus of at
+most 256 entries) stands in for the identifier's bytes. This is a statement
+about stream length. The repository makes no claim that such a stream improves
+model accuracy over plain SQL text or over the same menu written as text. The
+models-side census measured:
 
 | axis | result | bar |
 |---|---|---|
@@ -64,6 +69,7 @@ In scope:
 Out of scope for v0:
 
 - Full SQL dialect coverage (Postgres/MySQL extensions, procedural SQL).
+- Set operations (`UNION`, `INTERSECT`, `EXCEPT`); the parser rejects them.
 - Training, paper numbers, or models-side eval harness ownership.
 - Softening census bars.
 - Bespoke codecs that ignore SharedAlphabet / generic codec layer.

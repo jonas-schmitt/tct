@@ -969,6 +969,14 @@ tokenizers into one model vocabulary:
 - `generation_mask_for_schema_token()` returns the selected schema's payload
   range plus EOS. Prompt, BOS, schema, and PAD positions are label-masked; EOS is
   a training target.
+- The generation mask is stateless: it admits EOS (`<|tct_end|>` in the direct
+  Hugging Face profile) at every step, and `unwrap_payload()` does not check
+  that the payload is a complete value. A decoder that needs complete outputs
+  must admit EOS only after the selected wheel's
+  `strict_prefix_roles(raw_payload)` returns `complete == True`; `DecodeState`
+  (`--streaming` wheels) replays recovery decode and is not a strict signal.
+  See `docs/huggingface-compatible-tokenizer-contract.md` ("Special Tokens And
+  Masking").
 
 `tct-build-bundle-wrapper` writes the source of a pure-Python package that
 imports already built schema wheels and applies this contract. It does not

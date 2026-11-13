@@ -31,9 +31,9 @@ try:
     diff = len(tk_tokens) - len(tct_tokens)
     pct = abs(diff / len(tk_tokens)) * 100
     if diff > 0:
-        print(f"\nTCT uses {diff} fewer tokens ({pct:.1f}% better)")
+        print(f"\nTCT uses {diff} fewer tokens ({pct:.1f}% fewer than tiktoken)")
     else:
-        print(f"\nTCT uses {abs(diff)} more tokens ({pct:.1f}% worse)")
+        print(f"\nTCT uses {abs(diff)} more tokens ({pct:.1f}% more than tiktoken)")
 except ImportError:
     print("Tiktoken not installed (pip install tiktoken)")
 

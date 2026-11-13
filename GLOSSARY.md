@@ -32,6 +32,9 @@ The optional limit set by `--max-vocab` on how many distinct values one structur
 The power-of-two radix, set by `max_base_vocab`, of the fixed-width integer encodings for collection lengths and bounded-integer offsets. It lower-bounds the base vocabulary and never causes a multi-token codec.
 _Avoid_: codec base
 
+**Number encoding**:
+How numeric values other than bounded-integer offsets are written. By default a `number` is one type-marker token plus 8 little-endian byte tokens (the IEEE-754 bits for a float), and an integer without both bounds is one signed/unsigned marker token plus 8 little-endian byte tokens. `--decimal-numbers` replaces the 8 bytes with decimal text ended by the end marker. See README "Number Encoding".
+
 **Experimental frontend**:
 A non-JSON compilation route (SQL schema linking, Go and C# syntax, tree-sitter subset codecs), built only with the `experimental` feature and without stability guarantees.
 

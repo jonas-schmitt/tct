@@ -17,6 +17,9 @@ pub const SEQUENCE_BUNDLE_MANIFEST_VERSION: u32 = 1;
 pub const CURRENT_SEQUENCE_BOUNDARY_VERSION: u32 = 1;
 
 /// Current generation-time logit mask policy.
+///
+/// The policy is stateless: after schema selection it admits the selected
+/// schema's payload range and EOS at every step. See [`SequenceGenerationMask`].
 pub const SELECTED_SCHEMA_PAYLOAD_PLUS_EOS: &str = "selected_schema_payload_plus_eos";
 
 /// Supported hybrid prompt/TCT response boundary manifest version.
@@ -558,6 +561,13 @@ pub struct SequenceBundlePayload {
 }
 
 /// Generation mask implied after selecting a schema.
+///
+/// The mask does not depend on the tokens generated so far: [`Self::allows`]
+/// accepts every payload ID of the selected schema and EOS at every step, so it
+/// does not stop generation from ending before the payload is a complete
+/// value. A decoder that needs complete outputs must admit EOS only once the
+/// selected schema wheel's `strict_prefix_roles()` reports the raw payload
+/// complete.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SequenceGenerationMask {
     pub schema_id: String,

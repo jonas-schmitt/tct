@@ -913,7 +913,11 @@ PAD tokens are masked from labels; EOS is not masked, so the model can learn to
 terminate; generation requires schema selection and then restricts logits to the
 selected schema's global payload range plus EOS. This mirrors the downstream
 Hugging Face/TCT direction without making model training part of this
-repository.
+repository. The generation mask is stateless: it admits EOS at every step, and
+`unwrap_payload()` does not check that the payload is a complete value, so a
+decoder that needs complete outputs must admit EOS only once the selected
+schema's generated `strict_prefix_roles()` reports the payload complete (see
+`docs/huggingface-compatible-tokenizer-contract.md`).
 
 Bundle payload wrapping is also contract-level: `wrap_payload_for_schema_id()`
 and `wrap_payload_for_schema_token()` map raw schema-local payload IDs into the

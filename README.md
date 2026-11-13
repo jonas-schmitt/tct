@@ -228,6 +228,33 @@ Strings use end-marker encoding: a byte sequence terminated by
 `decode()` rejects invalid string byte tokens and invalid UTF-8; streaming
 `decode_prefix()` can return partial text from truncated strings.
 
+## Number Encoding
+
+By default, numbers are written as fixed-width bytes, not as decimal text:
+
+- A `number` value is one type-marker token (0 for an integer that fits in
+  `i64`, 1 for a float, 2 for a larger unsigned integer) followed by 8
+  little-endian byte tokens, so 9 tokens per value. For a float the bytes are
+  its IEEE-754 bit pattern.
+- An `integer` without both `minimum` and `maximum` is one signed/unsigned
+  marker token (0 for a value that fits in `i64`, 1 for a larger unsigned
+  value) followed by the 8 little-endian bytes of the value.
+- An `integer` with both `minimum` and `maximum` is written as its offset from
+  `minimum` at `-O2`, `-O3`, `-Os`, and `-OVocab`: one length token followed
+  by one to four digit tokens in base 256 (the default encoding base), or a
+  fixed-width multi-token codec when `--max-vocab` is set and the range
+  exceeds it. An integer whose `minimum` equals its `maximum` takes no tokens.
+  At `-O0`, or when the range (`maximum - minimum + 1`) does not fit in 32
+  bits, it is 8 little-endian byte tokens without a marker.
+
+`--decimal-numbers` (Python: `decimal_numbers=True`) replaces each group of 8
+byte tokens above with the value's decimal text, one byte token per character,
+followed by `END_STRING_MARKER`; floats outside `1e-6 <= |x| < 1e21` are
+written in exponent form. Marker tokens and bounded-integer offsets and codecs
+stay as they are. The setting changes the token stream, so BPE training,
+measurement, and generated wheels must use the same setting (see
+`DEVELOPMENT.md`).
+
 ## Decode Contract
 
 `decode()` is a complete recovery decode API. It reconstructs one value and
