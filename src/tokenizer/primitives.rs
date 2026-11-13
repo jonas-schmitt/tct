@@ -811,7 +811,7 @@ impl<T: JsonTokenEncoder> JsonTokenEncoder for Vec<T> {
 // HashMap implementation for JsonTokenEncoder
 impl<K, V> JsonTokenEncoder for FxHashMap<K, V>
 where
-    K: JsonTokenEncoder + std::cmp::Eq + std::hash::Hash,
+    K: JsonTokenEncoder + std::cmp::Ord + std::hash::Hash,
     V: JsonTokenEncoder,
 {
     fn encode(&self, tokens: &mut Vec<u32>) {
@@ -819,8 +819,11 @@ where
         // Note: Generated code uses configurable encoding_base via grammar.rs
         crate::base256::encode_u32(self.len() as u32, tokens, crate::base256::DEFAULT_BASE);
 
-        // Encode each key-value pair
-        for (key, value) in self.iter() {
+        // Encode key-value pairs in canonical ascending key order (UTF-8 byte
+        // order for String keys), independent of hash and insertion order.
+        let mut entries: Vec<(&K, &V)> = self.iter().collect();
+        entries.sort_unstable_by(|left, right| left.0.cmp(right.0));
+        for (key, value) in entries {
             key.encode(tokens);
             value.encode(tokens);
         }
@@ -1060,10 +1063,13 @@ mod tests {
 fn encode_json_object_map(obj: &serde_json::Map<String, serde_json::Value>, tokens: &mut Vec<u32>) {
     crate::base256::encode_u32(obj.len() as u32, tokens, crate::base256::DEFAULT_BASE);
 
-    let map: FxHashMap<&String, &serde_json::Value> = obj.iter().collect();
-    for (key, value) in map.iter() {
-        (*key).encode(tokens);
-        (*value).encode(tokens);
+    // Same canonical order as typed maps: ascending key byte order, whether or
+    // not serde_json's `preserve_order` feature is enabled.
+    let mut entries: Vec<(&String, &serde_json::Value)> = obj.iter().collect();
+    entries.sort_unstable_by(|left, right| left.0.cmp(right.0));
+    for (key, value) in entries {
+        key.encode(tokens);
+        value.encode(tokens);
     }
 }
 
@@ -1979,7 +1985,7 @@ mod additional_coverage_tests {
     }
 
     #[test]
-    fn test_serde_json_value_object_encode_matches_legacy_hashmap_order_without_value_clone() {
+    fn test_serde_json_value_object_encode_matches_typed_map_order_without_value_clone() {
         let original = serde_json::json!({
             "alpha": {"nested": true, "items": [1, "two"]},
             "beta": 18446744073709551615u64,
@@ -1992,16 +1998,16 @@ mod additional_coverage_tests {
         let mut tokens = Vec::new();
         original.encode(&mut tokens);
 
-        let legacy_map: FxHashMap<String, serde_json::Value> = obj
+        let typed_map: FxHashMap<String, serde_json::Value> = obj
             .iter()
             .map(|(key, value)| (key.clone(), value.clone()))
             .collect();
-        let mut legacy_tokens = vec![5];
-        legacy_map.encode(&mut legacy_tokens);
+        let mut typed_tokens = vec![5];
+        typed_map.encode(&mut typed_tokens);
 
         assert_eq!(
-            tokens, legacy_tokens,
-            "borrowed object encoding must preserve the previous FxHashMap token order"
+            tokens, typed_tokens,
+            "borrowed object encoding must use the same canonical entry order as typed maps"
         );
         assert_eq!(original.token_count(), tokens.len());
 
@@ -2009,6 +2015,161 @@ mod additional_coverage_tests {
         let decoded = serde_json::Value::decode(&mut iter).unwrap();
         assert_eq!(decoded, original);
         assert_eq!(iter.next(), None, "Iterator should be fully consumed");
+    }
+
+    /// Keys whose UTF-8 byte order differs from case-insensitive or
+    /// insertion order, plus enough plain keys to make hash order visible.
+    fn map_order_keys() -> Vec<String> {
+        let mut keys: Vec<String> = ["zeta", "alpha", "Beta", "\u{e9}clair", "a", "ab", "b"]
+            .iter()
+            .map(|key| key.to_string())
+            .collect();
+        keys.extend((0..24).map(|i| format!("k{i:02}")));
+        keys
+    }
+
+    fn key_orders(keys: &[String]) -> Vec<Vec<String>> {
+        let mut ascending = keys.to_vec();
+        ascending.sort();
+        let descending: Vec<String> = ascending.iter().rev().cloned().collect();
+        let n = ascending.len();
+        let shuffled: Vec<String> = (0..n).map(|i| ascending[(i * 7 + 3) % n].clone()).collect();
+        vec![ascending, descending, shuffled]
+    }
+
+    /// The canonical map stream, written out by hand: length, then entries in
+    /// ascending key order.
+    fn canonical_bool_map_tokens(keys: &[String]) -> Vec<u32> {
+        let mut sorted = keys.to_vec();
+        sorted.sort();
+        let mut tokens = Vec::new();
+        crate::base256::encode_u32(
+            sorted.len() as u32,
+            &mut tokens,
+            crate::base256::DEFAULT_BASE,
+        );
+        for key in &sorted {
+            key.encode(&mut tokens);
+            (key.len() % 2 == 0).encode(&mut tokens);
+        }
+        tokens
+    }
+
+    #[test]
+    fn test_fxhashmap_encode_emits_entries_in_ascending_key_order() {
+        let keys = map_order_keys();
+        let expected = canonical_bool_map_tokens(&keys);
+        for order in key_orders(&keys) {
+            let mut map = FxHashMap::default();
+            for key in &order {
+                map.insert(key.clone(), key.len() % 2 == 0);
+            }
+            let mut tokens = Vec::new();
+            map.encode(&mut tokens);
+            assert_eq!(
+                tokens, expected,
+                "map entries must be emitted in ascending key byte order"
+            );
+            assert_eq!(map.token_count(), tokens.len());
+
+            let decoded = FxHashMap::<String, bool>::decode(&mut tokens.clone().into_iter())
+                .expect("canonical map stream decodes");
+            assert_eq!(decoded, map);
+            let mut reencoded = Vec::new();
+            decoded.encode(&mut reencoded);
+            assert_eq!(reencoded, tokens, "encode(decode(t)) must equal t");
+        }
+    }
+
+    #[test]
+    fn test_fxhashmap_decode_accepts_entries_in_any_order() {
+        let keys = map_order_keys();
+        let canonical = canonical_bool_map_tokens(&keys);
+        let mut descending = keys.clone();
+        descending.sort();
+        descending.reverse();
+        let mut tokens = Vec::new();
+        crate::base256::encode_u32(
+            descending.len() as u32,
+            &mut tokens,
+            crate::base256::DEFAULT_BASE,
+        );
+        for key in &descending {
+            key.encode(&mut tokens);
+            (key.len() % 2 == 0).encode(&mut tokens);
+        }
+        assert_ne!(tokens, canonical);
+
+        let recovered = FxHashMap::<String, bool>::decode(&mut tokens.clone().into_iter())
+            .expect("non-canonical order still decodes");
+        let strict = FxHashMap::<String, bool>::decode_strict(&mut tokens.into_iter())
+            .expect("non-canonical order still strict-decodes");
+        assert_eq!(recovered, strict);
+        assert_eq!(recovered.len(), keys.len());
+        let mut reencoded = Vec::new();
+        recovered.encode(&mut reencoded);
+        assert_eq!(reencoded, canonical);
+    }
+
+    #[test]
+    fn test_serde_json_value_object_encode_ignores_source_key_order() {
+        let keys = map_order_keys();
+        let build = |order: &[String]| {
+            let mut nested = serde_json::Map::new();
+            for key in order {
+                nested.insert(key.clone(), serde_json::json!(key.len() % 3 == 0));
+            }
+            let mut outer = serde_json::Map::new();
+            for key in order {
+                let value = if key == "k05" {
+                    serde_json::Value::Object(nested.clone())
+                } else {
+                    serde_json::json!(key.len())
+                };
+                outer.insert(key.clone(), value);
+            }
+            serde_json::Value::Object(outer)
+        };
+
+        let orders = key_orders(&keys);
+        let ascending = build(&orders[0]);
+        let mut expected = Vec::new();
+        ascending.encode(&mut expected);
+
+        // Spell out the outer level by hand to pin the ascending order.
+        let serde_json::Value::Object(outer) = &ascending else {
+            panic!("fixture is an object");
+        };
+        let mut sorted_keys: Vec<&String> = outer.keys().collect();
+        sorted_keys.sort();
+        let mut by_hand = vec![5];
+        crate::base256::encode_u32(
+            outer.len() as u32,
+            &mut by_hand,
+            crate::base256::DEFAULT_BASE,
+        );
+        for key in sorted_keys {
+            key.encode(&mut by_hand);
+            outer[key.as_str()].encode(&mut by_hand);
+        }
+        assert_eq!(expected, by_hand);
+
+        for order in &orders {
+            let value = build(order);
+            let mut tokens = Vec::new();
+            value.encode(&mut tokens);
+            assert_eq!(
+                tokens, expected,
+                "object entries, including nested ones, must not depend on source key order"
+            );
+            assert_eq!(value.token_count(), tokens.len());
+            let decoded = serde_json::Value::decode(&mut tokens.clone().into_iter())
+                .expect("canonical object stream decodes");
+            assert_eq!(decoded, value);
+            let mut reencoded = Vec::new();
+            decoded.encode(&mut reencoded);
+            assert_eq!(reencoded, tokens, "encode(decode(t)) must equal t");
+        }
     }
 
     #[test]

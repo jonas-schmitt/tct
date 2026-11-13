@@ -68,13 +68,17 @@ pub(super) fn render_collections_and_numbers(
 
         impl<K, V> JsonTokenEncoder for rustc_hash::FxHashMap<K, V>
         where
-            K: JsonTokenEncoder + std::cmp::Eq + std::hash::Hash,
+            K: JsonTokenEncoder + std::cmp::Ord + std::hash::Hash,
             V: JsonTokenEncoder,
         {
             fn encode(&self, tokens: &mut Vec<u32>) {
                 // Multi-token encoding for length to stay within vocabulary bounds
                 variable_base::encode_u32_fixed_base(self.len() as u32, tokens);
-                for (key, value) in self.iter() {
+                // Canonical order: ascending key order (UTF-8 byte order for
+                // String keys), independent of hash and insertion order.
+                let mut entries: Vec<(&K, &V)> = self.iter().collect();
+                entries.sort_unstable_by(|left, right| left.0.cmp(right.0));
+                for (key, value) in entries {
                     key.encode(tokens);
                     value.encode(tokens);
                 }

@@ -163,11 +163,13 @@ pub(super) fn render_json_types() -> TokenStream {
         ) {
             variable_base::encode_u32_fixed_base(obj.len() as u32, tokens);
 
-            let map: rustc_hash::FxHashMap<&String, &serde_json::Value> =
-                obj.iter().collect();
-            for (key, value) in map.iter() {
-                (*key).encode(tokens);
-                (*value).encode(tokens);
+            // Same canonical order as typed maps: ascending key byte order,
+            // whether or not serde_json's `preserve_order` feature is enabled.
+            let mut entries: Vec<(&String, &serde_json::Value)> = obj.iter().collect();
+            entries.sort_unstable_by(|left, right| left.0.cmp(right.0));
+            for (key, value) in entries {
+                key.encode(tokens);
+                value.encode(tokens);
             }
         }
 

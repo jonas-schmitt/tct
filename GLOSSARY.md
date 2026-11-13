@@ -45,7 +45,7 @@ Deserializes into the generated types and can therefore be encoded. A schema-val
 _Avoid_: valid instance
 
 **Catch-all map**:
-The generated member that holds an object's additional properties when the schema allows them. A closed object (`additionalProperties: false`) has none and rejects undeclared keys.
+The generated member that holds an object's additional properties when the schema allows them. A closed object (`additionalProperties: false`) has none and rejects undeclared keys. Like every map, it is encoded as its entry count followed by its entries in ascending key order (UTF-8 byte order).
 
 **Value constraint**:
 A keyword that restricts values rather than types or structure: string patterns, length and item-count bounds, uniqueness, multiples, and numeric bounds on floats or one-sided integers. Schemas may use them, but no encode or decode mode enforces them.
@@ -98,7 +98,7 @@ The structural token recording which of three states a nullable optional member 
 ### Decoding
 
 **Canonical token sequence**:
-The one token sequence encoding emits for a value, with no normalization and only in-vocabulary IDs.
+The one token sequence encoding emits for a value, with no normalization and only in-vocabulary IDs. Entries of maps and untyped objects appear in ascending key order (UTF-8 byte order), so the key order of the input does not change it.
 
 **Recovery decode**:
 The default decode behavior: out-of-range finite choices and BPE IDs are normalized into range with modulo arithmetic so model-generated streams still decode, while truncation, malformed strings, and over-cap lengths still fail. Bounded-integer offsets are not normalized and can decode outside the declared bounds.

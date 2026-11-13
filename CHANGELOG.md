@@ -39,3 +39,17 @@ Apache-2.0.
   generated codec) with Go and C# syntax targets, tree-sitter subset codecs,
   and an exact-mask contract, plus their CLI binaries and tests. See
   `docs/frontends-development.md`.
+
+### Changed
+
+- Map entries are encoded in one canonical order: ascending key order (UTF-8
+  byte order). This covers typed `additionalProperties` maps,
+  `patternProperties` maps, catch-all maps, and objects inside untyped
+  `serde_json::Value` members, in generated tokenizers and in the library
+  runtime. Before, entries followed hash order, so the same value could encode
+  to different streams depending on the key order of the input. Streams change
+  for maps and untyped objects with two or more entries whose previous order
+  was not already ascending. Token IDs, token ranges, and `VOCAB_SIZE` do not
+  change, and decode still accepts entries in any order, so existing streams
+  still decode to the same values. Merge tables or models trained on streams
+  from earlier builds saw the old entry order.

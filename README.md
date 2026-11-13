@@ -110,9 +110,14 @@ base64 = "0.22.1"
 `jsonschema` is used to pick the matching branch of `anyOf`/`oneOf` values when
 JSON is deserialized. Generated code never fetches schemas: external `$ref`s
 resolve only against the schemas vendored into the compiler, so the default
-features (an HTTP/TLS stack for remote references) are not needed. Add
-`features = ["preserve_order"]` to `serde_json` if untyped values must keep
-their object key order.
+features (an HTTP/TLS stack for remote references) are not needed.
+
+Token streams list the entries of every map (`additionalProperties`,
+`patternProperties`, catch-all maps) and of every untyped JSON object in
+ascending key order (UTF-8 byte order), so the order of keys in the input does
+not change the stream, and decoding does not restore it. Adding
+`features = ["preserve_order"]` to `serde_json` only changes how your own code
+orders keys in `serde_json::Value` objects; it does not change the token stream.
 
 ```bash
 ./target/release/tct schemas/popular/github-workflow.json -o my_tokenizer/src/lib.rs

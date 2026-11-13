@@ -358,14 +358,16 @@ pub(super) fn generate_collection_encoders(max_collection_length: usize) -> Toke
         /// Vocabulary-constrained HashMap encoder
         impl<K, V> crate::tokenizer::JsonTokenEncoder for rustc_hash::FxHashMap<K, V>
         where
-            K: crate::tokenizer::JsonTokenEncoder + std::hash::Hash + Eq,
+            K: crate::tokenizer::JsonTokenEncoder + std::hash::Hash + Ord,
             V: crate::tokenizer::JsonTokenEncoder,
         {
             fn encode(&self, tokens: &mut Vec<u32>) {
                 // Use constrained length encoding
                 encode_length_constrained(self.len(), tokens);
-                // Encode key-value pairs
-                for (key, value) in self.iter() {
+                // Encode key-value pairs in canonical ascending key order
+                let mut entries: Vec<(&K, &V)> = self.iter().collect();
+                entries.sort_unstable_by(|left, right| left.0.cmp(right.0));
+                for (key, value) in entries {
                     key.encode(tokens);
                     value.encode(tokens);
                 }

@@ -686,6 +686,15 @@ Core rules:
 
 - `encode()` emits canonical token sequences. It must not use modulo recovery or
   lossy normalization.
+- Map entries have one canonical order: typed `additionalProperties` maps,
+  `patternProperties` storage (each pattern's map on its own), catch-all maps,
+  and objects inside untyped `serde_json::Value` members are emitted as the
+  entry count followed by the entries in ascending key order (UTF-8 byte order
+  of the key). The order does not depend on hash order, insertion order, or
+  serde_json's `preserve_order` feature, so one value has one stream and
+  `encode(decode(t)) == t` for canonical `t`. Decode accepts entries in any
+  order, so streams written with another entry order still decode to the same
+  value.
 - `decode()` is recovery-oriented for token values where the schema has a finite
   choice, such as booleans, enum discriminators, optional-field states, and BPE
   recovery. It still errors on malformed strings, EOF, collection caps, schema
