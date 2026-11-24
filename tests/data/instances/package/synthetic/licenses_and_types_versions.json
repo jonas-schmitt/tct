@@ -1,0 +1,17 @@
+{
+  "name": "example-licensed",
+  "version": "1.0.0",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://example.com/license"
+    }
+  ],
+  "typesVersions": {
+    "*": {
+      "*": [
+        "types/index.d.ts"
+      ]
+    }
+  }
+}

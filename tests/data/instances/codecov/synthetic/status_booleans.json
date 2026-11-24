@@ -1,0 +1,9 @@
+{
+  "coverage": {
+    "status": {
+      "project": true,
+      "patch": true,
+      "changes": false
+    }
+  }
+}

@@ -121,7 +121,8 @@ pub(super) fn generate_variant_validation_functions(members: &[MemberInfo]) -> V
 }
 
 /// Generate custom Deserialize impl for schema-aware anyOf/oneOf variant selection.
-/// `is_anyof`: true for anyOf (use first match), false for oneOf (require unique match).
+/// `is_anyof`: true for anyOf (use the first matching variant whose typed conversion
+/// succeeds), false for oneOf (require unique match).
 pub(super) fn generate_schema_aware_deserialize_impl(
     type_ident: &Ident,
     members: &[MemberInfo],
@@ -187,26 +188,43 @@ pub(super) fn generate_schema_aware_deserialize_impl(
 
                 #(#validation_checks)*
 
+                // Typed conversion of the value into one matched variant
+                let convert = |variant: usize, value: serde_json::Value| -> Result<Self, D::Error> {
+                    match variant {
+                        #(#deserialization_branches,)*
+                        _ => unreachable!(),
+                    }
+                };
+
                 // Step 3: Handle match results
                 match matched_variants.len() {
                     0 => Err(serde::de::Error::custom(
                         format!("Data did not match any variant of {} enum", stringify!(#type_ident))
                     )),
-                    1 => {
-                        // Exactly one variant matched - deserialize into typed struct
-                        match matched_variants[0] {
-                            #(#deserialization_branches,)*
-                            _ => unreachable!(),
-                        }
-                    }
+                    // Exactly one variant matched - deserialize into typed struct
+                    1 => convert(matched_variants[0], value),
                     _ => {
                         if #is_anyof {
-                            // For anyOf: multiple matches are valid, use the first matching variant
-                            // This follows JSON Schema semantics where anyOf means "valid if ANY match"
-                            match matched_variants[0] {
-                                #(#deserialization_branches,)*
-                                _ => unreachable!(),
+                            // For anyOf: multiple matches are valid ("valid if ANY match").
+                            // A variant schema can accept more than its generated type
+                            // holds (a `$ref` whose target has no `type` validates a
+                            // boolean, but its struct holds only objects), so take the
+                            // first matching variant whose typed conversion succeeds.
+                            let mut first_error = None;
+                            for &variant in &matched_variants {
+                                match convert(variant, value.clone()) {
+                                    Ok(typed) => return Ok(typed),
+                                    Err(error) => {
+                                        first_error.get_or_insert(error);
+                                    }
+                                }
                             }
+                            Err(first_error.unwrap_or_else(|| {
+                                serde::de::Error::custom(format!(
+                                    "Data did not match any variant of {} enum",
+                                    stringify!(#type_ident)
+                                ))
+                            }))
                         } else {
                             // For oneOf: multiple matches is an error (schema violation)
                             Err(serde::de::Error::custom(format!(

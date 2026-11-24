@@ -9,5 +9,8 @@
   "single": "only",
   "tags": ["a", null, "b"],
   "scores": [0, null, 100],
-  "env": {"DEBUG": true, "HOME": "/home/app", "PORT": 8080, "RATIO": 0.5}
+  "env": {"DEBUG": true, "HOME": "/home/app", "PORT": 8080, "RATIO": 0.5},
+  "paths": ["src", 1, null],
+  "rule_or_flag": {"target": "80%", "informational": true},
+  "rule_or_null": {"target": "auto"}
 }

@@ -50,7 +50,13 @@ impl BoundedIntegerGenerator {
         let type_name_ident = format_ident!("{}", type_discovery.type_name);
 
         // Generate type definition (newtype wrapper)
-        let type_def = self.generate_type_definition(&type_name_ident, trait_derivability)?;
+        let bounds = match encoding_decision {
+            EncodingDecision::BoundedIntegerCodec { min, max, .. }
+            | EncodingDecision::BoundedIntegerOffset { min, max, .. } => Some((*min, *max)),
+            _ => None,
+        };
+        let type_def =
+            self.generate_type_definition(&type_name_ident, trait_derivability, bounds)?;
 
         // Generate codec module if needed
         let codec_module = match encoding_decision {
@@ -82,7 +88,41 @@ impl BoundedIntegerGenerator {
         &self,
         type_name: &proc_macro2::Ident,
         trait_derivability: Option<&TraitDerivability>,
+        bounds: Option<(i64, i64)>,
     ) -> TctResult<TokenStream> {
+        // The offset and codec encodings represent only `min..=max`: a value
+        // outside it would encode to a stream that decodes to another value
+        // or that strict decode rejects. With known bounds, deserialization
+        // checks the range instead of deriving a transparent `Deserialize`.
+        let deserialize_derive = if bounds.is_some() {
+            quote! {}
+        } else {
+            quote! { , serde::Deserialize }
+        };
+        let range_checked_deserialize = match bounds {
+            Some((min, max)) => quote! {
+                impl<'de> serde::Deserialize<'de> for #type_name {
+                    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+                    where
+                        D: serde::Deserializer<'de>,
+                    {
+                        let value = <i64 as serde::Deserialize>::deserialize(deserializer)?;
+                        if !(#min..=#max).contains(&value) {
+                            return Err(serde::de::Error::custom(format!(
+                                "integer {} is outside the range {}..={} of {}",
+                                value,
+                                #min,
+                                #max,
+                                stringify!(#type_name)
+                            )));
+                        }
+                        Ok(Self(value))
+                    }
+                }
+            },
+            None => quote! {},
+        };
+
         // Use same derives as primitive wrappers
         let derives = if let Some(derivability) = trait_derivability {
             let mut derives = vec![quote! { Debug }, quote! { Clone }, quote! { PartialEq }];
@@ -104,18 +144,17 @@ impl BoundedIntegerGenerator {
             }
 
             derives.push(quote! { serde::Serialize });
-            derives.push(quote! { serde::Deserialize });
 
-            quote! { #[derive(#(#derives),*)] }
+            quote! { #[derive(#(#derives),* #deserialize_derive)] }
         } else {
             // Default derives when no trait analysis available
             if self.streaming_encode {
                 quote! {
-                    #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Default, serde::Serialize, serde::Deserialize)]
+                    #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Default, serde::Serialize #deserialize_derive)]
                 }
             } else {
                 quote! {
-                    #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize, serde::Deserialize)]
+                    #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize #deserialize_derive)]
                 }
             }
         };
@@ -141,6 +180,8 @@ impl BoundedIntegerGenerator {
                     Self(value)
                 }
             }
+
+            #range_checked_deserialize
         })
     }
 
@@ -707,7 +748,7 @@ mod tests {
         let generator = BoundedIntegerGenerator::new();
         let type_name = format_ident!("TestType");
 
-        let result = generator.generate_type_definition(&type_name, None);
+        let result = generator.generate_type_definition(&type_name, None, None);
         assert!(result.is_ok());
 
         let definition_file = parse_generated_file(result.unwrap());
@@ -742,7 +783,7 @@ mod tests {
         let type_name = format_ident!("AllTraits");
         let derivability = create_trait_derivability(true, true, true);
 
-        let result = generator.generate_type_definition(&type_name, Some(&derivability));
+        let result = generator.generate_type_definition(&type_name, Some(&derivability), None);
         assert!(result.is_ok());
 
         let tokens = result.unwrap().to_string();
@@ -760,7 +801,7 @@ mod tests {
         let type_name = format_ident!("NoEq");
         let derivability = create_trait_derivability(false, true, true);
 
-        let result = generator.generate_type_definition(&type_name, Some(&derivability));
+        let result = generator.generate_type_definition(&type_name, Some(&derivability), None);
         assert!(result.is_ok());
 
         let tokens = result.unwrap().to_string();
@@ -778,7 +819,7 @@ mod tests {
         let type_name = format_ident!("NoOrd");
         let derivability = create_trait_derivability(true, false, true);
 
-        let result = generator.generate_type_definition(&type_name, Some(&derivability));
+        let result = generator.generate_type_definition(&type_name, Some(&derivability), None);
         assert!(result.is_ok());
 
         let tokens = result.unwrap().to_string();
@@ -794,7 +835,7 @@ mod tests {
         let type_name = format_ident!("NoHash");
         let derivability = create_trait_derivability(true, true, false);
 
-        let result = generator.generate_type_definition(&type_name, Some(&derivability));
+        let result = generator.generate_type_definition(&type_name, Some(&derivability), None);
         assert!(result.is_ok());
 
         let tokens = result.unwrap().to_string();
@@ -955,7 +996,7 @@ mod tests {
             blocking_types: HashSet::new(),
         };
 
-        let result = generator.generate_type_definition(&type_name, Some(&derivability));
+        let result = generator.generate_type_definition(&type_name, Some(&derivability), None);
         assert!(result.is_ok());
 
         let tokens = result.unwrap().to_string();

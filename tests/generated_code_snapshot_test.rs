@@ -477,106 +477,115 @@ fn bounded_integer_struct_generated_output_snapshot() {
         .expect("snapshot schema should render");
 
     let snapshot = extract_generated_type_encoder_snapshot(&generated_code, "SnapshotScoreScore");
-    expect![[r#"
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    PartialOrd,
-    Ord,
-    Hash,
-    serde::Serialize,
-    serde::Deserialize
-)]
-#[serde(transparent)]
-pub struct SnapshotScoreScore(pub i64);
-impl SnapshotScoreScore {
-    /// Get the inner value
-    pub fn value(&self) -> &i64 {
-        &self.0
-    }
-    /// Get the inner value (consuming)
-    pub fn into_value(self) -> i64 {
-        self.0
-    }
-    /// Create from inner value
-    pub fn new(value: i64) -> Self {
-        Self(value)
-    }
-}
-impl crate::tokenizer::JsonTokenEncoder for SnapshotScoreScore {
-    fn encode(&self, tokens: &mut Vec<u32>) {
-        const ENCODING_BASE: u32 = 256u32;
-        let offset = (self.0 - -5i64) as u32;
-        if offset < 256u32 {
-            tokens.push(0u32);
-            tokens.push(offset % ENCODING_BASE);
-        } else {
-            if offset < 65536u32 {
-                tokens.push(1u32);
-                tokens.push((offset / 256u32) % ENCODING_BASE);
-                tokens.push(offset % ENCODING_BASE);
-            } else {
-                if offset < 16777216u32 {
-                    tokens.push(2u32);
-                    tokens.push((offset / 65536u32) % ENCODING_BASE);
-                    tokens.push((offset / 256u32) % ENCODING_BASE);
+    expect![[r##"
+        #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, serde::Serialize)]
+        #[serde(transparent)]
+        pub struct SnapshotScoreScore(pub i64);
+        impl SnapshotScoreScore {
+            /// Get the inner value
+            pub fn value(&self) -> &i64 {
+                &self.0
+            }
+            /// Get the inner value (consuming)
+            pub fn into_value(self) -> i64 {
+                self.0
+            }
+            /// Create from inner value
+            pub fn new(value: i64) -> Self {
+                Self(value)
+            }
+        }
+        impl<'de> serde::Deserialize<'de> for SnapshotScoreScore {
+            fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                let value = <i64 as serde::Deserialize>::deserialize(deserializer)?;
+                if !(-5i64..=5i64).contains(&value) {
+                    return Err(
+                        serde::de::Error::custom(
+                            format!(
+                                "integer {} is outside the range {}..={} of {}", value, - 5i64,
+                                5i64, stringify!(SnapshotScoreScore)
+                            ),
+                        ),
+                    );
+                }
+                Ok(Self(value))
+            }
+        }
+        impl crate::tokenizer::JsonTokenEncoder for SnapshotScoreScore {
+            fn encode(&self, tokens: &mut Vec<u32>) {
+                const ENCODING_BASE: u32 = 256u32;
+                let offset = (self.0 - -5i64) as u32;
+                if offset < 256u32 {
+                    tokens.push(0u32);
                     tokens.push(offset % ENCODING_BASE);
                 } else {
-                    tokens.push(3u32);
-                    tokens.push((offset / 16777216u32) % ENCODING_BASE);
-                    tokens.push((offset / 65536u32) % ENCODING_BASE);
-                    tokens.push((offset / 256u32) % ENCODING_BASE);
-                    tokens.push(offset % ENCODING_BASE);
+                    if offset < 65536u32 {
+                        tokens.push(1u32);
+                        tokens.push((offset / 256u32) % ENCODING_BASE);
+                        tokens.push(offset % ENCODING_BASE);
+                    } else {
+                        if offset < 16777216u32 {
+                            tokens.push(2u32);
+                            tokens.push((offset / 65536u32) % ENCODING_BASE);
+                            tokens.push((offset / 256u32) % ENCODING_BASE);
+                            tokens.push(offset % ENCODING_BASE);
+                        } else {
+                            tokens.push(3u32);
+                            tokens.push((offset / 16777216u32) % ENCODING_BASE);
+                            tokens.push((offset / 65536u32) % ENCODING_BASE);
+                            tokens.push((offset / 256u32) % ENCODING_BASE);
+                            tokens.push(offset % ENCODING_BASE);
+                        }
+                    }
+                }
+            }
+            fn decode(
+                tokens: &mut impl Iterator<Item = u32>,
+            ) -> Result<Self, crate::tokenizer::DecodeError> {
+                let offset = crate::tokenizer::variable_base::decode_u32_fixed_base(
+                    tokens,
+                    stringify!(SnapshotScoreScore),
+                )?;
+                let value = (offset as i64) + -5i64;
+                Ok(Self(value))
+            }
+            fn decode_strict(
+                tokens: &mut impl Iterator<Item = u32>,
+            ) -> Result<Self, crate::tokenizer::DecodeError> {
+                let offset = crate::tokenizer::variable_base::decode_u32_fixed_base_strict(
+                    tokens,
+                    stringify!(SnapshotScoreScore),
+                )?;
+                if offset >= 11u32 {
+                    return Err(
+                        crate::tokenizer::DecodeError::InvalidData(
+                            format!(
+                                "bounded integer offset {} exceeds schema range 0..{}", offset,
+                                11u32.saturating_sub(1)
+                            ),
+                        ),
+                    );
+                }
+                let value = (offset as i64) + -5i64;
+                Ok(Self(value))
+            }
+            fn token_count(&self) -> usize {
+                let offset = (self.0 - -5i64) as u32;
+                if offset < 256u32 {
+                    2usize
+                } else {
+                    if offset < 65536u32 {
+                        3usize
+                    } else {
+                        if offset < 16777216u32 { 4usize } else { 5usize }
+                    }
                 }
             }
         }
-    }
-    fn decode(
-        tokens: &mut impl Iterator<Item = u32>,
-    ) -> Result<Self, crate::tokenizer::DecodeError> {
-        let offset = crate::tokenizer::variable_base::decode_u32_fixed_base(
-            tokens,
-            stringify!(SnapshotScoreScore),
-        )?;
-        let value = (offset as i64) + -5i64;
-        Ok(Self(value))
-    }
-    fn decode_strict(
-        tokens: &mut impl Iterator<Item = u32>,
-    ) -> Result<Self, crate::tokenizer::DecodeError> {
-        let offset = crate::tokenizer::variable_base::decode_u32_fixed_base_strict(
-            tokens,
-            stringify!(SnapshotScoreScore),
-        )?;
-        if offset >= 11u32 {
-            return Err(
-                crate::tokenizer::DecodeError::InvalidData(
-                    format!(
-                        "bounded integer offset {} exceeds schema range 0..{}", offset,
-                        11u32.saturating_sub(1)
-                    ),
-                ),
-            );
-        }
-        let value = (offset as i64) + -5i64;
-        Ok(Self(value))
-    }
-    fn token_count(&self) -> usize {
-        let offset = (self.0 - -5i64) as u32;
-        if offset < 256u32 {
-            2usize
-        } else {
-            if offset < 65536u32 {
-                3usize
-            } else {
-                if offset < 16777216u32 { 4usize } else { 5usize }
-            }
-        }
-    }
-}
-"#]]
+    "##]]
     .assert_eq(&snapshot);
 }
 

@@ -443,6 +443,75 @@ Ok(())
     );
 }
 
+/// A variant schema can validate more than its generated type holds: in draft 7
+/// a `$ref` ignores its sibling `type`, and a definition without a `type`
+/// validates any non-object. A value that matches several anyOf variants is
+/// converted into the first matching variant whose type takes it.
+#[test]
+fn test_anyof_union_converts_into_first_matching_variant_that_takes_the_value() {
+    let schema = json!({
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "title": "StatusContract",
+        "type": "object",
+        "definitions": {
+            "rule": {
+                "properties": {
+                    "target": {"type": "string"},
+                    "informational": {"type": "boolean"}
+                }
+            }
+        },
+        "properties": {
+            "patch": {
+                "anyOf": [
+                    {"$ref": "#/definitions/rule", "type": "object"},
+                    {"type": "string", "enum": ["off"]},
+                    {"type": "boolean"}
+                ]
+            }
+        },
+        "additionalProperties": false
+    });
+
+    let grammar = TctCompiler::new(schema, "StatusContract")
+        .unwrap()
+        .compile()
+        .expect("status anyOf schema should compile");
+    let generated_code = grammar
+        .generate_code()
+        .expect("status anyOf schema should generate code");
+
+    run_generated_anyof_contract_crate(
+        "anyof-first-convertible-contracts",
+        &generated_code,
+        r#"
+assert_round_trip::<StatusContract>(json!({}))?;
+assert_round_trip::<StatusContract>(json!({"patch": {"target": "80%", "informational": true}}))?;
+assert_round_trip::<StatusContract>(json!({"patch": false}))?;
+assert_round_trip::<StatusContract>(json!({"patch": true}))?;
+assert_round_trip::<StatusContract>(json!({"patch": "off"}))?;
+
+let value: StatusContract =
+    serde_json::from_value(json!({"patch": "off"})).map_err(|error| error.to_string())?;
+if !matches!(value.patch, Some(StatusContractPatchEnum::Variant1(_))) {
+    return Err(format!("\"off\" should select the string enum variant, got {:?}", value.patch));
+}
+let value: StatusContract =
+    serde_json::from_value(json!({"patch": false})).map_err(|error| error.to_string())?;
+if !matches!(value.patch, Some(StatusContractPatchEnum::Variant2(false))) {
+    return Err(format!("false should select the boolean variant, got {:?}", value.patch));
+}
+
+// No variant validates this value.
+if serde_json::from_value::<StatusContract>(json!({"patch": {"target": 5}})).is_ok() {
+    return Err("anyOf accepted an object that breaks the referenced properties".to_string());
+}
+
+Ok(())
+"#,
+    );
+}
+
 #[test]
 fn test_anyof_union_object_anyof_and_oneof_generated_crate_semantics() {
     let schema = json!({

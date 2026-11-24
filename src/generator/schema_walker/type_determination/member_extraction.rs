@@ -2,13 +2,17 @@
 //!
 //! This module owns the cases where a member schema becomes a named discovered
 //! type instead of an inline Rust primitive: string enums, JSON const wrappers,
-//! `type` arrays, bounded integers, and format-constrained strings, including
+//! `type` arrays (also next to a `$ref`), bounded integers, and
+//! format-constrained strings, including
 //! their schema locations and discovery statistics.
 
 use super::{primitive_type_for_const_value, type_array_type_names};
 use crate::TctResult;
-use crate::generator::schema_discovery::{MemberType, SchemaLocation, TypeDiscovery, TypeKind};
+use crate::generator::schema_discovery::{
+    MemberInfo, MemberType, SchemaLocation, TypeDiscovery, TypeKind,
+};
 use crate::generator::schema_walker::SchemaWalker;
+use crate::schema_utils::local_definition_ref_target;
 use crate::utils::to_upper_camel_case;
 use serde_json::{Map, Value};
 
@@ -168,14 +172,7 @@ impl SchemaWalker {
             return self.determine_member_type(&single_type_schema, parent_type, property_name);
         }
 
-        let base_name = match property_name {
-            Some(prop_name) => format!(
-                "{}Enum",
-                self.create_nested_type_name(parent_type, Some(prop_name))
-            ),
-            None => format!("{}TypeArrayEnum", parent_type),
-        };
-        let enum_name = self.unused_or_same_schema_type_name(base_name, schema);
+        let enum_name = self.type_array_enum_name(schema, parent_type, property_name);
 
         crate::log_debug!(
             "🔍 Type array {:?} for property '{}' in '{}' → Enum '{}'",
@@ -194,12 +191,146 @@ impl SchemaWalker {
         Ok(MemberType::TypeReference(enum_name))
     }
 
+    /// The enum name of a member with a `type` array: `{Parent}{Prop}Enum`, or
+    /// `{Parent}TypeArrayEnum` for a member without a property name.
+    fn type_array_enum_name(
+        &self,
+        schema: &Map<String, Value>,
+        parent_type: &str,
+        property_name: Option<&str>,
+    ) -> String {
+        let base_name = match property_name {
+            Some(prop_name) => format!(
+                "{}Enum",
+                self.create_nested_type_name(parent_type, Some(prop_name))
+            ),
+            None => format!("{}TypeArrayEnum", parent_type),
+        };
+        self.unused_or_same_schema_type_name(base_name, schema)
+    }
+
+    /// The types a `$ref` member lists next to the reference, when they are
+    /// honoured: `{"$ref": "#/definitions/rule", "type": ["object", "boolean"]}`
+    /// where `rule` is an object-shaped definition without a `type` of its own.
+    ///
+    /// Such a definition compiles to a struct, which holds only objects, while
+    /// the definition itself does not restrict the instance type. The sibling
+    /// `type` array then names the types the member takes: the struct for
+    /// `object`, and a plain variant for each other listed type. A sibling
+    /// `type` next to any other reference is not used; the reference alone
+    /// decides the member type.
+    pub(in crate::generator::schema_walker) fn ref_sibling_type_names<'a>(
+        &self,
+        schema: &'a Map<String, Value>,
+    ) -> Option<Vec<&'a str>> {
+        let ref_str = schema.get("$ref").and_then(Value::as_str)?;
+        local_definition_ref_target(ref_str)?;
+        let type_names: Vec<&str> = schema
+            .get("type")
+            .and_then(Value::as_array)?
+            .iter()
+            .filter_map(Value::as_str)
+            .collect();
+        if type_names.len() < 2 || !type_names.contains(&"object") {
+            return None;
+        }
+        let target = self.resolve_ref(ref_str)?;
+        let object_shaped = ["properties", "patternProperties", "additionalProperties"]
+            .iter()
+            .any(|key| target.contains_key(*key));
+        let untyped = [
+            "type", "$ref", "enum", "const", "oneOf", "anyOf", "allOf", "not", "if",
+        ]
+        .iter()
+        .all(|key| !target.contains_key(*key));
+        (object_shaped && untyped).then_some(type_names)
+    }
+
+    /// A `$ref` member whose sibling `type` array is honoured (see
+    /// [`Self::ref_sibling_type_names`]): an enum with the referenced struct as
+    /// the `object` variant and one plain variant per other listed type.
+    pub(super) fn try_extract_ref_with_type_array_member_type(
+        &mut self,
+        schema: &Map<String, Value>,
+        parent_type: &str,
+        property_name: Option<&str>,
+    ) -> TctResult<Option<MemberType>> {
+        let Some(sibling_type_names) = self.ref_sibling_type_names(schema) else {
+            return Ok(None);
+        };
+        let Some(ref_value) = schema.get("$ref") else {
+            return Ok(None);
+        };
+        let json_path = self.build_json_path(Some(parent_type), property_name);
+        // Checks the names against the seven JSON Schema type names.
+        let listed: Vec<Value> = sibling_type_names
+            .iter()
+            .map(|name| Value::String((*name).to_string()))
+            .collect();
+        let type_names = type_array_type_names(&listed, &json_path)?;
+
+        let enum_name = self.type_array_enum_name(schema, parent_type, property_name);
+        if self
+            .discovery
+            .discovered_types
+            .get(&enum_name)
+            .is_some_and(|existing| existing.schema_object == *schema)
+        {
+            return Ok(Some(MemberType::TypeReference(enum_name)));
+        }
+
+        crate::log_debug!(
+            "🔍 $ref with type array {:?} for property '{}' in '{}' → Enum '{}'",
+            type_names,
+            property_name.unwrap_or("unnamed"),
+            parent_type,
+            enum_name
+        );
+
+        let mut enum_type_discovery = TypeDiscovery::new(
+            enum_name.clone(),
+            TypeKind::Enum,
+            SchemaLocation {
+                json_path,
+                description: format!("Type {} from schema", enum_name),
+                parent_type: Some(parent_type.to_string()),
+                property_name: property_name.map(String::from),
+            },
+            schema.clone(),
+        );
+        for type_name in type_names {
+            let variant_schema = if type_name == "object" {
+                Map::from_iter([("$ref".to_string(), ref_value.clone())])
+            } else {
+                Map::from_iter([("type".to_string(), Value::String(type_name.to_string()))])
+            };
+            let variant_name = format!("Variant{}", enum_type_discovery.members.len());
+            let variant_parent_name = format!("{}{}", enum_name, variant_name);
+            let member_type =
+                self.determine_member_type(&variant_schema, &variant_parent_name, None)?;
+            enum_type_discovery.add_member(MemberInfo {
+                name: variant_name,
+                member_type,
+                required: true,
+                is_nullable: false, // Enum variants are never nullable
+                schema: variant_schema,
+            });
+            self.discovery.stats.total_enum_variants += 1;
+        }
+        self.discovery.register_type(enum_type_discovery);
+
+        Ok(Some(MemberType::TypeReference(enum_name)))
+    }
+
     /// `base_name`, or `base_name` with a numeric suffix when a type with a
     /// different schema was already discovered under that name. Member types
     /// without a property name (array items, map values) share their parent's
-    /// name, so two of them in one parent need distinct names; discovering the
-    /// same schema again keeps its name.
-    fn unused_or_same_schema_type_name(
+    /// name, so two of them in one parent need distinct names, and two
+    /// property names can give one type name (`mode` as an enum and
+    /// `modeEnum` as an object are both `{Parent}ModeEnum`). Without the
+    /// suffix the later type would replace the earlier one under its name.
+    /// Discovering the same schema again keeps its name.
+    pub(super) fn unused_or_same_schema_type_name(
         &self,
         base_name: String,
         schema: &Map<String, Value>,

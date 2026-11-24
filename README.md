@@ -282,7 +282,10 @@ validator. These keywords are accepted in a schema but not enforced by
 `minLength`, `maxLength`, `minItems`, `maxItems`, `uniqueItems`, `multipleOf`,
 and numeric bounds on floats and on integers that have only one limit. An
 instance that violates them encodes and decodes unchanged. Validate decoded
-values against the schema when they matter.
+values against the schema when they matter. An integer with both `minimum` and
+`maximum` is different: where it uses the bounded-integer encoding (`-O2` and
+above), a value outside the range has no token stream and is rejected when
+deserializing.
 
 `decode_prefix()` is explicitly truncation-tolerant and may return partial data
 with defaults. It accepts a left prefix of a canonical token stream; it is not a
@@ -336,12 +339,18 @@ A `type` array such as `["string", "null"]` or `["object", "null"]` compiles to
 a generated enum with one variant per listed type; each variant keeps the
 keywords of its type (properties, items, bounds, format, and the `enum` values
 of that type), and `null` is a unit variant, so a required nullable member
-accepts null and an optional one keeps absent, null, and present apart.
+accepts null and an optional one keeps absent, null, and present apart. An
+optional member keeps these three states whenever its schema admits null, also
+through a `$ref` or a `oneOf`/`anyOf` variant.
 
 **Limitations**: allOf support is exact for the documented object-merge and
 validation-only subset; unsupported composition shapes fail at compile time.
-Mixed-type enums have limited support. Value-level validation keywords are
-accepted but not enforced; see
+Mixed-type enums have limited support. A schema with object keywords
+(`properties`, `patternProperties`, `additionalProperties`) and no `type`
+compiles to a struct that takes only objects, although JSON Schema lets it
+accept any non-object value; a `type` array next to a `$ref` to such a
+definition adds a variant for each other listed type. Value-level validation
+keywords are accepted but not enforced; see
 [What the Tokenizer Does Not Enforce](#what-the-tokenizer-does-not-enforce).
 
 **Generated names**: a definition named like a Rust prelude item (`string`,

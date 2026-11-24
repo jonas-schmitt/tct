@@ -74,7 +74,10 @@ Supported merge behavior:
   A subschema whose `type` is `"object"` or the nullable object
   `["object", "null"]` is an object subschema: its object case is merged
   exactly, and whether the member accepts null is decided by the containing
-  schema. Any other `type` in a merged subschema is rejected.
+  schema alone. A containing schema that does not itself list null gives a
+  struct that rejects null, also when every merged subschema is nullable;
+  that is stricter than the intersection. Any other `type` in a merged
+  subschema is rejected.
 - Duplicate properties are merged only when their validation-relevant schemas
   are structurally identical; conflicting duplicates are rejected.
 - `required` names are unioned across the containing object, mergeable
@@ -1026,14 +1029,44 @@ variant, the values of that variant's type, and a listed type without such a
 value gets no variant: `["string", "null"]` with `"enum": ["a", null]` is a
 string enum of `a` plus a null variant. `null` is a unit variant. A required
 member is the enum itself, so it accepts null and rejects absence; an optional
-member is `OptionalField<Enum>` when `null` is listed (encode writes null as
-the optional-field null state; a present value that selects the enum's null
-variant also decodes to null) and `Option<Enum>` otherwise. A one-element
+member is `OptionalField<Enum>` when `null` is listed and `Option<Enum>`
+otherwise. A null read from JSON is the optional-field null state, and encode
+writes that state. The stream "present, null variant" also decodes to null,
+and a value decoded from it encodes to that stream again, so null in such a
+member has two streams that `decode_strict()` accepts, as for an optional
+`oneOf`/`anyOf` member with a null variant. A one-element
 array on a member is the plain type. Unknown type names, a member `type` array
 without any type name, and an `enum` without a value of any listed type are
 compile errors; non-string entries are skipped. A schema whose `$ref`,
 `const`, string-only `enum`, `allOf`, `oneOf`, or `anyOf` decides the member
 type keeps that representation.
+
+The generated `Deserialize` of such an enum selects the variant by the JSON
+type of the value (the first variant of that type), instead of trying every
+variant in turn: an object variant does not take a JSON array, and an array
+variant without an item schema takes only arrays. An `integer` variant takes
+integers written without a fraction, as plain integer members do.
+
+One reference shape uses a sibling `type` array: a `$ref` to a local
+definition that has object keywords (`properties`, `patternProperties`, or
+`additionalProperties`) and no `type`, `enum`, `const`, or composition of its
+own, next to a `type` array that lists `object` and at least one other type.
+Such a definition compiles to a struct, which holds only objects, while the
+definition does not restrict the instance type. The member is an enum with
+the referenced struct as the object variant and a plain variant for each
+other listed type (a unit variant for `null`). A sibling `type` next to any
+other reference is not used.
+
+An optional member is `OptionalField<T>` exactly when its schema admits null:
+a `type` of `"null"` or a `type` array with `"null"`, a `oneOf`/`anyOf`
+variant that admits null, or a `$ref` to a schema that admits null, followed
+through chains of references. serde's `Option<T>` takes a null for itself, so
+`Option<T>` would reject a null that `T` accepts.
+
+Member types that are named after their parent and property
+(`{Parent}{Prop}`, `{Parent}{Prop}Enum`, `{Parent}Nested` for array items and
+map values) get a numeric suffix when a different schema was already
+discovered under the name, so two members never share one generated type.
 
 ## String Encoding
 

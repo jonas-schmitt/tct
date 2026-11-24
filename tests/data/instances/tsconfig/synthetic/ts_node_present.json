@@ -1,0 +1,11 @@
+{
+  "ts-node": {
+    "moduleTypes": {
+      "scripts/**/*.ts": "cjs"
+    },
+    "transpiler": "ts-node/transpilers/swc",
+    "compilerOptions": {
+      "strict": true
+    }
+  }
+}

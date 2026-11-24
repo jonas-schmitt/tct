@@ -358,6 +358,15 @@ impl super::SchemaWalker {
         // Handle references
         if let Some(ref_str) = schema.get("$ref").and_then(Value::as_str) {
             if let Some(target) = local_definition_ref_target(ref_str) {
+                // A sibling `type` array next to a reference to an untyped
+                // object-shaped definition lists the types the member takes.
+                if let Some(member_type) = self.try_extract_ref_with_type_array_member_type(
+                    schema,
+                    parent_type,
+                    property_name,
+                )? {
+                    return Ok(member_type);
+                }
                 // Local definition reference
                 return Ok(MemberType::TypeReference(to_type_name(&target)));
             } else if ref_str.starts_with("http://") || ref_str.starts_with("https://") {
@@ -475,8 +484,10 @@ impl super::SchemaWalker {
 
                     if has_properties || has_pattern_properties {
                         // Constrained object with explicit structure - needs struct type
-                        let nested_type_name =
-                            self.create_nested_type_name(parent_type, property_name);
+                        let nested_type_name = self.unused_or_same_schema_type_name(
+                            self.create_nested_type_name(parent_type, property_name),
+                            schema,
+                        );
 
                         crate::log_debug!(
                             "🏗️  Constrained object property '{}' in '{}' → Struct '{}'",
@@ -500,8 +511,10 @@ impl super::SchemaWalker {
                         Some(Value::Bool(false)) => {
                             // additionalProperties: false with no properties = empty object
                             // Needs an empty struct type
-                            let nested_type_name =
-                                self.create_nested_type_name(parent_type, property_name);
+                            let nested_type_name = self.unused_or_same_schema_type_name(
+                                self.create_nested_type_name(parent_type, property_name),
+                                schema,
+                            );
 
                             crate::log_debug!(
                                 "📦 Empty object property '{}' in '{}' → Empty Struct '{}'",
@@ -589,7 +602,10 @@ impl super::SchemaWalker {
                 return Ok(member_type);
             }
 
-            let nested_type_name = self.create_nested_type_name(parent_type, property_name);
+            let nested_type_name = self.unused_or_same_schema_type_name(
+                self.create_nested_type_name(parent_type, property_name),
+                schema,
+            );
 
             crate::log_debug!(
                 "🔄 AllOf property '{}' in '{}' → Struct '{}'",
@@ -620,6 +636,7 @@ impl super::SchemaWalker {
                 // Fallback to old naming for cases without property context
                 format!("{}Enum", parent_type)
             };
+            let enum_type_name = self.unused_or_same_schema_type_name(enum_type_name, schema);
             self.discover_schema_as_type(
                 schema,
                 &enum_type_name,

@@ -358,6 +358,41 @@ fn test_type_array_members_compile_to_typed_enums() {
         .map(|payload| type_text(payload.expect("data variant")))
         .collect();
     assert_eq!(env_payloads, vec!["String", "serde_json::Number", "bool"]);
+
+    // [array, string] without an item schema: an array variant and a string
+    // variant, selected by the JSON type of the value.
+    let paths = field_type(root, "paths");
+    let paths_payloads = variant_payloads(generated_enum(
+        &file,
+        &type_name(unwrap_one(paths, "Option")),
+    ));
+    assert_eq!(paths_payloads.len(), 2);
+    assert_eq!(
+        type_text(paths_payloads[1].expect("string variant")),
+        "String"
+    );
+
+    // A `$ref` to an object-shaped definition without a `type`, next to a
+    // `type` array: the referenced struct for objects and a plain variant for
+    // each other listed type; with null the member keeps its three states.
+    let rule_or_flag = field_type(root, "rule_or_flag");
+    let rule_or_flag_payloads: Vec<String> = variant_payloads(generated_enum(
+        &file,
+        &type_name(unwrap_one(rule_or_flag, "Option")),
+    ))
+    .into_iter()
+    .map(|payload| type_text(payload.expect("data variant")))
+    .collect();
+    assert_eq!(rule_or_flag_payloads, vec!["Rule", "bool"]);
+    let rule_or_null = field_type(root, "rule_or_null");
+    let rule_or_null_payloads: Vec<Option<String>> = variant_payloads(generated_enum(
+        &file,
+        &type_name(unwrap_one(rule_or_null, "OptionalField")),
+    ))
+    .into_iter()
+    .map(|payload| payload.map(type_text))
+    .collect();
+    assert_eq!(rule_or_null_payloads, vec![Some("Rule".to_string()), None]);
 }
 
 #[test]
@@ -443,8 +478,204 @@ fn test_type_array_members_round_trip_and_reject_invalid_instances() {
     run_generated_type_array_crate(
         "generated-type-array-members",
         &code,
-        &type_array_body(&valid, &invalid),
+        &instance_body("TypeArrayMembers", &valid, &invalid),
     );
+}
+
+fn generated_code_for(schema: Value, root_type: &str) -> String {
+    TctCompiler::new(schema, root_type)
+        .and_then(|compiler| compiler.compile())
+        .and_then(|grammar| grammar.generate_code())
+        .unwrap_or_else(|error| panic!("{root_type} schema should compile: {error}"))
+}
+
+fn inline_instances(instances: &[(&str, Value)]) -> Vec<(String, String)> {
+    instances
+        .iter()
+        .map(|(name, value)| (name.to_string(), value.to_string()))
+        .collect()
+}
+
+/// An optional member whose schema admits null only through a reference, a
+/// `type` array inside a oneOf/anyOf variant, or a referenced variant must
+/// keep absent, null, and present apart; `Option<T>` would reject the null.
+#[test]
+fn test_optional_members_admitting_null_through_refs_and_variants_accept_null() {
+    let schema = json!({
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "title": "NullableRefs",
+        "type": "object",
+        "definitions": {
+            "moduleTypes": {"type": ["object", "null"], "additionalProperties": {"type": "string"}},
+            "maybeName": {"type": ["string", "null"]},
+            "alias": {"$ref": "#/definitions/maybeName"},
+            "name": {"type": "string"},
+            "nothing": {"type": "null"}
+        },
+        "properties": {
+            "module_types": {"$ref": "#/definitions/moduleTypes"},
+            "required_module_types": {"$ref": "#/definitions/moduleTypes"},
+            "aliased": {"$ref": "#/definitions/alias"},
+            "transpiler": {
+                "anyOf": [
+                    {"type": ["array", "null"], "items": {"type": "string"}},
+                    {"type": ["string", "null"]}
+                ]
+            },
+            "referenced_variant": {
+                "oneOf": [
+                    {"$ref": "#/definitions/name"},
+                    {"$ref": "#/definitions/nothing"}
+                ]
+            },
+            "plain": {"$ref": "#/definitions/name"},
+            "rating": {"type": "integer", "minimum": 1, "maximum": 5}
+        },
+        "required": ["required_module_types"],
+        "additionalProperties": false
+    });
+    let code = generated_code_for(schema, "NullableRefs");
+    let file = parse_generated_code(&code);
+    let root = generated_struct(&file, "NullableRefs");
+    for member in [
+        "module_types",
+        "aliased",
+        "transpiler",
+        "referenced_variant",
+    ] {
+        unwrap_one(field_type(root, member), "OptionalField");
+    }
+    // A required member is its type, whose null variant takes the null, and a
+    // member whose schema does not admit null stays an Option.
+    assert_eq!(
+        type_text(field_type(root, "required_module_types")),
+        "ModuleTypes"
+    );
+    unwrap_one(field_type(root, "plain"), "Option");
+
+    let valid = inline_instances(&[
+        ("absent", json!({"required_module_types": {}})),
+        (
+            "nulls",
+            json!({
+                "required_module_types": null,
+                "module_types": null,
+                "aliased": null,
+                "transpiler": null,
+                "referenced_variant": null
+            }),
+        ),
+        (
+            "present",
+            json!({
+                "required_module_types": {"src/**": "cjs"},
+                "module_types": {"scripts/**": "esm"},
+                "aliased": "name",
+                "transpiler": ["swc", "--fast"],
+                "referenced_variant": "name",
+                "plain": "name",
+                "rating": 5
+            }),
+        ),
+        (
+            "other_variants",
+            json!({"required_module_types": {}, "transpiler": "swc", "rating": 1}),
+        ),
+    ]);
+    let invalid = inline_instances(&[
+        ("missing_required", json!({"module_types": null})),
+        (
+            "plain_null",
+            json!({"required_module_types": {}, "plain": null}),
+        ),
+        (
+            "module_types_string",
+            json!({"required_module_types": {}, "module_types": "cjs"}),
+        ),
+        (
+            "transpiler_number",
+            json!({"required_module_types": {}, "transpiler": 5}),
+        ),
+        (
+            "referenced_variant_number",
+            json!({"required_module_types": {}, "referenced_variant": 5}),
+        ),
+        // A bounded integer outside its range has no token stream.
+        (
+            "rating_below_minimum",
+            json!({"required_module_types": {}, "rating": 0}),
+        ),
+        (
+            "rating_above_maximum",
+            json!({"required_module_types": {}, "rating": 6}),
+        ),
+    ]);
+    run_generated_type_array_crate(
+        "generated-nullable-refs",
+        &code,
+        &instance_body("NullableRefs", &valid, &invalid),
+    );
+}
+
+/// Two members of one parent whose type names coincide (`mode` as a type-array
+/// enum and `modeEnum` as an object are both `{Parent}ModeEnum`; two array item
+/// objects are both `{Parent}Nested`) must not share one generated type.
+#[test]
+fn test_colliding_member_type_names_get_distinct_types() {
+    let schema = json!({
+        "title": "Collide",
+        "type": "object",
+        "properties": {
+            "mode": {"type": ["string", "boolean"]},
+            "modeEnum": {
+                "type": "object",
+                "properties": {"level": {"type": "integer"}},
+                "additionalProperties": false
+            },
+            "licenses": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {"kind": {"type": "string"}},
+                    "additionalProperties": false
+                }
+            },
+            "owners": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {"id": {"type": "integer"}},
+                    "additionalProperties": false
+                }
+            }
+        },
+        "additionalProperties": false
+    });
+    let code = generated_code_for(schema, "Collide");
+    let file = parse_generated_code(&code);
+    let root = generated_struct(&file, "Collide");
+
+    let mode = type_name(unwrap_one(field_type(root, "mode"), "Option"));
+    let mode_enum = type_name(unwrap_one(field_type(root, "modeenum"), "Option"));
+    assert_ne!(mode, mode_enum);
+    let mode_payloads: Vec<String> = variant_payloads(generated_enum(&file, &mode))
+        .into_iter()
+        .map(|payload| type_text(payload.expect("data variant")))
+        .collect();
+    assert_eq!(mode_payloads, vec!["String", "bool"]);
+    field_type(generated_struct(&file, &mode_enum), "level");
+
+    let licenses = type_name(unwrap_one(
+        unwrap_one(field_type(root, "licenses"), "Option"),
+        "Vec",
+    ));
+    let owners = type_name(unwrap_one(
+        unwrap_one(field_type(root, "owners"), "Option"),
+        "Vec",
+    ));
+    assert_ne!(licenses, owners);
+    field_type(generated_struct(&file, &licenses), "kind");
+    field_type(generated_struct(&file, &owners), "id");
 }
 
 #[test]
@@ -564,7 +795,13 @@ fn rust_instance_table(instances: &[(String, String)]) -> String {
         .join(", ")
 }
 
-fn type_array_body(valid: &[(String, String)], invalid: &[(String, String)]) -> String {
+/// Body of a generated-crate `main`: every valid instance round-trips through
+/// `decode_full` and `decode_strict_full`, and every invalid one is rejected.
+fn instance_body(
+    root_type: &str,
+    valid: &[(String, String)],
+    invalid: &[(String, String)],
+) -> String {
     format!(
         r##"
 let valid: &[(&str, &str)] = &[{valid}];
@@ -573,7 +810,7 @@ let mut failures = Vec::new();
 for &(name, text) in valid {{
     let expected: serde_json::Value = serde_json::from_str(text)
         .map_err(|error| format!("{{name}}: not JSON: {{error}}"))?;
-    let instance: TypeArrayMembers = match serde_json::from_str(text) {{
+    let instance: {root_type} = match serde_json::from_str(text) {{
         Ok(instance) => instance,
         Err(error) => {{
             failures.push(format!("{{name}}: valid instance rejected: {{error}}"));
@@ -590,8 +827,8 @@ for &(name, text) in valid {{
         ));
     }}
     for (label, decoded) in [
-        ("decode_full", TypeArrayMembers::decode_full(stream.clone())),
-        ("decode_strict_full", TypeArrayMembers::decode_strict_full(stream.clone())),
+        ("decode_full", {root_type}::decode_full(stream.clone())),
+        ("decode_strict_full", {root_type}::decode_strict_full(stream.clone())),
     ] {{
         let decoded = match decoded {{
             Ok(decoded) => decoded,
@@ -613,7 +850,7 @@ for &(name, text) in valid {{
     }}
 }}
 for &(name, text) in invalid {{
-    if serde_json::from_str::<TypeArrayMembers>(text).is_ok() {{
+    if serde_json::from_str::<{root_type}>(text).is_ok() {{
         failures.push(format!("{{name}}: schema-invalid instance was accepted"));
     }}
 }}
@@ -623,6 +860,7 @@ if failures.is_empty() {{
     Err(failures.join("\n"))
 }}
 "##,
+        root_type = root_type,
         valid = rust_instance_table(valid),
         invalid = rust_instance_table(invalid),
     )

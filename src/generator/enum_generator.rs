@@ -20,6 +20,7 @@ mod partial_encoding;
 mod schema_validation;
 mod streaming_decode;
 mod support;
+mod type_array_deserialize;
 
 use support::{EnumEncodingMode, default_value_for_member_type, determine_encoding_mode};
 
@@ -226,6 +227,14 @@ impl<'a> EnumGenerator<'a> {
         };
         let is_anyof_oneof = anyof_oneof_type.is_some();
 
+        // An enum discovered from a `type` array selects its variant by the
+        // JSON type of the value instead of trying every variant in turn
+        let type_array_json_types = if is_simple_enum || is_anyof_oneof {
+            None
+        } else {
+            type_array_deserialize::type_array_variant_json_types(type_discovery)
+        };
+
         // Generate enum definition
         let definition_tokens = if is_simple_enum {
             // Simple enums don't need untagged serialization
@@ -235,8 +244,9 @@ impl<'a> EnumGenerator<'a> {
                     #(#variants),*
                 }
             }
-        } else if is_anyof_oneof {
+        } else if is_anyof_oneof || type_array_json_types.is_some() {
             // anyOf/oneOf enums: Use schema-aware deserialization with untagged serialization
+            // Type-array enums: Use type-dispatching deserialization the same way
             // Don't derive Deserialize - we'll generate a custom impl
             // Keep #[serde(untagged)] for Serialize to match our custom Deserialize expectations
             // Also exclude Default if we need manual impl
@@ -324,6 +334,20 @@ impl<'a> EnumGenerator<'a> {
             implementation_tokens = quote! {
                 #implementation_tokens
                 #schema_aware_impl
+            };
+        }
+
+        if let Some(ref variant_json_types) = type_array_json_types {
+            let type_array_deserialize =
+                type_array_deserialize::generate_type_array_deserialize_impl(
+                    &type_ident,
+                    &type_discovery.members,
+                    variant_json_types,
+                    member_type_fn,
+                )?;
+            implementation_tokens = quote! {
+                #implementation_tokens
+                #type_array_deserialize
             };
         }
 

@@ -89,16 +89,42 @@ Apache-2.0.
   also applies to definitions with a `type` array and an `enum`: before, a
   mixed enum was ignored (the string variant accepted any string) and an
   all-string enum was copied into every variant. A one-element `type` array
-  is the plain type. Instances whose value in such a member has a type the
-  array does not list, a string outside its `enum`, or an object that breaks
-  the declared properties are now rejected when deserializing. Integers with
-  both `minimum` and `maximum` use the bounded-integer encoding; as for other
-  bounded integers, an out-of-range value is not rejected when deserializing.
-  A `type` array with an unknown type name or without any type name, and one
-  whose non-empty `enum` holds no value of a listed type, is a compile error
-  with a schema path; non-string entries are skipped as before. The stream of
+  is the plain type. Deserialization selects the variant by the JSON type of
+  the value, so a JSON array is not taken by an object variant and an array
+  variant without an item schema takes only arrays. Instances whose value in
+  such a member has a type the array does not list, a string outside its
+  `enum`, or an object that breaks the declared properties are now rejected
+  when deserializing. As for plain `integer` members, an integer variant does
+  not take a number written with a fraction (`1.0`), which the untyped member
+  accepted. Integers with both `minimum` and `maximum` use the bounded-integer
+  encoding and reject a value outside the range (see Fixed). A `type` array
+  with an unknown type name or without any type name, and one whose non-empty
+  `enum` holds no value of a listed type, is a compile error with a schema
+  path; non-string entries are skipped as before. A `$ref` to an object-shaped
+  definition that declares no `type`, written next to a `type` array that
+  lists `object` (`{"$ref": "#/definitions/rule", "type": ["object",
+  "boolean"]}`), compiles the same way: the referenced struct is the object
+  variant and each other listed type is a plain variant. Before, such a
+  member took only objects. A sibling `type` next to any other reference is
+  still not used. The stream of
   every instance that uses such a member changes, and streams from earlier
-  builds are not valid streams for those members. Among the shipped target
+  builds are not valid streams for those members. Stream length changes in
+  both directions: declared members and enum values are no longer spelled as
+  string bytes, but an optional member that admits null is an
+  `OptionalField` and writes one state token also when it is absent, where a
+  struct without such members packs presence bits. A small document in a
+  schema with many nullable members therefore gets longer: with the shipped
+  tsconfig schema, `{"compilerOptions": {"target": "es5", "strict": true,
+  "module": "commonjs", "outDir": "./dist"}, "include": ["src"]}` takes 159
+  tokens instead of 81, because `compilerOptions` declares about 150 nullable
+  members. One limitation follows from typing these members: a schema with
+  object keywords and no `type` compiles to a struct that takes only objects,
+  although JSON Schema lets such a schema accept any non-object value. In
+  codecov, `coverage.status.patch` and `coverage.status.changes` take a rule
+  object, a boolean, and (`patch`) `"off"`; other values there (numbers,
+  other strings, arrays, null), which the schema's untyped `default`
+  definition admits and the untyped member used to carry, are rejected when
+  deserializing. Among the shipped target
   schemas the generated tokenizer changes for tsconfig, package,
   github-workflow, jest, babelrc, cypress, codecov, and appsettings, with
   unchanged token ranges and `VOCAB_SIZE`; treat each as a `breaking_change`
@@ -114,6 +140,18 @@ Apache-2.0.
   `schemas/bpe/tsconfig-tct-bpe-500.json`, and
   `schemas/bpe/tsconfig-tct-bpe-1k.json` were trained on the old streams and
   must be retrained.
+- An optional member is an `OptionalField` (absent, null, present) whenever
+  its schema admits null: also when null is admitted through a `$ref` to a
+  schema whose `type` is `"null"` or a `type` array with `"null"`, through a
+  chain of such references, or through a `oneOf`/`anyOf` variant that is such
+  a `type` array or reference. Before, only a direct `type` with null and a
+  direct `{"type": "null"}` variant counted, and other such members were
+  `Option<T>` and rejected an explicit null that the schema allows. This
+  changes the layout of those members (one state token instead of a presence
+  bit or presence token). Among the shipped target schemas it applies to
+  tsconfig (`ts-node.moduleTypes`, `ts-node.transpiler`), package (the
+  `exports` and `imports` entries), and github-workflow (`secrets` of a
+  reusable-workflow job), which already change with the entry above.
 - An `allOf` subschema whose `type` is `["object", "null"]` merges like an
   object subschema; before, it was rejected as an unsupported `allOf` shape.
   The object case is merged exactly, and whether the member accepts null is
@@ -123,6 +161,32 @@ Apache-2.0.
 
 ### Fixed
 
+- A value that matches several `anyOf` variants is converted into the first
+  matching variant whose generated type takes it. Before, only the first
+  matching variant was tried, so a value was rejected when that variant's
+  schema validated more than its type holds: with
+  `anyOf: [{"$ref": "#/definitions/rule", "type": "object"}, {"enum": ["off"]},
+  {"type": "boolean"}]` in a draft-07 schema, where `rule` declares no `type`,
+  `false` and `"off"` also validate against the first variant and were
+  rejected. Variant selection for values that converted before is unchanged,
+  and so are their streams.
+- Bounded integers (both `minimum` and `maximum`, at the optimization levels
+  that use the offset encoding) reject a value outside their range when
+  deserializing, with the value and the range in the error. Before, such a
+  value was accepted and encoded to a stream that decoded to a different
+  value or that `decode_strict()` rejected. Streams of in-range values do not
+  change.
+- Two members of one object whose generated type names coincide no longer
+  share one type. Nested object and `allOf` members and `oneOf`/`anyOf`
+  member enums get a numeric suffix when a different schema already uses the
+  name; before, the later type replaced the earlier one, and the earlier
+  member was silently compiled with the later member's type. This happened
+  for two unnamed item objects in one parent (both `{Parent}Nested`) and can
+  happen for property names that give one type name (`mode` as an enum and
+  `modeEnum` as an object). In the shipped package schema, the items of
+  `licenses` had the type of the `typesVersions` entries, so
+  `"licenses": [{"type": "MIT", "url": "..."}]` was rejected; it now encodes,
+  and the layout of `licenses` items changes.
 - JSON floats are parsed correctly rounded. Generated crates and wheels, and
   the `tct` crate itself, now enable serde_json's `float_roundtrip` feature.
   Before, serde_json's default float parser could round a decimal to a

@@ -62,8 +62,31 @@
       "description": "Map values with a type array",
       "type": "object",
       "additionalProperties": {"type": ["string", "number", "boolean"]}
+    },
+    "paths": {
+      "description": "An array without an item schema, or a string: each JSON type goes to the variant of that type",
+      "type": ["array", "string"]
+    },
+    "rule_or_flag": {
+      "description": "A reference to an object-shaped definition without a type, next to a type array: the referenced struct for objects, a plain variant for booleans",
+      "$ref": "#/definitions/rule",
+      "type": ["object", "boolean"]
+    },
+    "rule_or_null": {
+      "description": "The same with null: an optional member that keeps absent, null, and present apart",
+      "$ref": "#/definitions/rule",
+      "type": ["object", "null"]
     }
   },
   "required": ["required_count"],
-  "additionalProperties": false
+  "additionalProperties": false,
+  "definitions": {
+    "rule": {
+      "properties": {
+        "target": {"type": "string"},
+        "informational": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    }
+  }
 }

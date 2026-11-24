@@ -8,5 +8,8 @@
   "libs": [],
   "tags": [],
   "scores": [50],
-  "env": {}
+  "env": {},
+  "paths": "src",
+  "rule_or_flag": true,
+  "rule_or_null": {}
 }
